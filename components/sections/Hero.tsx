@@ -60,17 +60,20 @@ const Hero = () => {
           </div>
 
           <div className="relative">
-            {heroPopovers.map(({ id, title, href, image, className }) => (
-              <Popover
-                key={id}
-                title={title}
-                href={href}
-                image={image}
-                className={className}
-                isOpen={openId === id}
-                onOpenChange={(open) => setOpenId(open ? id : null)}
-              />
-            ))}
+            {heroPopovers.map(
+              ({ id, title, href, image, className, squareClassName }) => (
+                <Popover
+                  key={id}
+                  title={title}
+                  href={href}
+                  image={image}
+                  className={className}
+                  squareClassName={squareClassName}
+                  isOpen={openId === id}
+                  onOpenChange={(open) => setOpenId(open ? id : null)}
+                />
+              ),
+            )}
 
             <SparkleLogo />
           </div>

@@ -1,13 +1,19 @@
 "use client";
 
 import { useDismiss } from "@/hooks/useDismiss";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
 const MotionLink = motion.create(Link);
+
+const blinkTransition = {
+  duration: 1.6,
+  repeat: Infinity,
+  ease: "easeInOut" as const,
+};
 
 const panelVariants = {
   hidden: {
@@ -55,6 +61,8 @@ type PopoverProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   className?: string;
+  /** Colour of the square trigger, e.g. "bg-dark-pink". */
+  squareClassName?: string;
 };
 
 export default function Popover({
@@ -64,8 +72,14 @@ export default function Popover({
   isOpen,
   onOpenChange,
   className = "",
+  squareClassName = "bg-dark-pink",
 }: PopoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // The square is small and easy to miss, so it pulses until it is used. It
+  // stops once the panel is open, and never runs for reduced-motion users.
+  const blink = !isOpen && !prefersReducedMotion;
 
   useDismiss(containerRef, () => onOpenChange(false), isOpen);
 
@@ -74,19 +88,29 @@ export default function Popover({
       ref={containerRef}
       className={`pointer-events-none absolute ${isOpen ? "z-[110]" : "z-[100]"} ${className}`}
     >
-      <button
+      <motion.button
         type="button"
         onClick={() => onOpenChange(!isOpen)}
-        className="pointer-events-auto absolute top-0 right-0 inline-flex size-[2rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]"
-      >
-        <motion.span
-          className="inline-flex"
-          animate={{ rotate: isOpen ? 135 : 0 }}
-          transition={{ type: "spring", stiffness: 320, damping: 22 }}
-        >
-          <Plus color="white" strokeWidth={1.5} size={18} />
-        </motion.span>
-      </button>
+        aria-label={title}
+        aria-expanded={isOpen}
+        animate={{
+          rotate: isOpen ? 45 : 0,
+          scale: blink ? [1, 1.6, 1] : 1,
+        }}
+        transition={{
+          rotate: { type: "spring", stiffness: 320, damping: 22 },
+          scale: blink ? blinkTransition : { duration: 0.2 },
+        }}
+        // Keeps the square on its own compositor layer so the scale runs on the
+        // GPU. Without it Firefox re-rasterises each frame at this size and the
+        // pulse steps rather than glides.
+        style={{
+          willChange: "transform",
+          transformOrigin: "center",
+          backfaceVisibility: "hidden",
+        }}
+        className={`pointer-events-auto absolute top-0 right-0 size-[.5rem] cursor-pointer ${squareClassName}`}
+      />
 
       <AnimatePresence initial={false}>
         {isOpen && (

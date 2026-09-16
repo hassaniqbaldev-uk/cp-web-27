@@ -9,6 +9,11 @@ export type HeroPopover = {
    * full class names, so anything built by concatenation will not be generated.
    */
   className: string;
+  /**
+   * Background utility for the square trigger, e.g. "bg-dark-pink". Same rule as
+   * `className` — keep it a complete, literal class string.
+   */
+  squareClassName: string;
 };
 
 export type NavChild = {

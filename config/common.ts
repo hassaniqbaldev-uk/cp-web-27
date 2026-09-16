@@ -1,4 +1,4 @@
-import type { HeroPopover } from "@/types/common";
+import type { HeroBadge, HeroPopover } from "@/types/common";
 
 export const heroPopovers: HeroPopover[] = [
   {
@@ -28,5 +28,31 @@ export const heroPopovers: HeroPopover[] = [
     href: "/about",
     image: "/images/home/popover.jpg",
     className: "left-[7rem] bottom-[29rem]",
+  },
+];
+
+// TODO: drop the real assets into /public/images/home/ and correct the
+// intrinsic width/height to match each file.
+export const heroBadges: HeroBadge[] = [
+  {
+    id: "clutch",
+    src: "/images/home/clutch-logo.png",
+    alt: "Clutch reviews",
+    width: 110,
+    height: 30,
+  },
+  {
+    id: "wordpress-partner",
+    src: "/images/home/wp-partner-logo.png",
+    alt: "WordPress partner",
+    width: 95,
+    height: 35,
+  },
+  {
+    id: "shopify-partner",
+    src: "/images/home/shopify-partner-logo.png",
+    alt: "Shopify partner",
+    width: 83,
+    height: 30,
   },
 ];

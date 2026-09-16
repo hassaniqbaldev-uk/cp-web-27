@@ -10,3 +10,24 @@ export type HeroPopover = {
    */
   className: string;
 };
+
+export type NavChild = {
+  label: string;
+  href: string;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  /** Present only on items that open a dropdown. */
+  children?: NavChild[];
+};
+
+export type HeroBadge = {
+  id: string;
+  src: string;
+  alt: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+};

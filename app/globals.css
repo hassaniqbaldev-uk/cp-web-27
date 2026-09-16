@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-dark-pink: #ec3593;
+  --color-orange: #ec9122;
+  --color-grey: #e4e4e4;
+  --color-blue: #3078ff;
+  --color-text-body: #3f3b37;
+
+  /* Radius */
+  --radius-xs: 0.5rem; /* 5px */
+  --radius-sm: 1rem; /* 10px */
+  --radius-md: 2rem; /* 20px */
+  --radius-lg: 3rem; /* 30px */
+  --radius-xl: 6rem; /* 60px */
+
+  /* Spacing  */
+
+  --spacing-xs: 1rem; /* 10px */
+  --spacing-sm: 2rem; /* 20px */
+  --spacing-md: 3rem; /* 30px */
+  --spacing-lg: 4.5rem; /* 45px */
+  --spacing-xl: 6.5rem; /* 65px */
+  --spacing-2xl: 8rem; /* 80px */
+  --spacing-3xl: 12rem; /* 120px */
+
+  --spacing-section-xs: 5rem; /* 50px */
+  --spacing-section-sm: 8rem; /* 80px */
+  --spacing-section-md: 14rem; /* 140px */
+  --spacing-section-lg: 18rem; /* 180px */
+  --spacing-section-xl: 27rem; /* 270px */
+  --spacing-section-2xl: 40.5rem; /* 405px */
+
+  --spacing-section-x: 3rem; /* 30px */
+
+  /* Font Family */
+
+  --font-heading: var(--font-dm-sans);
+  --font-body: var(--font-dm-sans);
+
+  /* Font Size 1rem = 10px */
+
+  --text-body-04: 1.4rem; /* 14px */
+  --text-body-03: 1.6rem; /* 16px */
+  --text-body-02: 1.8rem; /* 18px */
+  --text-body-01: 2.2rem; /* 22px */
+
+  --text-subheading-01: 2.5rem; /* 25px */
+  --text-subheading-02: 3.5rem; /* 35px */
+
+  --text-heading-03: 4.5rem; /* 45px */
+  --text-heading-02: 8.5rem; /* 85px */
+  --text-heading-01: 13rem; /* 130px */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-size: 62.5%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+  background-color: var(--color-white);
+  font-size: var(--text-body-03);
+  line-height: 1.5;
 }

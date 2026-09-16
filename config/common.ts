@@ -1,4 +1,4 @@
-import type { HeroBadge, HeroPopover } from "@/types/common";
+import type { ClientLogo, HeroBadge, HeroPopover } from "@/types/common";
 
 export const heroPopovers: HeroPopover[] = [
   {
@@ -58,5 +58,45 @@ export const heroBadges: HeroBadge[] = [
     alt: "Shopify partner",
     width: 83,
     height: 30,
+  },
+];
+
+// TODO: replace with the real client logos and correct each intrinsic
+// width/height to match the file.
+export const clientLogos: ClientLogo[] = [
+  {
+    id: "client-one",
+    src: "/images/home/clients/client-one.png",
+    alt: "Client One",
+    width: 160,
+    height: 48,
+  },
+  {
+    id: "client-two",
+    src: "/images/home/clients/client-two.png",
+    alt: "Client Two",
+    width: 160,
+    height: 48,
+  },
+  {
+    id: "client-three",
+    src: "/images/home/clients/client-three.png",
+    alt: "Client Three",
+    width: 160,
+    height: 48,
+  },
+  {
+    id: "client-four",
+    src: "/images/home/clients/client-four.png",
+    alt: "Client Four",
+    width: 160,
+    height: 48,
+  },
+  {
+    id: "client-five",
+    src: "/images/home/clients/client-five.png",
+    alt: "Client Five",
+    width: 160,
+    height: 48,
   },
 ];

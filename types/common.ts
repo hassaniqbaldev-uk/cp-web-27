@@ -36,3 +36,12 @@ export type HeroBadge = {
   width: number;
   height: number;
 };
+
+export type ClientLogo = {
+  id: string;
+  src: string;
+  alt: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+};

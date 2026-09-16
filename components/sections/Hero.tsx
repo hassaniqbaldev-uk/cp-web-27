@@ -19,7 +19,7 @@ const Hero = () => {
   return (
     <>
       <Section className="flex min-h-screen items-center overflow-hidden bg-black">
-        <Container className="py-3xl">
+        <Container className="pb-3xl pt-[15rem]">
           <div className="flex items-end justify-between gap-[2.4rem]">
             <div className="flex w-[55rem] flex-col items-start pb-[2rem]">
               <ul className="gap-sm flex items-center">

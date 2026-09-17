@@ -8,6 +8,7 @@ import SparkleLogo from "@/components/ui/SparkleLogo";
 import { clientLogos, heroBadges, heroPopovers } from "@/config/common";
 import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { useState } from "react";
 
@@ -19,9 +20,9 @@ const Hero = () => {
   return (
     <>
       <Section className="flex min-h-screen items-center overflow-hidden bg-black">
-        <Container className="pb-3xl pt-[15rem]">
+        <Container className="pt-[15rem] pb-[10rem]">
           <div className="flex items-end justify-between gap-[2.4rem]">
-            <div className="flex w-[55rem] flex-col items-start pb-[2rem]">
+            <div className="pb-sm flex w-[55rem] flex-col items-start">
               <ul className="gap-sm flex items-center">
                 {heroBadges.map(({ id, src, alt, width, height }, index) => (
                   <li key={id} className="gap-sm flex items-center">
@@ -83,35 +84,30 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mt-[15rem] w-full">
-            {/* The marquee duplicates its children to loop seamlessly, so the
-                visible track is hidden from assistive tech and the real client
-                list is exposed once, below. */}
-            <div aria-hidden="true">
-              <Marquee
-                autoFill
-                speed={40}
-                gradient={false}
-                play={!prefersReducedMotion}
-              >
-                {clientLogos.map(({ id, src, width, height }) => (
-                  <Image
-                    key={id}
-                    src={src}
-                    alt=""
-                    width={width}
-                    height={height}
-                    className="mx-lg h-[4.8rem] w-auto"
-                  />
-                ))}
-              </Marquee>
-            </div>
+          <div className="mt-3xl w-full">
+            <span
+              aria-hidden="true"
+              className="bg-text-body mb-lg block h-px w-full"
+            />
 
-            <ul className="sr-only">
-              {clientLogos.map(({ id, alt }) => (
-                <li key={id}>{alt}</li>
+            <Marquee
+              autoFill
+              speed={40}
+              gradient={false}
+              pauseOnHover
+              pauseOnClick
+              play={!prefersReducedMotion}
+            >
+              {clientLogos.map(({ id, src, alt, href, width, height }) => (
+                <Link
+                  key={id}
+                  href={href}
+                  className="mx-md block opacity-80 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100"
+                >
+                  <Image src={src} alt={alt} width={width} height={height} />
+                </Link>
               ))}
-            </ul>
+            </Marquee>
           </div>
         </Container>
       </Section>

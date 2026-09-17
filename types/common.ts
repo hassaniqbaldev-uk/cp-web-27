@@ -41,6 +41,8 @@ export type ClientLogo = {
   id: string;
   src: string;
   alt: string;
+  /** Where the logo links to — a case study, or the client's own site. */
+  href: string;
   /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;

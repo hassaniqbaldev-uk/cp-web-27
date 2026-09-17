@@ -5,9 +5,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const MotionLink = motion.create(Link);
+
+// Grace period for the pointer to travel from the square to the panel.
+const CLOSE_DELAY = 180;
 
 const blinkTransition = {
   duration: 1.6,
@@ -75,11 +78,33 @@ export default function Popover({
   squareClassName = "bg-dark-pink",
 }: PopoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   // The square is small and easy to miss, so it pulses until it is used. It
   // stops once the panel is open, and never runs for reduced-motion users.
   const blink = !isOpen && !prefersReducedMotion;
+
+  const cancelClose = () => {
+    if (!closeTimer.current) return;
+
+    clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+
+  const open = () => {
+    cancelClose();
+    onOpenChange(true);
+  };
+
+  // The panel sits below the square with a gap between them, so closing has to
+  // wait long enough for the pointer to cross that gap.
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => onOpenChange(false), CLOSE_DELAY);
+  };
+
+  useEffect(() => cancelClose, []);
 
   useDismiss(containerRef, () => onOpenChange(false), isOpen);
 
@@ -90,7 +115,12 @@ export default function Popover({
     >
       <motion.button
         type="button"
-        onClick={() => onOpenChange(!isOpen)}
+        onMouseEnter={open}
+        onMouseLeave={scheduleClose}
+        onFocus={open}
+        // Opens rather than toggles: on a touch device there is no hover, so
+        // the tap has to open it, and outside-tap/Escape still close it.
+        onClick={open}
         aria-label={title}
         aria-expanded={isOpen}
         animate={{
@@ -116,6 +146,8 @@ export default function Popover({
         {isOpen && (
           <MotionLink
             href={href}
+            onMouseEnter={open}
+            onMouseLeave={scheduleClose}
             variants={panelVariants}
             initial="hidden"
             animate="visible"

@@ -3,9 +3,18 @@ import type {
   ClientLogo,
   HeroBadge,
   HeroPopover,
+  ServiceDiscipline,
   TeamMember,
 } from "@/types/common";
-import { Compass, Users } from "lucide-react";
+import {
+  Clock,
+  Code2,
+  Compass,
+  LayoutDashboard,
+  Palette,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 
 export const heroPopovers: HeroPopover[] = [
   {
@@ -70,7 +79,6 @@ export const heroBadges: HeroBadge[] = [
 
 // TODO: replace with the real client logos and correct each intrinsic
 // width/height to match the file.
-// TODO: point each href at the real case study or client site.
 // TODO: point each href at the real case study or client site.
 export const clientLogos: ClientLogo[] = [
   {
@@ -202,5 +210,189 @@ export const teamMembers: TeamMember[] = [
     name: "Team Member Seven",
     width: 130,
     height: 130,
+  },
+];
+
+// TODO: replace with the real four disciplines and their descriptions.
+export const serviceDisciplines: ServiceDiscipline[] = [
+  {
+    id: "web-ecommerce",
+    icon: Palette,
+    title: "Web & Ecommerce",
+    categories: ["Branding", "UI/UX Design", "Digital Identity"],
+    iconClassName: "text-orange",
+    dotClassName: "bg-orange",
+    description:
+      "Placeholder copy. Replace with the real description for this discipline.",
+    detail: {
+      highlights: [
+        {
+          id: "web-ecommerce-timeline",
+          icon: Clock,
+          text: "Staged payments available",
+        },
+        {
+          id: "web-ecommerce-team",
+          icon: Users,
+          text: "3-month warranty on applicable builds",
+        },
+      ],
+      title: "Websites, stores and apps built to perform.",
+      subtitle:
+        "From focused business websites to ecommerce platforms and bespoke applications, we design and build around your customers, goals and systems 0 not a favourite template or technology.",
+      features: [
+        "Webdesign & Development",
+        "Wordpress",
+        "Custom App Development",
+        "Shopify",
+        "Ecommerce",
+      ],
+      pricing: [
+        { id: "web-ecommerce-starter", label: "Web from", price: "£1,500" },
+        {
+          id: "web-ecommerce-growth",
+          label: "Ecommerce from",
+          price: "£3,500",
+        },
+        { id: "web-ecommerce-scale", label: "Apps from", price: "£5,000" },
+      ],
+      cta: { label: "explore web & ecommerce", href: "/contact" },
+    },
+    featured: {
+      image: "/images/home/web-ecommerce.jpg",
+      imageAlt: "Web & Ecommerce project",
+      width: 440,
+      height: 536,
+      label: "Featured project",
+      title: "Casa botanica Panama",
+      categories: ["Web Design", "Prototyping"],
+      href: "/case-studies/web-design-project",
+    },
+  },
+  {
+    id: "web-design",
+    icon: LayoutDashboard,
+    title: "Web Design",
+    categories: ["Web Design", "Prototyping", "Design Systems"],
+    iconClassName: "text-dark-pink",
+    dotClassName: "bg-dark-pink",
+    description:
+      "Placeholder copy. Replace with the real description for this discipline.",
+    detail: {
+      highlights: [
+        { id: "web-design-timeline", icon: Clock, text: "6-10 week delivery" },
+        { id: "web-design-team", icon: Users, text: "Senior team throughout" },
+      ],
+      title: "Placeholder detail title for this discipline.",
+      subtitle:
+        "Placeholder copy. Replace with the real supporting paragraph for this discipline.",
+      features: [
+        "Placeholder feature one",
+        "Placeholder feature two",
+        "Placeholder feature three",
+        "Placeholder feature four",
+        "Placeholder feature five",
+      ],
+      pricing: [
+        { id: "web-design-starter", label: "Starter", price: "From £0,000" },
+        { id: "web-design-growth", label: "Growth", price: "From £0,000" },
+        { id: "web-design-scale", label: "Scale", price: "From £0,000" },
+      ],
+      cta: { label: "Talk about your project", href: "/contact" },
+    },
+    featured: {
+      image: "/images/home/services/web-design.jpg",
+      imageAlt: "Web Design project",
+      width: 704,
+      height: 560,
+      label: "Featured work",
+      title: "Web Design Project",
+      categories: ["Web Design", "Prototyping"],
+      href: "/case-studies/web-design-project",
+    },
+  },
+  {
+    id: "development",
+    icon: Code2,
+    title: "Development",
+    categories: ["Web Development", "Ecommerce", "Integrations"],
+    iconClassName: "text-blue",
+    dotClassName: "bg-blue",
+    description:
+      "Placeholder copy. Replace with the real description for this discipline.",
+    detail: {
+      highlights: [
+        { id: "development-timeline", icon: Clock, text: "6-10 week delivery" },
+        { id: "development-team", icon: Users, text: "Senior team throughout" },
+      ],
+      title: "Placeholder detail title for this discipline.",
+      subtitle:
+        "Placeholder copy. Replace with the real supporting paragraph for this discipline.",
+      features: [
+        "Placeholder feature one",
+        "Placeholder feature two",
+        "Placeholder feature three",
+        "Placeholder feature four",
+        "Placeholder feature five",
+      ],
+      pricing: [
+        { id: "development-starter", label: "Starter", price: "From £0,000" },
+        { id: "development-growth", label: "Growth", price: "From £0,000" },
+        { id: "development-scale", label: "Scale", price: "From £0,000" },
+      ],
+      cta: { label: "Talk about your project", href: "/contact" },
+    },
+    featured: {
+      image: "/images/home/services/development.jpg",
+      imageAlt: "Development project",
+      width: 704,
+      height: 560,
+      label: "Featured work",
+      title: "Development Project",
+      categories: ["Web Development", "Ecommerce"],
+      href: "/case-studies/development-project",
+    },
+  },
+  {
+    id: "seo",
+    icon: TrendingUp,
+    title: "SEO",
+    categories: ["Technical SEO", "Content", "Analytics"],
+    iconClassName: "text-[#FFE400]",
+    dotClassName: "bg-[#FFE400]",
+    description:
+      "Placeholder copy. Replace with the real description for this discipline.",
+    detail: {
+      highlights: [
+        { id: "seo-timeline", icon: Clock, text: "6-10 week delivery" },
+        { id: "seo-team", icon: Users, text: "Senior team throughout" },
+      ],
+      title: "Placeholder detail title for this discipline.",
+      subtitle:
+        "Placeholder copy. Replace with the real supporting paragraph for this discipline.",
+      features: [
+        "Placeholder feature one",
+        "Placeholder feature two",
+        "Placeholder feature three",
+        "Placeholder feature four",
+        "Placeholder feature five",
+      ],
+      pricing: [
+        { id: "seo-starter", label: "Starter", price: "From £0,000" },
+        { id: "seo-growth", label: "Growth", price: "From £0,000" },
+        { id: "seo-scale", label: "Scale", price: "From £0,000" },
+      ],
+      cta: { label: "Talk about your project", href: "/contact" },
+    },
+    featured: {
+      image: "/images/home/services/seo.jpg",
+      imageAlt: "SEO project",
+      width: 704,
+      height: 560,
+      label: "Featured work",
+      title: "SEO Project",
+      categories: ["Technical SEO", "Content"],
+      href: "/case-studies/seo-project",
+    },
   },
 ];

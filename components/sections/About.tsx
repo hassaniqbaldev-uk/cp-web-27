@@ -1,5 +1,4 @@
 import { aboutHighlights, aboutQuote, teamMembers } from "@/config/common";
-import { Quote } from "lucide-react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import Button from "../ui/Button";
@@ -78,11 +77,11 @@ const About = () => {
             </div>
 
             <blockquote className="px-md gap-sm flex w-[38.5rem] flex-col items-start rounded-md bg-white py-[3.5rem]">
-              <Quote
-                aria-hidden="true"
-                size={40}
-                strokeWidth={2}
-                className="text-orange"
+              <Image
+                src="/icons/quote-icon.svg"
+                alt=""
+                width={36}
+                height={27}
               />
 
               <p className="text-body-01 text-text-body font-medium tracking-[-0.02em]">
@@ -101,6 +100,7 @@ const About = () => {
             <Marquee
               autoFill
               speed={40}
+              pauseOnHover
               gradient
               gradientColor="white"
               gradientWidth="12rem"

@@ -67,3 +67,58 @@ export type TeamMember = {
   width: number;
   height: number;
 };
+
+export type ServiceFeature = {
+  image: string;
+  imageAlt: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+  label: string;
+  title: string;
+  /** Only the first two are shown, joined by a dot. */
+  categories: string[];
+  href: string;
+};
+
+export type ServiceDetailHighlight = {
+  id: string;
+  icon: LucideIcon;
+  text: string;
+};
+
+export type ServicePrice = {
+  id: string;
+  label: string;
+  price: string;
+};
+
+export type ServiceDetail = {
+  highlights: ServiceDetailHighlight[];
+  title: string;
+  subtitle: string;
+  features: string[];
+  pricing: ServicePrice[];
+  cta: { label: string; href: string };
+};
+
+export type ServiceDiscipline = {
+  id: string;
+  /** Lucide icon component, e.g. `Palette`. */
+  icon: LucideIcon;
+  title: string;
+  /** Short tags shown beside the title, joined by dots in the UI. */
+  categories: string[];
+  /**
+   * Accent for this discipline. Keep these as complete, literal class strings —
+   * Tailwind scans source files for full class names, so anything built by
+   * concatenation will not be generated.
+   */
+  iconClassName: string;
+  dotClassName: string;
+  description: string;
+  /** Everything in the left column of the open panel. */
+  detail: ServiceDetail;
+  /** The highlighted piece of work shown beside this discipline. */
+  featured: ServiceFeature;
+};

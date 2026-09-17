@@ -76,3 +76,33 @@ body {
     animation: none !important;
   }
 }
+
+/* A 1px gradient border that survives border-radius. `border-image` cannot be
+   rounded — it ignores `border-radius` and squares the corners off — so the
+   gradient is painted on a pseudo-element and masked down to a 1px ring. */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    149.03deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0) 51.06%,
+    rgba(255, 255, 255, 0.7) 98.34%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}

@@ -2,8 +2,11 @@ import type {
   AboutHighlight,
   ClientLogo,
   ExpertiseCard,
+  Guarantee,
+  GuaranteeCaseStudy,
   HeroBadge,
   HeroPopover,
+  ProcessStep,
   ServiceDiscipline,
   TeamMember,
 } from "@/types/common";
@@ -274,7 +277,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
     },
   },
   {
-    id: "web-design",
+    id: "web-design-service",
     icon: LayoutDashboard,
     title: "Web Design",
     categories: ["Web Design", "Prototyping", "Design Systems"],
@@ -405,38 +408,129 @@ export const serviceDisciplines: ServiceDiscipline[] = [
 // intended ones.
 export const expertiseCards: ExpertiseCard[] = [
   {
-    id: "startups",
+    id: "sme-founders",
     icon: Rocket,
     title: "SME Founders",
     description:
       "Grow your business with a website that converts visitors into loyal customers.",
-    hoverClassName:
-      "hover:bg-orange hover:shadow-[0px_4px_114px_0px_#EC9122B2]",
+    hoverClassName: "hover:bg-orange",
   },
   {
-    id: "scale-ups",
+    id: "ecommerce-brands",
     icon: TrendingUp,
     title: "Ecommerce brands",
     description:
       "Scale sales with high-performance online stores built on Shopify or Woo.",
-    hoverClassName:
-      "hover:bg-dark-pink hover:shadow-[0px_4px_114px_0px_#EC3593B2]",
+    hoverClassName: "hover:bg-dark-pink",
   },
   {
-    id: "ecommerce",
+    id: "non-profit-charity",
     icon: ShoppingBag,
     title: "Non-profit & Charity",
     description:
       "Connect with your community through accessible, impactful digital experiences.",
-    hoverClassName: "hover:bg-blue hover:shadow-[0px_4px_114px_0px_#3078FFB2]",
+    hoverClassName: "hover:bg-blue",
   },
   {
-    id: "enterprise",
+    id: "b2b-services",
     icon: Building2,
     title: "B2B Services",
     description:
       "Generate qualified leads and build trust with a strategic web presence.",
-    hoverClassName:
-      "hover:bg-[#FFE400] hover:shadow-[0px_4px_114px_0px_#FFE400B2]",
+    hoverClassName: "hover:bg-[#FFE400] ",
+  },
+  {
+    id: "agencies",
+    icon: Building2,
+    title: "Agencies",
+    description:
+      "White-label development and design fulfillment you can trust.",
+    hoverClassName: "hover:bg-dark-pink",
+  },
+  {
+    id: "startups-saas",
+    icon: Building2,
+    title: "Startups & SaaS",
+    description:
+      "Modern tech stacks (React, Headless) for rapid growth and scalability.",
+    hoverClassName: "hover:bg-blue",
+  },
+];
+
+// TODO: confirm the final wording for each guarantee.
+export const guarantees: Guarantee[] = [
+  {
+    id: "fixed-scope",
+    title: "Fixed scope and price before we start",
+    description:
+      "No open-ended hourly billing. If the scope changes, we test you first.",
+  },
+  {
+    id: "post-launch-support",
+    title: "3 months post-launch support",
+    description: "We stay around to make sure everything runs smoothly.",
+  },
+  {
+    id: "ownership",
+    title: "You own the code, files and accounts",
+    description: "No lock-ins. It's all yours, always.",
+  },
+];
+
+// TODO: point href at the real case study.
+export const guaranteeCaseStudy: GuaranteeCaseStudy = {
+  image: "/images/home/unicef-thumbnail-img.jpg",
+  imageAlt: "Unicef fundraising campaign",
+  // TODO: add the logo asset and correct its intrinsic dimensions.
+  logo: "/images/home/unicef-logo.png",
+  logoAlt: "Unicef",
+  logoWidth: 123,
+  logoHeight: 29,
+  title: "£478k",
+  subtitle: "raised at one event",
+  ctaLabel: "View case study",
+  href: "/case-studies/unicef",
+};
+
+export const processSteps: ProcessStep[] = [
+  {
+    id: "discovery",
+    step: "01",
+    title: "Discovery",
+    description:
+      "We dive deep into your business goals, audience, and competitors to build a solid strategy.",
+    accentClassName: "bg-orange",
+    borderClassName: "border-orange",
+    textClassName: "text-orange",
+  },
+  {
+    id: "design",
+    step: "02",
+    title: "Design",
+    description:
+      "We create high-fidelity prototypes and visual systems that align with your brand identity.",
+    accentClassName: "bg-blue",
+    borderClassName: "border-blue",
+    textClassName: "text-blue",
+  },
+  {
+    id: "develop",
+    step: "03",
+    title: "Develop",
+    description:
+      "Our engineers build pixel-perfect, clean code that is fast, secure, and scalable.",
+    accentClassName: "bg-dark-pink",
+    borderClassName: "border-dark-pink",
+    textClassName: "text-dark-pink",
+  },
+  {
+    id: "launch-grow",
+    step: "04",
+    title: "Launch & Grow",
+    description:
+      "We deploy your site and provide ongoing support, SEO, and optimisation to ensure growth.",
+    accentClassName: "bg-[#6FDC8C]",
+    borderClassName: "border-[#6FDC8C]",
+    textClassName: "text-[#6FDC8C]",
   },
 ];

@@ -106,3 +106,15 @@ body {
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* Hides the scrollbar while keeping the element scrollable. Only for boxes
+   whose scrollability is obvious from an adjacent affordance — a progress rail
+   or a fade at the edge — since the bar is otherwise the only sign there is
+   more to read. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

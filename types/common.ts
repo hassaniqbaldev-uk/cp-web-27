@@ -135,3 +135,40 @@ export type ExpertiseCard = {
    */
   hoverClassName: string;
 };
+
+export type Guarantee = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type GuaranteeCaseStudy = {
+  image: string;
+  imageAlt: string;
+  logo: string;
+  logoAlt: string;
+  /** Intrinsic size of the logo — next/image needs it to reserve space. */
+  logoWidth: number;
+  logoHeight: number;
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  href: string;
+};
+
+export type ProcessStep = {
+  id: string;
+  /** Display number, e.g. "01". */
+  step: string;
+  title: string;
+  description: string;
+  /**
+   * Colour of this step's dot and line fill, its card border and its title.
+   * Three fields rather than one name because Tailwind scans source files for
+   * complete class names, so a concatenated `border-` plus a colour name would
+   * never be generated.
+   */
+  accentClassName: string;
+  borderClassName: string;
+  textClassName: string;
+};

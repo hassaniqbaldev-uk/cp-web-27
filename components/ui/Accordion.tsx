@@ -136,6 +136,10 @@ export default function Accordion({
                 // Unmounted rather than collapsed to zero height: a hidden
                 // panel that is still in the DOM keeps its links tabbable.
                 <motion.div
+                  // AnimatePresence renders its children as a list, so the
+                  // panel needs a key of its own — without one it cannot tell
+                  // one panel's exit from another's entrance.
+                  key={panelId}
                   id={panelId}
                   role="region"
                   aria-labelledby={triggerId}

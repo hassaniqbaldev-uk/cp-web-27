@@ -1,4 +1,11 @@
-import type { ClientLogo, HeroBadge, HeroPopover } from "@/types/common";
+import type {
+  AboutHighlight,
+  ClientLogo,
+  HeroBadge,
+  HeroPopover,
+  TeamMember,
+} from "@/types/common";
+import { Compass, Users } from "lucide-react";
 
 export const heroPopovers: HeroPopover[] = [
   {
@@ -121,5 +128,79 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/peter-jones-foundation",
     width: 139,
     height: 43,
+  },
+];
+
+// TODO: replace with the real copy, and swap the icons for the intended ones.
+export const aboutHighlights: AboutHighlight[] = [
+  {
+    id: "years-experience",
+    icon: Compass,
+    title: "12 Years",
+    subtitle: "Building digital  experiences",
+  },
+  {
+    id: "team-experience",
+    icon: Users,
+    title: "120 Years",
+    subtitle: "Combined team experience",
+  },
+];
+
+// TODO: replace with the real quote.
+export const aboutQuote =
+  "I started CreativePixels at 13 to make a difference; that same drive still runs through the team today - creating work that’s, thoughtful and well designed.";
+
+// TODO: replace with the real team photos, names and intrinsic dimensions.
+export const teamMembers: TeamMember[] = [
+  {
+    id: "team-one",
+    src: "/images/home/team-one.jpg",
+    name: "Team Member One",
+    width: 130,
+    height: 130,
+  },
+  {
+    id: "team-two",
+    src: "/images/home/team-two.jpg",
+    name: "Team Member Two",
+    width: 130,
+    height: 130,
+  },
+  {
+    id: "team-three",
+    src: "/images/home/team-three.jpg",
+    name: "Team Member Three",
+    width: 130,
+    height: 130,
+  },
+  {
+    id: "team-four",
+    src: "/images/home/team-four.jpg",
+    name: "Team Member Four",
+    width: 130,
+    height: 130,
+  },
+  {
+    id: "team-five",
+    src: "/images/home/team-five.jpg",
+    name: "Team Member Five",
+    width: 130,
+    height: 130,
+  },
+  {
+    id: "team-six",
+    src: "/images/home/team-six.jpg",
+    name: "Team Member Six",
+    width: 130,
+    height: 130,
+  },
+
+  {
+    id: "team-seven",
+    src: "/images/home/team-seven.jpg",
+    name: "Team Member Seven",
+    width: 130,
+    height: 130,
   },
 ];

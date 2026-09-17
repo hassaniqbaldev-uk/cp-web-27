@@ -67,3 +67,12 @@ body {
   font-size: var(--text-body-03);
   line-height: 1.5;
 }
+
+/* react-fast-marquee animates in CSS, so reduced motion is handled here rather
+   than per-instance — this also covers marquees inside server components,
+   which cannot read the preference in JS. */
+@media (prefers-reduced-motion: reduce) {
+  .rfm-marquee {
+    animation: none !important;
+  }
+}

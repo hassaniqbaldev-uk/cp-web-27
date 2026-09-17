@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export type HeroPopover = {
   id: string;
   title: string;
@@ -43,6 +45,24 @@ export type ClientLogo = {
   alt: string;
   /** Where the logo links to — a case study, or the client's own site. */
   href: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+};
+
+export type AboutHighlight = {
+  id: string;
+  /** Lucide icon component, e.g. `Compass`. */
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+};
+
+export type TeamMember = {
+  id: string;
+  src: string;
+  /** The person's name — used as the image's accessible text. */
+  name: string;
   /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;

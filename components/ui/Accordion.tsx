@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Plus } from "lucide-react";
-import { useId, useState } from "react";
+import { Minus, Plus } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
 
 export type AccordionItem = {
   id: string;
@@ -14,6 +14,11 @@ type AccordionProps = {
   items: AccordionItem[];
   /** Item open on first render. Omit to start with everything closed. */
   defaultOpenId?: string;
+  /**
+   * Opens the first item the first time the accordion scrolls into view. Skipped
+   * if the reader has already opened or closed something themselves.
+   */
+  openFirstOnView?: boolean;
   /**
    * Heading level for the triggers. Each trigger is wrapped in a heading so
    * screen readers can jump between panels, so this has to sit one level below
@@ -34,6 +39,7 @@ type AccordionProps = {
 export default function Accordion({
   items,
   defaultOpenId,
+  openFirstOnView = false,
   headingLevel: Heading = "h3",
   className,
   itemClassName,
@@ -44,15 +50,51 @@ export default function Accordion({
 }: AccordionProps) {
   // A single id rather than per-item state, so opening one closes the rest.
   const [openId, setOpenId] = useState<string | null>(defaultOpenId ?? null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasInteracted = useRef(false);
   const prefersReducedMotion = useReducedMotion();
   const baseId = `accordion-${useId().replace(/:/g, "")}`;
 
   const transition = prefersReducedMotion
     ? { duration: 0 }
-    : { duration: 0.32, ease: [0.22, 1, 0.36, 1] as const };
+    : { duration: 1, ease: [0.22, 1, 0.36, 1] as const };
+
+  const firstItemId = items[0]?.id;
+
+  useEffect(() => {
+    const node = containerRef.current;
+
+    if (
+      !openFirstOnView ||
+      !firstItemId ||
+      !node ||
+      typeof IntersectionObserver === "undefined"
+    ) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+
+        // Opening under the reader would be disorienting, so a choice they
+        // have already made always wins.
+        if (!hasInteracted.current) setOpenId(firstItemId);
+
+        observer.disconnect();
+      },
+      // Waits until the accordion has risen into the upper three quarters of
+      // the viewport, rather than firing on the first pixel of its top edge.
+      { rootMargin: "0px 0px -50% 0px" },
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [openFirstOnView, firstItemId]);
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className}>
       {items.map(({ id, title, content }) => {
         const isOpen = openId === id;
         const triggerId = `${baseId}-trigger-${id}`;
@@ -66,21 +108,25 @@ export default function Accordion({
                 id={triggerId}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => setOpenId(isOpen ? null : id)}
-                className={`flex w-full cursor-pointer items-center justify-between text-left ${triggerClassName ?? ""}`}
+                onClick={() => {
+                  hasInteracted.current = true;
+                  setOpenId(isOpen ? null : id);
+                }}
+                // `group` lets anything inside the title react to the open
+                // state through `group-aria-expanded:`, with no extra prop.
+                className={`group flex w-full cursor-pointer items-center justify-between text-left ${triggerClassName ?? ""}`}
               >
                 {title}
 
-                {/* Rotating the plus 45 degrees turns it into a close cross,
-                    so one glyph covers both states. */}
                 <span
                   aria-hidden="true"
                   className={`flex shrink-0 items-center justify-center ${indicatorClassName ?? ""}`}
                 >
-                  <Plus
-                    strokeWidth={2}
-                    className={`${isOpen ? "rotate-45" : ""} ${iconClassName ?? ""}`}
-                  />
+                  {isOpen ? (
+                    <Minus strokeWidth={2} className={iconClassName} />
+                  ) : (
+                    <Plus strokeWidth={2} className={iconClassName} />
+                  )}
                 </span>
               </button>
             </Heading>

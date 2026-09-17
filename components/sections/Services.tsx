@@ -40,6 +40,7 @@ const Services = () => {
 
           <Accordion
             className="mt-lg"
+            openFirstOnView
             items={serviceDisciplines.map(
               ({
                 id,
@@ -65,12 +66,14 @@ const Services = () => {
                       {title}
                     </span>
 
+                    {/* Fades out once the panel is open. Driven off the
+                        trigger's aria-expanded, so no extra state is needed. */}
                     <span
                       aria-hidden="true"
-                      className="bg-grey h-[3rem] w-px shrink-0"
+                      className="bg-grey h-[3rem] w-px shrink-0 transition-opacity duration-300 group-aria-expanded:opacity-0"
                     />
 
-                    <span className="text-body-04 text-text-body inline-flex items-center font-normal tracking-[-0.02em]">
+                    <span className="text-body-04 text-text-body inline-flex items-center font-normal tracking-[-0.02em] transition-opacity duration-300 group-aria-expanded:opacity-0">
                       {categories.map((category, index) => (
                         <Fragment key={category}>
                           {index > 0 && (

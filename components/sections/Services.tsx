@@ -19,7 +19,12 @@ const Services = () => {
               label="Our Services"
               title={
                 <>
-                  <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text text-transparent">
+                  {/* The negative tracking on the heading also applies after
+                      the final character, pulling the span's box in so
+                      bg-clip-text slices the full stop. The padding gives the
+                      gradient somewhere to paint; the matching negative margin
+                      keeps the layout identical. */}
+                  <span className="mr-[-0.07em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                     Four disciplines.
                   </span>{" "}
                   <br />

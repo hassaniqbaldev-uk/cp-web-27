@@ -1,17 +1,21 @@
 import type {
   AboutHighlight,
   ClientLogo,
+  ExpertiseCard,
   HeroBadge,
   HeroPopover,
   ServiceDiscipline,
   TeamMember,
 } from "@/types/common";
 import {
+  Building2,
   Clock,
   Code2,
   Compass,
   LayoutDashboard,
   Palette,
+  Rocket,
+  ShoppingBag,
   TrendingUp,
   Users,
 } from "lucide-react";
@@ -394,5 +398,45 @@ export const serviceDisciplines: ServiceDiscipline[] = [
       categories: ["Technical SEO", "Content"],
       href: "/case-studies/seo-project",
     },
+  },
+];
+
+// TODO: replace with the real expertise cards, and swap the icons for the
+// intended ones.
+export const expertiseCards: ExpertiseCard[] = [
+  {
+    id: "startups",
+    icon: Rocket,
+    title: "SME Founders",
+    description:
+      "Grow your business with a website that converts visitors into loyal customers.",
+    hoverClassName:
+      "hover:bg-orange hover:shadow-[0px_4px_114px_0px_#EC9122B2]",
+  },
+  {
+    id: "scale-ups",
+    icon: TrendingUp,
+    title: "Ecommerce brands",
+    description:
+      "Scale sales with high-performance online stores built on Shopify or Woo.",
+    hoverClassName:
+      "hover:bg-dark-pink hover:shadow-[0px_4px_114px_0px_#EC3593B2]",
+  },
+  {
+    id: "ecommerce",
+    icon: ShoppingBag,
+    title: "Non-profit & Charity",
+    description:
+      "Connect with your community through accessible, impactful digital experiences.",
+    hoverClassName: "hover:bg-blue hover:shadow-[0px_4px_114px_0px_#3078FFB2]",
+  },
+  {
+    id: "enterprise",
+    icon: Building2,
+    title: "B2B Services",
+    description:
+      "Generate qualified leads and build trust with a strategic web presence.",
+    hoverClassName:
+      "hover:bg-[#FFE400] hover:shadow-[0px_4px_114px_0px_#FFE400B2]",
   },
 ];

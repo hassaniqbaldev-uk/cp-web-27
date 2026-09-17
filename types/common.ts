@@ -122,3 +122,16 @@ export type ServiceDiscipline = {
   /** The highlighted piece of work shown beside this discipline. */
   featured: ServiceFeature;
 };
+
+export type ExpertiseCard = {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  /**
+   * Background and glow applied on hover. Keep these as complete, literal class
+   * strings — Tailwind scans source files for full class names, so anything
+   * built by concatenation will not be generated.
+   */
+  hoverClassName: string;
+};

@@ -10,6 +10,7 @@ import type {
   ProcessStep,
   ServiceDiscipline,
   TeamMember,
+  Testimonial,
   WorkProject,
 } from "@/types/common";
 import {
@@ -605,5 +606,62 @@ export const consultationBenefits: ConsultationBenefit[] = [
     icon: MessageSquare,
     title: "Ask anything",
     subtitle: "Design & brand",
+  },
+];
+
+// TODO: confirm the third client's avatar and logo — Alert Force has neither
+// in the assets yet, so it is borrowing Loop's.
+export const testimonials: Testimonial[] = [
+  {
+    id: "loop",
+    avatar: "/images/home/loop-client-avatar.png",
+    logo: "/images/home/loop-client-logo.png",
+    logoAlt: "Loop",
+    logoWidth: 47,
+    logoHeight: 23,
+    quote:
+      "CreativePixels did an incredible job helping us to create branding material from scratch. They were extremely flexible, and exceeded our expectations.",
+    name: "Alex",
+    role: "Loop, Founder",
+    rating: 5,
+  },
+  {
+    id: "ayoa",
+    avatar: "/images/home/ayoa-client-avatar.png",
+    logo: "/images/home/ayoa-client-logo.png",
+    logoAlt: "Ayoa",
+    logoWidth: 68,
+    logoHeight: 20,
+    quote:
+      "I would highly recommend CreativePixels, they were excellent throughout the process of designing and developing our new website.",
+    name: "James Brian",
+    role: "Ayoa, Founder",
+    rating: 5,
+  },
+  {
+    id: "alert-force",
+    avatar: "/images/home/loop-client-avatar.png",
+    logo: "/images/home/loop-client-logo.png",
+    logoAlt: "Alert Force",
+    logoWidth: 47,
+    logoHeight: 23,
+    quote:
+      "CreativePixels are a real professional and an absolute pleasure to work with.",
+    name: "Brendan Torazzi",
+    role: "Alert Force, Founder",
+    rating: 5,
+  },
+  {
+    id: "alert-force",
+    avatar: "/images/home/loop-client-avatar.png",
+    logo: "/images/home/loop-client-logo.png",
+    logoAlt: "Alert Force",
+    logoWidth: 47,
+    logoHeight: 23,
+    quote:
+      "CreativePixels are a real professional and an absolute pleasure to work with.",
+    name: "Brendan Torazzi",
+    role: "Alert Force, Founder",
+    rating: 5,
   },
 ];

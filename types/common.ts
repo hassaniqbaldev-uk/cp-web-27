@@ -192,3 +192,20 @@ export type ConsultationBenefit = {
   title: string;
   subtitle: string;
 };
+
+export type Testimonial = {
+  id: string;
+  avatar: string;
+  logo: string;
+  /** The client's company — the logo's accessible text. */
+  logoAlt: string;
+  /** Intrinsic size of the logo — next/image needs it to reserve space. */
+  logoWidth: number;
+  logoHeight: number;
+  quote: string;
+  name: string;
+  /** Role and company, e.g. "Loop, Founder". */
+  role: string;
+  /** Out of five, e.g. 5 — drives both the stars and the printed figure. */
+  rating: number;
+};

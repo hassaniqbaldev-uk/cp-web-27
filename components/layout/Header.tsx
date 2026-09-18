@@ -18,8 +18,8 @@ const SCROLL_THRESHOLD = 20;
 
 // The mark occupies the left of the artwork and the wordmark the rest, so
 // hiding the first and showing the whole are a width and an offset apart.
-const MARK_WIDTH = "6.6rem";
-const LOGO_WIDTH = "17.1rem";
+const MARK_WIDTH = "5.6rem";
+const LOGO_WIDTH = "14.5rem";
 
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
@@ -49,7 +49,7 @@ const Header = () => {
     <header className="pt-sm fixed top-0 left-0 z-999 w-full">
       <Container
         className={`flex items-center justify-between rounded-xl transition-all duration-300 ${
-          isScrolled ? "p-sm bg-white" : "bg-transparent p-0"
+          isScrolled ? "px-sm bg-white py-[1.5rem]" : "bg-transparent p-0"
         }`}
       >
         <div className="gap-md flex items-center">

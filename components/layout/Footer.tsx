@@ -22,12 +22,13 @@ const Footer = () => {
             <Link href="/" aria-label="Creative Pixels, home">
               {/* Decorative: the link above already carries the name, so the
                   image would otherwise be announced twice. */}
+              {/* The white wordmark variant, since the footer band is black. */}
               <Image
-                src="/images/common/cp-logo-2.png"
+                src="/images/common/cp-logo-with-text.svg"
                 alt=""
                 aria-hidden="true"
-                width={182}
-                height={70}
+                width={171}
+                height={65}
               />
             </Link>
 

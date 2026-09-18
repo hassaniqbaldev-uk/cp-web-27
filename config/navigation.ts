@@ -1,4 +1,4 @@
-import type { NavItem } from "@/types/common";
+import type { FooterNavColumn, NavItem } from "@/types/common";
 
 export const mainNavigation: NavItem[] = [
   {
@@ -46,3 +46,48 @@ export const contactPhone = {
   label: "+1 (555) 000-0000",
   href: "tel:+15550000000",
 };
+
+// TODO: /solutions and /sitemap do not exist yet, so those links 404 until
+// the routes are built.
+export const footerNavigation: FooterNavColumn[] = [
+  {
+    id: "quick-links",
+    title: "Quick links",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Contact", href: "/contact" },
+      { label: "Blog", href: "/blog" },
+      { label: "Sitemap", href: "/sitemap" },
+    ],
+  },
+  {
+    id: "services",
+    title: "Services",
+    links: [
+      { label: "Web & Ecommerce", href: "/services/web-ecommerce" },
+      { label: "Brand & Experience", href: "/services/brand-experience" },
+      { label: "Growth & Performance", href: "/services/growth-performance" },
+      { label: "AI & Automation", href: "/services/ai-automation" },
+    ],
+  },
+  {
+    id: "legal",
+    title: "Legal",
+    links: [
+      { label: "Legal Hub", href: "/legal" },
+      { label: "Privacy Policy", href: "/legal/privacy-policy" },
+      { label: "Cookies Policy", href: "/legal/cookies-policy" },
+    ],
+  },
+  {
+    id: "solution",
+    title: "Solution",
+    links: [
+      { label: "By Sector", href: "/solutions/by-sector" },
+      { label: "By Goal", href: "/solutions/by-goal" },
+    ],
+  },
+];

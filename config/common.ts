@@ -1,5 +1,6 @@
 import type {
   AboutHighlight,
+  Brand,
   ClientLogo,
   ConsultationBenefit,
   ContactLink,
@@ -12,6 +13,7 @@ import type {
   HeroPopover,
   ProcessStep,
   ServiceDiscipline,
+  SocialLink,
   TeamMember,
   Testimonial,
   WorkProject,
@@ -786,3 +788,59 @@ export const headsetLogoSvg = `<svg width="100" height="100" viewBox="0 0 100 10
     </linearGradient>
   </defs>
 </svg>`;
+
+// TODO: point these at the real profiles.
+export const socialLinks: SocialLink[] = [
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://instagram.com",
+    icon: "/icons/ig-icon.svg",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+    icon: "/icons/linkedin-icon.svg",
+  },
+  {
+    id: "x",
+    label: "X",
+    href: "https://x.com",
+    icon: "/icons/x-icon.svg",
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://facebook.com",
+    icon: "/icons/fb-icon.svg",
+  },
+];
+
+// TODO: point each href at the real site.
+export const ourBrands: Brand[] = [
+  {
+    id: "creative-hosting",
+    src: "/images/common/creative-hosting-logo.png",
+    alt: "Creative Hosting",
+    width: 220,
+    height: 104,
+    href: "https://example.com",
+  },
+  {
+    id: "wp-fixed",
+    src: "/images/common/wp-fixed-logo.png",
+    alt: "WP Fixed",
+    width: 243,
+    height: 103,
+    href: "https://example.com",
+  },
+  {
+    id: "monthly-designs",
+    src: "/images/common/monthly-designs-logo.png",
+    alt: "Monthly Designs",
+    width: 353,
+    height: 62,
+    href: "https://example.com",
+  },
+];

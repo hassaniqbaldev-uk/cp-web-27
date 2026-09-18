@@ -8,9 +8,13 @@ import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { ChevronDown, Phone } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PHONE_DROPDOWN_ID = "phone";
+
+// Far enough that the background does not flicker on and off while the page
+// settles, close enough that it lands as soon as the hero starts moving.
+const SCROLL_THRESHOLD = 20;
 
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
@@ -18,15 +22,45 @@ const Header = () => {
 
   const toggle = (id: string) => (open: boolean) => setOpenId(open ? id : null);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    // Passive, so the listener can never delay the scroll itself, and it reads
+    // scrollY rather than measuring, which would force a layout every frame.
+    const onScroll = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
+
+    // Run once on mount: a reload part way down the page starts scrolled.
+    onScroll();
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Every white-over-hero colour flips once the band behind it is white.
+  const textClassName = isScrolled ? "text-black" : "text-white";
+
   return (
-    <header className="fixed top-0 left-0 z-999 w-full">
-      <Container className="pt-sm flex items-center justify-between">
+    <header className="pt-sm fixed top-0 left-0 z-999 w-full">
+      <Container
+        className={`flex items-center justify-between rounded-xl transition-all duration-300 ${
+          isScrolled ? "p-sm bg-white" : "bg-transparent p-0"
+        }`}
+      >
         <div className="gap-lg flex items-center">
           <Link href="/" aria-label={`${siteConfig.name} — home`}>
-            <Logo title={null} className="h-auto w-[10.3rem] text-white" />
+            <Logo
+              title={null}
+              className={`h-auto w-[10.3rem] ${textClassName}`}
+            />
           </Link>
 
-          <span aria-hidden="true" className="bg-text-body h-[5rem] w-px" />
+          <span
+            aria-hidden="true"
+            className={`h-[5rem] w-px transition-colors duration-300 ${
+              isScrolled ? "bg-black/20" : "bg-text-body"
+            }`}
+          />
 
           <nav aria-label="Main">
             <ul className="gap-md flex items-center">
@@ -36,7 +70,7 @@ const Header = () => {
                     <Dropdown
                       isOpen={openId === item.href}
                       onOpenChange={toggle(item.href)}
-                      triggerClassName="text-body-02 font-normal tracking-[-0.02em] text-white capitalize"
+                      triggerClassName={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
                       panelClassName="top-full left-0 mt-[1rem] min-w-[18rem] rounded-sm bg-white p-[0.5rem] text-black shadow-lg"
                       trigger={
                         <>
@@ -69,7 +103,7 @@ const Header = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-body-02 font-normal tracking-[-0.02em] text-white capitalize"
+                      className={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
                     >
                       {item.label}
                     </Link>
@@ -99,7 +133,9 @@ const Header = () => {
 
           <Button
             href="/contact"
-            className="text-body-02 px-sm py-xs rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+            className={`text-body-02 px-sm py-xs rounded-xl font-extrabold tracking-[-0.02em] uppercase transition-colors duration-300 ${
+              isScrolled ? "bg-black text-white" : "bg-white text-black"
+            }`}
           >
             Free Website Audit
           </Button>

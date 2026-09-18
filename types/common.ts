@@ -241,3 +241,33 @@ export type Faq = {
   question: string;
   answer: string;
 };
+
+export type SocialLink = {
+  id: string;
+  /** Platform name, used as the link's accessible name. */
+  label: string;
+  href: string;
+  /**
+   * Path to the icon file. Painted as a CSS mask rather than an <img>, because
+   * the assets have their fill baked in and a mask takes its colour from the
+   * element, so the icon can invert on hover.
+   */
+  icon: string;
+};
+
+export type FooterNavColumn = {
+  id: string;
+  /** Column heading, e.g. "Quick links". */
+  title: string;
+  links: NavChild[];
+};
+
+export type Brand = {
+  id: string;
+  src: string;
+  alt: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+  href: string;
+};

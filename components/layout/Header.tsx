@@ -3,7 +3,7 @@
 import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Dropdown from "@/components/ui/Dropdown";
-import Logo from "@/components/ui/Logo";
+import Image from "next/image";
 import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { ChevronDown, Phone } from "lucide-react";
@@ -15,6 +15,11 @@ const PHONE_DROPDOWN_ID = "phone";
 // Far enough that the background does not flicker on and off while the page
 // settles, close enough that it lands as soon as the hero starts moving.
 const SCROLL_THRESHOLD = 20;
+
+// The mark occupies the left of the artwork and the wordmark the rest, so
+// hiding the first and showing the whole are a width and an offset apart.
+const MARK_WIDTH = "6.6rem";
+const LOGO_WIDTH = "17.1rem";
 
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
@@ -47,12 +52,41 @@ const Header = () => {
           isScrolled ? "p-sm bg-white" : "bg-transparent p-0"
         }`}
       >
-        <div className="gap-lg flex items-center">
+        <div className="gap-md flex items-center">
           <Link href="/" aria-label={`${siteConfig.name} — home`}>
-            <Logo
-              title={null}
-              className={`h-auto w-[10.3rem] ${textClassName}`}
-            />
+            {/* A window over the artwork. Closed, it starts where the wordmark
+                does, so only that shows; opened, it widens to the full logo
+                while the artwork slides right into place, which reads as the
+                mark arriving from the left. */}
+            <span
+              aria-hidden="true"
+              style={{
+                width: isScrolled
+                  ? LOGO_WIDTH
+                  : `calc(${LOGO_WIDTH} - ${MARK_WIDTH})`,
+              }}
+              className="block overflow-hidden transition-[width] duration-500 motion-reduce:transition-none"
+            >
+              <Image
+                // The wordmark has its colour baked in, so the white band
+                // gets a copy of the artwork with a dark one.
+                src={
+                  isScrolled
+                    ? "/images/common/cp-logo-with-text-dark.svg"
+                    : "/images/common/cp-logo-with-text.svg"
+                }
+                alt=""
+                width={171}
+                height={65}
+                style={{
+                  width: LOGO_WIDTH,
+                  marginLeft: isScrolled ? 0 : `-${MARK_WIDTH}`,
+                }}
+                // max-w-none so the artwork keeps its full width inside a
+                // narrower window rather than being squeezed to fit.
+                className="h-auto max-w-none transition-[margin] duration-500 motion-reduce:transition-none"
+              />
+            </span>
           </Link>
 
           <span

@@ -1,7 +1,9 @@
 import About from "@/components/sections/About";
+import BookCall from "@/components/sections/BookCall";
 import Consultation from "@/components/sections/Consultation";
 import Contact from "@/components/sections/Contact";
 import Expertise from "@/components/sections/Expertise";
+import Faqs from "@/components/sections/Faqs";
 import Guarantees from "@/components/sections/Guarantees";
 import Hero from "@/components/sections/Hero";
 import Process from "@/components/sections/Process";
@@ -22,6 +24,8 @@ const Home = () => {
       <Consultation />
       <Testimonials />
       <Contact />
+      <Faqs />
+      <BookCall />
     </>
   );
 };

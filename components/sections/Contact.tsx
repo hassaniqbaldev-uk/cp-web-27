@@ -9,7 +9,7 @@ import SectionHeading from "../ui/SectionHeading";
 const Contact = () => {
   return (
     <>
-      <Section id="contact" className="py-md bg-orange/10">
+      <Section id="contact" className="py-md bg-orange/10 overflow-hidden">
         <Container>
           <div className="gap-lg flex items-center justify-between">
             <div className="w-[48.2rem]">

@@ -5,6 +5,7 @@ import type {
   ContactLink,
   ContactTopic,
   ExpertiseCard,
+  Faq,
   Guarantee,
   GuaranteeCaseStudy,
   HeroBadge,
@@ -47,7 +48,7 @@ export const heroPopovers: HeroPopover[] = [
     squareClassName: "bg-[#FFE400]",
   },
   {
-    id: "web-design",
+    id: "web-desig",
     title: "Web Design",
     href: "/services",
     image: "/images/home/popover.jpg",
@@ -291,7 +292,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
     },
   },
   {
-    id: "web-design-service",
+    id: "web-design",
     icon: LayoutDashboard,
     title: "Web Design",
     categories: ["Web Design", "Prototyping", "Design Systems"],
@@ -647,7 +648,7 @@ export const testimonials: Testimonial[] = [
     rating: 5,
   },
   {
-    id: "alert-force",
+    id: "alert-forces",
     avatar: "/images/home/loop-client-avatar.png",
     logo: "/images/home/loop-client-logo.png",
     logoAlt: "Alert Force",
@@ -733,3 +734,55 @@ export const contactTopics: ContactTopic[] = [
     selectedClassName: "has-[:checked]:border-blue has-[:checked]:bg-blue/10",
   },
 ];
+
+// TODO: replace the answers with the real copy.
+export const faqs: Faq[] = [
+  {
+    id: "different",
+    question: "What makes CreativePixels different?",
+    answer:
+      "Strategy, design and build sit in one team, so nothing is handed over and lost in translation.",
+  },
+  {
+    id: "timeline",
+    question: "How long does a website take?",
+    answer:
+      "Most projects run six to twelve weeks, depending on how much content and functionality is involved.",
+  },
+  {
+    id: "start",
+    question: "How do you start a new project?",
+    answer:
+      "With a discovery session covering your goals, audience and competitors, which becomes the brief everything else works to.",
+  },
+  {
+    id: "improve",
+    question: "Can you improve an existing website?",
+    answer:
+      "Yes. We audit what you have, then improve it in place where that is the better value, and rebuild only where it is not.",
+  },
+  {
+    id: "design-and-build",
+    question: "Do you design and build websites?",
+    answer:
+      "Both, in the same team, which is why our designs are always buildable and our builds match the design.",
+  },
+  {
+    id: "support",
+    question: "Do you offer ongoing support?",
+    answer:
+      "Yes. Hosting, maintenance, SEO and optimisation continue after launch for as long as you need them.",
+  },
+];
+
+// Source artwork for the particle field. Kept as markup rather than a file so
+// it can be both hit tested as a path and rasterised for its colours.
+export const headsetLogoSvg = `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100.004 59.9996C100.004 71.0346 91.0392 79.9996 80.004 79.9996H70.004C68.172 79.9996 66.672 78.4996 66.672 76.6676V43.3316C66.672 41.4996 68.172 39.9996 70.004 39.9996H76.672V33.3316C76.672 18.6326 64.707 6.6636 50.004 6.6636C35.305 6.66751 23.336 18.6326 23.336 33.3316V39.9996H30.004C31.836 39.9996 33.336 41.4996 33.336 43.3316V76.6636C33.336 78.4956 31.836 79.9956 30.004 79.9956H23.336V86.6636C23.336 88.4956 24.836 89.9956 26.668 89.9956H44.27C45.438 88.0308 47.5356 86.6636 50.0044 86.6636C53.6724 86.6636 56.6724 89.6636 56.6724 93.3316C56.6724 96.9996 53.6724 99.9996 50.0044 99.9996C47.5396 99.9996 45.4028 98.6324 44.27 96.6676H26.668C21.168 96.6676 16.668 92.1676 16.668 86.6676V79.7028C7.2344 78.1012 0 69.902 0 60.0038C0 50.1054 7.2344 41.9018 16.668 40.3048V33.34C16.6719 14.965 31.637 0 50.004 0C68.371 0 83.336 14.965 83.336 33.332V40.2968C92.7696 41.8984 100.004 50.0976 100.004 59.9958V59.9996Z" fill="url(#headset-gradient)"/>
+  <defs>
+    <linearGradient id="headset-gradient" x1="112.083" y1="49.9998" x2="-10.9232" y2="49.9998" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE400"/>
+      <stop offset="1" stop-color="#EC3593"/>
+    </linearGradient>
+  </defs>
+</svg>`;

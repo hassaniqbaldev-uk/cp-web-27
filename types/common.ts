@@ -235,3 +235,9 @@ export type ContactTopic = {
   iconClassName: string;
   selectedClassName: string;
 };
+
+export type Faq = {
+  id: string;
+  question: string;
+  answer: string;
+};

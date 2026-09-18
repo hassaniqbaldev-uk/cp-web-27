@@ -59,7 +59,7 @@ const Services = () => {
               }) => ({
                 id,
                 title: (
-                  <span className="gap-sm flex items-center">
+                  <span key={id} className="gap-sm flex items-center">
                     <Icon
                       aria-hidden="true"
                       size={45}
@@ -96,7 +96,10 @@ const Services = () => {
                   </span>
                 ),
                 content: (
-                  <div className="gap-lg bg-blue/20 p-lg flex items-center justify-between rounded-md">
+                  <div
+                    key={id}
+                    className="gap-lg bg-blue/20 p-lg flex items-center justify-between rounded-md"
+                  >
                     <div className="w-[62.5rem]">
                       <ul className="gap-sm flex items-center">
                         {detail.highlights.map(

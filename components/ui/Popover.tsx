@@ -58,24 +58,48 @@ const itemVariants = {
 };
 
 type PopoverProps = {
+  /** Names the trigger, and titles the default panel. */
   title: string;
   href: string;
-  image: string;
+  /** Used by the default panel only. */
+  image?: string;
+  /**
+   * Replaces the default image-and-title panel. The panel is still a single
+   * link, so this takes content rather than further links.
+   */
+  children?: React.ReactNode;
+  /**
+   * Sits inside the trigger. Given one, the trigger stops pulsing and stops
+   * rotating: both exist to advertise a bare square as a control, which an
+   * icon does on its own.
+   */
+  trigger?: React.ReactNode;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   className?: string;
-  /** Colour of the square trigger, e.g. "bg-dark-pink". */
+  /** The trigger itself — size, radius, background. */
   squareClassName?: string;
+  /** The panel — width, padding, surface. */
+  panelClassName?: string;
+  /** Where the panel sits relative to the trigger. */
+  panelPositionClassName?: string;
+  /** Corner the panel grows from, so it appears to come out of the trigger. */
+  panelOrigin?: string;
 };
 
 export default function Popover({
   title,
   href,
   image,
+  children,
+  trigger,
   isOpen,
   onOpenChange,
   className = "",
   squareClassName = "bg-dark-pink",
+  panelClassName = "gap-sm w-[24rem] flex-col items-center rounded-sm bg-white/20 px-[1rem] pt-[1rem] pb-[2rem] backdrop-blur-[20px]",
+  panelPositionClassName = "top-[2rem] right-[2rem]",
+  panelOrigin = "top right",
 }: PopoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -83,7 +107,7 @@ export default function Popover({
 
   // The square is small and easy to miss, so it pulses until it is used. It
   // stops once the panel is open, and never runs for reduced-motion users.
-  const blink = !isOpen && !prefersReducedMotion;
+  const blink = !isOpen && !prefersReducedMotion && !trigger;
 
   const cancelClose = () => {
     if (!closeTimer.current) return;
@@ -124,7 +148,7 @@ export default function Popover({
         aria-label={title}
         aria-expanded={isOpen}
         animate={{
-          rotate: isOpen ? 45 : 0,
+          rotate: !trigger && isOpen ? 45 : 0,
           scale: blink ? [1, 1.6, 1] : 1,
         }}
         transition={{
@@ -139,8 +163,10 @@ export default function Popover({
           transformOrigin: "center",
           backfaceVisibility: "hidden",
         }}
-        className={`pointer-events-auto absolute top-0 right-0 size-[.5rem] cursor-pointer ${squareClassName}`}
-      />
+        className={`pointer-events-auto absolute top-0 right-0 cursor-pointer ${trigger ? "" : "size-[.5rem]"} ${squareClassName}`}
+      >
+        {trigger}
+      </motion.button>
 
       <AnimatePresence initial={false}>
         {isOpen && (
@@ -152,31 +178,38 @@ export default function Popover({
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{ transformOrigin: "top right" }}
-            className="gap-sm pointer-events-auto absolute top-[2rem] right-[2rem] flex w-[24rem] flex-col items-center rounded-sm bg-white/20 px-[1rem] pt-[1rem] pb-[2rem] backdrop-blur-[20px]"
+            style={{ transformOrigin: panelOrigin }}
+            className={`pointer-events-auto absolute flex ${panelPositionClassName} ${panelClassName}`}
           >
-            <motion.div
-              variants={itemVariants}
-              className="relative h-[14rem] w-full overflow-hidden rounded-xs bg-amber-500"
-            >
-              <Image
-                src={image}
-                alt=""
-                fill
-                sizes="22rem"
-                className="object-cover"
-              />
-            </motion.div>
+            {children ?? (
+              <>
+                <motion.div
+                  variants={itemVariants}
+                  className="relative h-[14rem] w-full overflow-hidden rounded-xs bg-amber-500"
+                >
+                  {image && (
+                    <Image
+                      src={image}
+                      alt=""
+                      fill
+                      sizes="22rem"
+                      className="object-cover"
+                    />
+                  )}
+                </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="gap-xs flex w-full items-center justify-between"
-            >
-              <p className="text-body-01 font-medium tracking-[-0.02em] text-white">
-                {title}
-              </p>
-              <ArrowUpRight color="white" strokeWidth={2} size={18} />
-            </motion.div>
+                <motion.div
+                  variants={itemVariants}
+                  className="gap-xs flex w-full items-center justify-between"
+                >
+                  <p className="text-body-01 font-medium tracking-[-0.02em] text-white">
+                    {title}
+                  </p>
+
+                  <ArrowUpRight color="white" strokeWidth={2} size={18} />
+                </motion.div>
+              </>
+            )}
           </MotionLink>
         )}
       </AnimatePresence>

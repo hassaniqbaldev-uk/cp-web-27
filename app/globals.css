@@ -54,6 +54,16 @@
   --text-heading-03: 4.5rem; /* 45px */
   --text-heading-02: 8.5rem; /* 85px */
   --text-heading-01: 13rem; /* 130px */
+
+  /* Animation */
+
+  --animate-spin-slow: spin-slow 16s linear infinite;
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 html {

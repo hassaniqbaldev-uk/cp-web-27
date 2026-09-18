@@ -172,3 +172,15 @@ export type ProcessStep = {
   borderClassName: string;
   textClassName: string;
 };
+
+export type WorkProject = {
+  id: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  subtitle: string;
+  /** Label on the card's link, e.g. "Visit live site". */
+  ctaLabel: string;
+  /** The live site, so these open in a new tab. */
+  href: string;
+};

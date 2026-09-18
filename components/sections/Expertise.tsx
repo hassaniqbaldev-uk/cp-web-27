@@ -113,12 +113,12 @@ const Expertise = () => {
               swallowing drags and clicks on the cards underneath. */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[10rem] bg-linear-to-r from-black to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[10rem] bg-linear-to-r from-black to-transparent opacity-85"
           />
 
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[10rem] bg-linear-to-l from-black to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[10rem] bg-linear-to-l from-black to-transparent opacity-85"
           />
         </div>
       </Section>

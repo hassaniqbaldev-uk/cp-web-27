@@ -9,6 +9,7 @@ import type {
   ProcessStep,
   ServiceDiscipline,
   TeamMember,
+  WorkProject,
 } from "@/types/common";
 import {
   Building2,
@@ -532,5 +533,46 @@ export const processSteps: ProcessStep[] = [
     accentClassName: "bg-[#6FDC8C]",
     borderClassName: "border-[#6FDC8C]",
     textClassName: "text-[#6FDC8C]",
+  },
+];
+
+// TODO: write the real alt
+// text and point each href at the live site.
+export const workProjects: WorkProject[] = [
+  {
+    id: "casa-botanica",
+    image: "/images/home/casa-work-img.jpg",
+    imageAlt: "Casa Botanica website homepage",
+    title: "Casa Botanica",
+    subtitle: "Luxury safari website redesigned.",
+    ctaLabel: "Visit live site",
+    href: "https://example.com",
+  },
+  {
+    id: "ivy-and-duke",
+    image: "/images/home/ivy-work-img.jpg",
+    imageAlt: "Ivy & Duke website homepage",
+    title: "Ivy & Duke",
+    subtitle: "Luxury safari website redesigned.",
+    ctaLabel: "Visit live site",
+    href: "https://example.com",
+  },
+  {
+    id: "ndifo-safari",
+    image: "/images/home/ndifo-work-img.jpg",
+    imageAlt: "Ndifo Safari website homepage",
+    title: "Ndifo Safari",
+    subtitle: "Luxury safari website redesigned.",
+    ctaLabel: "Visit live site",
+    href: "https://example.com",
+  },
+  {
+    id: "fultons-jewellery",
+    image: "/images/home/fultons-work-img.jpg",
+    imageAlt: "Fultons Jewellery website homepage",
+    title: "Fultons Jewellery",
+    subtitle: "Luxury safari website redesigned.",
+    ctaLabel: "Visit live site",
+    href: "https://example.com",
   },
 ];

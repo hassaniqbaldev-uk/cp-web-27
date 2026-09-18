@@ -181,12 +181,12 @@ const Process = () => {
                 them from swallowing scrolls and clicks on the cards beneath. */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[12rem] bg-linear-to-b from-[#f4f4f4] to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[12rem] bg-linear-to-b from-[#f4f4f4] to-transparent opacity-85"
             />
 
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[12rem] bg-linear-to-t from-[#f4f4f4] to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[12rem] bg-linear-to-t from-[#f4f4f4] to-transparent opacity-85"
             />
           </div>
         </Container>

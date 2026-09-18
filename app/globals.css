@@ -98,13 +98,20 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1px;
+  /* Overridable per element with --gradient-border-width and
+     --gradient-border-image. Declared as fallbacks rather than on
+     .gradient-border itself, so a Tailwind arbitrary property set on the same
+     element always wins regardless of stylesheet order. */
+  padding: var(--gradient-border-width, 1px);
   border-radius: inherit;
-  background: linear-gradient(
-    149.03deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0) 51.06%,
-    rgba(255, 255, 255, 0.7) 98.34%
+  background: var(
+    --gradient-border-image,
+    linear-gradient(
+      149.03deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0) 51.06%,
+      rgba(255, 255, 255, 0.7) 98.34%
+    )
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,

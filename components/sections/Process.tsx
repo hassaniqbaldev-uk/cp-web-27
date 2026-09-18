@@ -124,7 +124,7 @@ const Process = () => {
 
   return (
     <>
-      <Section className="pb-3xl">
+      <Section>
         <Container className="bg-grey/40 flex justify-between gap-[4rem] rounded-md pt-[6rem] pr-[6rem] pl-[8rem]">
           <div className="flex w-[52.5rem] flex-col items-start">
             <SectionHeading

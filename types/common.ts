@@ -184,3 +184,11 @@ export type WorkProject = {
   /** The live site, so these open in a new tab. */
   href: string;
 };
+
+export type ConsultationBenefit = {
+  id: string;
+  /** Lucide icon component, e.g. `Clock`. */
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+};

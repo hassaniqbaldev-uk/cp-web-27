@@ -20,10 +20,12 @@ const Work = () => {
             <div className="">
               <CircularTextButton
                 href="/work"
-                label="EXPLORE ALL PROJECTS"
+                image="/images/home/circular-text-projects.png"
+                imageWidth={431}
+                imageHeight={412}
                 srLabel="Explore all projects"
                 className="size-[14rem]"
-                labelClassName="text-[0.9rem] font-bold uppercase"
+                ringClassName="h-auto w-full"
               >
                 <ArrowUpRight
                   size={28}

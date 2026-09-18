@@ -1,6 +1,7 @@
 import type {
   AboutHighlight,
   ClientLogo,
+  ConsultationBenefit,
   ExpertiseCard,
   Guarantee,
   GuaranteeCaseStudy,
@@ -13,14 +14,17 @@ import type {
 } from "@/types/common";
 import {
   Building2,
+  CalendarDays,
   Clock,
   Code2,
   Compass,
   LayoutDashboard,
+  MessageSquare,
   Palette,
   Rocket,
   ShoppingBag,
   TrendingUp,
+  UserRoundCheck,
   Users,
 } from "lucide-react";
 
@@ -574,5 +578,32 @@ export const workProjects: WorkProject[] = [
     subtitle: "Luxury safari website redesigned.",
     ctaLabel: "Visit live site",
     href: "https://example.com",
+  },
+];
+
+export const consultationBenefits: ConsultationBenefit[] = [
+  {
+    id: "duration",
+    icon: Clock,
+    title: "15 minutes",
+    subtitle: "No obligation",
+  },
+  {
+    id: "availability",
+    icon: CalendarDays,
+    title: "Same week",
+    subtitle: "Available slots",
+  },
+  {
+    id: "advice",
+    icon: UserRoundCheck,
+    title: "Expert advice",
+    subtitle: "Tailored to you",
+  },
+  {
+    id: "scope",
+    icon: MessageSquare,
+    title: "Ask anything",
+    subtitle: "Design & brand",
   },
 ];

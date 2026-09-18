@@ -6,8 +6,9 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { useId, useRef } from "react";
+import { useRef } from "react";
 
 // next/link, given motion values, so the magnetic offset rides on the same
 // element that handles navigation and prefetching.
@@ -19,32 +20,35 @@ const MAGNET_STRENGTH = 0.3;
 
 type CircularTextButtonProps = {
   href: string;
-  /** Drawn around the ring. Rendered as an image, not as text. */
-  label: string;
+  /** Artwork of the label set around a circle. */
+  image: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  imageWidth: number;
+  imageHeight: number;
   /**
-   * The link's accessible name. Separate from `label` because the ring is
-   * hidden from assistive tech, and because screen readers spell out strings
-   * that are capitalised in the markup.
+   * The link's accessible name. The ring is artwork rather than live text, so
+   * the name is given here and the image itself left out of the accessibility
+   * tree — otherwise it would be announced twice.
    */
   srLabel: string;
   /** Sits in the middle of the ring — an icon, usually. */
   children: React.ReactNode;
   /** All visual styling lives here, including the button's size. */
   className?: string;
-  labelClassName?: string;
+  ringClassName?: string;
 };
 
 export default function CircularTextButton({
   href,
-  label,
+  image,
+  imageWidth,
+  imageHeight,
   srLabel,
   children,
   className = "",
-  labelClassName = "",
+  ringClassName = "",
 }: CircularTextButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
-  // Colons in a generated id are awkward in a fragment reference, so they go.
-  const pathId = `ring-${useId().replace(/:/g, "")}`;
   const reduceMotion = useReducedMotion();
 
   const x = useMotionValue(0);
@@ -84,32 +88,14 @@ export default function CircularTextButton({
       {/* Only the ring spins, so the icon in the middle stays upright.
           Paused on hover and focus; animation-play-state keeps the ring at
           the angle it reached rather than resetting it. */}
-      <svg
+      <Image
+        src={image}
+        alt=""
         aria-hidden="true"
-        viewBox="0 0 100 100"
-        className="animate-spin-slow size-full group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused] motion-reduce:animate-none"
-      >
-        {/* Starts at the top and runs clockwise. textLength pins the string to
-            the exact circumference, so the ring always closes however the
-            font renders. */}
-        <path
-          id={pathId}
-          fill="none"
-          d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
-        />
-
-        <text className={labelClassName}>
-          <textPath
-            href={`#${pathId}`}
-            startOffset="50%"
-            textAnchor="middle"
-            textLength="180"
-            lengthAdjust="spacing"
-          >
-            {label}
-          </textPath>
-        </text>
-      </svg>
+        width={imageWidth}
+        height={imageHeight}
+        className={`animate-spin-slow group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused] motion-reduce:animate-none ${ringClassName}`}
+      />
 
       <span aria-hidden="true" className="absolute">
         {children}

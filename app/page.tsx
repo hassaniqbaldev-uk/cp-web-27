@@ -1,4 +1,5 @@
 import About from "@/components/sections/About";
+import Consultation from "@/components/sections/Consultation";
 import Expertise from "@/components/sections/Expertise";
 import Guarantees from "@/components/sections/Guarantees";
 import Hero from "@/components/sections/Hero";
@@ -16,6 +17,7 @@ const Home = () => {
       <Guarantees />
       <Process />
       <Work />
+      <Consultation />
     </>
   );
 };

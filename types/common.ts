@@ -209,3 +209,29 @@ export type Testimonial = {
   /** Out of five, e.g. 5 — drives both the stars and the printed figure. */
   rating: number;
 };
+
+export type ContactLink = {
+  id: string;
+  /** Lucide icon component, e.g. `Mail`. */
+  icon: LucideIcon;
+  label: string;
+  /** A mailto:, tel: or page link. */
+  href: string;
+};
+
+export type ContactTopic = {
+  id: string;
+  /** Lucide icon component, e.g. `Monitor`. */
+  icon: LucideIcon;
+  label: string;
+  /** Submitted value for this choice. */
+  value: string;
+  /**
+   * Accent for this card — the icon colour, and the border and tint it takes
+   * once chosen. Two fields rather than one name because Tailwind scans source
+   * files for complete class names, so a concatenated colour would never be
+   * generated.
+   */
+  iconClassName: string;
+  selectedClassName: string;
+};

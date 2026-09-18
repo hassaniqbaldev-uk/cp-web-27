@@ -2,6 +2,8 @@ import type {
   AboutHighlight,
   ClientLogo,
   ConsultationBenefit,
+  ContactLink,
+  ContactTopic,
   ExpertiseCard,
   Guarantee,
   GuaranteeCaseStudy,
@@ -14,14 +16,20 @@ import type {
   WorkProject,
 } from "@/types/common";
 import {
+  Ban,
   Building2,
+  CalendarClock,
   CalendarDays,
+  CircleArrowUp,
   Clock,
   Code2,
   Compass,
   LayoutDashboard,
+  Mail,
+  Monitor,
   MessageSquare,
   Palette,
+  Phone,
   Rocket,
   ShoppingBag,
   TrendingUp,
@@ -663,5 +671,65 @@ export const testimonials: Testimonial[] = [
     name: "Brendan Torazzi",
     role: "Alert Force, Founder",
     rating: 5,
+  },
+];
+
+// TODO: point "Schedule a time" at the real booking page.
+export const contactLinks: ContactLink[] = [
+  {
+    id: "email",
+    icon: Mail,
+    label: "hello@cp.agency",
+    href: "mailto:hello@cp.agency",
+  },
+  {
+    id: "phone",
+    icon: Phone,
+    // tel: strips the spaces, since a dialler cannot read them.
+    label: "0161 820 2667",
+    href: "tel:+441618202667",
+  },
+  {
+    id: "schedule",
+    icon: CalendarClock,
+    label: "Schedule a time",
+    href: "/contact",
+  },
+];
+
+export const contactTopics: ContactTopic[] = [
+  {
+    id: "web",
+    icon: Monitor,
+    label: "Web & Ecommerce",
+    value: "web-ecommerce",
+    iconClassName: "text-blue",
+    selectedClassName: "has-[:checked]:border-blue has-[:checked]:bg-blue/10",
+  },
+  {
+    id: "brand",
+    icon: Palette,
+    label: "Brand & Experience",
+    value: "brand-experience",
+    iconClassName: "text-dark-pink",
+    selectedClassName:
+      "has-[:checked]:border-dark-pink has-[:checked]:bg-dark-pink/10",
+  },
+  {
+    id: "growth",
+    icon: CircleArrowUp,
+    label: "Growth & Performance",
+    value: "growth-performance",
+    iconClassName: "text-orange",
+    selectedClassName:
+      "has-[:checked]:border-orange has-[:checked]:bg-orange/10",
+  },
+  {
+    id: "unsure",
+    icon: Ban,
+    label: "Not sure yet",
+    value: "not-sure",
+    iconClassName: "text-blue",
+    selectedClassName: "has-[:checked]:border-blue has-[:checked]:bg-blue/10",
   },
 ];

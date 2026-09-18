@@ -1,5 +1,6 @@
 import About from "@/components/sections/About";
 import Consultation from "@/components/sections/Consultation";
+import Contact from "@/components/sections/Contact";
 import Expertise from "@/components/sections/Expertise";
 import Guarantees from "@/components/sections/Guarantees";
 import Hero from "@/components/sections/Hero";
@@ -20,6 +21,7 @@ const Home = () => {
       <Work />
       <Consultation />
       <Testimonials />
+      <Contact />
     </>
   );
 };

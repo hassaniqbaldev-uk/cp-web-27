@@ -1,3 +1,4 @@
+import AboutBehaviours from "@/components/sections/AboutBehaviours";
 import AboutHero from "@/components/sections/AboutHero";
 import AboutJourney from "@/components/sections/AboutJourney";
 import AboutStory from "@/components/sections/AboutStory";
@@ -10,6 +11,7 @@ const About = () => {
       <AboutStory />
       <AboutJourney />
       <AboutTeam />
+      <AboutBehaviours />
     </>
   );
 };

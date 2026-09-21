@@ -1,6 +1,7 @@
 import type {
   AboutHighlight,
   AboutStat,
+  Behaviour,
   Brand,
   ClientLogo,
   ConsultationBenefit,
@@ -31,7 +32,9 @@ import {
   Clock,
   Code2,
   Compass,
+  Layers,
   LayoutDashboard,
+  LifeBuoy,
   Mail,
   Monitor,
   MessageSquare,
@@ -42,6 +45,7 @@ import {
   TrendingUp,
   UserRoundCheck,
   Users,
+  Wrench,
 } from "lucide-react";
 
 export const heroPopovers: HeroPopover[] = [
@@ -1124,5 +1128,42 @@ export const teamHandoffs: TeamHandoff[] = [
     image: "/images/home/team-four.jpg",
     name: "Afzal",
     text: "Protects search through launch",
+  },
+];
+
+export const behaviours: Behaviour[] = [
+  {
+    id: "senior-people",
+    icon: Users,
+    title: "Senior people stay involved",
+    description:
+      "Important decisions are made directly, without being passed through multiple layers of account managers or unnecessary communication.",
+    hoverClassName: "hover:bg-blue hover:shadow-[0px_4px_84px_0px_#3078FF]",
+  },
+  {
+    id: "design-development",
+    icon: Layers,
+    title: "Design Meets Development",
+    description:
+      "Technical constraints and commercial goals are considered while the experience is being designed, not discovered at the end.",
+    hoverClassName: "hover:bg-orange hover:shadow-[0px_4px_84px_0px_#EC9122]",
+  },
+  {
+    id: "tools",
+    icon: Wrench,
+    title: "Tools fit the problem.",
+    description:
+      "WordPress, Shopify, Webflow, React, Next.js, Laravel and automation platforms are options - not the identity of the agency.",
+    hoverClassName:
+      "hover:bg-dark-pink hover:shadow-[0px_4px_84px_0px_#EC3593]",
+  },
+  {
+    id: "after-launch",
+    icon: LifeBuoy,
+    title: "We stay after launch",
+    description:
+      "Support, development, CRO, SEO, paid media and automation can continue where the business needs an ongoing digital partner.",
+    hoverClassName:
+      "hover:bg-[#6FDC8C] hover:shadow-[0px_4px_84px_0px_#6FDC8C]",
   },
 ];

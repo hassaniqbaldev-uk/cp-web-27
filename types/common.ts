@@ -312,3 +312,16 @@ export type TeamHandoff = {
   /** What this person does at this stage, e.g. "Scopes it with you". */
   text: string;
 };
+
+export type Behaviour = {
+  id: string;
+  /** Lucide icon component, e.g. `Users`. */
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  /**
+   * Background and glow applied on hover. Keep it a complete, literal class
+   * string, as Tailwind never generates a concatenated one.
+   */
+  hoverClassName: string;
+};

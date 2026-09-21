@@ -15,6 +15,7 @@ import type {
   HeroPopover,
   JourneyStep,
   ProcessStep,
+  ReachLocation,
   ServiceDiscipline,
   SocialLink,
   TeamHandoff,
@@ -1165,5 +1166,32 @@ export const behaviours: Behaviour[] = [
       "Support, development, CRO, SEO, paid media and automation can continue where the business needs an ongoing digital partner.",
     hoverClassName:
       "hover:bg-[#6FDC8C] hover:shadow-[0px_4px_84px_0px_#6FDC8C]",
+  },
+];
+
+export const reachLocations: ReachLocation[] = [
+  {
+    id: "uk",
+    image: "/images/about/uk-loction.jpg",
+    imageAlt: "Big Ben, London",
+    title: "United Kingdom",
+    clients: "AlertForce, Sorted, Sight for Life, Fultons",
+    className: "top-[4.5rem] left-[44rem]",
+  },
+  {
+    id: "us",
+    image: "/images/about/us-location.jpg",
+    imageAlt: "The Statue of Liberty, New York",
+    title: "United States",
+    clients: "Teleqo Tech, New Compass",
+    className: "top-[30rem] left-[8.4rem]",
+  },
+  {
+    id: "international",
+    image: "/images/about/internation-location.jpg",
+    imageAlt: "Hands holding a globe",
+    title: "International",
+    clients: "Casa Botanica, Ndifo Safari, Manzar",
+    className: "top-[28rem] right-[7.6rem]",
   },
 ];

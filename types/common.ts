@@ -325,3 +325,18 @@ export type Behaviour = {
    */
   hoverClassName: string;
 };
+
+export type ReachLocation = {
+  id: string;
+  image: string;
+  imageAlt: string;
+  title: string;
+  /** The clients served from there, already joined into one line. */
+  clients: string;
+  /**
+   * Where the card sits on the map, as a share of the box so it tracks the
+   * artwork at any width. Keep it a complete, literal class string — Tailwind
+   * scans source files for full class names.
+   */
+  className: string;
+};

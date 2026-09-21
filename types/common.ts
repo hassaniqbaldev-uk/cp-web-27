@@ -278,3 +278,18 @@ export type AboutStat = {
   value: string;
   label: string;
 };
+
+export type JourneyStep = {
+  id: string;
+  /** Display number, e.g. "01". */
+  step: string;
+  title: string;
+  description: string;
+  /**
+   * Accent for this step's label, as the Process section does it. Two fields
+   * rather than one name because Tailwind scans source files for complete
+   * class names, so a concatenated colour would never be generated.
+   */
+  borderClassName: string;
+  textClassName: string;
+};

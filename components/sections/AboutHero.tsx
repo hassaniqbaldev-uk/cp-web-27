@@ -107,7 +107,7 @@ const AboutHero = () => {
             className="pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
           >
             {BLUR_LAYERS.map((blur, index) => {
-              const span = (100 - BLUR_START) / BLUR_LAYERS.length;
+              const span = (80 - BLUR_START) / BLUR_LAYERS.length;
               const from = BLUR_START + span * index;
               const mask = `linear-gradient(to bottom, transparent ${from}%, black ${from + span}%, black 100%)`;
 

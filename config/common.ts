@@ -12,6 +12,7 @@ import type {
   GuaranteeCaseStudy,
   HeroBadge,
   HeroPopover,
+  JourneyStep,
   ProcessStep,
   ServiceDiscipline,
   SocialLink,
@@ -866,5 +867,41 @@ export const aboutStats: AboutStat[] = [
     id: "returning-clients",
     value: "94%",
     label: "Clients who came back",
+  },
+];
+
+// TODO: replace with the real milestones.
+export const journeySteps: JourneyStep[] = [
+  {
+    id: "first-site",
+    step: "01",
+    title: "First site at 13",
+    description: "A hobby that turned into a habit, then into a craft.",
+    borderClassName: "border-orange",
+    textClassName: "text-orange",
+  },
+  {
+    id: "freelance",
+    step: "02",
+    title: "Freelance years",
+    description: "Client work that taught us what actually ships and lasts.",
+    borderClassName: "border-blue",
+    textClassName: "text-blue",
+  },
+  {
+    id: "agency",
+    step: "03",
+    title: "CreativePixels founded",
+    description: "Strategy, design and build brought under one roof.",
+    borderClassName: "border-dark-pink",
+    textClassName: "text-dark-pink",
+  },
+  {
+    id: "team",
+    step: "04",
+    title: "A senior team",
+    description: "People who stay involved from first call through launch.",
+    borderClassName: "border-[#6FDC8C]",
+    textClassName: "text-[#6FDC8C]",
   },
 ];

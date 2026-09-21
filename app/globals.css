@@ -59,6 +59,17 @@
 
   --animate-spin-slow: spin-slow 16s linear infinite;
 
+  /* The track holds two identical copies of its content, so travelling exactly
+     half its height lands the second copy where the first began and the loop
+     is seamless. */
+  --animate-marquee-up: marquee-up 24s linear infinite;
+
+  @keyframes marquee-up {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
   @keyframes spin-slow {
     to {
       transform: rotate(360deg);

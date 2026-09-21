@@ -271,3 +271,10 @@ export type Brand = {
   height: number;
   href: string;
 };
+
+export type AboutStat = {
+  id: string;
+  /** The figure itself, e.g. "12+". */
+  value: string;
+  label: string;
+};

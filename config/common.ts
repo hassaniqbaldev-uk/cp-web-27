@@ -1,5 +1,6 @@
 import type {
   AboutHighlight,
+  AboutStat,
   Brand,
   ClientLogo,
   ConsultationBenefit,
@@ -842,5 +843,28 @@ export const ourBrands: Brand[] = [
     width: 88,
     height: 15,
     href: "https://example.com",
+  },
+];
+
+export const aboutStats: AboutStat[] = [
+  {
+    id: "years",
+    value: "12+",
+    label: "Years building digital products",
+  },
+  {
+    id: "projects",
+    value: "250",
+    label: "Projects Launched",
+  },
+  {
+    id: "continents",
+    value: "03",
+    label: "Continents served",
+  },
+  {
+    id: "returning-clients",
+    value: "94%",
+    label: "Clients who came back",
   },
 ];

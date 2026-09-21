@@ -8,6 +8,7 @@ import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { ChevronDown, Phone } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const PHONE_DROPDOWN_ID = "phone";
@@ -21,6 +22,10 @@ const SCROLL_THRESHOLD = 20;
 const MARK_WIDTH = "5.6rem";
 const LOGO_WIDTH = "14.5rem";
 
+// Routes whose hero is light. The header needs its dark treatment from the top
+// there, rather than only once a white band is behind it.
+const LIGHT_ROUTES = ["/about"];
+
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
   const [openId, setOpenId] = useState<string | null>(null);
@@ -28,6 +33,7 @@ const Header = () => {
   const toggle = (id: string) => (open: boolean) => setOpenId(open ? id : null);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Passive, so the listener can never delay the scroll itself, and it reads
@@ -42,8 +48,16 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Every white-over-hero colour flips once the band behind it is white.
-  const textClassName = isScrolled ? "text-black" : "text-white";
+  const isLightPage = LIGHT_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+
+  // Colour follows what is behind the header, which is light either once the
+  // white band appears or from the top on a light page. The mark reveal and
+  // the band itself still follow the scroll alone.
+  const isDark = isScrolled || isLightPage;
+
+  const textClassName = isDark ? "text-black" : "text-white";
 
   return (
     <header className="pt-sm fixed top-0 left-0 z-999 w-full">
@@ -71,7 +85,7 @@ const Header = () => {
                 // The wordmark has its colour baked in, so the white band
                 // gets a copy of the artwork with a dark one.
                 src={
-                  isScrolled
+                  isDark
                     ? "/images/common/cp-logo-with-text-dark.svg"
                     : "/images/common/cp-logo-with-text.svg"
                 }
@@ -92,7 +106,7 @@ const Header = () => {
           <span
             aria-hidden="true"
             className={`h-[5rem] w-px transition-colors duration-300 ${
-              isScrolled ? "bg-black/20" : "bg-text-body"
+              isDark ? "bg-black/20" : "bg-text-body"
             }`}
           />
 
@@ -168,7 +182,7 @@ const Header = () => {
           <Button
             href="/contact"
             className={`text-body-02 px-sm py-xs rounded-xl font-extrabold tracking-[-0.02em] uppercase transition-colors duration-300 ${
-              isScrolled ? "bg-black text-white" : "bg-white text-black"
+              isDark ? "bg-black text-white" : "bg-white text-black"
             }`}
           >
             Free Website Audit

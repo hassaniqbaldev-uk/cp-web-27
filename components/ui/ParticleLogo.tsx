@@ -62,15 +62,39 @@ const vivid = (color: number[]) => {
 };
 
 type ParticleLogoProps = {
-  /** Source SVG markup. Sampled offscreen, so its own gradient is preserved. */
-  svg: string;
+  /**
+   * Source SVG markup, as paths to fill or as a grid of rects that are already
+   * the particles. Paths are sampled offscreen, so their own colour survives.
+   */
+  svg?: string;
+  /**
+   * The same, fetched at runtime. Artwork of a thousand rects belongs in a
+   * cacheable file rather than inlined into the page's JavaScript.
+   */
+  svgSrc?: string;
+  /**
+   * Colour for rect artwork, laid left to right, since a stipple exported flat
+   * carries a silhouette but no colour of its own.
+   */
+  gradientFrom?: string;
+  gradientTo?: string;
   /** Names the whole field, which is one image rather than thousands. */
   label: string;
   className?: string;
 };
 
+/** "#EC3593" to [236, 53, 147]. */
+const toRgb = (hex: string) => [
+  parseInt(hex.slice(1, 3), 16),
+  parseInt(hex.slice(3, 5), 16),
+  parseInt(hex.slice(5, 7), 16),
+];
+
 export default function ParticleLogo({
   svg,
+  svgSrc,
+  gradientFrom = "#EC3593",
+  gradientTo = "#FFE400",
   label,
   className = "",
 }: ParticleLogoProps) {
@@ -84,17 +108,25 @@ export default function ParticleLogo({
 
     if (!host || !canvas || !context) return;
 
-    const parsed = new DOMParser().parseFromString(svg, "image/svg+xml");
-    const viewBox = parsed.documentElement.getAttribute("viewBox");
+    let vx = 0;
+    let vy = 0;
+    let vw = 0;
+    let vh = 0;
 
-    if (!viewBox) return;
+    let shapes: { path: Path2D; rule: CanvasFillRule }[] = [];
 
-    const [vx, vy, vw, vh] = viewBox.split(/\s+/).map(Number);
+    // Rect artwork is already sampled: every rect is one particle, so there is
+    // no grid to lay over it and nothing to hit test. Laying our own grid on
+    // top would catch some rects and miss others, which reads as moire.
+    let points: { x: number; y: number }[] = [];
+    let occupied = new Set<string>();
+    let pitch = 6;
 
-    const shapes = [...parsed.querySelectorAll("path")].map((path) => ({
-      path: new Path2D(path.getAttribute("d") ?? ""),
-      rule: (path.getAttribute("fill-rule") ?? "nonzero") as CanvasFillRule,
-    }));
+    const from = toRgb(gradientFrom);
+    const to = toRgb(gradientTo);
+
+    const key = (x: number, y: number) =>
+      `${Math.round(x / pitch)},${Math.round(y / pitch)}`;
 
     // A throwaway context purely for hit testing, and a second one for reading
     // back pixels — separate because the sampler is resized on every rebuild.
@@ -130,6 +162,10 @@ export default function ParticleLogo({
       const sy = (y - offsetY) / scale + vy;
 
       if (sx < vx || sy < vy || sx > vx + vw || sy > vy + vh) return false;
+
+      // A set lookup rather than a scan of a thousand rects, so a pointer move
+      // costs the same however dense the artwork is.
+      if (points.length) return occupied.has(key(sx, sy));
 
       return shapes.some(({ path, rule }) =>
         mask.isPointInPath(path, sx, sy, rule),
@@ -306,19 +342,24 @@ export default function ParticleLogo({
 
       context.setTransform(rx, 0, 0, ry, pad * rx, pad * ry);
 
-      // The source is rasterised offscreen so each particle can read the colour
-      // underneath it, which is how the artwork's own gradient survives.
-      sampling.width = Math.ceil(width * 2);
-      sampling.height = Math.ceil(height * 2);
-      sampler.setTransform(2, 0, 0, 2, 0, 0);
-      sampler.drawImage(image, offsetX, offsetY, vw * scale, vh * scale);
+      // Path artwork is rasterised offscreen so each particle can read the
+      // colour underneath it, which is how its own gradient survives. Rect
+      // artwork has no colour to read, so it is skipped.
+      let raster: Uint8ClampedArray | null = null;
 
-      const raster = sampler.getImageData(
-        0,
-        0,
-        sampling.width,
-        sampling.height,
-      ).data;
+      if (!points.length) {
+        sampling.width = Math.ceil(width * 2);
+        sampling.height = Math.ceil(height * 2);
+        sampler.setTransform(2, 0, 0, 2, 0, 0);
+        sampler.drawImage(image, offsetX, offsetY, vw * scale, vh * scale);
+
+        raster = sampler.getImageData(
+          0,
+          0,
+          sampling.width,
+          sampling.height,
+        ).data;
+      }
 
       particles = [];
 
@@ -326,21 +367,56 @@ export default function ParticleLogo({
       const startX = 1 + Math.floor(((width - 2) % step) / 2);
       const startY = 1 + Math.floor(((height - 2) % step) / 2);
 
-      for (let y = startY; y <= height - 1; y += step) {
-        for (let x = startX; x <= width - 1; x += step) {
-          if (!insideLogo(x, y)) continue;
+      // Rect artwork places one particle per rect; path artwork walks a grid
+      // and keeps the points that land inside the shape.
+      const seats = points.length
+        ? points.map(({ x, y }) => ({
+            x: offsetX + (x - vx) * scale,
+            y: offsetY + (y - vy) * scale,
+            sx: x,
+            sy: y,
+          }))
+        : (() => {
+            const grid = [];
 
-          const index =
-            (Math.floor(y * 2) * sampling.width + Math.floor(x * 2)) * 4;
-          const color = [raster[index], raster[index + 1], raster[index + 2]];
+            for (let y = startY; y <= height - 1; y += step) {
+              for (let x = startX; x <= width - 1; x += step) {
+                if (insideLogo(x, y)) grid.push({ x, y, sx: 0, sy: 0 });
+              }
+            }
+
+            return grid;
+          })();
+
+      for (const { x, y, sx, sy } of seats) {
+        {
+          let color: number[];
+
+          if (raster) {
+            const index =
+              (Math.floor(y * 2) * sampling.width + Math.floor(x * 2)) * 4;
+            color = [raster[index], raster[index + 1], raster[index + 2]];
+          } else {
+            // Position across the artwork rather than the box, so the gradient
+            // stays anchored to the shape however it is letterboxed.
+            const t = Math.min(1, Math.max(0, (sx - vx) / Math.max(vw, 1)));
+            color = from.map((c, i) => c + (to[i] - c) * t);
+          }
 
           // Particles on the outline drift less, so the silhouette stays legible.
-          const interior = [
-            [4, 0],
-            [-4, 0],
-            [0, 4],
-            [0, -4],
-          ].every(([dx, dy]) => insideLogo(x + dx, y + dy));
+          const interior = points.length
+            ? [
+                [pitch, 0],
+                [-pitch, 0],
+                [0, pitch],
+                [0, -pitch],
+              ].every(([dx, dy]) => occupied.has(key(sx + dx, sy + dy)))
+            : [
+                [4, 0],
+                [-4, 0],
+                [0, 4],
+                [0, -4],
+              ].every(([dx, dy]) => insideLogo(x + dx, y + dy));
 
           particles.push({
             x,
@@ -436,6 +512,9 @@ export default function ParticleLogo({
 
     intersectionObserver.observe(host);
 
+    // Guards the fetch: a slow response must not build into a torn down host.
+    const state = { cancelled: false };
+
     const image = new Image();
 
     image.onload = () => {
@@ -443,7 +522,57 @@ export default function ParticleLogo({
       rebuild();
     };
 
-    image.src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    const start = (markup: string) => {
+      if (state.cancelled) return;
+
+      const parsed = new DOMParser().parseFromString(markup, "image/svg+xml");
+      const viewBox = parsed.documentElement.getAttribute("viewBox");
+
+      if (!viewBox) return;
+
+      [vx, vy, vw, vh] = viewBox.split(/\s+/).map(Number);
+
+      const rects = [...parsed.querySelectorAll("rect")];
+
+      if (rects.length) {
+        points = rects.map((rect) => ({
+          x:
+            Number(rect.getAttribute("x")) +
+            Number(rect.getAttribute("width")) / 2,
+          y:
+            Number(rect.getAttribute("y")) +
+            Number(rect.getAttribute("height")) / 2,
+        }));
+
+        // The spacing the artwork was exported on, read off the file rather
+        // than assumed, so a differently sampled export still lines up.
+        const xs = [...new Set(points.map(({ x }) => x))].sort((a, b) => a - b);
+        pitch = xs.length > 1 ? Math.round(xs[1] - xs[0]) : 6;
+
+        occupied = new Set(points.map(({ x, y }) => key(x, y)));
+
+        // Nothing to rasterise: the rects are the particles.
+        ready = true;
+        rebuild();
+        return;
+      }
+
+      shapes = [...parsed.querySelectorAll("path")].map((path) => ({
+        path: new Path2D(path.getAttribute("d") ?? ""),
+        rule: (path.getAttribute("fill-rule") ?? "nonzero") as CanvasFillRule,
+      }));
+
+      image.src = `data:image/svg+xml,${encodeURIComponent(markup)}`;
+    };
+
+    if (svgSrc) {
+      fetch(svgSrc)
+        .then((response) => response.text())
+        .then(start)
+        .catch(() => {});
+    } else if (svg) {
+      start(svg);
+    }
 
     return () => {
       cancelAnimationFrame(frame);
@@ -460,7 +589,7 @@ export default function ParticleLogo({
       reduced.removeEventListener("change", resetMotion);
       image.onload = null;
     };
-  }, [svg]);
+  }, [svg, svgSrc, gradientFrom, gradientTo]);
 
   return (
     // One image as far as assistive tech is concerned, not thousands of squares.

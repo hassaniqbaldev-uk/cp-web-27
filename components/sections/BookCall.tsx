@@ -61,6 +61,14 @@ type BookCallProps = {
   ctaLabel?: string;
   ctaHref?: string;
   /**
+   * Artwork for the particle field. Defaults to the headset, so pages that
+   * want it pass nothing.
+   */
+  logoSvg?: string;
+  /** Artwork fetched at runtime, for files too large to inline. */
+  logoSvgSrc?: string;
+  logoLabel?: string;
+  /**
    * The email and phone popovers over the logo. Turn them off on pages that
    * want the particle logo on its own.
    */
@@ -79,6 +87,9 @@ const BookCall = ({
   subtitle = "just a chance to see if working together makes sense.",
   ctaLabel = "Get free consultation",
   ctaHref = "/contact",
+  logoSvg,
+  logoSvgSrc,
+  logoLabel = "Headset made of drifting particles",
   showContacts = true,
   id = "book-call",
   className = "py-xl bg-black",
@@ -114,8 +125,9 @@ const BookCall = ({
                 collapses and the canvas never gets a size to draw into. */}
             <div className="relative w-full">
               <ParticleLogo
-                svg={headsetLogoSvg}
-                label="Headset made of drifting particles"
+                svg={logoSvgSrc ? undefined : (logoSvg ?? headsetLogoSvg)}
+                svgSrc={logoSvgSrc}
+                label={logoLabel}
                 className="aspect-square w-full"
               />
 

@@ -10,9 +10,11 @@ const AboutJourney = () => {
         id="journey"
         className="relative flex h-[56rem] items-center overflow-hidden bg-black"
       >
-        <Starfield className="absolute bottom-[-5rem] left-0 z-0 h-[16rem] w-[60rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        <div className="absolute top-0 left-1/2 h-full w-full max-w-[144rem] -translate-x-1/2">
+          <Starfield className="absolute bottom-[-5rem] left-0 z-0 h-[16rem] w-[60rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
-        <Starfield className="absolute right-0 bottom-0 bottom-[-5rem] z-0 h-[16rem] w-[60rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+          <Starfield className="absolute right-0 bottom-0 bottom-[-5rem] z-0 h-[16rem] w-[60rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        </div>
 
         {/* The window the track travels through. Hidden from assistive tech
             because the track is duplicated; the readable copy is below. */}

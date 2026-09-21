@@ -1,6 +1,6 @@
 "use client";
 
-import { contactLinks, headsetLogoSvg } from "@/config/common";
+import { contactLinks } from "@/config/common";
 import { useState } from "react";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
@@ -32,6 +32,10 @@ const floatingContacts = [
   ...placement,
   link: contactLinks.find((contact) => contact.id === placement.id),
 }));
+
+// Fetched rather than inlined, so the markup stays out of the page's
+// JavaScript and is cached like any other asset.
+const HEADSET_ARTWORK = "/images/common/headset-particle.svg";
 
 const contactRingClassName =
   "gradient-border [--gradient-border-width:1.24px] [--gradient-border-image:linear-gradient(148.35deg,rgba(255,255,255,0)_11.97%,rgba(255,255,255,0.5)_39.82%,rgba(255,255,255,0)_59.85%)]";
@@ -88,7 +92,7 @@ const BookCall = ({
   ctaLabel = "Get free consultation",
   ctaHref = "/contact",
   logoSvg,
-  logoSvgSrc,
+  logoSvgSrc = HEADSET_ARTWORK,
   logoLabel = "Headset made of drifting particles",
   showContacts = true,
   id = "book-call",
@@ -125,8 +129,8 @@ const BookCall = ({
                 collapses and the canvas never gets a size to draw into. */}
             <div className="relative w-full">
               <ParticleLogo
-                svg={logoSvgSrc ? undefined : (logoSvg ?? headsetLogoSvg)}
-                svgSrc={logoSvgSrc}
+                svg={logoSvg}
+                svgSrc={logoSvg ? undefined : logoSvgSrc}
                 label={logoLabel}
                 className="aspect-square w-full"
               />

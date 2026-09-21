@@ -15,7 +15,9 @@ const Consultation = () => {
       >
         {/* The mask curves the field off at its edges, so it reads as a soft
             cloud in the corner rather than a rectangle of stars. */}
-        <Starfield className="absolute right-0 bottom-[-5rem] z-0 h-[20rem] w-[77rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        <div className="absolute top-0 left-1/2 h-full w-full max-w-[144rem] -translate-x-1/2">
+          <Starfield className="absolute right-0 bottom-[-5rem] z-0 h-[20rem] w-[77rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        </div>
 
         <Container className="relative z-10">
           <div className="gap-lg flex items-center justify-between">

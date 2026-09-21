@@ -16,7 +16,9 @@ import type {
   ProcessStep,
   ServiceDiscipline,
   SocialLink,
+  TeamHandoff,
   TeamMember,
+  TeamProfile,
   Testimonial,
   WorkProject,
 } from "@/types/common";
@@ -903,5 +905,224 @@ export const journeySteps: JourneyStep[] = [
     description: "People who stay involved from first call through launch.",
     borderClassName: "border-[#6FDC8C]",
     textClassName: "text-[#6FDC8C]",
+  },
+];
+
+// TODO: replace with the real team — names, roles, years, biographies and
+// portraits. The first entry is the one shown until someone is picked.
+export const teamProfiles: TeamProfile[] = [
+  {
+    id: "member-01",
+    image: "/images/home/team-one.jpg",
+    name: "Ahsan Hussain",
+    role: "Head of development",
+    years: "12+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-02",
+    image: "/images/home/team-one.jpg",
+    name: "Taha Baig",
+    role: "Project lead",
+    years: "9+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-03",
+    image: "/images/home/team-two.jpg",
+    name: "Team Member 03",
+    role: "UX designer",
+    years: "7+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-04",
+    image: "/images/home/team-three.jpg",
+    name: "Team Member 04",
+    role: "Visual designer",
+    years: "11+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-05",
+    image: "/images/home/team-four.jpg",
+    name: "Team Member 05",
+    role: "WordPress developer",
+    years: "6+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-06",
+    image: "/images/home/team-five.jpg",
+    name: "Team Member 06",
+    role: "Ecommerce developer",
+    years: "12+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-07",
+    image: "/images/home/team-six.jpg",
+    name: "Team Member 07",
+    role: "Application engineer",
+    years: "9+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-08",
+    image: "/images/home/team-seven.jpg",
+    name: "Team Member 08",
+    role: "Growth strategist",
+    years: "7+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-09",
+    image: "/images/about/ahsan-hussain-img.jpg",
+    name: "Team Member 09",
+    role: "Content strategist",
+    years: "11+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-10",
+    image: "/images/home/team-one.jpg",
+    name: "Team Member 10",
+    role: "QA engineer",
+    years: "6+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-11",
+    image: "/images/home/team-two.jpg",
+    name: "Team Member 11",
+    role: "Head of development",
+    years: "12+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-12",
+    image: "/images/home/team-three.jpg",
+    name: "Team Member 12",
+    role: "Project lead",
+    years: "9+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-13",
+    image: "/images/home/team-four.jpg",
+    name: "Team Member 13",
+    role: "UX designer",
+    years: "7+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-14",
+    image: "/images/home/team-five.jpg",
+    name: "Team Member 14",
+    role: "Visual designer",
+    years: "11+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-15",
+    image: "/images/home/team-six.jpg",
+    name: "Team Member 15",
+    role: "WordPress developer",
+    years: "6+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-16",
+    image: "/images/home/team-seven.jpg",
+    name: "Team Member 16",
+    role: "Ecommerce developer",
+    years: "12+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-17",
+    image: "/images/about/ahsan-hussain-img.jpg",
+    name: "Team Member 17",
+    role: "Application engineer",
+    years: "9+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-18",
+    image: "/images/home/team-one.jpg",
+    name: "Team Member 18",
+    role: "Growth strategist",
+    years: "7+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-19",
+    image: "/images/home/team-two.jpg",
+    name: "Team Member 19",
+    role: "Content strategist",
+    years: "11+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+  {
+    id: "member-20",
+    image: "/images/home/team-three.jpg",
+    name: "Team Member 20",
+    role: "QA engineer",
+    years: "6+",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+  },
+];
+
+// TODO: replace with the real people and their part in the handover.
+export const teamHandoffs: TeamHandoff[] = [
+  {
+    id: "scope",
+    image: "/images/home/hassan-avatar-img.png",
+    name: "Hassan",
+    text: "Scopes it with you",
+  },
+  {
+    id: "design",
+    image: "/images/home/team-one.jpg",
+    name: "Maryam",
+    text: "Maps the journey and designs it",
+  },
+  {
+    id: "build",
+    image: "/images/about/ahsan-hussain-img.jpg",
+    name: "Taha",
+    text: "Builds the front end alongside",
+  },
+  {
+    id: "launch",
+    image: "/images/home/team-three.jpg",
+    name: "Ahsan",
+    text: "Handles data, portals and integrations",
+  },
+  {
+    id: "grow",
+    image: "/images/home/team-four.jpg",
+    name: "Afzal",
+    text: "Protects search through launch",
   },
 ];

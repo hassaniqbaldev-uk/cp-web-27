@@ -293,3 +293,22 @@ export type JourneyStep = {
   borderClassName: string;
   textClassName: string;
 };
+
+export type TeamProfile = {
+  id: string;
+  image: string;
+  /** The person's name — used as the portrait's accessible text. */
+  name: string;
+  role: string;
+  /** Years of experience, e.g. "12+". */
+  years: string;
+  description: string;
+};
+
+export type TeamHandoff = {
+  id: string;
+  image: string;
+  name: string;
+  /** What this person does at this stage, e.g. "Scopes it with you". */
+  text: string;
+};

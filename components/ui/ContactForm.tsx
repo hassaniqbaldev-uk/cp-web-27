@@ -1,12 +1,32 @@
 import { contactTopics } from "@/config/common";
-import { ArrowUpRight, ChevronDown, Plus } from "lucide-react";
+import { ArrowUpRight, Calendar, ChevronDown, Clock, Plus } from "lucide-react";
+
+// TODO: the second line is placeholder copy.
+const assurances = [
+  {
+    id: "reviewed",
+    icon: Clock,
+    text: "Reviewed by a senior member of our team.",
+  },
+  {
+    id: "reply",
+    icon: Calendar,
+    text: "We usually reply within one working day.",
+  },
+];
 
 /**
  * Deliberately has no "use client" boundary. The selected card is styled with
  * has-[:checked], and the optional section is a native disclosure, so the whole
  * form works before — and without — JavaScript.
  */
-const ContactForm = () => {
+type ContactFormProps = {
+  /** The reassurance pair under the button. Off by default, since only the
+   *  contact page asks for it. */
+  showAssurances?: boolean;
+};
+
+const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
   return (
     // TODO: wire to the route handler at app/api/contact, which is still empty.
     <form className="gap-md flex flex-col">
@@ -181,6 +201,28 @@ const ContactForm = () => {
         Send enquiry
         <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.5} />
       </button>
+
+      {/* What happens to the enquiry once it is sent. A list, so the two
+          announce as a pair rather than as loose fragments after the
+          button. */}
+      {showAssurances && (
+        <ul className="gap-md grid grid-cols-2">
+          {assurances.map(({ id, icon: Icon, text }) => (
+            <li key={id} className="gap-xs flex items-start">
+              <Icon
+                aria-hidden="true"
+                size={30}
+                strokeWidth={2}
+                className="text-orange mt-[0.6rem] shrink-0"
+              />
+
+              <p className="text-body-03 text-text-body leading-[2.2rem] tracking-[-0.02em]">
+                {text}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </form>
   );
 };

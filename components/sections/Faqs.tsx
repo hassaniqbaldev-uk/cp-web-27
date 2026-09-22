@@ -1,13 +1,43 @@
 import { faqs } from "@/config/common";
+import type { Faq } from "@/types/common";
 import Accordion from "../ui/Accordion";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-const Faqs = () => {
+/**
+ * The home page's copy, kept as the defaults so pages that want it render
+ * `<Faqs />` and nothing else. Anywhere else passes its own.
+ */
+const defaultTitle = (
+  <>
+    Questions? <span className="text-black/50">We are here to help</span>
+  </>
+);
+
+type FaqsProps = {
+  label?: string;
+  /** Accepts nodes, so part of it can be styled. */
+  title?: React.ReactNode;
+  items?: Faq[];
+  /**
+   * Unique per page. Two of these on one page would otherwise give the
+   * document two elements with the same id, which breaks fragment links.
+   */
+  id?: string;
+  className?: string;
+};
+
+const Faqs = ({
+  label = "Frequently asked questions",
+  title = defaultTitle,
+  items = faqs,
+  id = "faqs",
+  className = "py-3xl",
+}: FaqsProps) => {
   return (
     <>
-      <Section id="faqs" className="py-3xl">
+      <Section id={id} className={className}>
         <Container>
           <div className="gap-lg flex items-start justify-between">
             {/* The heading comes first in the source and is moved to the right
@@ -16,13 +46,8 @@ const Faqs = () => {
                 questions announced before the thing that names them. */}
             <div className="order-2 w-[48.2rem]">
               <SectionHeading
-                label="Frequently asked questions"
-                title={
-                  <>
-                    Questions?{" "}
-                    <span className="text-black/50">We are here to help</span>
-                  </>
-                }
+                label={label}
+                title={title}
                 labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
                 titleClassName="text-heading-02 mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
               />
@@ -30,8 +55,8 @@ const Faqs = () => {
 
             <div className="order-1 w-[58.5rem]">
               <Accordion
-                items={faqs.map(({ id, question, answer }) => ({
-                  id,
+                items={items.map(({ id: faqId, question, answer }) => ({
+                  id: faqId,
                   title: (
                     <span className="text-body-01 font-medium tracking-[-0.07em] text-black">
                       {question}

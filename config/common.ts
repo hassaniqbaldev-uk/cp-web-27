@@ -14,6 +14,7 @@ import type {
   HeroBadge,
   HeroPopover,
   JourneyStep,
+  ProcessCard,
   ProcessStep,
   ReachLocation,
   ServiceDiscipline,
@@ -34,7 +35,9 @@ import {
   Clock,
   Code2,
   Compass,
+  FileCheck,
   Layers,
+  ClipboardList,
   LayoutDashboard,
   LifeBuoy,
   Mail,
@@ -1274,5 +1277,199 @@ export const workflowSteps: WorkflowStep[] = [
         subtitle: "Each stage before the next",
       },
     ],
+  },
+];
+
+// TODO: cards two to six are placeholder copy, and the images need alt text.
+export const processCards: ProcessCard[] = [
+  {
+    id: "before-proposal",
+    step: "01",
+    title: "Before a proposal",
+    description:
+      "The first conversation is 15 minutes on what you are trying to achieve, what exists today and where the friction is. We need a rough idea of scope, timing and budget range; you do not need a finished brief. Where the project is large or unclear, we suggest a short paid discovery instead of guessing.",
+    details: [
+      {
+        id: "before-proposal-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "What we need",
+        subtitle: "Goal, current site or system, timing, budget range",
+      },
+      {
+        id: "before-proposal-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "What you get",
+        subtitle: "A written proposal with fixed scope and price",
+      },
+    ],
+    image: "/images/how-we-work/card-img-1.png",
+    imageAlt: "",
+  },
+  {
+    id: "scoping",
+    step: "02",
+    title: "Scoping",
+    description:
+      "Structure, content direction, functionality, integrations, timeline and price are agreed before the main work starts. Content responsibilities are written down. What can still change: copy, imagery and detail within the agreed structure. What is fixed: the price for the agreed scope.",
+    details: [
+      {
+        id: "scoping-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "Fixed",
+        subtitle: "Scope, price, timeline, who does what",
+      },
+      {
+        id: "scoping-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "Flexible",
+        subtitle: "Copy, imagery, detail inside the scope",
+      },
+    ],
+    image: "/images/how-we-work/card-img-2.png",
+    imageAlt: "",
+  },
+  {
+    id: "design",
+    step: "03",
+    title: "Design and build",
+    description:
+      "Design and development run together. You see work in progress every week or two in a shared link, not a big reveal at the end. Two rounds of feedback are built into each stage, and technical constraints are raised while the design is being made rather than discovered afterwards.",
+    details: [
+      {
+        id: "design-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "Reviews",
+        subtitle: "Every one to two weeks, live links",
+      },
+      {
+        id: "design-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "Feedback",
+        subtitle: "Two rounds per stage, written down",
+      },
+    ],
+    image: "/images/how-we-work/card-img-3.png",
+    imageAlt: "",
+  },
+  {
+    id: "build",
+    step: "04",
+    title: "Payments",
+    description:
+      "Project work is paid in stages tied to delivery: typically a deposit to start, a payment at design sign-off and the balance at launch. Ongoing work such as Growth & Support, CRO or SEO is billed monthly and can stop with notice.",
+    details: [
+      {
+        id: "build-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "Projects",
+        subtitle: "Staged: start, design sign-off, launch",
+      },
+      {
+        id: "build-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "Ongoing",
+        subtitle: "Monthly, rolling",
+      },
+    ],
+    image: "/images/how-we-work/card-img-4.png",
+    imageAlt: "",
+  },
+  {
+    id: "launch",
+    step: "05",
+    title: "Launch",
+    description:
+      "QA across browsers, devices and the critical journeys. Redirects mapped where URLs change. Analytics and tracking checked. Handover includes training where the team will edit the site, and applicable builds carry a three-month warranty.",
+    details: [
+      {
+        id: "launch-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "Included",
+        subtitle: "QA, redirects, tracking, training, 3-month warranty",
+      },
+      {
+        id: "launch-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "Ownership",
+        subtitle: "Code, files and accounts are yours",
+      },
+    ],
+    image: "/images/how-we-work/card-img-5.png",
+    imageAlt: "",
+  },
+  {
+    id: "after-launch",
+    step: "06",
+    title: "After launch",
+    description:
+      "Launch is where the useful data starts. Growth & Support covers updates, fixes and improvements. CRO, SEO, paid media, development and automation continue where there is a clear commercial reason. Measured against the baseline agreed at the start.",
+    details: [
+      {
+        id: "after-launch-1",
+        icon: ClipboardList,
+        iconClassName: "text-blue",
+        title: "Ongoing",
+        subtitle: "Growth & Support from £300/month",
+      },
+      {
+        id: "after-launch-2",
+        icon: FileCheck,
+        iconClassName: "text-orange",
+        title: "Measured",
+        subtitle: "Against the baseline agreed at scoping",
+      },
+    ],
+    image: "/images/how-we-work/card-img-6.png",
+    imageAlt: "",
+  },
+];
+
+// TODO: replace with the real questions and answers for this page.
+export const howWeWorkFaqs: Faq[] = [
+  {
+    id: "timeline",
+    question: "How long does the whole process take?",
+    answer:
+      "Most projects run six to twelve weeks from kick off to launch, depending on how much content and functionality is involved.",
+  },
+  {
+    id: "discovery",
+    question: "Do I need a finished brief before we talk?",
+    answer:
+      "No. A rough idea of the goal, the timing and the budget range is enough to start the conversation.",
+  },
+  {
+    id: "paid-discovery",
+    question: "When do you recommend a paid discovery?",
+    answer:
+      "Where the project is large or the scope is unclear, so the proposal is based on findings rather than guesswork.",
+  },
+  {
+    id: "payments",
+    question: "How are payments staged?",
+    answer:
+      "Split across the build against agreed milestones, rather than taken up front.",
+  },
+  {
+    id: "involvement",
+    question: "How much of my time will this take?",
+    answer:
+      "A weekly check in and timely feedback at each milestone. We will always say what we need and by when.",
+  },
+  {
+    id: "changes",
+    question: "What happens if the scope changes?",
+    answer:
+      "We price the change before anything is built, so nothing appears on an invoice that you have not agreed to.",
   },
 ];

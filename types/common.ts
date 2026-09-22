@@ -354,3 +354,28 @@ export type WorkflowStep = {
   title: string;
   details: WorkflowDetail[];
 };
+
+export type ProcessCardDetail = {
+  id: string;
+  /** Lucide icon component, e.g. `ClipboardList`. */
+  icon: LucideIcon;
+  /**
+   * Accent for this icon. Kept as a complete, literal class string — Tailwind
+   * scans source files for full class names, so a concatenated colour would
+   * never be generated.
+   */
+  iconClassName: string;
+  title: string;
+  subtitle: string;
+};
+
+export type ProcessCard = {
+  id: string;
+  /** Display number, e.g. "01". */
+  step: string;
+  title: string;
+  description: string;
+  details: ProcessCardDetail[];
+  image: string;
+  imageAlt: string;
+};

@@ -95,7 +95,7 @@ const HowWeWorkHero = () => {
             {workflowSteps.map(({ id, step, title, details }) => (
               <li
                 key={id}
-                className="p-lg pb-md bg-grey/70 rounded-md backdrop-blur-[20px]"
+                className="p-md bg-grey/70 rounded-md backdrop-blur-[20px]"
               >
                 {/* The pill from the Process section, so a step reads the
                       same wherever it appears. */}

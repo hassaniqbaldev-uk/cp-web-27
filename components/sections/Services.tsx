@@ -202,7 +202,7 @@ const Services = () => {
                       </Button>
                     </div>
 
-                    <div className="relative w-[44rem] overflow-hidden rounded-md">
+                    <div className="relative h-[53.6rem] w-[44rem] overflow-hidden rounded-md">
                       <Image
                         src={featured.image}
                         alt={featured.imageAlt}

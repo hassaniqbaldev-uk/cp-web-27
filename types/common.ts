@@ -116,7 +116,6 @@ export type ServiceDiscipline = {
    */
   iconClassName: string;
   dotClassName: string;
-  description: string;
   /** Everything in the left column of the open panel. */
   detail: ServiceDetail;
   /** The highlighted piece of work shown beside this discipline. */

@@ -11,24 +11,19 @@ const About = () => {
   return (
     <>
       <AboutHero />
-      <AboutStory />
-      <AboutJourney />
-      <AboutTeam />
-      <AboutBehaviours />
-      <AboutReach />
-      <AboutWork />
-
-      {/* TODO: point the button at the real page — /how-we-work does not
-          exist yet. */}
-      <BookCall
+      {/* <AboutStory /> */}
+      {/* <AboutJourney /> */}
+      {/* <AboutTeam /> */}
+      {/* <AboutBehaviours /> */}
+      {/* <AboutReach /> */}
+      {/* <AboutWork /> */}
+      {/* <BookCall
         id="about-book-call"
         showContacts={false}
         label="How we work"
         title={
           <>
             Want to see{" "}
-            {/* pr compensates for the negative tracking, which otherwise pulls
-                the paint box in and clips the last glyph. */}
             <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
               How we work
             </span>
@@ -39,7 +34,7 @@ const About = () => {
         logoLabel="Pointing hand made of drifting particles"
         ctaLabel="How we work"
         ctaHref="/how-we-work"
-      />
+      /> */}
     </>
   );
 };

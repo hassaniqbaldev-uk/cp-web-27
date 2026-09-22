@@ -23,6 +23,7 @@ import type {
   TeamProfile,
   Testimonial,
   WorkProject,
+  WorkflowStep,
 } from "@/types/common";
 import {
   Ban,
@@ -1181,5 +1182,97 @@ export const reachLocations: ReachLocation[] = [
     title: "International",
     clients: "Casa Botanica, Ndifo Safari, Manzar",
     className: "top-[28rem] right-[7.6rem]",
+  },
+];
+
+// TODO: replace with the real process copy.
+export const workflowSteps: WorkflowStep[] = [
+  {
+    id: "before-proposal",
+    step: "01",
+    title: "Understand",
+    details: [
+      {
+        id: "before-proposal-1",
+        title: "WE DO",
+        subtitle: "Listen, look at what exists",
+      },
+      {
+        id: "before-proposal-2",
+        title: "YOU SEE",
+        subtitle: "A written summary",
+      },
+      {
+        id: "before-proposal-3",
+        title: "YOU APPROVE",
+        subtitle: "Whether to proceed",
+      },
+    ],
+  },
+  {
+    id: "before-work",
+    step: "02",
+    title: "Scope",
+    details: [
+      {
+        id: "before-work-1",
+        title: "WE DO",
+        subtitle: "Structure, scope, price",
+      },
+      {
+        id: "before-work-2",
+        title: "YOU SEE",
+        subtitle: "A proposal with fixed price",
+      },
+      {
+        id: "before-work-3",
+        title: "YOU APPROVE",
+        subtitle: "Scope and timeline",
+      },
+    ],
+  },
+  {
+    id: "the-build",
+    step: "03",
+    title: "Design",
+    details: [
+      {
+        id: "the-build-1",
+        title: "WE DO",
+        subtitle: "Wireframes, visual direction",
+      },
+      {
+        id: "the-build-2",
+        title: "YOU SEE",
+        subtitle: "Clickable prototypes",
+      },
+      {
+        id: "the-build-3",
+        title: "YOU APPROVE",
+        subtitle: "Page system and key journeys",
+      },
+    ],
+  },
+  {
+    id: "after-launch",
+    step: "04",
+    title: "Build",
+    details: [
+      {
+        id: "after-launch-1",
+        title: "WE DO",
+        subtitle: "Development alongside design",
+      },
+      {
+        id: "after-launch-2",
+        title: "YOU SEE",
+        subtitle: "Staging links every 1-2 weeks",
+      },
+      {
+        id: "after-launch-3",
+        title: "YOU APPROVE",
+        subtitle: "Each stage before the next",
+      },
+    ],
   },
 ];

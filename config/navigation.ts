@@ -37,7 +37,7 @@ export const mainNavigation: NavItem[] = [
   },
   {
     label: "About",
-    href: "/contact",
+    href: "/about",
   },
 ];
 

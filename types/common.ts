@@ -340,3 +340,17 @@ export type ReachLocation = {
    */
   className: string;
 };
+
+export type WorkflowDetail = {
+  id: string;
+  title: string;
+  subtitle: string;
+};
+
+export type WorkflowStep = {
+  id: string;
+  /** Display number, e.g. "01". */
+  step: string;
+  title: string;
+  details: WorkflowDetail[];
+};

@@ -6,7 +6,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import Image from "next/image";
 import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { ChevronDown, Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -19,8 +19,13 @@ const SCROLL_THRESHOLD = 20;
 
 // The mark occupies the left of the artwork and the wordmark the rest, so
 // hiding the first and showing the whole are a width and an offset apart.
-const MARK_WIDTH = "5.6rem";
-const LOGO_WIDTH = "14.5rem";
+//
+// Read from custom properties set on the header rather than written as fixed
+// values: an inline style cannot be overridden by a media query, so the two
+// widths have to live in CSS for the logo to resize at a breakpoint. The
+// reveal below is unaffected, since calc() accepts a var().
+const MARK_WIDTH = "var(--mark-w)";
+const LOGO_WIDTH = "var(--logo-w)";
 
 // Routes whose hero is light. The header needs its dark treatment from the top
 // there, rather than only once a white band is behind it.
@@ -60,13 +65,13 @@ const Header = () => {
   const textClassName = isDark ? "text-black" : "text-white";
 
   return (
-    <header className="pt-sm fixed top-0 left-0 z-999 w-full">
+    <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.6rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
       <Container
         className={`flex items-center justify-between rounded-xl transition-all duration-300 ${
           isScrolled ? "px-sm bg-white py-[1.5rem]" : "bg-transparent p-0"
         }`}
       >
-        <div className="gap-md flex items-center">
+        <div className="gap-md max-425:gap-sm flex items-center">
           <Link href="/" aria-label={`${siteConfig.name} — home`}>
             {/* A window over the artwork. Closed, it starts where the wordmark
                 does, so only that shows; opened, it widens to the full logo
@@ -94,23 +99,23 @@ const Header = () => {
                 height={65}
                 style={{
                   width: LOGO_WIDTH,
-                  marginLeft: isScrolled ? 0 : `-${MARK_WIDTH}`,
+                  marginLeft: isScrolled ? 0 : `calc(${MARK_WIDTH} * -1)`,
                 }}
                 // max-w-none so the artwork keeps its full width inside a
                 // narrower window rather than being squeezed to fit.
-                className="h-auto max-w-none transition-[margin] duration-500 motion-reduce:transition-none"
+                className="max-425:h-[3.6rem] h-auto max-w-none transition-[margin] duration-500 motion-reduce:transition-none"
               />
             </span>
           </Link>
 
           <span
             aria-hidden="true"
-            className={`h-[5rem] w-px transition-colors duration-300 ${
+            className={`max-1280:hidden h-[5rem] w-px transition-colors duration-300 ${
               isDark ? "bg-black/20" : "bg-text-body"
             }`}
           />
 
-          <nav aria-label="Main">
+          <nav aria-label="Main" className="max-1280:hidden">
             <ul className="gap-md flex items-center">
               {mainNavigation.map((item) =>
                 item.children ? (
@@ -162,10 +167,11 @@ const Header = () => {
           </nav>
         </div>
 
-        <div className="gap-xs flex items-center">
+        <div className="gap-xs max-425:gap-[0.4rem] flex items-center">
           <Dropdown
             isOpen={openId === PHONE_DROPDOWN_ID}
             onOpenChange={toggle(PHONE_DROPDOWN_ID)}
+            className="max-425:hidden"
             triggerLabel="Phone number"
             triggerClassName="size-[5.3rem] justify-center rounded-full bg-dark-pink  text-white"
             panelClassName="top-full right-0 mt-[1rem] rounded-sm bg-white p-[1rem] text-black shadow-lg"
@@ -181,12 +187,29 @@ const Header = () => {
 
           <Button
             href="/contact"
-            className={`text-body-02 px-sm py-xs rounded-xl font-extrabold tracking-[-0.02em] uppercase transition-colors duration-300 ${
+            className={`text-body-02 px-sm py-xs max-425:hidden rounded-xl font-extrabold tracking-[-0.02em] uppercase transition-colors duration-300 ${
               isDark ? "bg-black text-white" : "bg-white text-black"
             }`}
           >
             Free Website Audit
           </Button>
+
+          {/* Takes over from the nav, which is hidden from this width down.
+              Inert until there is a panel for it to open. */}
+          <button
+            type="button"
+            aria-label="Open menu"
+            className={`max-1280:flex max-425:size-[3.2rem] hidden size-[5.3rem] shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 ${
+              isDark ? "bg-black text-white" : "bg-white text-black"
+            }`}
+          >
+            <Menu
+              size={24}
+              strokeWidth={2}
+              aria-hidden="true"
+              className="max-425:size-[1.6rem] size-[2.4rem]"
+            />
+          </button>
         </div>
       </Container>
     </header>

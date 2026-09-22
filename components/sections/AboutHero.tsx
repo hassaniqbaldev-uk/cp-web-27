@@ -18,11 +18,11 @@ const AboutHero = () => {
     <>
       <Section
         id="about-hero"
-        className="bg-grey/40 flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
+        className="bg-grey/40 max-425:min-h-auto max-425:pt-[5rem] flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
       >
         <Container className="relative">
-          <div className="gap-lg relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
-            <div className="flex w-[51rem] flex-col items-start">
+          <div className="gap-lg max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
+            <div className="max-425:items-center max-425:w-full flex w-[51rem] flex-col items-start">
               <SectionHeading
                 // The page's single h1 — the outline starts here.
                 as="h1"
@@ -38,8 +38,8 @@ const AboutHero = () => {
                     Senior people involved.
                   </>
                 }
-                labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-heading-02  leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
+                labelClassName="text-body-01 max-425:text-body-03 font-medium tracking-[-0.02em] text-black uppercase"
+                titleClassName="text-heading-02 max-425:text-heading-03 max-425:leading-[4.8rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
               />
 
               <Button
@@ -65,46 +65,66 @@ const AboutHero = () => {
             </div>
           </div>
 
-          {/* A list, so it announces as four items rather than eight loose
-              strings. */}
-          <ul className="relative z-[12] mt-[14rem] grid grid-cols-4 gap-[.6rem]">
-            {aboutStats.map(({ id, value, label }) => (
-              <li
-                key={id}
-                className="gap-sm p-sm flex items-center rounded-md bg-white"
-              >
-                <p className="shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
-                  {value}
-                </p>
+          {/* Clips the track below 425, where the four sit in a row wider than
+              the screen. Under reduced motion the animation stops and this
+              becomes an ordinary horizontal scroller, so every card stays
+              reachable. */}
+          <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[30rem] relative z-[12] mt-[14rem]">
+            {/* A list, so it announces as four items rather than eight loose
+                strings. */}
+            {/* Held while a finger is down, and while a pointer is over it
+                for anyone reading on a desktop at this width. */}
+            <ul className="max-425:animate-marquee-left max-425:w-max max-425:flex-nowrap max-425:[--marquee-gap:0.6rem] max-425:flex max-425:active:[animation-play-state:paused] max-425:hover:[animation-play-state:paused] grid grid-cols-4 gap-[.6rem] motion-reduce:animate-none">
+              {/* The second pass is the copy the loop needs. It is hidden from
+                  assistive tech and from every width above the breakpoint, so
+                  the grid stays four cards and nothing is announced twice. */}
+              {[false, true].map((isCopy) =>
+                aboutStats.map(({ id, value, label }) => (
+                  <li
+                    key={isCopy ? `${id}-copy` : id}
+                    {...(isCopy && { "aria-hidden": true })}
+                    className={`gap-sm p-sm max-425:w-[30rem] max-425:shrink-0 items-center rounded-md bg-white ${
+                      isCopy ? "max-425:flex hidden" : "flex"
+                    }`}
+                  >
+                    <p className="shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
+                      {value}
+                    </p>
 
-                <span
-                  aria-hidden="true"
-                  className="h-[4rem] w-px shrink-0 bg-black"
-                />
+                    <span
+                      aria-hidden="true"
+                      className="h-[4rem] w-px shrink-0 bg-black"
+                    />
 
-                <p className="text-body-03 text-text-body leading-[2.4rem] font-medium tracking-[-0.02em]">
-                  {label}
-                </p>
-              </li>
-            ))}
-          </ul>
+                    <p className="text-body-03 text-text-body leading-[2.4rem] font-medium tracking-[-0.02em]">
+                      {label}
+                    </p>
+                  </li>
+                )),
+              )}
+            </ul>
+          </div>
           {/* Anchored to the container rather than the section, so it stays
               centred on the content column at any width. Decorative: nothing
-              here depends on recognising the photo. */}
+              here depends on recognising the photo.
+
+              At 425 it leaves the absolute layer and returns to the flow. It
+              already sits after the stats in the source, so it lands beneath
+              them with nothing to overlap. */}
           <Image
             src="/images/about/hassan-hero-img.png"
             alt=""
             aria-hidden="true"
             width={594}
             height={705}
-            className="pointer-events-none absolute right-[18.3rem] bottom-0 z-[10]"
+            className="max-425:left-1/2 max-425:bottom-[5rem] max-425:-translate-x-1/2 max-425:mt-md max-425:h-auto max-425:w-[30rem] pointer-events-none absolute bottom-0 left-[42.4rem] z-[10]"
           />
 
           {/* After the image in the source, so it paints over it without
               needing a z-index. */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
+            className="max-425:h-[16rem] max-425:bottom-[4rem] pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
           >
             {BLUR_LAYERS.map((blur, index) => {
               const span = (80 - BLUR_START) / BLUR_LAYERS.length;

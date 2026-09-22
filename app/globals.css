@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Desktop first. The layout is authored at 1440 and each variant overrides it
+   downward, so an unprefixed class is the widest case and every prefixed one
+   applies at that width and below. Ordered widest to narrowest, which is also
+   the order they must cascade in. */
+
+@custom-variant max-1366 (@media (width <= 1366px));
+@custom-variant max-1280 (@media (width <= 1280px));
+@custom-variant max-1024 (@media (width <= 1024px));
+@custom-variant max-768 (@media (width <= 768px));
+@custom-variant max-425 (@media (width <= 425px));
+
 @theme {
   /* Colors */
   --color-white: #ffffff;
@@ -67,6 +78,17 @@
   @keyframes marquee-up {
     to {
       transform: translateY(-50%);
+    }
+  }
+
+  /* The horizontal twin. Half the track is one copy plus the gap that sits
+     between the two copies, so the travel is corrected by half a gap or the
+     loop jumps by that much on every pass. */
+  --animate-marquee-left: marquee-left 24s linear infinite;
+
+  @keyframes marquee-left {
+    to {
+      transform: translateX(calc(-50% - var(--marquee-gap, 0px) / 2));
     }
   }
 

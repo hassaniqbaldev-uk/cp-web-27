@@ -16,8 +16,8 @@ const About = () => {
       <AboutTeam />
       <AboutBehaviours />
       <AboutReach />
-      {/* <AboutWork /> */}
-      {/* <BookCall
+      <AboutWork />
+      <BookCall
         id="about-book-call"
         showContacts={false}
         label="How we work"
@@ -34,7 +34,7 @@ const About = () => {
         logoLabel="Pointing hand made of drifting particles"
         ctaLabel="How we work"
         ctaHref="/how-we-work"
-      /> */}
+      />
     </>
   );
 };

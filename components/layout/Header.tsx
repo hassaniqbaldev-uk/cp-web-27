@@ -67,8 +67,13 @@ const Header = () => {
   return (
     <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.6rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
       <Container
-        className={`flex items-center justify-between rounded-xl transition-all duration-300 ${
-          isScrolled ? "px-sm bg-white py-[1.5rem]" : "bg-transparent p-0"
+        // The border is there in both states, only transparent in one: giving
+        // it to the white band alone would add a pixel to the height and make
+        // the bar jump as it arrives.
+        className={`flex items-center justify-between rounded-xl border transition-all duration-300 ${
+          isScrolled
+            ? "px-sm border-black/10 bg-white py-[1.5rem] shadow-[0_0.4rem_2.4rem_rgba(0,0,0,0.08)]"
+            : "border-transparent bg-transparent p-0 shadow-none"
         }`}
       >
         <div className="gap-md max-425:gap-sm flex items-center">

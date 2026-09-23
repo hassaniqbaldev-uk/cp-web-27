@@ -1,15 +1,15 @@
 import { ourBrands, socialLinks } from "@/config/common";
-import { footerNavigation } from "@/config/navigation";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import FooterNav from "./FooterNav";
 import { Container } from "../ui/Container";
 
 const Footer = () => {
   return (
     // The footer landmark itself, so it is announced as one and nothing needs
     // a role. It sits outside <main>, below the page's own sections.
-    <footer className="bg-black">
+    <footer className="max-425:px-[3rem] bg-black">
       <Container>
         {/* Names the landmark for anyone listing a page's regions, without
             printing a heading the design does not have. */}
@@ -17,8 +17,8 @@ const Footer = () => {
 
         <span aria-hidden="true" className="block h-px w-full bg-white/50" />
 
-        <div className="gap-lg mt-2xl flex justify-between">
-          <div className="flex w-[33rem] flex-col items-start">
+        <div className="gap-lg max-425:mt-lg mt-2xl max-425:flex-col flex justify-between">
+          <div className="max-425:w-full max-425:items-center flex w-[33rem] flex-col items-start">
             <Link href="/" aria-label="Creative Pixels, home">
               {/* Decorative: the link above already carries the name, so the
                   image would otherwise be announced twice. */}
@@ -29,6 +29,7 @@ const Footer = () => {
                 aria-hidden="true"
                 width={171}
                 height={65}
+                className="max-425:h-[3.6rem] h-auto"
               />
             </Link>
 
@@ -45,15 +46,15 @@ const Footer = () => {
                 aria-hidden="true"
                 width={65}
                 height={65}
-                className="size-[6.5rem] shrink-0 rounded-full object-cover"
+                className="max-425:size-[5rem] size-[6.5rem] shrink-0 rounded-full object-cover"
               />
 
               <span className="flex flex-col items-start">
-                <span className="text-body-01 font-extrabold tracking-[-0.02em] text-white">
+                <span className="text-body-01 max-425:text-[1.6rem] font-extrabold tracking-[-0.02em] text-white">
                   Book a 15 Min Call
                 </span>
 
-                <span className="gap-xs text-body-03 flex tracking-[-0.02em] text-white">
+                <span className="gap-xs text-body-03 max-425:text-[1.4rem] flex tracking-[-0.02em] text-white">
                   with Hassan
                   <MoveRight
                     aria-hidden="true"
@@ -94,38 +95,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* A second navigation landmark needs its own name, so it is not
-              confused with the header's. */}
-          <nav aria-label="Footer" className="gap-lg flex">
-            {footerNavigation.map(({ id, title, links }) => (
-              <div key={id}>
-                {/* A heading rather than a paragraph, so the column can be
-                    jumped to, and it names the list beneath it. */}
-                <h3
-                  id={`footer-${id}`}
-                  className="text-body-03 font-bold tracking-[-0.02em] text-white uppercase"
-                >
-                  {title}
-                </h3>
-
-                <ul
-                  aria-labelledby={`footer-${id}`}
-                  className="mt-md flex flex-col items-start"
-                >
-                  {links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-body-03 leading-[3.6rem] tracking-[-0.02em] text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
+          <FooterNav />
         </div>
 
         <span
@@ -133,19 +103,17 @@ const Footer = () => {
           className="mt-2xl block h-px w-full bg-white/50"
         />
 
-        <div className="gap-lg mt-lg pb-md flex items-center justify-between">
-          <p className="text-body-03 gap-md flex items-center tracking-[-0.02em] text-white">
+        <div className="gap-lg mt-lg pb-md max-425:flex-col max-425:items-center flex items-center justify-between">
+          <p className="text-body-03 max-425:text-[1.2rem] gap-md flex items-center tracking-[-0.02em] text-white">
             2026 &copy; CP Agency Ltd.
-            {/* Decorative: it separates two statements that are already
-                separate to a screen reader. */}
             <span aria-hidden="true" className="text-white">
               |
             </span>
             Trading as CreativePixels.
           </p>
 
-          <div className="gap-sm flex items-center">
-            <p className="text-body-03 font-bold tracking-[-0.02em] text-white">
+          <div className="gap-sm max-425:flex-col flex items-center">
+            <p className="text-body-03 max-425:text-[1.4rem] font-bold tracking-[-0.02em] text-white">
               Our Brands:
             </p>
 

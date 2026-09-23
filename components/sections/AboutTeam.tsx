@@ -101,7 +101,7 @@ const AboutTeam = () => {
         <Container>
           <div className="gap-lg max-425:gap-sm max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center flex items-end justify-between">
             <SectionHeading
-              className="max-425:max-w-[35rem] max-w-[65rem]"
+              className="max-425:max-w-[30rem] max-w-[65rem]"
               label="The team"
               title={
                 <>
@@ -112,7 +112,7 @@ const AboutTeam = () => {
                 </>
               }
               labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-heading-02 leading-[9rem] max-425:text-[4.5rem] max-425:leading-[4.5rem]   mt-xs font-extrabold tracking-[-0.07em] text-black"
+              titleClassName="text-heading-02 leading-[9rem] max-425:text-[3.5rem] max-425:leading-[3.5rem]  mt-xs font-extrabold tracking-[-0.07em] text-black"
             />
 
             <p className="text-body-01 max-425:text-[1.6rem] text-text-body max-425:w-full max-425:max-w-[35rem] w-[48.3rem] tracking-[-0.02em]">

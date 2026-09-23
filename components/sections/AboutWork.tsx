@@ -15,9 +15,12 @@ const review = testimonials[0];
 const AboutWork = () => {
   return (
     <>
-      <Section id="work-reviews" className="py-3xl bg-grey/40">
+      <Section
+        id="work-reviews"
+        className="py-3xl max-425:py-xl max-425:px-[3rem] bg-grey/40"
+      >
         <Container>
-          <div className="gap-lg flex items-center justify-between">
+          <div className="gap-lg max-425:flex-col flex items-center justify-between">
             <SectionHeading
               label="Work + reviews"
               title={
@@ -26,8 +29,8 @@ const AboutWork = () => {
                   best introduction.
                 </>
               }
-              labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-heading-02 mt-xs leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
+              labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
+              titleClassName="text-heading-02 max-425:text-center max-425:text-[3.5rem] max-425:leading-[3.5rem] max-425:max-w-[35rem] mt-xs leading-[9rem] max-425:mx-auto font-extrabold tracking-[-0.07em] text-black"
             />
 
             <CircularTextButton
@@ -36,7 +39,7 @@ const AboutWork = () => {
               imageWidth={431}
               imageHeight={412}
               srLabel="Explore all projects"
-              className="size-[14rem] shrink-0"
+              className="max-425:size-[10rem] size-[14rem] shrink-0"
               ringClassName="h-auto w-full"
             >
               <ArrowUpRight
@@ -47,9 +50,9 @@ const AboutWork = () => {
             </CircularTextButton>
           </div>
 
-          <div className="gap-md mt-xl flex">
-            <div className="p-md w-[79rem] rounded-md bg-white">
-              <div className="relative h-[42.4rem] w-full overflow-hidden rounded-md">
+          <div className="gap-md mt-xl max-425:flex-col flex">
+            <div className="p-md max-425:p-xs max-425:pb-md max-425:w-full max-425:text-center w-[79rem] rounded-md bg-white">
+              <div className="max-425:h-[25rem] relative h-[42.4rem] w-full overflow-hidden rounded-md">
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
@@ -58,14 +61,14 @@ const AboutWork = () => {
                 />
               </div>
 
-              <div className="gap-sm pt-sm flex items-center justify-between">
+              <div className="gap-sm pt-sm max-425:flex-col flex items-center justify-between">
                 <div>
                   {/* h3, since the section heading above is the h2. */}
-                  <h3 className="text-subheading-02 font-bold tracking-[-0.07em] text-black">
+                  <h3 className="text-subheading-02 max-425:text-[2.2rem] font-bold tracking-[-0.07em] text-black">
                     {project.title}
                   </h3>
 
-                  <p className="text-body-03 text-text-body font-medium tracking-[-0.02em]">
+                  <p className="text-body-03 max-425:text-[1.4rem] text-text-body font-medium tracking-[-0.02em]">
                     {project.subtitle}
                   </p>
                 </div>
@@ -73,17 +76,17 @@ const AboutWork = () => {
                 <Button
                   href={project.href}
                   aria-label={`Visit the ${project.title} live site`}
-                  className="text-body-03 px-sm py-xs shrink-0 rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
+                  className="text-body-03 max-425:text-[1.4rem] px-sm py-xs max-425:w-full shrink-0 rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
                 >
                   {project.ctaLabel}
                 </Button>
               </div>
             </div>
 
-            <div className="flex w-[37rem] shrink-0 flex-col items-stretch">
+            <div className="max-425:w-full flex w-[37rem] shrink-0 flex-col items-stretch">
               {/* figure and figcaption are the pair that ties a quote to the
                   person who said it. */}
-              <figure className="p-md h-full rounded-md bg-white">
+              <figure className="p-md max-425:p-sm h-full rounded-md bg-white">
                 <div className="gap-sm flex items-center justify-between">
                   {/* Decorative: the attribution below already names them. */}
                   <Image
@@ -114,7 +117,7 @@ const AboutWork = () => {
                   className="mt-md"
                 />
 
-                <blockquote className="text-body-01 mt-sm font-medium tracking-[-0.02em] text-black">
+                <blockquote className="text-body-01 max-425:text-[1.6rem] mt-sm font-medium tracking-[-0.02em] text-black">
                   {review.quote}
                 </blockquote>
 
@@ -155,7 +158,7 @@ const AboutWork = () => {
 
               <Button
                 href="/testimonials"
-                className="text-body-03 py-xs mt-md border-text-body/30 justify-center rounded-full border font-extrabold tracking-[-0.02em] text-black uppercase"
+                className="text-body-03 max-425:text-[1.4rem] py-xs mt-md border-text-body/30 justify-center rounded-full border font-extrabold tracking-[-0.02em] text-black uppercase"
               >
                 View all reviews
               </Button>

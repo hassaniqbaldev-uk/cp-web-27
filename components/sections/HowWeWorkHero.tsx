@@ -92,7 +92,7 @@ const HowWeWorkHero = () => {
                 </>
               }
               labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
-              titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem]    max-425:text-center max-425:text-[3.5rem] max-425:leading-[3.5rem]  leading-[9rem] font-extrabold tracking-[-0.07em] text-white"
+              titleClassName="text-heading-02 max-425:mt-[.5rem] max-425:mx-auto max-425:max-w-[30rem] max-425:text-center max-425:text-[3.5rem] max-425:leading-[3.5rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-white"
             />
 
             <p className="text-body-02 max-425:text-[1.6rem] max-425:text-center max-425:mx-auto text-grey max-425:mt-sm mt-md max-w-[48.3rem] leading-[2.8rem] tracking-[-0.02em]">

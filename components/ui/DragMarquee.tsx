@@ -158,13 +158,10 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
   const onPointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging.current) return;
 
-    // Only release capture we still hold. The browser drops it by itself when
-    // it takes the gesture over — a cancel for a scroll, say — and releasing
-    // an id that has already gone throws.
-    if (ref.current?.hasPointerCapture(event.pointerId)) {
-      ref.current.releasePointerCapture(event.pointerId);
-    }
-
+    // Capture is not released here on purpose. The spec releases it implicitly
+    // on both of the events that reach this handler, so calling it again is at
+    // best redundant and in Firefox throws, since it reports capture it no
+    // longer holds.
     isDragging.current = false;
 
     // A finger held still before release should not throw.

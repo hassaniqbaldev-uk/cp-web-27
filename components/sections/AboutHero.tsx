@@ -1,4 +1,5 @@
 import { aboutStats } from "@/config/common";
+import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
@@ -70,39 +71,42 @@ const AboutHero = () => {
               becomes an ordinary horizontal scroller, so every card stays
               reachable. */}
           <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[29rem] relative z-[12] mt-[14rem]">
-            {/* A list, so it announces as four items rather than eight loose
+            {/* Drives the track below 425, where it can also be grabbed and
+                thrown. Its only child must be the track, which is what it
+                measures. */}
+            <DragMarquee>
+              {/* A list, so it announces as four items rather than eight loose
                 strings. */}
-            {/* Held while a finger is down, and while a pointer is over it
-                for anyone reading on a desktop at this width. */}
-            <ul className="max-425:animate-marquee-left max-425:w-max max-425:flex-nowrap max-425:[--marquee-gap:0.6rem] max-425:flex max-425:active:[animation-play-state:paused] max-425:hover:[animation-play-state:paused] grid grid-cols-4 gap-[.6rem] motion-reduce:animate-none">
-              {/* The second pass is the copy the loop needs. It is hidden from
+              <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
+                {/* The second pass is the copy the loop needs. It is hidden from
                   assistive tech and from every width above the breakpoint, so
                   the grid stays four cards and nothing is announced twice. */}
-              {[false, true].map((isCopy) =>
-                aboutStats.map(({ id, value, label }) => (
-                  <li
-                    key={isCopy ? `${id}-copy` : id}
-                    {...(isCopy && { "aria-hidden": true })}
-                    className={`gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm items-center rounded-md bg-white ${
-                      isCopy ? "max-425:flex hidden" : "flex"
-                    }`}
-                  >
-                    <p className="max-425:text-[3.5rem] shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
-                      {value}
-                    </p>
+                {[false, true].map((isCopy) =>
+                  aboutStats.map(({ id, value, label }) => (
+                    <li
+                      key={isCopy ? `${id}-copy` : id}
+                      {...(isCopy && { "aria-hidden": true })}
+                      className={`gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm items-center rounded-md bg-white select-none ${
+                        isCopy ? "max-425:flex hidden" : "flex"
+                      }`}
+                    >
+                      <p className="max-425:text-[3.5rem] shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
+                        {value}
+                      </p>
 
-                    <span
-                      aria-hidden="true"
-                      className="max-425:h-[2rem] h-[4rem] w-px shrink-0 bg-black"
-                    />
+                      <span
+                        aria-hidden="true"
+                        className="max-425:h-[2rem] h-[4rem] w-px shrink-0 bg-black"
+                      />
 
-                    <p className="text-body-03 max-425:text-[1.2rem] text-text-body max-425:leading-[1.8rem] leading-[2.4rem] font-medium tracking-[-0.02em]">
-                      {label}
-                    </p>
-                  </li>
-                )),
-              )}
-            </ul>
+                      <p className="text-body-03 max-425:text-[1.2rem] text-text-body max-425:leading-[1.8rem] leading-[2.4rem] font-medium tracking-[-0.02em]">
+                        {label}
+                      </p>
+                    </li>
+                  )),
+                )}
+              </ul>
+            </DragMarquee>
           </div>
           {/* Anchored to the container rather than the section, so it stays
               centred on the content column at any width. Decorative: nothing

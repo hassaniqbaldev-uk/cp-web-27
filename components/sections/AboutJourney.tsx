@@ -8,7 +8,7 @@ const AboutJourney = () => {
     <>
       <Section
         id="journey"
-        className="max-425:px-[3rem] max-425:items-start max-425:pt-2xl relative flex h-[56rem] items-center overflow-hidden bg-black"
+        className="max-425:px-[3rem] max-425:items-start max-425:pt-xl relative flex h-[56rem] items-center overflow-hidden bg-black"
       >
         <div className="absolute top-0 left-1/2 h-full w-full max-w-[144rem] -translate-x-1/2">
           <Starfield className="absolute bottom-[-5rem] left-0 z-0 h-[16rem] w-[60rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />

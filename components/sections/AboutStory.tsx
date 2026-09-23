@@ -20,10 +20,7 @@ const AboutStory = () => {
 
   return (
     <>
-      <Section
-        id="origin-story"
-        className="max-425:py-2xl max-425:px-md py-3xl"
-      >
+      <Section id="origin-story" className="max-425:py-xl max-425:px-md py-3xl">
         <Container>
           <div className="gap-lg max-425:gap-md max-425:flex-col-reverse max-425:items-center flex items-end">
             <div className="max-425:w-full w-[54rem]">

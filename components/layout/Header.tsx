@@ -199,9 +199,7 @@ const Header = () => {
           <button
             type="button"
             aria-label="Open menu"
-            className={`max-1280:flex max-425:size-[3.2rem] hidden size-[5.3rem] shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 ${
-              isDark ? "bg-black text-white" : "bg-white text-black"
-            }`}
+            className={`max-1280:flex max-425:size-[3.2rem] bg-dark-pink hidden size-[5.3rem] shrink-0 cursor-pointer items-center justify-center rounded-full text-white transition-colors duration-300`}
           >
             <Menu
               size={24}

@@ -18,10 +18,10 @@ const AboutHero = () => {
     <>
       <Section
         id="about-hero"
-        className="bg-grey/40 max-425:min-h-auto max-425:pb-[3rem] max-425:pt-[5rem] flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
+        className="bg-grey/40 max-425:min-h-auto max-425:pb-[3rem] max-425:pt-xl flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
       >
         <Container className="relative">
-          <div className="gap-lg max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
+          <div className="gap-lg max-425:gap-md max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
             <div className="max-425:items-center max-425:w-full flex w-[51rem] flex-col items-start">
               <SectionHeading
                 // The page's single h1 — the outline starts here.
@@ -69,7 +69,7 @@ const AboutHero = () => {
               the screen. Under reduced motion the animation stops and this
               becomes an ordinary horizontal scroller, so every card stays
               reachable. */}
-          <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[30rem] relative z-[12] mt-[14rem]">
+          <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[29rem] relative z-[12] mt-[14rem]">
             {/* A list, so it announces as four items rather than eight loose
                 strings. */}
             {/* Held while a finger is down, and while a pointer is over it

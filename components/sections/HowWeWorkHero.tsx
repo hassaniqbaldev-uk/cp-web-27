@@ -22,7 +22,7 @@ const HowWeWorkHero = () => {
         className="mb-lg relative h-[80rem] bg-black"
       >
         <div className="absolute inset-0 overflow-hidden">
-          <Starfield className="absolute top-1/2 right-[-5rem] z-0 h-[80rem] w-[21.4rem] -translate-y-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+          <Starfield className="max-425:hidden absolute top-1/2 right-[-5rem] z-0 h-[80rem] w-[21.4rem] -translate-y-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
           <Image
             src="/images/how-we-work/hero-mockup-img.png"

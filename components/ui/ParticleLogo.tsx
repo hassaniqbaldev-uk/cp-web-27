@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SETTINGS = {
   /** Side of each square, and the space between them. */
@@ -16,6 +16,16 @@ const SETTINGS = {
   neutral: [245, 247, 250],
   interactionRadius: 175,
   motionRadius: 125,
+
+  /** How long after the last real pointer the field starts driving itself. */
+  autoDelay: 1800,
+
+  /** Laps per second of the idle path. Slow, or it reads as a loading state. */
+  autoSpeed: 0.1,
+
+  /** How much of the field the idle path covers, per axis. */
+  autoReach: 0.34,
+
   fadeDuration: 650,
   opacity: 0.82,
   maxScale: 1.8,
@@ -98,15 +108,25 @@ export default function ParticleLogo({
   label,
   className = "",
 }: ParticleLogoProps) {
+  // Whichever form the artwork arrived in, as something CSS can point at.
+  const artworkUrl =
+    svgSrc ?? `data:image/svg+xml,${encodeURIComponent(svg ?? "")}`;
+
   const hostRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Only set when the field cannot run, so the still artwork has to stand in.
+  const [hasFailed, setHasFailed] = useState(false);
 
   useEffect(() => {
     const host = hostRef.current;
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
-    if (!host || !canvas || !context) return;
+    if (!host || !canvas || !context) {
+      setHasFailed(true);
+      return;
+    }
 
     let vx = 0;
     let vy = 0;
@@ -149,6 +169,10 @@ export default function ParticleLogo({
     let clock = 0;
     let inView = true;
     let ready = false;
+
+    // Starts at zero rather than now, so the field is already running its
+    // own pass by the time anyone looks at it.
+    let lastPointerAt = 0;
 
     const pointer = {
       x: -Infinity,
@@ -239,6 +263,21 @@ export default function ParticleLogo({
       const motionRadius = Math.min(SETTINGS.motionRadius, width * 0.28);
       // Sub-stepped so a slow frame cannot let the spring overshoot.
       const steps = Math.ceil(elapsed / (1000 / 120));
+
+      // With nothing on it, the field runs a cursor of its own: a slow figure
+      // of eight across the artwork, so the colour keeps moving rather than
+      // sitting still until someone arrives. A real pointer takes over the
+      // moment it moves, since that resets the clock this reads.
+      const isAuto = now - lastPointerAt > SETTINGS.autoDelay;
+
+      if (isAuto) {
+        const t = clock * SETTINGS.autoSpeed * Math.PI * 2;
+
+        pointer.x = width / 2 + Math.sin(t) * width * SETTINGS.autoReach;
+        pointer.y = height / 2 + Math.sin(t * 2) * height * SETTINGS.autoReach;
+        pointer.onShape = insideLogo(pointer.x, pointer.y);
+        pointer.active = true;
+      }
       const dt = elapsed / 1000 / steps;
 
       for (const p of particles) {
@@ -271,6 +310,13 @@ export default function ParticleLogo({
               // Outside it they are drawn towards the cursor instead.
               tx = dx * w * 1.7 + Math.cos(p.spreadAngle) * 7 * w;
               ty = dy * w * 1.7 + Math.sin(p.spreadAngle) * 7 * w;
+            }
+
+            // Its own pass only lights the particles up. Moving them as well
+            // would leave the artwork shifting about with nobody touching it.
+            if (isAuto) {
+              tx = 0;
+              ty = 0;
             }
 
             const length = Math.hypot(tx, ty);
@@ -456,6 +502,7 @@ export default function ParticleLogo({
       pointer.y = event.clientY - box.top;
       pointer.active = true;
       pointer.onShape = insideLogo(pointer.x, pointer.y);
+      lastPointerAt = performance.now();
 
       schedule();
     };
@@ -569,7 +616,7 @@ export default function ParticleLogo({
       fetch(svgSrc)
         .then((response) => response.text())
         .then(start)
-        .catch(() => {});
+        .catch(() => setHasFailed(true));
     } else if (svg) {
       start(svg);
     }
@@ -599,6 +646,27 @@ export default function ParticleLogo({
       aria-label={label}
       className={`relative ${className}`}
     >
+      {/* A stand-in for the field: the artwork's own silhouette, filled
+          with the same grid of dots. Not part of the reveal — painting it
+          otherwise would show the finished logo as grey dots before the
+          particles arrive — so it waits until scripting is off (the rule
+          below sits outside Tailwind's layers and so beats opacity-0) or
+          the canvas could not start. */}
+      <noscript>
+        <style>{`.particle-logo-fallback{opacity:1}`}</style>
+      </noscript>
+
+      <span
+        aria-hidden="true"
+        style={{
+          maskImage: `url("${artworkUrl}")`,
+          WebkitMaskImage: `url("${artworkUrl}")`,
+        }}
+        className={`particle-logo-fallback absolute inset-0 block bg-[radial-gradient(circle_at_center,#E5E7EB_1px,transparent_1px)] bg-[length:6px_6px] mask-contain mask-center mask-no-repeat ${
+          hasFailed ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
       <canvas
         ref={canvasRef}
         aria-hidden="true"

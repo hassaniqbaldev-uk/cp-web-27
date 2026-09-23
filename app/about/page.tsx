@@ -13,9 +13,9 @@ const About = () => {
       <AboutHero />
       <AboutStory />
       <AboutJourney />
-      {/* <AboutTeam /> */}
-      {/* <AboutBehaviours /> */}
-      {/* <AboutReach /> */}
+      <AboutTeam />
+      <AboutBehaviours />
+      <AboutReach />
       {/* <AboutWork /> */}
       {/* <BookCall
         id="about-book-call"

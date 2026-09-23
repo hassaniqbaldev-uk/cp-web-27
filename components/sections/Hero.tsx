@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Popover from "@/components/ui/Popover";
 import Section from "@/components/ui/Section";
-import SparkleLogo from "@/components/ui/SparkleLogo";
+import ParticleLogo from "@/components/ui/ParticleLogo";
 import { clientLogos, heroBadges, heroPopovers } from "@/config/common";
 import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
@@ -80,7 +80,13 @@ const Hero = () => {
                 ),
               )}
 
-              <SparkleLogo />
+              {/* The sizing lives here rather than in the component, which is
+                  shared with the other particle fields on the site. */}
+              <ParticleLogo
+                svgSrc="/images/common/cp-logo-particle.svg"
+                label="CP logo formed from square pixels with a four-pixel gap"
+                className="aspect-[439/460] w-[min(560px,calc(100vw-96px),calc((100svh-96px)*439/460))] touch-none select-none"
+              />
             </div>
           </div>
 

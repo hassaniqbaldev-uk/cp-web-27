@@ -18,10 +18,10 @@ const AboutHero = () => {
     <>
       <Section
         id="about-hero"
-        className="bg-grey/40 max-425:min-h-auto max-425:pt-[5rem] flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
+        className="bg-grey/40 max-425:min-h-auto max-425:pb-[3rem] max-425:pt-[5rem] flex min-h-screen flex-col justify-center pt-[10rem] pb-[8rem]"
       >
         <Container className="relative">
-          <div className="gap-lg max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
+          <div className="gap-lg max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
             <div className="max-425:items-center max-425:w-full flex w-[51rem] flex-col items-start">
               <SectionHeading
                 // The page's single h1 — the outline starts here.
@@ -38,25 +38,25 @@ const AboutHero = () => {
                     Senior people involved.
                   </>
                 }
-                labelClassName="text-body-01 max-425:text-body-03 font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-heading-02 max-425:text-heading-03 max-425:leading-[4.8rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
+                labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
+                titleClassName="text-heading-02 max-425:mt-[.4rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[27rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
               />
 
               <Button
                 href="/contact"
-                className="text-body-03 px-sm py-xs mt-md rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
+                className="text-body-03 max-425:text-[1.4rem] px-sm py-xs max-425:mt-[2rem] mt-md rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
               >
                 Tell us what you need
               </Button>
             </div>
 
-            <div className="px-md pt-md w-[30.5rem] rounded-md bg-white pb-[4rem]">
+            <div className="px-md pt-md max-425:w-full max-425:p-[2rem] w-[30.5rem] rounded-md bg-white pb-[4rem]">
               {/* h2, since the page's h1 is the heading beside it. */}
-              <h2 className="text-subheading-01 text-text-body font-bold tracking-[-0.07em]">
+              <h2 className="text-subheading-01 max-425:text-[1.6rem] text-text-body font-bold tracking-[-0.07em]">
                 Strategy, Design &amp; Technology, Together
               </h2>
 
-              <p className="text-body-03 text-text-body mt-xs tracking-[-0.02em]">
+              <p className="text-body-03 max-425:text-[1.2rem] text-text-body mt-xs tracking-[-0.02em]">
                 CreativePixels is a UK digital agency bringing strategy, design
                 and technology together across websites, ecommerce, branding,
                 growth and custom digital products. Senior people stay involved
@@ -83,20 +83,20 @@ const AboutHero = () => {
                   <li
                     key={isCopy ? `${id}-copy` : id}
                     {...(isCopy && { "aria-hidden": true })}
-                    className={`gap-sm p-sm max-425:w-[30rem] max-425:shrink-0 items-center rounded-md bg-white ${
+                    className={`gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm items-center rounded-md bg-white ${
                       isCopy ? "max-425:flex hidden" : "flex"
                     }`}
                   >
-                    <p className="shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
+                    <p className="max-425:text-[3.5rem] shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
                       {value}
                     </p>
 
                     <span
                       aria-hidden="true"
-                      className="h-[4rem] w-px shrink-0 bg-black"
+                      className="max-425:h-[2rem] h-[4rem] w-px shrink-0 bg-black"
                     />
 
-                    <p className="text-body-03 text-text-body leading-[2.4rem] font-medium tracking-[-0.02em]">
+                    <p className="text-body-03 max-425:text-[1.2rem] text-text-body max-425:leading-[1.8rem] leading-[2.4rem] font-medium tracking-[-0.02em]">
                       {label}
                     </p>
                   </li>
@@ -117,14 +117,14 @@ const AboutHero = () => {
             aria-hidden="true"
             width={594}
             height={705}
-            className="max-425:left-1/2 max-425:bottom-[5rem] max-425:-translate-x-1/2 max-425:mt-md max-425:h-auto max-425:w-[30rem] pointer-events-none absolute bottom-0 left-[42.4rem] z-[10]"
+            className="max-425:left-1/2 max-425:-translate-x-1/2 max-425:mt-md max-425:h-auto max-425:w-[30rem] pointer-events-none absolute bottom-0 left-[42.4rem] z-[10]"
           />
 
           {/* After the image in the source, so it paints over it without
               needing a z-index. */}
           <div
             aria-hidden="true"
-            className="max-425:h-[16rem] max-425:bottom-[4rem] pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
+            className="max-425:h-[16rem] pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
           >
             {BLUR_LAYERS.map((blur, index) => {
               const span = (80 - BLUR_START) / BLUR_LAYERS.length;

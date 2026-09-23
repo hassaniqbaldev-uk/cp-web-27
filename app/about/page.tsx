@@ -11,8 +11,8 @@ const About = () => {
   return (
     <>
       <AboutHero />
-      {/* <AboutStory /> */}
-      {/* <AboutJourney /> */}
+      <AboutStory />
+      <AboutJourney />
       {/* <AboutTeam /> */}
       {/* <AboutBehaviours /> */}
       {/* <AboutReach /> */}

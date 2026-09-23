@@ -73,7 +73,14 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
     const track = ref.current?.firstElementChild;
     if (!track) return;
 
-    const measure = () => setHalf(track.scrollWidth / 2);
+    const measure = () => {
+      // The track is one copy, a gap, the other copy, so its width is one gap
+      // short of two whole copies. Without adding that gap back the wrap lands
+      // half a gap out and the loop visibly steps on every pass.
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+
+      setHalf((track.scrollWidth + gap) / 2);
+    };
 
     measure();
 

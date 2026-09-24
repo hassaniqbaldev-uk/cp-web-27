@@ -644,7 +644,11 @@ export default function ParticleLogo({
       ref={hostRef}
       role="img"
       aria-label={label}
-      className={`relative ${className}`}
+      // touch-none is what makes a finger work the field: without it the
+      // browser claims the gesture for scrolling and the pointer stream stops
+      // after the first move. select-none stops a drag turning into a text
+      // selection on the way past.
+      className={`relative touch-none select-none ${className}`}
     >
       {/* A stand-in for the field: the artwork's own silhouette, filled
           with the same grid of dots. Not part of the reveal — painting it

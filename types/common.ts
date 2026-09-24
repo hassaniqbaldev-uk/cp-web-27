@@ -16,6 +16,13 @@ export type HeroPopover = {
    * `className` — keep it a complete, literal class string.
    */
   squareClassName: string;
+  /**
+   * Where this popover's panel sits, and which corner it grows from, e.g.
+   * "top-[2rem] left-[2rem] max-425:[--panel-origin:top_left]". Left over
+   * from the component's own default when omitted. Same rule as the two
+   * above — complete, literal class strings only.
+   */
+  panelPositionClassName?: string;
 };
 
 export type NavChild = {
@@ -48,6 +55,14 @@ export type ClientLogo = {
   /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
+  /**
+   * Per logo sizing, since they are drawn to different heights, e.g.
+   * "max-425:h-[3.5rem] max-425:w-auto". Pair any height with w-auto, or the
+   * intrinsic width stays put and the logo squashes. Keep these as complete,
+   * literal class strings — Tailwind scans source files for full class names,
+   * so anything built by concatenation will not be generated.
+   */
+  className?: string;
 };
 
 export type AboutHighlight = {

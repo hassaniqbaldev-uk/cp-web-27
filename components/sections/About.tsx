@@ -1,7 +1,7 @@
 import { aboutHighlights, aboutQuote, teamMembers } from "@/config/common";
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 import Button from "../ui/Button";
+import DragMarquee from "../ui/DragMarquee";
 import { Container } from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Section from "../ui/Section";
@@ -97,25 +97,31 @@ const About = () => {
             aria-hidden="true"
             className="p-sm relative z-[20] rounded-sm bg-white"
           >
-            <Marquee
-              autoFill
-              speed={40}
-              pauseOnHover
-              gradient
-              gradientColor="white"
-              gradientWidth="12rem"
-            >
-              {teamMembers.map(({ id, src, width, height }) => (
-                <Image
-                  key={id}
-                  src={src}
-                  alt=""
-                  width={width}
-                  height={height}
-                  className="mx-[1.5rem] rounded-sm"
-                />
-              ))}
-            </Marquee>
+            {/* Clips the track, which is two copies wide, and fades it
+                into the white either side — what the old marquee's gradient
+                prop did. */}
+            <div className="relative overflow-hidden">
+              <DragMarquee query={null} pauseOnHover>
+                <div className="flex w-max items-center">
+                  {[0, 1].map((pass) =>
+                    teamMembers.map(({ id, src, width, height }) => (
+                      <Image
+                        key={`${id}-${pass}`}
+                        src={src}
+                        alt=""
+                        width={width}
+                        height={height}
+                        className="mx-[1.5rem] shrink-0 rounded-sm"
+                      />
+                    )),
+                  )}
+                </div>
+              </DragMarquee>
+
+              <span className="pointer-events-none absolute inset-y-0 left-0 w-[12rem] bg-linear-to-r from-white to-transparent" />
+
+              <span className="pointer-events-none absolute inset-y-0 right-0 w-[12rem] bg-linear-to-l from-white to-transparent" />
+            </div>
           </div>
 
           <ul className="sr-only">

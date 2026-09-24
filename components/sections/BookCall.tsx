@@ -25,7 +25,9 @@ const floatingContacts = [
   {
     id: "phone",
     className: "top-[34%] right-[15%]",
-    panelPositionClassName: "top-[0.3rem] right-[7rem]",
+    // One rem clear of the trigger's left edge, so it tracks the trigger's
+    // size: 6rem + 1 on desktop, 4rem + 1 once it shrinks.
+    panelPositionClassName: "top-[0.3rem] right-[7rem] max-425:right-[5rem]",
     panelOrigin: "right center",
   },
 ].map((placement) => ({
@@ -167,18 +169,18 @@ const BookCall = ({
                         onOpenChange={(open) =>
                           setOpenId(open ? contactId : null)
                         }
-                        squareClassName={`${contactRingClassName} flex size-[6rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]`}
+                        squareClassName={`${contactRingClassName} flex size-[6rem] max-425:size-[4rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]`}
                         panelClassName={`${contactRingClassName} items-center rounded-full bg-white/20 px-[2rem] py-[1.2rem] backdrop-blur-[20px]`}
                         trigger={
                           <Icon
                             aria-hidden="true"
                             size={22}
                             strokeWidth={2}
-                            className="text-white"
+                            className="max-425:size-[1.8rem] text-white"
                           />
                         }
                       >
-                        <span className="text-subheading-01 font-medium tracking-[-0.04em] whitespace-nowrap text-white">
+                        <span className="text-subheading-01 max-425:text-[1.6rem] font-medium tracking-[-0.04em] whitespace-nowrap text-white">
                           {name}
                         </span>
                       </Popover>

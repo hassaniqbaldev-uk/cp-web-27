@@ -59,15 +59,17 @@ export const heroPopovers: HeroPopover[] = [
     title: "Branding",
     href: "/services",
     image: "/images/home/popover.jpg",
-    className: "left-[15rem] top-[5rem]",
+    className: "left-[15rem] top-[5rem] max-425:left-[5rem]",
     squareClassName: "bg-[#FFE400]",
+    panelPositionClassName:
+      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem] max-425:[--panel-origin:top_left]",
   },
   {
     id: "web-desig",
     title: "Web Design",
     href: "/services",
     image: "/images/home/popover.jpg",
-    className: "right-[15rem] top-[4rem]",
+    className: "right-[15rem] top-[4rem] max-425:right-[5rem]",
     squareClassName: "bg-dark-pink",
   },
   {
@@ -75,7 +77,7 @@ export const heroPopovers: HeroPopover[] = [
     title: "Casa Botanica ",
     href: "/case-studies",
     image: "/images/home/casa-popover-img.png",
-    className: "right-[7rem] bottom-[29rem]",
+    className: "right-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
     squareClassName: "bg-dark-pink",
   },
   {
@@ -83,8 +85,10 @@ export const heroPopovers: HeroPopover[] = [
     title: "About Us",
     href: "/about",
     image: "/images/home/popover.jpg",
-    className: "left-[7rem] bottom-[29rem]",
+    className: "left-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
     squareClassName: "bg-orange",
+    panelPositionClassName:
+      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem] max-425:[--panel-origin:top_left]",
   },
 ];
 
@@ -125,6 +129,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/casabotanica",
     width: 124,
     height: 71,
+    className: "max-425:h-[4.5rem] max-425:w-auto",
   },
   {
     id: "client-two",
@@ -133,6 +138,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/ivy-duke",
     width: 125,
     height: 60,
+    className: "max-425:h-[3.8rem] max-425:w-auto",
   },
   {
     id: "client-three",
@@ -141,6 +147,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/new-compass",
     width: 181,
     height: 32,
+    className: "max-425:h-[2rem] max-425:w-auto",
   },
   {
     id: "client-four",
@@ -149,6 +156,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/fultons",
     width: 107,
     height: 26,
+    className: "max-425:h-[1.6rem] max-425:w-auto",
   },
   {
     id: "client-five",
@@ -157,6 +165,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/game-art-brain",
     width: 92,
     height: 44,
+    className: "max-425:h-[2.8rem] max-425:w-auto",
   },
   {
     id: "client-six",
@@ -165,6 +174,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/ayoa",
     width: 129,
     height: 40,
+    className: "max-425:h-[2.5rem] max-425:w-auto",
   },
   {
     id: "client-seven",
@@ -173,6 +183,7 @@ export const clientLogos: ClientLogo[] = [
     href: "/case-studies/peter-jones-foundation",
     width: 139,
     height: 43,
+    className: "max-425:h-[2.7rem] max-425:w-auto",
   },
 ];
 

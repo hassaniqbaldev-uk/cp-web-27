@@ -23,11 +23,9 @@ import { useEffect, useRef, useState } from "react";
  * The child must be the track itself — a single element holding both copies —
  * since that is what gets measured.
  */
+/** Where it runs by default: the width at which a grid becomes a row. */
 const MEDIA_QUERY = "(max-width: 425px)";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-
-/** Steady travel, in pixels per second. Negative runs leftward. */
-const SPEED = -40;
 
 /** What a throw keeps of its speed each frame at 60fps. */
 const FRICTION = 0.94;
@@ -38,9 +36,24 @@ const REST_VELOCITY = 20;
 type DragMarqueeProps = {
   children: React.ReactNode;
   className?: string;
+  /** Steady travel, in pixels per second. Negative runs leftward. */
+  speed?: number;
+  /**
+   * Media query the marquee runs under. Null runs it at every width, which is
+   * what a row that is a marquee by design rather than by breakpoint wants.
+   */
+  query?: string | null;
+  /** Holds while a pointer is over it. Off by default: a drag already pauses. */
+  pauseOnHover?: boolean;
 };
 
-const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
+const DragMarquee = ({
+  children,
+  className = "",
+  speed = -40,
+  query = MEDIA_QUERY,
+  pauseOnHover = false,
+}: DragMarqueeProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   // The raw offset, unbounded. Rendering wraps it; nothing else needs to.
@@ -56,6 +69,7 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
   // would cost more than the move itself.
   const isEnabled = useRef(false);
   const isDragging = useRef(false);
+  const isHovered = useRef(false);
   const velocity = useRef(0);
   const lastX = useRef(0);
   const lastTime = useRef(0);
@@ -93,11 +107,13 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
   // Above the breakpoint the cards are a grid, and under reduced motion the
   // track is a plain scroller. Neither wants a transform.
   useEffect(() => {
-    const narrow = window.matchMedia(MEDIA_QUERY);
+    // Always matches when there is no query, so the only thing left to fail is
+    // reduced motion.
+    const within = window.matchMedia(query ?? "all");
     const reduced = window.matchMedia(REDUCED_MOTION_QUERY);
 
     const sync = () => {
-      isEnabled.current = narrow.matches && !reduced.matches;
+      isEnabled.current = within.matches && !reduced.matches;
       setIsActive(isEnabled.current);
 
       if (!isEnabled.current) {
@@ -108,17 +124,21 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
 
     sync();
 
-    narrow.addEventListener("change", sync);
+    within.addEventListener("change", sync);
     reduced.addEventListener("change", sync);
 
     return () => {
-      narrow.removeEventListener("change", sync);
+      within.removeEventListener("change", sync);
       reduced.removeEventListener("change", sync);
     };
-  }, [offset]);
+  }, [offset, query]);
 
   useAnimationFrame((_, delta) => {
     if (!isEnabled.current || isDragging.current) return;
+
+    // A held marquee keeps its throw, so letting go carries on from where the
+    // pointer left it rather than restarting.
+    if (pauseOnHover && isHovered.current) return;
 
     // Frames vary, so friction is raised to however many 60fps frames have
     // actually passed. Otherwise a throw dies faster on a slow device.
@@ -130,7 +150,7 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
 
     // The throw rides on top of the steady travel rather than replacing it, so
     // it glides back down to the normal speed instead of stopping dead.
-    offset.set(offset.get() + ((SPEED + velocity.current) * delta) / 1000);
+    offset.set(offset.get() + ((speed + velocity.current) * delta) / 1000);
   });
 
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -183,6 +203,12 @@ const DragMarquee = ({ children, className = "" }: DragMarqueeProps) => {
       onPointerMove={onPointerMove}
       onPointerUp={onPointerEnd}
       onPointerCancel={onPointerEnd}
+      onPointerEnter={() => {
+        isHovered.current = true;
+      }}
+      onPointerLeave={() => {
+        isHovered.current = false;
+      }}
       // pan-y so a vertical swipe still scrolls the page — only the horizontal
       // axis is claimed here.
       className={`max-425:touch-pan-y ${className}`}

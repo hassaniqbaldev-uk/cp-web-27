@@ -31,6 +31,10 @@ const LOGO_WIDTH = "var(--logo-w)";
 // there, rather than only once a white band is behind it.
 const LIGHT_ROUTES = ["/about"];
 
+// Below this the band is there from the top: there is no room for a bar that
+// only resolves once the page has moved.
+const NARROW_QUERY = "(max-width: 425px)";
+
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
   const [openId, setOpenId] = useState<string | null>(null);
@@ -38,6 +42,7 @@ const Header = () => {
   const toggle = (id: string) => (open: boolean) => setOpenId(open ? id : null);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNarrow, setIsNarrow] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -53,26 +58,41 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const narrow = window.matchMedia(NARROW_QUERY);
+
+    const sync = () => setIsNarrow(narrow.matches);
+
+    sync();
+
+    narrow.addEventListener("change", sync);
+
+    return () => narrow.removeEventListener("change", sync);
+  }, []);
+
   const isLightPage = LIGHT_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
 
+  // The band, the padding and the logo's mark all arrive together — on scroll,
+  // or from the top at a narrow width.
+  const isBanded = isScrolled || isNarrow;
+
   // Colour follows what is behind the header, which is light either once the
-  // white band appears or from the top on a light page. The mark reveal and
-  // the band itself still follow the scroll alone.
-  const isDark = isScrolled || isLightPage;
+  // white band is there or from the top on a light page.
+  const isDark = isBanded || isLightPage;
 
   const textClassName = isDark ? "text-black" : "text-white";
 
   return (
-    <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.6rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
+    <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.3rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
       <Container
         // The border is there in both states, only transparent in one: giving
         // it to the white band alone would add a pixel to the height and make
         // the bar jump as it arrives.
         className={`flex items-center justify-between rounded-xl border transition-all duration-300 ${
-          isScrolled
-            ? "px-sm border-black/10 bg-white py-[1.5rem] shadow-[0_0.4rem_2.4rem_rgba(0,0,0,0.08)]"
+          isBanded
+            ? "px-sm max-425:py-[.4rem] max-425:px-[.6rem] max-425:pl-[1.5rem] border-black/10 bg-white py-[1.5rem] shadow-[0_0.4rem_2.4rem_rgba(0,0,0,0.08)]"
             : "border-transparent bg-transparent p-0 shadow-none"
         }`}
       >
@@ -85,7 +105,7 @@ const Header = () => {
             <span
               aria-hidden="true"
               style={{
-                width: isScrolled
+                width: isBanded
                   ? LOGO_WIDTH
                   : `calc(${LOGO_WIDTH} - ${MARK_WIDTH})`,
               }}
@@ -104,7 +124,7 @@ const Header = () => {
                 height={65}
                 style={{
                   width: LOGO_WIDTH,
-                  marginLeft: isScrolled ? 0 : `calc(${MARK_WIDTH} * -1)`,
+                  marginLeft: isBanded ? 0 : `calc(${MARK_WIDTH} * -1)`,
                 }}
                 // max-w-none so the artwork keeps its full width inside a
                 // narrower window rather than being squeezed to fit.
@@ -204,7 +224,7 @@ const Header = () => {
           <button
             type="button"
             aria-label="Open menu"
-            className={`max-1280:flex max-425:size-[3.2rem] bg-dark-pink hidden size-[5.3rem] shrink-0 cursor-pointer items-center justify-center rounded-full text-white transition-colors duration-300`}
+            className={`max-1280:flex max-425:size-[4rem] bg-dark-pink hidden size-[5.3rem] shrink-0 cursor-pointer items-center justify-center rounded-full text-white transition-colors duration-300`}
           >
             <Menu
               size={24}

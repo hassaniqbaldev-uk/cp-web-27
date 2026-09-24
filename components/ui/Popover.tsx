@@ -83,7 +83,16 @@ type PopoverProps = {
   panelClassName?: string;
   /** Where the panel sits relative to the trigger. */
   panelPositionClassName?: string;
-  /** Corner the panel grows from, so it appears to come out of the trigger. */
+  /**
+   * Corner the panel grows from, so it appears to come out of the trigger.
+   *
+   * Applied as the fallback of `--panel-origin`, which is what makes it
+   * changeable at a breakpoint: transform-origin itself is written inline here,
+   * and no media query can beat an inline style. To move it, set the property
+   * from a class on the panel instead, e.g.
+   * `panelPositionClassName="... max-425:[--panel-origin:top_left]"` —
+   * underscores become spaces.
+   */
   panelOrigin?: string;
 };
 
@@ -97,8 +106,8 @@ export default function Popover({
   onOpenChange,
   className = "",
   squareClassName = "bg-dark-pink",
-  panelClassName = "gap-sm w-[24rem] flex-col items-center rounded-sm bg-white/20 px-[1rem] pt-[1rem] pb-[2rem] backdrop-blur-[20px]",
-  panelPositionClassName = "top-[2rem] right-[2rem]",
+  panelClassName = "gap-sm w-[24rem] max-425:w-[13.9rem] flex-col items-center max-425:rounded-[.5rem] rounded-sm bg-white/20 px-[1rem] max-425:px-[.5rem] max-425:pt-[.5rem] pt-[1rem] pb-[2rem] max-425:pb-[1rem] backdrop-blur-[20px]",
+  panelPositionClassName = "top-[2rem] right-[2rem] max-425:top-[1rem] max-425:right-[1rem]",
   panelOrigin = "top right",
 }: PopoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -178,14 +187,14 @@ export default function Popover({
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{ transformOrigin: panelOrigin }}
+            style={{ transformOrigin: `var(--panel-origin, ${panelOrigin})` }}
             className={`pointer-events-auto absolute flex ${panelPositionClassName} ${panelClassName}`}
           >
             {children ?? (
               <>
                 <motion.div
                   variants={itemVariants}
-                  className="relative h-[14rem] w-full overflow-hidden rounded-xs bg-amber-500"
+                  className="max-425:h-[8.5rem] max-425:rounded-[.3rem] relative h-[14rem] w-full overflow-hidden rounded-xs"
                 >
                   {image && (
                     <Image
@@ -202,11 +211,16 @@ export default function Popover({
                   variants={itemVariants}
                   className="gap-xs flex w-full items-center justify-between"
                 >
-                  <p className="text-body-01 font-medium tracking-[-0.02em] text-white">
+                  <p className="text-body-01 max-425:text-[1.2rem] font-medium tracking-[-0.02em] text-white">
                     {title}
                   </p>
 
-                  <ArrowUpRight color="white" strokeWidth={2} size={18} />
+                  <ArrowUpRight
+                    color="white"
+                    strokeWidth={2}
+                    size={18}
+                    className="max-425:size-[1rem]"
+                  />
                 </motion.div>
               </>
             )}

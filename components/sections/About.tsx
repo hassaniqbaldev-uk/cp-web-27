@@ -9,49 +9,47 @@ import Section from "../ui/Section";
 const About = () => {
   return (
     <>
-      <Section className="py-3xl">
-        <Container className="bg-grey/40 pt-2xl pb-lg px-2xl relative rounded-md">
+      <Section className="py-3xl max-425:px-[2rem] max-425:py-xl">
+        <Container className="bg-grey/40 max-425:pt-[5rem] pt-2xl max-425:pb-[2rem] pb-lg px-2xl max-425:px-[2rem] relative rounded-md">
           <SectionHeading
             label="About Creative Pixels"
             title="Strategy first always."
             subtitle={
               "We're a UK digital agency combining strategy, design and technology to build websites, ecommerce experiences and digital products that solve real business problems. Senior people stay involved from the first conversation through launch - and beyond."
             }
-            labelClassName="text-body-01 text-center font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-heading-02 text-center mt-xs mb-md font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
-            subtitleClassName="text-body-02 text-center leading-[2.8rem] text-text-body tracking-[-0.02em]"
+            labelClassName="text-body-01 max-425:text-[1.4rem] text-center font-medium tracking-[-0.02em] text-black uppercase"
+            titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] text-center mt-xs mb-md max-425:mb-sm font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
+            subtitleClassName="text-body-02 text-center leading-[2.8rem] text-text-body tracking-[-0.02em] max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:max-w-[30rem]"
           />
 
-          <div className="gap-sm mt-2xl mb-xl flex items-start justify-between">
-            {/* Decorative: the surrounding copy already carries the meaning,
-                so an empty alt keeps it out of the accessibility tree. */}
+          <div className="gap-sm mt-2xl max-425:mt-[3rem] max-425:mb-[24rem] mb-xl max-425:flex-col flex items-start justify-between">
             <Image
               src="/images/home/hassan-about-img.png"
               alt=""
               width={542}
               height={576}
-              className="pointer-events-none absolute bottom-0 left-[31rem] z-[10]"
+              className="max-425:left-1/2 max-425:-translate-x-1/2 max-425:h-auto max-425:max-w-[30rem] pointer-events-none absolute bottom-0 left-[31rem] z-[10]"
             />
 
-            <div className="flex flex-col items-start">
-              <ul>
+            <div className="max-425:items-center max-425:w-full flex flex-col items-start">
+              <ul className="max-425:flex max-425:w-full gap-lg items-center justify-between">
                 {aboutHighlights.map(
                   ({ id, icon: Icon, title, subtitle }, index) => (
                     <li key={id}>
-                      <div className="gap-sm flex items-start">
+                      <div className="gap-sm max-425:gap-xs max-425:flex-col max-425:items-center max-425:text-center flex items-start">
                         <Icon
                           aria-hidden="true"
                           size={37}
                           strokeWidth={1.5}
-                          className="text-orange relative top-[.6rem] shrink-0"
+                          className="text-orange max-425:top-0 relative top-[.6rem] shrink-0"
                         />
 
-                        <div className="flex flex-col items-start">
-                          <h3 className="text-subheading-02 font-bold tracking-[-0.07em] text-black">
+                        <div className="max-425:items-center flex flex-col items-start">
+                          <h3 className="text-subheading-02 max-425:text-[2.5rem] font-bold tracking-[-0.07em] text-black">
                             {title}
                           </h3>
 
-                          <p className="text-body-02 text-text-body leading-[2.8rem] tracking-[-0.02em]">
+                          <p className="text-body-02 max-425:text-[1.4rem] text-text-body max-425:leading-[2rem] leading-[2.8rem] tracking-[-0.02em]">
                             {subtitle}
                           </p>
                         </div>
@@ -60,7 +58,7 @@ const About = () => {
                       {index < aboutHighlights.length - 1 && (
                         <span
                           aria-hidden="true"
-                          className="bg-grey my-sm block h-px w-[30.8rem]"
+                          className="bg-grey my-sm max-425:hidden block h-px w-[30.8rem]"
                         />
                       )}
                     </li>
@@ -70,13 +68,13 @@ const About = () => {
 
               <Button
                 href="/about"
-                className="text-body-02 px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
+                className="text-body-02 max-425:w-full max-425:text-[1.4rem] px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
               >
                 Read our story
               </Button>
             </div>
 
-            <blockquote className="px-md gap-sm flex w-[38.5rem] flex-col items-start rounded-md bg-white py-[3.5rem]">
+            <blockquote className="px-md gap-sm max-425:w-full max-425:py-md flex w-[38.5rem] flex-col items-start rounded-md bg-white py-[3.5rem]">
               <Image
                 src="/icons/quote-icon.svg"
                 alt=""
@@ -84,22 +82,16 @@ const About = () => {
                 height={27}
               />
 
-              <p className="text-body-01 text-text-body font-medium tracking-[-0.02em]">
+              <p className="text-body-01 max-425:text-[1.8rem] text-text-body font-medium tracking-[-0.02em]">
                 &quot;{aboutQuote}&quot;
               </p>
             </blockquote>
           </div>
 
-          {/* The marquee repeats its children to loop, so the visible track is
-              hidden from assistive tech and the team is listed once below.
-              Nothing in here is focusable, so nothing becomes unreachable. */}
           <div
             aria-hidden="true"
-            className="p-sm relative z-[20] rounded-sm bg-white"
+            className="p-sm max-425:p-[1rem] relative z-[20] rounded-sm bg-white"
           >
-            {/* Clips the track, which is two copies wide, and fades it
-                into the white either side — what the old marquee's gradient
-                prop did. */}
             <div className="relative overflow-hidden">
               <DragMarquee query={null} pauseOnHover>
                 <div className="flex w-max items-center">
@@ -111,16 +103,16 @@ const About = () => {
                         alt=""
                         width={width}
                         height={height}
-                        className="mx-[1.5rem] shrink-0 rounded-sm"
+                        className="max-425:mx-[.4rem] max-425:size-[6.7rem] mx-[1.5rem] shrink-0 rounded-sm"
                       />
                     )),
                   )}
                 </div>
               </DragMarquee>
 
-              <span className="pointer-events-none absolute inset-y-0 left-0 w-[12rem] bg-linear-to-r from-white to-transparent" />
+              <span className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 left-0 w-[12rem] bg-linear-to-r from-white to-transparent" />
 
-              <span className="pointer-events-none absolute inset-y-0 right-0 w-[12rem] bg-linear-to-l from-white to-transparent" />
+              <span className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 right-0 w-[12rem] bg-linear-to-l from-white to-transparent" />
             </div>
           </div>
 

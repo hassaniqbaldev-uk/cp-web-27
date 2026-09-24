@@ -130,11 +130,27 @@ export default function Popover({
     onOpenChange(true);
   };
 
+  // Read by the timer below rather than closing over `isOpen`, which would be
+  // whatever it was when the timer was set.
+  const isOpenRef = useRef(isOpen);
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
+
   // The panel sits below the square with a gap between them, so closing has to
   // wait long enough for the pointer to cross that gap.
   const scheduleClose = () => {
     cancelClose();
-    closeTimer.current = setTimeout(() => onOpenChange(false), CLOSE_DELAY);
+
+    closeTimer.current = setTimeout(() => {
+      // Only if this one is still the open one. A group shares a single id, so
+      // a popover that has already been closed by its neighbour opening must
+      // not go on to clear that id and take the neighbour down with it — which
+      // is exactly what a tap does on a touch screen, where leaving the first
+      // trigger and entering the second are emulated a moment apart.
+      if (isOpenRef.current) onOpenChange(false);
+    }, CLOSE_DELAY);
   };
 
   useEffect(() => cancelClose, []);

@@ -11,7 +11,7 @@ const Consultation = () => {
     <>
       <Section
         id="consultation"
-        className="py-3xl relative overflow-hidden bg-[radial-gradient(117.98%_100%_at_76.32%_0%,rgba(0,0,0,0.6)_0%,#000000_45%)]"
+        className="py-3xl max-425:px-[3rem] max-425:py-xl relative overflow-hidden bg-[radial-gradient(117.98%_100%_at_76.32%_0%,rgba(0,0,0,0.6)_0%,#000000_45%)]"
       >
         {/* The mask curves the field off at its edges, so it reads as a soft
             cloud in the corner rather than a rectangle of stars. */}
@@ -20,8 +20,8 @@ const Consultation = () => {
         </div>
 
         <Container className="relative z-10">
-          <div className="gap-lg flex items-center justify-between">
-            <div className="flex w-[64rem] flex-col items-start">
+          <div className="gap-lg max-425:flex-col max-425:items-center max-425:text-center flex items-center justify-between">
+            <div className="max-425:w-full max-425:items-center flex w-[64rem] flex-col items-start">
               <SectionHeading
                 label="Book your September slot"
                 title={
@@ -38,21 +38,21 @@ const Consultation = () => {
                   </>
                 }
                 subtitle="Tell us what you're trying to achieve and we'll help you figure out the best way forward."
-                labelClassName="text-body-01 font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName="text-heading-02 mt-xs mb-md leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
-                subtitleClassName="text-body-02 text-white  max-w-[38rem] leading-[2.8rem] tracking-[-0.02em]"
+                labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
+                titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:mb-sm mt-xs mb-md leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
+                subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] text-white max-w-[38rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
               <Button
                 href="/contact"
-                className="text-body-03 px-sm py-xs mt-lg rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+                className="text-body-03 max-425:text-[1.4rem] max-425:w-full max-425:mt-md px-sm py-xs mt-lg rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
               >
                 Request a growth review
               </Button>
             </div>
 
-            <div className="gradient-border p-lg w-[45rem] rounded-md bg-white/20 backdrop-blur-[10px] [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
-              <div className="gap-sm flex items-center">
+            <div className="gradient-border p-lg max-425:w-full max-425:p-md w-[45rem] rounded-md bg-white/20 backdrop-blur-[10px] [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
+              <div className="gap-sm max-425:text-left flex items-center">
                 {/* Decorative: the name is already in the text beside it. */}
                 <Image
                   src="/images/home/hassan-avatar-img.png"
@@ -60,15 +60,15 @@ const Consultation = () => {
                   aria-hidden="true"
                   width={96}
                   height={96}
-                  className="size-[9.6rem] shrink-0 rounded-full object-cover"
+                  className="max-425:size-[6.5rem] size-[9.6rem] shrink-0 rounded-full object-cover"
                 />
 
                 <div>
-                  <p className="text-subheading-02 leading-[3.5rem] font-bold tracking-[-0.07em] text-white">
+                  <p className="text-subheading-02 max-425:text-[2.2rem] max-425:leading-[2.6rem] leading-[3.5rem] font-bold tracking-[-0.07em] text-white">
                     15 Min Call
                   </p>
 
-                  <p className="text-body-02 tracking-[-0.02em] text-white">
+                  <p className="text-body-02 max-425:text-[1.4rem] tracking-[-0.02em] text-white">
                     with Hassan
                   </p>
 
@@ -78,7 +78,7 @@ const Consultation = () => {
                       className="size-[1.2rem] shrink-0 animate-pulse rounded-full bg-[#6FDC8C] motion-reduce:animate-none"
                     />
 
-                    <span className="text-body-03 tracking-[-0.02em] text-white">
+                    <span className="text-body-03 max-425:text-[1.2rem] tracking-[-0.02em] text-white">
                       Available this week
                     </span>
                   </p>
@@ -87,7 +87,7 @@ const Consultation = () => {
 
               <Button
                 href="/contact"
-                className="text-body-03 py-xs mt-md w-full rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+                className="text-body-03 max-425:text-[1.4rem] py-xs mt-md w-full rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
               >
                 Book a call
               </Button>
@@ -96,23 +96,26 @@ const Consultation = () => {
                   the items, so each one runs unbroken across the gaps instead
                   of stopping at every cell edge. */}
               <div className="mt-md relative">
-                <ul className="gap-md grid grid-cols-2">
+                <ul className="gap-md max-425:gap-sm max-425:gap-y-md grid grid-cols-2">
                   {consultationBenefits.map(
                     ({ id, icon: Icon, title, subtitle }) => (
-                      <li key={id} className="gap-xs flex items-center">
+                      <li
+                        key={id}
+                        className="gap-xs max-425:text-left flex items-center"
+                      >
                         <Icon
                           aria-hidden="true"
                           size={28}
                           strokeWidth={2}
-                          className="shrink-0 text-white"
+                          className="max-425:size-[2rem] shrink-0 text-white"
                         />
 
                         <div>
-                          <p className="text-body-02 leading-[2rem] font-bold tracking-[-0.02em] text-white">
+                          <p className="text-body-02 max-425:text-[1.3rem] leading-[2rem] font-bold tracking-[-0.02em] text-white">
                             {title}
                           </p>
 
-                          <p className="text-body-03 tracking-[-0.02em] text-white">
+                          <p className="text-body-03 max-425:text-[1.2rem] tracking-[-0.02em] text-white">
                             {subtitle}
                           </p>
                         </div>
@@ -123,7 +126,7 @@ const Consultation = () => {
 
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 left-[17rem] w-px bg-white/30"
+                  className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute inset-y-0 left-[17rem] w-px bg-white/30"
                 />
 
                 <span

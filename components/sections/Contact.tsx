@@ -9,10 +9,13 @@ import SectionHeading from "../ui/SectionHeading";
 const Contact = () => {
   return (
     <>
-      <Section id="contact" className="py-md bg-orange/10 overflow-hidden">
+      <Section
+        id="contact"
+        className="py-md max-425:px-[3rem] max-425:py-xl bg-orange/10 overflow-hidden"
+      >
         <Container>
-          <div className="gap-lg flex items-center justify-between">
-            <div className="w-[48.2rem]">
+          <div className="gap-lg max-425:gap-lg max-425:flex-col max-425:items-start flex items-center justify-between">
+            <div className="max-425:w-full w-[48.2rem]">
               <SectionHeading
                 label="Contact details"
                 title={
@@ -21,12 +24,12 @@ const Contact = () => {
                   </>
                 }
                 subtitle="Got questions or ready to start your design project? Let's bring your ideas to life!"
-                labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-heading-02 mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
-                subtitleClassName="text-body-02 text-text-body mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
+                labelClassName="text-body-01 max-425:text-[1.4rem] max-425:text-center font-medium tracking-[-0.02em] text-black uppercase"
+                titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:text-center mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
+                subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:text-center text-text-body mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
-              <ul className="mt-2xl flex flex-col">
+              <ul className="mt-2xl max-425:mt-lg flex flex-col">
                 {contactLinks.map(({ id, icon: Icon, label, href }) => (
                   <li key={id}>
                     <Link
@@ -38,10 +41,10 @@ const Contact = () => {
                           aria-hidden="true"
                           size={30}
                           strokeWidth={2}
-                          className="shrink-0 text-black"
+                          className="max-425:size-[2.2rem] shrink-0 text-black"
                         />
 
-                        <span className="text-subheading-02 font-medium tracking-[-0.06em] text-black">
+                        <span className="text-subheading-02 max-425:text-[1.8rem] font-medium tracking-[-0.06em] text-black">
                           {label}
                         </span>
                       </span>
@@ -50,7 +53,7 @@ const Contact = () => {
                         aria-hidden="true"
                         size={25}
                         strokeWidth={2.5}
-                        className="shrink-0 text-black"
+                        className="max-425:size-[1.8rem] shrink-0 text-black"
                       />
                     </Link>
                   </li>
@@ -58,7 +61,7 @@ const Contact = () => {
               </ul>
             </div>
 
-            <div className="relative w-[58.5rem]">
+            <div className="max-425:w-full relative w-[58.5rem]">
               {/* A panel of its own behind the form rather than a background on
                   it, so it can reach past the column. The right offset is the
                   container's own gutter, cancelled, which lands the edge exactly
@@ -66,10 +69,10 @@ const Contact = () => {
                   narrower than the container. */}
               <span
                 aria-hidden="true"
-                className="-left-lg absolute top-1/2 right-[calc(-1*max(0px,(100vw-120rem)/2))] h-full -translate-y-1/2 rounded-l-md bg-white"
+                className="-left-lg max-425:-left-[3rem] max-425:right-[-3rem] max-425:rounded-none absolute top-1/2 right-[calc(-1*max(0px,(100vw-120rem)/2))] h-full -translate-y-1/2 rounded-l-md bg-white"
               />
 
-              <div className="relative py-[8rem]">
+              <div className="max-425:py-lg relative py-[8rem]">
                 <ContactForm />
               </div>
             </div>

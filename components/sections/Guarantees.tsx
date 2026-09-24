@@ -8,30 +8,30 @@ import Section from "../ui/Section";
 const Guarantees = () => {
   return (
     <>
-      <Section className="py-3xl">
+      <Section className="py-3xl max-425:px-[3rem] max-425:py-xl">
         <Container>
           {/* The section has no visible heading, but the cards below are
               headings, so this names the group and keeps the outline in order
               rather than jumping from the page h1 straight to h3s. */}
           <h2 className="sr-only">Our guarantees</h2>
 
-          <div className="gap-sm grid grid-cols-4">
+          <div className="gap-sm max-425:grid-cols-1 grid grid-cols-4">
             {guarantees.map(({ id, title, description }) => (
               <div
                 key={id}
-                className="border-grey p-md flex flex-col rounded-md border"
+                className="border-grey p-md max-425:p-sm flex flex-col rounded-md border"
               >
-                <h3 className="text-body-01 font-bold tracking-[-0.02em] text-black">
+                <h3 className="text-body-01 max-425:text-[1.8rem] font-bold tracking-[-0.02em] text-black">
                   {title}
                 </h3>
 
-                <p className="text-body-03 text-text-body mt-sm leading-[2.4rem] tracking-[-0.02em]">
+                <p className="text-body-03 max-425:text-[1.4rem] max-425:mt-xs text-text-body mt-sm leading-[2.4rem] tracking-[-0.02em]">
                   {description}
                 </p>
               </div>
             ))}
 
-            <div className="relative overflow-hidden rounded-md">
+            <div className="max-425:min-h-[30rem] relative overflow-hidden rounded-md">
               <Image
                 src={guaranteeCaseStudy.image}
                 alt={guaranteeCaseStudy.imageAlt}
@@ -40,7 +40,7 @@ const Guarantees = () => {
                 className="object-cover"
               />
 
-              <div className="relative flex h-full flex-col justify-between p-[2.5rem]">
+              <div className="max-425:p-[2rem] relative flex h-full flex-col justify-between p-[2.5rem]">
                 <Image
                   src={guaranteeCaseStudy.logo}
                   alt={guaranteeCaseStudy.logoAlt}

@@ -91,10 +91,10 @@ const Services = () => {
                 content: (
                   <div
                     key={id}
-                    className="gap-lg bg-blue/20 max-425:flex-col max-425:p-[3rem] p-lg flex items-center justify-between rounded-md"
+                    className="gap-lg max-425:gap-[3.5rem] bg-blue/20 max-425:flex-col max-425:p-[3rem] p-lg flex items-center justify-between rounded-md"
                   >
                     <div className="max-425:w-full w-[62.5rem]">
-                      <ul className="gap-sm max-425:flex-col max-425:items-start flex items-center">
+                      <ul className="gap-sm max-425:gap-[1.4rem] max-425:flex-col max-425:items-start flex items-center">
                         {detail.highlights.map(
                           (
                             { id: highlightId, icon: HighlightIcon, text },
@@ -102,7 +102,7 @@ const Services = () => {
                           ) => (
                             <li
                               key={highlightId}
-                              className="gap-sm flex items-center"
+                              className="gap-sm max-425:gap-[1.4rem] max-425:w-full max-425:flex-col max-425:items-start flex items-center"
                             >
                               <span className="gap-xs flex items-center">
                                 <HighlightIcon
@@ -120,7 +120,7 @@ const Services = () => {
                               {index < detail.highlights.length - 1 && (
                                 <span
                                   aria-hidden="true"
-                                  className="h-[1.6rem] w-px shrink-0 bg-black/30"
+                                  className="max-425:h-px max-425:w-full h-[1.6rem] w-px shrink-0 bg-black/30"
                                 />
                               )}
                             </li>
@@ -189,7 +189,7 @@ const Services = () => {
 
                       <Button
                         href={detail.cta.href}
-                        className="text-body-02 px-sm max-425:w-full py-xs mt-lg max-425:text-[1.3rem] rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+                        className="text-body-02 px-sm max-425:w-full py-xs mt-lg max-425:mt-[2.5rem] max-425:text-[1.3rem] rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
                       >
                         {detail.cta.label}
                       </Button>

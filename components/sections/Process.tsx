@@ -85,21 +85,21 @@ const Step = ({
         </span>
       </div>
 
-      <div className="p-md flex-1 rounded-md bg-white">
+      <div className="p-md max-425:p-sm flex-1 rounded-md bg-white">
         {/* The ordered list already conveys the sequence, so the printed number
             is decoration and would otherwise be read out twice. */}
         <p
           aria-hidden="true"
-          className={`text-body-02 py-xs px-sm inline-flex w-fit rounded-full border font-medium tracking-[-0.02em] ${borderClassName} ${textClassName}`}
+          className={`text-body-02 max-425:text-[1.4rem] py-xs px-sm inline-flex w-fit rounded-full border font-medium tracking-[-0.02em] ${borderClassName} ${textClassName}`}
         >
           STEP {step}
         </p>
 
-        <h3 className="text-subheading-02 mt-md font-bold tracking-[-0.07em] text-black">
+        <h3 className="text-subheading-02 max-425:text-[2.2rem] max-425:mt-sm mt-md font-bold tracking-[-0.07em] text-black">
           {title}
         </h3>
 
-        <p className="text-body-03 text-text-body mt-xs leading-[2.4rem] tracking-[-0.02em]">
+        <p className="text-body-03 max-425:text-[1.4rem] text-text-body mt-xs leading-[2.4rem] tracking-[-0.02em]">
           {description}
         </p>
       </div>
@@ -124,9 +124,9 @@ const Process = () => {
 
   return (
     <>
-      <Section>
-        <Container className="bg-grey/40 flex justify-between gap-[4rem] rounded-md pt-[6rem] pr-[6rem] pl-[8rem]">
-          <div className="flex w-[52.5rem] flex-col items-start">
+      <Section className="max-425:px-[3rem]">
+        <Container className="bg-grey/40 max-425:gap-lg max-425:flex-col max-425:pt-[3rem] max-425:px-[2rem] flex justify-between gap-[4rem] rounded-md pt-[6rem] pr-[6rem] pl-[8rem]">
+          <div className="max-425:w-full max-425:items-center max-425:text-center flex w-[52.5rem] flex-col items-start">
             <SectionHeading
               label="The process"
               title={
@@ -140,20 +140,20 @@ const Process = () => {
               subtitle={
                 "We've refined our delivery process over 10 years to minimize risk and maximize speed to market."
               }
-              labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-heading-02 mt-xs font-extrabold tracking-[-0.07em] text-black leading-[8rem]"
-              subtitleClassName="text-body-02 max-w-[40rem] text-text-body mt-sm leading-[2.8rem] tracking-[-0.02em]"
+              labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
+              titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs font-extrabold tracking-[-0.07em] text-black leading-[8rem]"
+              subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-w-[40rem] text-text-body mt-sm leading-[2.8rem] tracking-[-0.02em]"
             />
 
             <Button
               href="/contact"
-              className="text-body-02 px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
+              className="text-body-02 max-425:text-[1.4rem] max-425:w-full max-425:mt-sm px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
             >
               Start your project
             </Button>
           </div>
 
-          <div className="relative w-[48rem]">
+          <div className="max-425:w-full relative w-[48rem]">
             {/* tabIndex makes the box reachable by keyboard — a scrollable
                 region that cannot be focused is unscrollable without a mouse. */}
             <div
@@ -161,7 +161,7 @@ const Process = () => {
               tabIndex={0}
               role="region"
               aria-label="Process steps"
-              className="pb-md no-scrollbar h-[50rem] overflow-y-auto"
+              className="pb-md max-425:h-[42rem] no-scrollbar h-[50rem] overflow-y-auto"
             >
               <ol className="gap-sm flex flex-col">
                 {processSteps.map((processStep, index) => (
@@ -181,12 +181,12 @@ const Process = () => {
                 them from swallowing scrolls and clicks on the cards beneath. */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[12rem] bg-linear-to-b from-[#f4f4f4] to-transparent opacity-85"
+              className="max-425:h-[6rem] pointer-events-none absolute inset-x-0 top-0 z-10 h-[12rem] bg-linear-to-b from-[#f4f4f4] to-transparent opacity-85"
             />
 
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[12rem] bg-linear-to-t from-[#f4f4f4] to-transparent opacity-85"
+              className="max-425:h-[6rem] pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[12rem] bg-linear-to-t from-[#f4f4f4] to-transparent opacity-85"
             />
           </div>
         </Container>

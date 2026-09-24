@@ -34,11 +34,11 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
           the choice for a screen reader, rather than leaving four unlabelled
           options next to a stray paragraph. */}
       <fieldset>
-        <legend className="text-body-04 font-semibold tracking-[-0.02em] text-black uppercase">
+        <legend className="text-body-04 max-425:text-[1.2rem] font-semibold tracking-[-0.02em] text-black uppercase">
           What do you need help with? (required)
         </legend>
 
-        <div className="gap-sm mt-sm grid grid-cols-4">
+        <div className="gap-sm max-425:grid-cols-2 mt-sm grid grid-cols-4">
           {contactTopics.map(
             ({
               id,
@@ -78,13 +78,13 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
         </div>
       </fieldset>
 
-      <div className="gap-sm grid grid-cols-2">
+      <div className="gap-sm max-425:grid-cols-1 grid grid-cols-2">
         {/* The label sits on the border with a white background behind it, so
             it notches the outline rather than covering it. */}
         <div className="relative">
           <label
             htmlFor="contact-name"
-            className="text-body-04 absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
+            className="text-body-04 max-425:text-[1.2rem] absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
           >
             Your name
           </label>
@@ -102,7 +102,7 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
         <div className="relative">
           <label
             htmlFor="contact-email"
-            className="text-body-04 absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
+            className="text-body-04 max-425:text-[1.2rem] absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
           >
             Your email
           </label>
@@ -121,7 +121,7 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
       <div className="relative">
         <label
           htmlFor="contact-project"
-          className="text-body-04 absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
+          className="text-body-04 max-425:text-[1.2rem] absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
         >
           Tell us about your project{" "}
           <span className="text-text-body font-medium">(required)</span>
@@ -168,7 +168,7 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
           />
         </summary>
 
-        <div className="gap-sm px-sm pb-sm pt-md grid grid-cols-3">
+        <div className="gap-sm max-425:grid-cols-1 px-sm pb-sm pt-md grid grid-cols-3">
           {[
             { id: "website", label: "Website", placeholder: "yoursite.com" },
             { id: "budget", label: "Budget", placeholder: "£10k – £25k" },
@@ -177,7 +177,7 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
             <div key={id} className="relative">
               <label
                 htmlFor={`contact-${id}`}
-                className="text-body-04 absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
+                className="text-body-04 max-425:text-[1.2rem] absolute -top-[0.8rem] left-[1.4rem] bg-white px-[0.6rem] font-bold tracking-[-0.02em] text-black uppercase"
               >
                 {label}
               </label>
@@ -206,7 +206,7 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
           announce as a pair rather than as loose fragments after the
           button. */}
       {showAssurances && (
-        <ul className="gap-md grid grid-cols-2">
+        <ul className="gap-md max-425:gap-sm max-425:grid-cols-1 grid grid-cols-2">
           {assurances.map(({ id, icon: Icon, text }) => (
             <li key={id} className="gap-xs flex items-start">
               <Icon

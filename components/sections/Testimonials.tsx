@@ -33,7 +33,10 @@ const Testimonials = () => {
 
   return (
     <>
-      <Section id="testimonials" className="py-3xl overflow-hidden">
+      <Section
+        id="testimonials"
+        className="py-3xl max-425:px-[3rem] max-425:py-xl overflow-hidden"
+      >
         <Container>
           <SectionHeading
             label="Testimonials"
@@ -43,18 +46,18 @@ const Testimonials = () => {
                 <span className="text-text-body/50">Built on Great Work.</span>
               </>
             }
-            labelClassName="text-body-01 text-center font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-heading-02 mt-xs text-center leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
+            labelClassName="text-body-01 max-425:text-[1.4rem] text-center font-medium tracking-[-0.02em] text-black uppercase"
+            titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs text-center leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
           />
         </Container>
 
         {/* The track starts at the container's own left gutter but runs on to
             the viewport edge, so slides bleed off to the right. max() keeps
             the margin from going negative on a narrow viewport. */}
-        <div className="gap-md mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
+        <div className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
           {/* Its own column beside the track, not a slide, so it stays put
               while the quotes move. */}
-          <div className="relative w-[37rem] shrink-0 overflow-hidden rounded-md">
+          <div className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
             <video
               ref={videoRef}
               playsInline
@@ -109,7 +112,7 @@ const Testimonials = () => {
             // the looping cards clear the screen edge instead of running into
             // it. slidesOffsetAfter cannot do this job: a looped track has no
             // last slide to offset from.
-            className="mr-md relative min-w-0 flex-1"
+            className="mr-md max-425:order-1 max-425:mr-0 relative min-w-0 flex-1"
           >
             <Swiper
               onSwiper={(instance) => {
@@ -135,6 +138,11 @@ const Testimonials = () => {
               // the count, and means the carousel never dead-ends.
               loop
               keyboard={{ enabled: true }}
+              // Swiper's breakpoints are min-width, so the centred state is the
+              // base and anything above 425 turns it back off — the opposite
+              // way round to the max-* variants everywhere else.
+              centeredSlides
+              breakpoints={{ 426: { centeredSlides: false } }}
               className="h-full"
             >
               {testimonials.map(
@@ -153,7 +161,10 @@ const Testimonials = () => {
                   // The important flag is needed because Swiper's own
                   // stylesheet sets .swiper-slide to width: 100%, at the same
                   // specificity as this class.
-                  <SwiperSlide key={id} className="h-auto! w-[37rem]!">
+                  <SwiperSlide
+                    key={id}
+                    className="max-425:w-full! h-auto! w-[37rem]!"
+                  >
                     <figure className="bg-grey/40 p-md flex h-full flex-col rounded-md">
                       <div className="gap-sm flex items-center justify-between">
                         {/* Decorative: the attribution below already names
@@ -236,12 +247,12 @@ const Testimonials = () => {
                 drags and clicks on the cards underneath. */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[6rem] bg-linear-to-r from-white to-transparent"
+              className="max-425:hidden pointer-events-none absolute inset-y-0 left-0 z-10 w-[6rem] bg-linear-to-r from-white to-transparent"
             />
 
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[6rem] bg-linear-to-l from-white to-transparent"
+              className="max-425:hidden pointer-events-none absolute inset-y-0 right-0 z-10 w-[6rem] bg-linear-to-l from-white to-transparent"
             />
           </div>
         </div>

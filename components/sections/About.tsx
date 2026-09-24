@@ -35,7 +35,7 @@ const About = () => {
               <ul className="max-425:flex max-425:w-full gap-lg items-center justify-between">
                 {aboutHighlights.map(
                   ({ id, icon: Icon, title, subtitle }, index) => (
-                    <li key={id}>
+                    <li key={id} className="max-425:flex max-425:items-center">
                       <div className="gap-sm max-425:gap-xs max-425:flex-col max-425:items-center max-425:text-center flex items-start">
                         <Icon
                           aria-hidden="true"
@@ -58,7 +58,7 @@ const About = () => {
                       {index < aboutHighlights.length - 1 && (
                         <span
                           aria-hidden="true"
-                          className="bg-grey my-sm max-425:hidden block h-px w-[30.8rem]"
+                          className="bg-grey my-sm max-425:my-0 max-425:relative max-425:h-[11.6rem] max-425:w-px left-[2rem] block h-px w-[30.8rem]"
                         />
                       )}
                     </li>

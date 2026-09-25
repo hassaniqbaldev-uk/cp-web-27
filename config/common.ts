@@ -463,7 +463,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "SME Founders",
     description:
       "Grow your business with a website that converts visitors into loyal customers.",
-    hoverClassName: "hover:bg-orange",
+    hoverClassName: "hover:bg-orange active:bg-orange",
   },
   {
     id: "ecommerce-brands",
@@ -471,7 +471,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "Ecommerce brands",
     description:
       "Scale sales with high-performance online stores built on Shopify or Woo.",
-    hoverClassName: "hover:bg-dark-pink",
+    hoverClassName: "hover:bg-dark-pink active:bg-dark-pink",
   },
   {
     id: "non-profit-charity",
@@ -479,7 +479,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "Non-profit & Charity",
     description:
       "Connect with your community through accessible, impactful digital experiences.",
-    hoverClassName: "hover:bg-blue",
+    hoverClassName: "hover:bg-blue active:bg-blue",
   },
   {
     id: "b2b-services",
@@ -487,7 +487,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "B2B Services",
     description:
       "Generate qualified leads and build trust with a strategic web presence.",
-    hoverClassName: "hover:bg-orange",
+    hoverClassName: "hover:bg-orange active:bg-orange",
   },
   {
     id: "agencies",
@@ -495,7 +495,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "Agencies",
     description:
       "White-label development and design fulfillment you can trust.",
-    hoverClassName: "hover:bg-dark-pink",
+    hoverClassName: "hover:bg-dark-pink active:bg-dark-pink",
   },
   {
     id: "startups-saas",
@@ -503,7 +503,7 @@ export const expertiseCards: ExpertiseCard[] = [
     title: "Startups & SaaS",
     description:
       "Modern tech stacks (React, Headless) for rapid growth and scalability.",
-    hoverClassName: "hover:bg-blue",
+    hoverClassName: "hover:bg-blue active:bg-blue",
   },
 ];
 
@@ -1151,7 +1151,8 @@ export const behaviours: Behaviour[] = [
     title: "Senior people stay involved",
     description:
       "Important decisions are made directly, without being passed through multiple layers of account managers or unnecessary communication.",
-    hoverClassName: "hover:bg-blue hover:shadow-[0px_4px_84px_0px_#3078FF]",
+    hoverClassName:
+      "hover:bg-blue hover:shadow-[0px_4px_84px_0px_#3078FF] active:bg-blue active:shadow-[0px_4px_84px_0px_#3078FF]",
   },
   {
     id: "design-development",
@@ -1159,7 +1160,8 @@ export const behaviours: Behaviour[] = [
     title: "Design Meets Development",
     description:
       "Technical constraints and commercial goals are considered while the experience is being designed, not discovered at the end.",
-    hoverClassName: "hover:bg-orange hover:shadow-[0px_4px_84px_0px_#EC9122]",
+    hoverClassName:
+      "hover:bg-orange hover:shadow-[0px_4px_84px_0px_#EC9122] active:bg-orange active:shadow-[0px_4px_84px_0px_#EC9122]",
   },
   {
     id: "tools",
@@ -1168,7 +1170,7 @@ export const behaviours: Behaviour[] = [
     description:
       "WordPress, Shopify, Webflow, React, Next.js, Laravel and automation platforms are options - not the identity of the agency.",
     hoverClassName:
-      "hover:bg-dark-pink hover:shadow-[0px_4px_84px_0px_#EC3593]",
+      "hover:bg-dark-pink hover:shadow-[0px_4px_84px_0px_#EC3593] active:bg-dark-pink active:shadow-[0px_4px_84px_0px_#EC3593]",
   },
   {
     id: "after-launch",
@@ -1177,7 +1179,7 @@ export const behaviours: Behaviour[] = [
     description:
       "Support, development, CRO, SEO, paid media and automation can continue where the business needs an ongoing digital partner.",
     hoverClassName:
-      "hover:bg-[#6FDC8C] hover:shadow-[0px_4px_84px_0px_#6FDC8C]",
+      "hover:bg-[#6FDC8C] hover:shadow-[0px_4px_84px_0px_#6FDC8C] active:bg-[#6FDC8C] active:shadow-[0px_4px_84px_0px_#6FDC8C]",
   },
 ];
 

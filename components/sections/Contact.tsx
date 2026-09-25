@@ -63,11 +63,6 @@ const Contact = () => {
 
             <div className="max-425:px-[1rem]">
               <div className="max-425:w-full relative w-[58.5rem]">
-                {/* A panel of its own behind the form rather than a background on
-                  it, so it can reach past the column. The right offset is the
-                  container's own gutter, cancelled, which lands the edge exactly
-                  on the viewport; max() keeps it at zero once the viewport is
-                  narrower than the container. */}
                 <span
                   aria-hidden="true"
                   className="-left-lg max-425:-left-[3rem] max-425:right-[-3rem] max-425:rounded-[2rem] absolute top-1/2 right-[calc(-1*max(0px,(100vw-120rem)/2))] h-full -translate-y-1/2 rounded-l-md bg-white"

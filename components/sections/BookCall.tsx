@@ -118,7 +118,7 @@ const BookCall = ({
                 subtitle={subtitle}
                 labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
                 titleClassName="text-heading-02 max-425:text-center max-425:mx-auto max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
-                subtitleClassName="text-body-02 max-425:text-body-03 max-425:text-center text-grey mt-sm max-w-[35rem] leading-[2.8rem] tracking-[-0.02em]"
+                subtitleClassName="text-body-02 max-425:text-body-03 max-425:text-center text-grey mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
               <Button

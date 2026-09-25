@@ -4,7 +4,7 @@ import AboutHero from "@/components/sections/AboutHero";
 import AboutJourney from "@/components/sections/AboutJourney";
 import AboutReach from "@/components/sections/AboutReach";
 import AboutStory from "@/components/sections/AboutStory";
-import AboutWork from "@/components/sections/AboutWork";
+import WorkReviews from "@/components/sections/WorkReviews";
 import AboutTeam from "@/components/sections/AboutTeam";
 
 const About = () => {
@@ -16,7 +16,7 @@ const About = () => {
       <AboutTeam />
       <AboutBehaviours />
       <AboutReach />
-      <AboutWork />
+      <WorkReviews />
       <BookCall
         id="about-book-call"
         showContacts={false}

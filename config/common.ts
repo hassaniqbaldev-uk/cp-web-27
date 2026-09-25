@@ -1,6 +1,11 @@
 import type {
   AboutHighlight,
   AboutStat,
+  AgencyWorkflowCard,
+  CostComparisonColumn,
+  HandoverCard,
+  PartnerFitCard,
+  Testimonial as TestimonialType,
   Behaviour,
   Brand,
   ClientLogo,
@@ -28,6 +33,7 @@ import type {
 } from "@/types/common";
 import {
   Ban,
+  Briefcase,
   Building2,
   CalendarClock,
   CalendarDays,
@@ -50,6 +56,7 @@ import {
   TrendingUp,
   UserRoundCheck,
   Users,
+  Workflow,
   Wrench,
 } from "lucide-react";
 
@@ -1493,5 +1500,278 @@ export const howWeWorkFaqs: Faq[] = [
     question: "What happens if the scope changes?",
     answer:
       "We price the change before anything is built, so nothing appears on an invoice that you have not agreed to.",
+  },
+];
+
+// The same shape as the about page's figures, so it reuses that type rather
+// than declaring an identical one.
+export const partnerStats: AboutStat[] = [
+  {
+    id: "first-partner",
+    value: "2014",
+    label: "First agency partner",
+  },
+  {
+    id: "projects",
+    value: "500+",
+    label: "White label projects delivered",
+  },
+  {
+    id: "agencies",
+    value: "8+",
+    label: "Agencies we work with today",
+  },
+  {
+    id: "countries",
+    value: "3",
+    label: "Countries: UK, US, Australia",
+  },
+];
+
+export const agencyWorkflow: AgencyWorkflowCard[] = [
+  {
+    id: "channel",
+    icons: [
+      {
+        id: "slack",
+        src: "/icons/slack-icon.svg",
+        width: 30,
+        height: 30,
+      },
+    ],
+    showPlus: true,
+    title: "Channel",
+    subtitle: "Slack Connect or a dedicated thread",
+  },
+  {
+    id: "board",
+    icons: [
+      {
+        id: "notion",
+        src: "/icons/notion-icon.svg",
+        width: 30,
+        height: 30,
+      },
+      {
+        id: "asana",
+        src: "/icons/asana-icon.svg",
+        width: 40,
+        height: 30,
+      },
+      {
+        id: "trello",
+        src: "/icons/trello-icon.svg",
+        width: 30,
+        height: 30,
+      },
+    ],
+    showPlus: true,
+    title: "Board",
+    subtitle: "Notion, Asana, Trello, ClickUp, yours",
+  },
+  {
+    id: "identity",
+    icons: [
+      {
+        id: "dot-com",
+        src: "/icons/dot-com-icon.svg",
+        width: 52,
+        height: 52,
+      },
+    ],
+    title: "Identity",
+    subtitle: "name@youragency.co.uk when needed",
+  },
+  {
+    id: "cadence",
+    icons: [
+      {
+        id: "link",
+        src: "/icons/link-icon.svg",
+        width: 30,
+        height: 30,
+      },
+    ],
+    title: "Cadence",
+    subtitle: "Staging links every one to two weeks",
+  },
+];
+
+export const costComparison: CostComparisonColumn[] = [
+  {
+    id: "in-house",
+    title: "Hire a mid-weight developer",
+    rows: [
+      { id: "salary", label: "Salary", value: "£45,000" },
+      { id: "on-costs", label: "Employer NI, pension, kit", value: "~£8,000" },
+      { id: "recruitment", label: "Recruitment", value: "~£6,000" },
+      { id: "cover", label: "Holiday and sick cover", value: "6 weeks/yr" },
+      { id: "skills", label: "Skills", value: "One stack" },
+    ],
+    totalLabel: "Year one, before a single project",
+    totalValue: "~£59,000",
+  },
+  {
+    id: "partner",
+    title: "Partner with CreativePixels",
+    rows: [
+      { id: "idle", label: "Idle time", value: "£0" },
+      { id: "hr", label: "Recruitment, HR, cover", value: "£0" },
+      {
+        id: "disciplines",
+        label: "Design, dev, SEO, strategy",
+        value: "All included",
+      },
+      { id: "capacity", label: "Capacity", value: "Up or down per job" },
+      {
+        id: "billing",
+        label: "Billing",
+        value: "Per project or monthly allocation",
+      },
+    ],
+    totalLabel: "Year one",
+    totalValue: "Only what you sell",
+    isFeatured: true,
+  },
+];
+
+// The two columns that flank the heading, in the order they are drawn.
+export const handoverDelivery: HandoverCard[] = [
+  {
+    id: "strategy",
+    icon: Compass,
+    iconClassName: "text-dark-pink",
+    title: "Strategy & scope",
+    subtitle: "We can lead it, or work from yours",
+  },
+  {
+    id: "design",
+    icon: Palette,
+    iconClassName: "text-orange",
+    title: "Design",
+    subtitle: "Brand, UI/UX, prototypes in Figma",
+  },
+  {
+    id: "build",
+    icon: Code2,
+    iconClassName: "text-dark-pink",
+    title: "Build",
+    subtitle: "WordPress, Shopify, Webflow, React, Next.js, Laravel",
+  },
+];
+
+export const handoverGrowth: HandoverCard[] = [
+  {
+    id: "growth",
+    icon: TrendingUp,
+    iconClassName: "text-blue",
+    title: "Growth",
+    subtitle: "SEO, CRO, paid, landing pages, reporting in your template",
+  },
+  {
+    id: "automation",
+    icon: Workflow,
+    iconClassName: "text-blue",
+    title: "Automation",
+    subtitle: "Workflows, integrations, agents for your clients",
+  },
+  {
+    id: "support",
+    icon: LifeBuoy,
+    iconClassName: "text-orange",
+    title: "Support",
+    subtitle: "Maintenance, speed, security, migrations, accessibility",
+  },
+];
+
+export const partnerFit: PartnerFitCard[] = [
+  {
+    id: "good-fit",
+    icon: Briefcase,
+    title: "Good fit",
+    points: [
+      "You own the client relationship and want to keep it",
+      "You need repeatable delivery, not a one-off rescue",
+      "You can give a written brief, or a call and a Figma link",
+      'You want straight scoping, including "that will not work"',
+    ],
+    isPositive: true,
+  },
+  {
+    id: "probably-not",
+    icon: Briefcase,
+    title: "Probably not",
+    points: [
+      "Cheapest possible bid on a fixed template",
+      "Undisclosed subcontracting where the client is told nobody else is involved and asks",
+      "Projects with no decision-maker on your side",
+    ],
+    note: "A 48-hour yes or no is part of the offer. It saves everyone a month.",
+  },
+];
+
+// TODO: placeholder. Swap in a real white label project and the agency's own
+// review, with their artwork, once both are cleared for use.
+export const partnerShowcase: WorkProject = {
+  id: "partner-showcase",
+  image: "/images/home/ivy-work-img.jpg",
+  imageAlt: "An ecommerce storefront built under a partner agency's brand",
+  title: "Ivy & Duke",
+  subtitle: "Built end to end for a London agency.",
+  ctaLabel: "Visit live site",
+  href: "https://example.com",
+};
+
+export const partnerReview: TestimonialType = {
+  id: "partner-review",
+  avatar: "/images/home/ayoa-client-avatar.png",
+  logo: "/images/home/ayoa-client-logo.png",
+  logoAlt: "Ayoa",
+  logoWidth: 62,
+  logoHeight: 23,
+  quote:
+    "We brought them in on a build our client could not wait for. Staging links every week, no chasing, and nobody ever knew we were not doing it ourselves.",
+  name: "Sam",
+  role: "Studio director",
+  rating: 5,
+};
+
+// TODO: placeholder. Replace with the questions agencies actually ask.
+export const partnerFaqs: Faq[] = [
+  {
+    id: "white-label",
+    question: "Does our client ever hear your name?",
+    answer:
+      "Only if you want them to. We work under your brand, on your domain where it helps, and an NDA is signed before the brief.",
+  },
+  {
+    id: "response",
+    question: "How quickly will we know if you can take it?",
+    answer:
+      "A yes or no on fit within 48 hours, so you are not holding a client while we decide.",
+  },
+  {
+    id: "scope",
+    question: "Can you take part of a project rather than all of it?",
+    answer:
+      "Yes. Strategy, design, build, growth and support are separable — pick the pieces you need on each job.",
+  },
+  {
+    id: "tools",
+    question: "Whose project management do we use?",
+    answer:
+      "Yours, if you have one. Slack Connect or email, your board or ours, the rhythm is the same either way.",
+  },
+  {
+    id: "billing",
+    question: "How are we billed?",
+    answer:
+      "Per project, or as a monthly allocation where the work is continuous. You mark it up as you see fit.",
+  },
+  {
+    id: "clients",
+    question: "Will you approach our clients?",
+    answer:
+      "Never. The client relationship is yours, and we have no interest in competing for it.",
   },
 ];

@@ -393,3 +393,65 @@ export type ProcessCard = {
   image: string;
   imageAlt: string;
 };
+
+export type AgencyWorkflowIcon = {
+  id: string;
+  /** Path under /public. These are brand marks, so they are files rather than
+   *  lucide components, which carry no logos. */
+  src: string;
+  /** Intrinsic size of the asset — next/image needs it to reserve space. */
+  width: number;
+  height: number;
+};
+
+export type AgencyWorkflowCard = {
+  id: string;
+  /** Drawn in a row, in this order. */
+  icons: AgencyWorkflowIcon[];
+  /** Adds the plus that stands for "and whatever else you use". */
+  showPlus?: boolean;
+  title: string;
+  subtitle: string;
+};
+
+export type CostComparisonRow = {
+  id: string;
+  label: string;
+  value: string;
+};
+
+export type CostComparisonColumn = {
+  id: string;
+  title: string;
+  rows: CostComparisonRow[];
+  /** The line under the rule, which is the figure the column exists to make. */
+  totalLabel: string;
+  totalValue: string;
+  /** The partner column, which is the one being argued for. */
+  isFeatured?: boolean;
+};
+
+export type HandoverCard = {
+  id: string;
+  /** Lucide icon component, e.g. `Compass`. */
+  icon: LucideIcon;
+  /**
+   * Accent for this card. Keep it a complete, literal class string — Tailwind
+   * scans source files for full class names.
+   */
+  iconClassName: string;
+  title: string;
+  subtitle: string;
+};
+
+export type PartnerFitCard = {
+  id: string;
+  /** Lucide icon component, e.g. `Briefcase`. */
+  icon: LucideIcon;
+  title: string;
+  points: string[];
+  /** Sits under the points, in the darker card only. */
+  note?: string;
+  /** The work we want, which is the card drawn in white. */
+  isPositive?: boolean;
+};

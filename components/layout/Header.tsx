@@ -29,7 +29,7 @@ const LOGO_WIDTH = "var(--logo-w)";
 
 // Routes whose hero is light. The header needs its dark treatment from the top
 // there, rather than only once a white band is behind it.
-const LIGHT_ROUTES = ["/about"];
+const LIGHT_ROUTES = ["/about", "/partner-with-us"];
 
 // Below this the band is there from the top: there is no room for a bar that
 // only resolves once the page has moved.

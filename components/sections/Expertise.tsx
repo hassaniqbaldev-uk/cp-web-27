@@ -22,7 +22,9 @@ const Expertise = () => {
   return (
     <>
       <Section className="py-3xl max-425:py-xl max-425:px-[3rem] relative overflow-hidden bg-black">
-        <Starfield className="max-425:top-auto max-425:bottom-[-30rem] max-425:left-1/2 max-425:-translate-x-1/2 absolute top-0 left-[-5rem] z-0 h-full w-[26rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        <div className="absolute top-0 left-1/2 h-full w-full max-w-[144rem] -translate-x-1/2">
+          <Starfield className="max-425:right-auto max-425:left-1/2 max-425:-translate-x-1/2 absolute right-0 bottom-[-5rem] z-0 h-[20rem] w-[77rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
+        </div>
 
         <Container className="relative z-10">
           <SectionHeading

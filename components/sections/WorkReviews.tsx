@@ -1,4 +1,5 @@
 import { testimonials, workProjects } from "@/config/common";
+import type { Testimonial, WorkProject } from "@/types/common";
 import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
 import Button from "../ui/Button";
@@ -7,34 +8,63 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
+/**
+ * The about page's copy, kept as the defaults so pages that want it render
+ * `<WorkReviews />` and nothing else. Anywhere else passes its own.
+ */
+const defaultTitle = (
+  <>
+    The work is the <br />
+    best introduction.
+  </>
+);
+
 // TODO: choose which project and which review lead this section, rather than
 // taking whichever happens to be first.
-const project = workProjects[0];
-const review = testimonials[0];
+const defaultProject = workProjects[0];
+const defaultReview = testimonials[0];
 
-const AboutWork = () => {
+type WorkReviewsProps = {
+  label?: string;
+  /** Accepts nodes, so it can carry a line break or a coloured span. */
+  title?: React.ReactNode;
+  project?: WorkProject;
+  review?: Testimonial;
+  /** Where the circular button goes. */
+  exploreHref?: string;
+  reviewsHref?: string;
+  /**
+   * Unique per page. Two of these on one page would otherwise give the
+   * document two elements with the same id, which breaks fragment links.
+   */
+  id?: string;
+  className?: string;
+};
+
+const WorkReviews = ({
+  label = "Work + reviews",
+  title = defaultTitle,
+  project = defaultProject,
+  review = defaultReview,
+  exploreHref = "/case-studies",
+  reviewsHref = "/testimonials",
+  id = "work-reviews",
+  className = "py-3xl max-425:py-xl max-425:px-[3rem] bg-grey/40",
+}: WorkReviewsProps) => {
   return (
     <>
-      <Section
-        id="work-reviews"
-        className="py-3xl max-425:py-xl max-425:px-[3rem] bg-grey/40"
-      >
+      <Section id={id} className={className}>
         <Container>
           <div className="gap-lg max-425:flex-col flex items-center justify-between">
             <SectionHeading
-              label="Work + reviews"
-              title={
-                <>
-                  The work is the <br />
-                  best introduction.
-                </>
-              }
+              label={label}
+              title={title}
               labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
               titleClassName="text-heading-02 max-425:text-center max-425:text-[3.5rem] max-425:leading-[3.5rem] max-425:max-w-[35rem] mt-xs leading-[9rem] max-425:mx-auto font-extrabold tracking-[-0.07em] text-black"
             />
 
             <CircularTextButton
-              href="/case-studies"
+              href={exploreHref}
               image="/images/home/circular-text-projects.png"
               imageWidth={431}
               imageHeight={412}
@@ -157,7 +187,7 @@ const AboutWork = () => {
               </figure>
 
               <Button
-                href="/testimonials"
+                href={reviewsHref}
                 className="text-body-03 max-425:text-[1.4rem] py-xs mt-md border-text-body/30 justify-center rounded-full border font-extrabold tracking-[-0.02em] text-black uppercase"
               >
                 View all reviews
@@ -170,4 +200,4 @@ const AboutWork = () => {
   );
 };
 
-export default AboutWork;
+export default WorkReviews;

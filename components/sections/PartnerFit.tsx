@@ -9,7 +9,7 @@ const PartnerFit = () => {
     <>
       <Section
         id="partner-fit"
-        className="py-3xl relative overflow-hidden bg-black"
+        className="py-3xl max-425:py-xl max-425:px-[3rem] relative overflow-hidden bg-black"
       >
         <div className="absolute top-0 left-1/2 h-full w-full max-w-[144rem] -translate-x-1/2">
           <Starfield className="absolute bottom-[-5rem] left-1/2 z-0 h-[20rem] w-[77rem] -translate-x-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
@@ -24,11 +24,11 @@ const PartnerFit = () => {
                 <span className="text-white/50">and when we will say no.</span>
               </>
             }
-            labelClassName="text-body-01 text-center font-medium tracking-[-0.02em] text-white uppercase"
-            titleClassName="text-heading-02 mt-xs text-center leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
+            labelClassName="text-body-01 max-425:text-[1.4rem] text-center font-medium tracking-[-0.02em] text-white uppercase"
+            titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs text-center leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
           />
 
-          <div className="gap-md mt-2xl grid grid-cols-2 items-start">
+          <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {partnerFit.map(
               ({ id, icon: Icon, title, points, note, isPositive }) => (
                 <div
@@ -39,8 +39,8 @@ const PartnerFit = () => {
                   //
                   // The second card sits lower, so the pair reads as a
                   // preference rather than as two equal options.
-                  className={`group p-lg rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC] ${
-                    isPositive ? "" : "mt-md"
+                  className={`group p-lg max-425:p-md rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC] ${
+                    isPositive ? "" : "mt-md max-425:mt-0"
                   }`}
                 >
                   <Icon
@@ -51,7 +51,7 @@ const PartnerFit = () => {
                   />
 
                   {/* h3, since the section heading above is the h2. */}
-                  <h3 className="text-subheading-01 mt-md font-bold tracking-[-0.04em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
+                  <h3 className="text-subheading-01 max-425:text-[2rem] mt-md max-425:mt-sm font-bold tracking-[-0.04em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
                     {title}
                   </h3>
 
@@ -63,10 +63,10 @@ const PartnerFit = () => {
                             point that wraps. */}
                         <span
                           aria-hidden="true"
-                          className="mt-[1rem] size-[0.4rem] shrink-0 rounded-full bg-white transition-colors duration-300 group-hover:bg-black group-active:bg-black"
+                          className="max-425:mt-[0.9rem] mt-[1rem] size-[0.4rem] shrink-0 rounded-full bg-white transition-colors duration-300 group-hover:bg-black group-active:bg-black"
                         />
 
-                        <span className="text-body-03 leading-[2.4rem] tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
+                        <span className="text-body-03 max-425:text-[1.4rem] max-425:leading-[2.2rem] leading-[2.4rem] tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
                           {point}
                         </span>
                       </li>
@@ -74,7 +74,7 @@ const PartnerFit = () => {
                   </ul>
 
                   {note && (
-                    <p className="text-body-04 group-hover:text-text-body group-active:text-text-body mt-md leading-[2rem] tracking-[-0.02em] text-white/60 transition-colors duration-300">
+                    <p className="text-body-04 max-425:text-[1.2rem] max-425:leading-[1.8rem] group-hover:text-text-body group-active:text-text-body mt-md max-425:mt-sm leading-[2rem] tracking-[-0.02em] text-white/60 transition-colors duration-300">
                       {note}
                     </p>
                   )}

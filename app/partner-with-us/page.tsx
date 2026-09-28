@@ -16,7 +16,6 @@ const PartnerWithUs = () => {
       <PartnerCostComparison />
       <PartnerHandover />
       <PartnerFit />
-      {/* TODO: the copy, the project and the review are placeholders. */}
       <WorkReviews
         id="partner-work-reviews"
         label="Work + reviews"
@@ -29,8 +28,6 @@ const PartnerWithUs = () => {
         project={partnerShowcase}
         review={partnerReview}
       />
-
-      {/* TODO: placeholder questions until the real ones are written. */}
       <Faqs
         id="partner-faqs"
         label="Agency questions"

@@ -6,7 +6,10 @@ import SectionHeading from "../ui/SectionHeading";
 const PartnerCostComparison = () => {
   return (
     <>
-      <Section id="cost-comparison" className="bg-blue/10 py-3xl">
+      <Section
+        id="cost-comparison"
+        className="bg-blue/10 py-3xl max-425:py-xl max-425:px-[3rem]"
+      >
         <Container>
           <SectionHeading
             label="Cost comparison"
@@ -16,22 +19,23 @@ const PartnerCostComparison = () => {
                 <span className="text-black/50">a partner agency.</span>
               </>
             }
-            labelClassName="text-body-01 font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-heading-02 mt-xs max-w-[100rem] leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
+            className="max-425:text-center"
+            labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
+            titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs max-w-[100rem] leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
           />
 
-          <div className="gap-md mt-2xl grid grid-cols-2 items-start">
+          <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {costComparison.map(
               ({ id, title, rows, totalLabel, totalValue, isFeatured }) => (
                 <div
                   key={id}
-                  className={`p-md rounded-md border border-[#CCCCCC] ${
+                  className={`p-md max-425:p-sm rounded-md border border-[#CCCCCC] ${
                     isFeatured ? "bg-blue" : "bg-white"
                   }`}
                 >
                   {/* h3, since the section heading above is the h2. */}
                   <h3
-                    className={`text-subheading-01 font-bold tracking-[-0.04em] ${
+                    className={`text-subheading-01 max-425:text-[2rem] font-bold tracking-[-0.04em] ${
                       isFeatured ? "text-white" : "text-black"
                     }`}
                   >
@@ -39,7 +43,7 @@ const PartnerCostComparison = () => {
                   </h3>
 
                   <div
-                    className={`p-md mt-md rounded-md ${
+                    className={`p-md mt-md max-425:p-sm max-425:mt-sm rounded-md ${
                       isFeatured ? "bg-white" : "bg-grey/30"
                     }`}
                   >
@@ -49,13 +53,15 @@ const PartnerCostComparison = () => {
                       {rows.map(({ id: rowId, label, value }) => (
                         <div
                           key={rowId}
-                          className="gap-sm py-sm flex items-center justify-between"
+                          className="gap-sm max-425:py-[1.4rem] py-sm flex items-center justify-between"
                         >
-                          <dt className="text-body-03 text-text-body tracking-[-0.02em]">
+                          <dt className="text-body-03 max-425:text-[1.4rem] text-text-body tracking-[-0.02em]">
                             {label}
                           </dt>
 
-                          <dd className="text-body-03 shrink-0 font-bold tracking-[-0.02em] text-black">
+                          {/* Free to wrap at 425, where the longer values no
+                              longer fit beside their label on one line. */}
+                          <dd className="text-body-03 max-425:text-[1.4rem] max-425:shrink max-425:text-right shrink-0 font-bold tracking-[-0.02em] text-black">
                             {value}
                           </dd>
                         </div>
@@ -64,14 +70,14 @@ const PartnerCostComparison = () => {
                       {/* The line the column exists to make, so it sits apart
                           from the rows rather than as another one of them. */}
                       <div
-                        className={`gap-sm px-sm py-sm mt-sm flex items-center justify-between rounded-sm ${
+                        className={`gap-sm px-sm py-sm max-425:px-[1.4rem] max-425:py-[1.4rem] mt-sm flex items-center justify-between rounded-sm ${
                           isFeatured
                             ? "bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)]"
                             : "bg-grey/60"
                         }`}
                       >
                         <dt
-                          className={`text-body-03 tracking-[-0.02em] ${
+                          className={`text-body-03 max-425:text-[1.4rem] tracking-[-0.02em] ${
                             isFeatured ? "text-white" : "text-text-body"
                           }`}
                         >
@@ -79,7 +85,7 @@ const PartnerCostComparison = () => {
                         </dt>
 
                         <dd
-                          className={`text-body-01 shrink-0 font-bold tracking-[-0.02em] ${
+                          className={`text-body-01 max-425:text-[1.8rem] max-425:shrink max-425:text-right shrink-0 font-bold tracking-[-0.02em] ${
                             isFeatured ? "text-white" : "text-black"
                           }`}
                         >

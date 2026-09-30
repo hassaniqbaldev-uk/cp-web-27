@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** The words in the pill under the cursor. */
-const LABEL = "you";
-
 // Only where there is a real pointer to replace, and only for anyone who has
 // not asked for less motion. Everywhere else the system cursor stays.
 const FINE_POINTER_QUERY = "(hover: hover) and (pointer: fine)";
@@ -72,12 +69,12 @@ const SETTINGS = {
   fade: 0.2,
 };
 
-// The arrow runs pink to orange: the yellow end of the logo's range is too
-// faint on the white sections for a shape that has to be read. The loose
-// sparkles take the whole range, yellow included.
-const PINK = [236, 53, 147];
-const ORANGE = [236, 145, 34];
-const YELLOW = [255, 228, 0];
+/** "#3078FF" to [48, 120, 255]. */
+const toRgb = (hex: string) => [
+  parseInt(hex.slice(1, 3), 16),
+  parseInt(hex.slice(3, 5), 16),
+  parseInt(hex.slice(5, 7), 16),
+];
 
 const mix = (from: number[], to: number[], t: number) =>
   `rgb(${from.map((c, i) => Math.round(c + (to[i] - c) * t)).join(",")})`;
@@ -109,8 +106,9 @@ type ArrowParticle = {
   twinkle: number;
 };
 
-/** The arrow laid out as a grid of particles, once, since it never changes. */
-const buildArrow = () => {
+/** The arrow laid out as a grid of particles, coloured from its tip to its
+ *  tail. Built once per set of colours, since the shape never changes. */
+const buildArrow = (from: number[], to: number[]) => {
   const outline = ARROW_OUTLINE.map(([x, y]) => [
     x * ARROW.scale,
     y * ARROW.scale,
@@ -130,8 +128,8 @@ const buildArrow = () => {
       particles.push({
         x,
         y,
-        // Pink at the tip, orange towards the tail.
-        color: mix(PINK, ORANGE, Math.min(1, (x + y) / (width + height))),
+        // The tip colour at the tip, turning to the tail colour down it.
+        color: mix(from, to, Math.min(1, (x + y) / (width + height))),
         phase: Math.random() * Math.PI * 2,
         twinkle: between(3, 7),
       });
@@ -154,13 +152,43 @@ type Sparkle = {
   phase: number;
 };
 
+type SparkleCursorProps = {
+  /** The words in the pill under the cursor. */
+  label?: string;
+  /**
+   * The pill's colours, as Tailwind classes, e.g. "bg-blue text-white".
+   * Keep it a complete, literal class string — Tailwind scans source files
+   * for full class names, so anything built by concatenation will not be
+   * generated.
+   */
+  labelClassName?: string;
+  /** The arrow's colour at its tip, and at its tail, as hex. Both want to be
+   *  dark enough to read on the site's white sections. */
+  arrowFrom?: string;
+  arrowTo?: string;
+  /** The range the loose sparkles pick from, as hex. These only have to
+   *  glint, so the far end can be paler than the arrow's. */
+  sparkleFrom?: string;
+  sparkleTo?: string;
+};
+
 /**
  * A cursor made of the site's sparkles: the pointer itself drawn in twinkling
  * particles, loose ones breaking off it, and a label beneath. Replaces the
  * system cursor across the whole site on devices with a mouse; touch screens
  * and reduced motion keep the ordinary one.
+ *
+ * Defaults to the site's blue, run lighter down the arrow and paler still in
+ * the loose sparkles.
  */
-export default function SparkleCursor() {
+export default function SparkleCursor({
+  label = "you",
+  labelClassName = "bg-blue text-white",
+  arrowFrom = "#3078FF",
+  arrowTo = "#7AA8FF",
+  sparkleFrom = "#3078FF",
+  sparkleTo = "#A9C8FF",
+}: SparkleCursorProps) {
   const [isEnabled, setIsEnabled] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -185,15 +213,17 @@ export default function SparkleCursor() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const label = labelRef.current;
+    const pill = labelRef.current;
     const context = canvas?.getContext("2d");
 
-    if (!isEnabled || !canvas || !label || !context) return;
+    if (!isEnabled || !canvas || !pill || !context) return;
 
     const root = document.documentElement;
     root.classList.add(ACTIVE_CLASS);
 
-    const arrow = buildArrow();
+    const arrow = buildArrow(toRgb(arrowFrom), toRgb(arrowTo));
+    const sparkleStart = toRgb(sparkleFrom);
+    const sparkleEnd = toRgb(sparkleTo);
 
     let sparkles: Sparkle[] = [];
     let frame = 0;
@@ -237,7 +267,7 @@ export default function SparkleCursor() {
         age: 0,
         life: between(SETTINGS.minLife, SETTINGS.maxLife),
         size: between(SETTINGS.minSize, SETTINGS.maxSize),
-        color: mix(PINK, YELLOW, Math.random()),
+        color: mix(sparkleStart, sparkleEnd, Math.random()),
         twinkle: between(10, 22),
         phase: Math.random() * Math.PI * 2,
       });
@@ -324,14 +354,14 @@ export default function SparkleCursor() {
 
       // Written straight to the element rather than through state, since a
       // render a frame would cost more than the move itself.
-      label.style.transform = `translate3d(${tip.x + SETTINGS.labelX}px, ${
+      pill.style.transform = `translate3d(${tip.x + SETTINGS.labelX}px, ${
         tip.y + arrow.height + SETTINGS.labelGap
       }px, 0)`;
     };
 
     const show = (isVisible: boolean) => {
       isPointerInside = isVisible;
-      label.style.opacity = isVisible ? "1" : "0";
+      pill.style.opacity = isVisible ? "1" : "0";
     };
 
     const onPointerMove = (event: PointerEvent) => {
@@ -378,7 +408,7 @@ export default function SparkleCursor() {
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
-  }, [isEnabled]);
+  }, [isEnabled, arrowFrom, arrowTo, sparkleFrom, sparkleTo]);
 
   if (!isEnabled) return null;
 
@@ -395,9 +425,9 @@ export default function SparkleCursor() {
       <span
         ref={labelRef}
         aria-hidden="true"
-        className="bg-dark-pink pointer-events-none fixed top-0 left-0 z-[10000] rounded-full px-[1.2rem] py-[0.5rem] text-[1.2rem] font-bold tracking-[-0.02em] whitespace-nowrap text-white opacity-0 transition-opacity duration-300 will-change-transform"
+        className={`pointer-events-none fixed top-0 left-0 z-[10000] rounded-full px-[1.2rem] py-[0.5rem] text-[1.2rem] font-bold tracking-[-0.02em] whitespace-nowrap opacity-0 transition-opacity duration-300 will-change-transform ${labelClassName}`}
       >
-        {LABEL}
+        {label}
       </span>
     </>
   );

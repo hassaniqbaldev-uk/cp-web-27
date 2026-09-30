@@ -33,7 +33,17 @@ export default function RootLayout({
 
         <Footer />
 
-        <SparkleCursor />
+        {/* Change any of these to restyle the cursor across the whole site.
+            Colours are full six-digit hex; labelClassName is complete
+            Tailwind classes, written out in full. */}
+        <SparkleCursor
+          label="you"
+          labelClassName="bg-blue text-white"
+          arrowFrom="#3078FF"
+          arrowTo="#7AA8FF"
+          sparkleFrom="#3078FF"
+          sparkleTo="#A9C8FF"
+        />
       </body>
     </html>
   );

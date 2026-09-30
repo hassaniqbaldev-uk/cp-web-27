@@ -153,6 +153,19 @@ body {
   pointer-events: none;
 }
 
+/* The sparkle cursor stands in for the system one while it runs, so the
+   system one is hidden everywhere — over links and buttons too, which set
+   their own. Unlayered and important, so no utility can bring it back. Text
+   fields keep a text cursor, so typing still feels like typing. */
+html.has-sparkle-cursor,
+html.has-sparkle-cursor * {
+  cursor: none !important;
+}
+
+html.has-sparkle-cursor :is(input, textarea) {
+  cursor: text !important;
+}
+
 /* Hides the scrollbar while keeping the element scrollable. Only for boxes
    whose scrollability is obvious from an adjacent affordance — a progress rail
    or a fade at the edge — since the bar is otherwise the only sign there is

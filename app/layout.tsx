@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SparkleCursor from "@/components/ui/SparkleCursor";
 import { DM_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
@@ -31,6 +32,8 @@ export default function RootLayout({
         <main>{children}</main>
 
         <Footer />
+
+        <SparkleCursor />
       </body>
     </html>
   );

@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -39,6 +40,7 @@ const Testimonials = () => {
       >
         <Container>
           <SectionHeading
+            reveal
             label="Testimonials"
             title={
               <>
@@ -54,10 +56,11 @@ const Testimonials = () => {
         {/* The track starts at the container's own left gutter but runs on to
             the viewport edge, so slides bleed off to the right. max() keeps
             the margin from going negative on a narrow viewport. */}
-        <div className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
+        {/* The film, then the track of quotes. */}
+        <Stagger className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
           {/* Its own column beside the track, not a slide, so it stays put
               while the quotes move. */}
-          <div className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
+          <FadeUp className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
             <video
               ref={videoRef}
               playsInline
@@ -100,7 +103,7 @@ const Testimonials = () => {
                 </button>
               </div>
             )}
-          </div>
+          </FadeUp>
 
           <div
             // pauseOnMouseEnter only covers pointers. Pausing on focus too
@@ -114,133 +117,138 @@ const Testimonials = () => {
             // last slide to offset from.
             className="mr-md max-425:order-1 max-425:mr-0 relative min-w-0 flex-1"
           >
-            <Swiper
-              onSwiper={(instance) => {
-                swiperRef.current = instance;
-              }}
-              modules={[A11y, Autoplay, Keyboard]}
-              // Autoplay is switched off entirely for readers who ask for
-              // reduced motion, rather than merely slowed down.
-              autoplay={
-                prefersReducedMotion
-                  ? false
-                  : {
-                      delay: 4000,
-                      disableOnInteraction: false,
-                      pauseOnMouseEnter: true,
-                    }
-              }
-              slidesPerView="auto"
-              spaceBetween={30}
-              // There are only three quotes, which do not fill the row on
-              // their own, so the track would end short of the viewport
-              // instead of bleeding past it. Looping keeps it full whatever
-              // the count, and means the carousel never dead-ends.
-              loop
-              keyboard={{ enabled: true }}
-              // Swiper's breakpoints are min-width, so the centred state is the
-              // base and anything above 425 turns it back off — the opposite
-              // way round to the max-* variants everywhere else.
-              centeredSlides
-              breakpoints={{ 426: { centeredSlides: false } }}
-              className="h-full"
-            >
-              {testimonials.map(
-                ({
-                  id,
-                  avatar,
-                  logo,
-                  logoAlt,
-                  logoWidth,
-                  logoHeight,
-                  quote,
-                  name,
-                  role,
-                  rating,
-                }) => (
-                  // The important flag is needed because Swiper's own
-                  // stylesheet sets .swiper-slide to width: 100%, at the same
-                  // specificity as this class.
-                  <SwiperSlide
-                    key={id}
-                    className="max-425:w-full! h-auto! w-[37rem]!"
-                  >
-                    <figure className="bg-grey/40 p-md flex h-full flex-col rounded-md">
-                      <div className="gap-sm flex items-center justify-between">
-                        {/* Decorative: the attribution below already names
+            {/* The track rises as one piece. A looped Swiper moves its slides
+                about to keep the loop going, which would leave any slide
+                revealed on its own caught part way. */}
+            <FadeUp className="h-full">
+              <Swiper
+                onSwiper={(instance) => {
+                  swiperRef.current = instance;
+                }}
+                modules={[A11y, Autoplay, Keyboard]}
+                // Autoplay is switched off entirely for readers who ask for
+                // reduced motion, rather than merely slowed down.
+                autoplay={
+                  prefersReducedMotion
+                    ? false
+                    : {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                      }
+                }
+                slidesPerView="auto"
+                spaceBetween={30}
+                // There are only three quotes, which do not fill the row on
+                // their own, so the track would end short of the viewport
+                // instead of bleeding past it. Looping keeps it full whatever
+                // the count, and means the carousel never dead-ends.
+                loop
+                keyboard={{ enabled: true }}
+                // Swiper's breakpoints are min-width, so the centred state is the
+                // base and anything above 425 turns it back off — the opposite
+                // way round to the max-* variants everywhere else.
+                centeredSlides
+                breakpoints={{ 426: { centeredSlides: false } }}
+                className="h-full"
+              >
+                {testimonials.map(
+                  ({
+                    id,
+                    avatar,
+                    logo,
+                    logoAlt,
+                    logoWidth,
+                    logoHeight,
+                    quote,
+                    name,
+                    role,
+                    rating,
+                  }) => (
+                    // The important flag is needed because Swiper's own
+                    // stylesheet sets .swiper-slide to width: 100%, at the same
+                    // specificity as this class.
+                    <SwiperSlide
+                      key={id}
+                      className="max-425:w-full! h-auto! w-[37rem]!"
+                    >
+                      <figure className="bg-grey/40 p-md flex h-full flex-col rounded-md">
+                        <div className="gap-sm flex items-center justify-between">
+                          {/* Decorative: the attribution below already names
                             the person. */}
+                          <Image
+                            src={avatar}
+                            alt=""
+                            aria-hidden="true"
+                            width={66}
+                            height={66}
+                            className="size-[6.6rem] shrink-0 rounded-full object-cover"
+                          />
+
+                          <span className="px-sm py-xs flex shrink-0 items-center rounded-lg border border-[#E9EBEF] bg-white">
+                            <Image
+                              src={logo}
+                              alt={logoAlt}
+                              width={logoWidth}
+                              height={logoHeight}
+                              className="h-[2rem] w-auto"
+                            />
+                          </span>
+                        </div>
+
                         <Image
-                          src={avatar}
+                          src="/icons/quote-icon.svg"
                           alt=""
-                          aria-hidden="true"
-                          width={66}
-                          height={66}
-                          className="size-[6.6rem] shrink-0 rounded-full object-cover"
+                          width={36}
+                          height={27}
+                          className="mt-md"
                         />
 
-                        <span className="px-sm py-xs flex shrink-0 items-center rounded-lg border border-[#E9EBEF] bg-white">
-                          <Image
-                            src={logo}
-                            alt={logoAlt}
-                            width={logoWidth}
-                            height={logoHeight}
-                            className="h-[2rem] w-auto"
-                          />
-                        </span>
-                      </div>
+                        <blockquote className="text-body-03 text-text-body mt-sm leading-[2.6rem] tracking-[-0.02em]">
+                          {quote}
+                        </blockquote>
 
-                      <Image
-                        src="/icons/quote-icon.svg"
-                        alt=""
-                        width={36}
-                        height={27}
-                        className="mt-md"
-                      />
-
-                      <blockquote className="text-body-03 text-text-body mt-sm leading-[2.6rem] tracking-[-0.02em]">
-                        {quote}
-                      </blockquote>
-
-                      {/* mt-auto pins the attribution to the foot of the card,
+                        {/* mt-auto pins the attribution to the foot of the card,
                           so it lines up across slides of unequal quote length. */}
-                      <figcaption className="gap-sm pt-md mt-auto flex items-end justify-between">
-                        <div className="border-text-body/30 border-l pl-[1.2rem]">
-                          <p className="text-body-03 font-bold tracking-[-0.02em] text-black">
-                            {name}
-                          </p>
+                        <figcaption className="gap-sm pt-md mt-auto flex items-end justify-between">
+                          <div className="border-text-body/30 border-l pl-[1.2rem]">
+                            <p className="text-body-03 font-bold tracking-[-0.02em] text-black">
+                              {name}
+                            </p>
 
-                          <p className="text-body-04 text-text-body tracking-[-0.02em]">
-                            {role}
-                          </p>
-                        </div>
+                            <p className="text-body-04 text-text-body tracking-[-0.02em]">
+                              {role}
+                            </p>
+                          </div>
 
-                        <div className="flex flex-col items-end">
-                          {/* The stars are a picture of the score, so the
+                          <div className="flex flex-col items-end">
+                            {/* The stars are a picture of the score, so the
                               figure beside them carries it in text. */}
-                          <span aria-hidden="true" className="flex">
-                            {Array.from({ length: 5 }, (_, index) => (
-                              <Star
-                                key={index}
-                                size={12}
-                                className={
-                                  index < Math.round(rating)
-                                    ? "fill-orange text-orange"
-                                    : "text-text-body/30"
-                                }
-                              />
-                            ))}
-                          </span>
+                            <span aria-hidden="true" className="flex">
+                              {Array.from({ length: 5 }, (_, index) => (
+                                <Star
+                                  key={index}
+                                  size={12}
+                                  className={
+                                    index < Math.round(rating)
+                                      ? "fill-orange text-orange"
+                                      : "text-text-body/30"
+                                  }
+                                />
+                              ))}
+                            </span>
 
-                          <p className="text-body-04 text-orange tracking-[-0.02em]">
-                            {rating.toFixed(1)} Rating
-                          </p>
-                        </div>
-                      </figcaption>
-                    </figure>
-                  </SwiperSlide>
-                ),
-              )}
-            </Swiper>
+                            <p className="text-body-04 text-orange tracking-[-0.02em]">
+                              {rating.toFixed(1)} Rating
+                            </p>
+                          </div>
+                        </figcaption>
+                      </figure>
+                    </SwiperSlide>
+                  ),
+                )}
+              </Swiper>
+            </FadeUp>
 
             {/* Sit over each end of the track so cards fade out rather than
                 being cut off. pointer-events-none keeps them from swallowing
@@ -255,7 +263,7 @@ const Testimonials = () => {
               className="max-425:hidden pointer-events-none absolute inset-y-0 right-0 z-10 w-[6rem] bg-linear-to-l from-white to-transparent"
             />
           </div>
-        </div>
+        </Stagger>
       </Section>
     </>
   );

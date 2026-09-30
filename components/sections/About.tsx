@@ -12,18 +12,17 @@ const About = () => {
     <>
       <Section className="py-3xl max-425:px-[2rem] max-425:py-xl">
         <Container className="bg-grey/40 max-425:pt-[5rem] pt-2xl max-425:pb-[2rem] pb-lg px-2xl max-425:px-[2rem] relative rounded-md">
-          <FadeUp>
-            <SectionHeading
-              label="About Creative Pixels"
-              title="Strategy first always."
-              subtitle={
-                "We're a UK digital agency combining strategy, design and technology to build websites, ecommerce experiences and digital products that solve real business problems. Senior people stay involved from the first conversation through launch - and beyond."
-              }
-              labelClassName="text-body-01 max-425:text-[1.4rem] text-center font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] text-center mt-xs mb-md max-425:mb-sm font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
-              subtitleClassName="text-body-02 text-center leading-[2.8rem] text-text-body tracking-[-0.02em] max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:max-w-[30rem]"
-            />
-          </FadeUp>
+          <SectionHeading
+            reveal
+            label="About Creative Pixels"
+            title="Strategy first always."
+            subtitle={
+              "We're a UK digital agency combining strategy, design and technology to build websites, ecommerce experiences and digital products that solve real business problems. Senior people stay involved from the first conversation through launch - and beyond."
+            }
+            labelClassName="text-body-01 max-425:text-[1.4rem] text-center font-medium tracking-[-0.02em] text-black uppercase"
+            titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] text-center mt-xs mb-md max-425:mb-sm font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
+            subtitleClassName="text-body-02 text-center leading-[2.8rem] text-text-body tracking-[-0.02em] max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:max-w-[30rem]"
+          />
 
           {/* The highlights, the button, the photo and the quote follow one
               another in, in source order. */}

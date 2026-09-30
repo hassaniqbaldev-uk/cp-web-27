@@ -1,6 +1,7 @@
 import { contactLinks } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import ContactForm from "../ui/ContactForm";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -17,6 +18,7 @@ const Contact = () => {
           <div className="gap-lg max-425:gap-lg max-425:flex-col max-425:items-start flex items-center justify-between">
             <div className="max-425:w-full w-[48.2rem]">
               <SectionHeading
+                reveal
                 label="Contact details"
                 title={
                   <>
@@ -29,9 +31,10 @@ const Contact = () => {
                 subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:text-center text-text-body mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
-              <ul className="mt-2xl max-425:mt-lg flex flex-col">
+              {/* The three ways to reach us, one after another. */}
+              <Stagger as="ul" className="mt-2xl max-425:mt-lg flex flex-col">
                 {contactLinks.map(({ id, icon: Icon, label, href }) => (
-                  <li key={id}>
+                  <FadeUp as="li" key={id}>
                     <Link
                       href={href}
                       className="gap-sm py-sm border-text-body/20 flex items-center justify-between border-b"
@@ -56,12 +59,13 @@ const Contact = () => {
                         className="max-425:size-[1.8rem] shrink-0 text-black"
                       />
                     </Link>
-                  </li>
+                  </FadeUp>
                 ))}
-              </ul>
+              </Stagger>
             </div>
 
-            <div className="max-425:px-[1rem]">
+            {/* The form rises as one piece, with its white panel. */}
+            <FadeUp className="max-425:px-[1rem]">
               <div className="max-425:w-full relative w-[58.5rem]">
                 <span
                   aria-hidden="true"
@@ -72,7 +76,7 @@ const Contact = () => {
                   <ContactForm />
                 </div>
               </div>
-            </div>
+            </FadeUp>
           </div>
         </Container>
       </Section>

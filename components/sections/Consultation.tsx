@@ -1,5 +1,6 @@
 import { consultationBenefits } from "@/config/common";
 import Image from "next/image";
+import FadeUp from "../animations/FadeUp";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -23,6 +24,7 @@ const Consultation = () => {
           <div className="gap-lg max-425:flex-col max-425:items-center max-425:text-center flex items-center justify-between">
             <div className="max-425:w-full max-425:items-center flex w-[64rem] flex-col items-start">
               <SectionHeading
+                reveal
                 label="Book your September slot"
                 title={
                   <>
@@ -43,15 +45,22 @@ const Consultation = () => {
                 subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] text-white max-w-[38rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
-              <Button
-                href="/contact"
-                className="text-body-03 max-425:text-[1.4rem] max-425:w-full max-425:mt-md px-sm py-xs mt-lg rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
-              >
-                Request a growth review
-              </Button>
+              {/* flex, so the wrapper adds no line box beneath the button and
+                  w-full still stretches it at 425. */}
+              <FadeUp className="max-425:w-full flex">
+                <Button
+                  href="/contact"
+                  className="text-body-03 max-425:text-[1.4rem] max-425:w-full max-425:mt-md px-sm py-xs mt-lg rounded-xl bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+                >
+                  Request a growth review
+                </Button>
+              </FadeUp>
             </div>
 
-            <div className="gradient-border p-lg max-425:w-full max-425:p-md w-[45rem] rounded-md bg-white/20 backdrop-blur-[10px] [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
+            {/* The call card rises as one piece; its rules are drawn over the
+                grid, so the items inside it stay put rather than moving
+                across them. */}
+            <FadeUp className="gradient-border p-lg max-425:w-full max-425:p-md w-[45rem] rounded-md bg-white/20 backdrop-blur-[10px] [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
               <div className="gap-sm max-425:text-left flex items-center">
                 {/* Decorative: the name is already in the text beside it. */}
                 <Image
@@ -134,7 +143,7 @@ const Consultation = () => {
                   className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/30"
                 />
               </div>
-            </div>
+            </FadeUp>
           </div>
         </Container>
       </Section>

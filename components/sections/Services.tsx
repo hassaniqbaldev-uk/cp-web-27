@@ -17,22 +17,21 @@ const Services = () => {
         <Container>
           {/* The heading, then the button. */}
           <Stagger className="gap-sm max-425:gap-[3.5rem] max-425:items-center max-425:flex-col max-425:text-center flex items-end justify-between">
-            <FadeUp>
-              <SectionHeading
-                label="Our Services"
-                title={
-                  <>
-                    <span className="mr-[-0.07em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
-                      Four disciplines.
-                    </span>{" "}
-                    <br />
-                    One joined-up team.
-                  </>
-                }
-                labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-heading-02 max-425:max-w-[31rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs max-425:mt-[.5rem] font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
-              />
-            </FadeUp>
+            <SectionHeading
+              reveal
+              label="Our Services"
+              title={
+                <>
+                  <span className="mr-[-0.07em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
+                    Four disciplines.
+                  </span>{" "}
+                  <br />
+                  One joined-up team.
+                </>
+              }
+              labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
+              titleClassName="text-heading-02 max-425:max-w-[31rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs max-425:mt-[.5rem] font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
+            />
 
             {/* flex, so the wrapper adds no line box beneath the button. */}
             <FadeUp className="flex">

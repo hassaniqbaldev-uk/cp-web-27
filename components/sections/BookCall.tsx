@@ -2,6 +2,7 @@
 
 import { contactLinks } from "@/config/common";
 import { useState } from "react";
+import FadeUp, { RevealScope } from "../animations/FadeUp";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import ParticleLogo from "../ui/ParticleLogo";
@@ -85,6 +86,12 @@ type BookCallProps = {
    */
   id?: string;
   className?: string;
+  /**
+   * Reveals the heading, the button and the artwork as they scroll into
+   * view. Off by default, so the section only moves on the pages that ask it
+   * to.
+   */
+  reveal?: boolean;
 };
 
 const BookCall = ({
@@ -102,6 +109,7 @@ const BookCall = ({
   // catch particles pushed outwards, and there is no room for that once the
   // artwork is as wide as the screen.
   className = "py-xl max-425:px-[3rem] max-425:overflow-hidden bg-black",
+  reveal = false,
 }: BookCallProps) => {
   // One id rather than a flag each, so opening one closes the other.
   const [openId, setOpenId] = useState<string | null>(null);
@@ -109,87 +117,94 @@ const BookCall = ({
   return (
     <>
       <Section id={id} className={className}>
-        <Container>
-          <div className="gap-lg max-425:grid-cols-1 grid grid-cols-2 items-center">
-            <div className="max-425:items-center flex flex-col items-start">
-              <SectionHeading
-                label={label}
-                title={title}
-                subtitle={subtitle}
-                labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName="text-heading-02 max-425:text-center max-425:mx-auto max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
-                subtitleClassName="text-body-02 max-425:text-body-03 max-425:text-center text-grey mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
-              />
+        <RevealScope enabled={reveal}>
+          <Container>
+            <div className="gap-lg max-425:grid-cols-1 grid grid-cols-2 items-center">
+              <div className="max-425:items-center flex flex-col items-start">
+                <SectionHeading
+                  reveal={reveal}
+                  label={label}
+                  title={title}
+                  subtitle={subtitle}
+                  labelClassName="text-body-01 max-425:text-center max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
+                  titleClassName="text-heading-02 max-425:text-center max-425:mx-auto max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[30rem] mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
+                  subtitleClassName="text-body-02 max-425:text-body-03 max-425:text-center text-grey mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
+                />
 
-              <Button
-                href={ctaHref}
-                className="text-body-03 max-425:text-body-04 px-sm py-xs mt-lg rounded-full bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
-              >
-                {ctaLabel}
-              </Button>
-            </div>
+                {/* flex, so the wrapper adds no line box beneath the button. */}
+                <FadeUp className="flex">
+                  <Button
+                    href={ctaHref}
+                    className="text-body-03 max-425:text-body-04 px-sm py-xs mt-lg rounded-full bg-white font-extrabold tracking-[-0.02em] text-black uppercase"
+                  >
+                    {ctaLabel}
+                  </Button>
+                </FadeUp>
+              </div>
 
-            {/* The width sits on the wrapper, not the logo: a grid item sizes
+              {/* The width sits on the wrapper, not the logo: a grid item sizes
                 to its content, so a w-full child of an auto-width parent
-                collapses and the canvas never gets a size to draw into. */}
-            <div className="relative w-full">
-              <ParticleLogo
-                svg={logoSvg}
-                svgSrc={logoSvg ? undefined : logoSvgSrc}
-                label={logoLabel}
-                className="aspect-square w-full"
-              />
+                collapses and the canvas never gets a size to draw into. The
+                artwork and its popovers rise together. */}
+              <FadeUp className="relative w-full">
+                <ParticleLogo
+                  svg={logoSvg}
+                  svgSrc={logoSvg ? undefined : logoSvgSrc}
+                  label={logoLabel}
+                  className="aspect-square w-full"
+                />
 
-              {showContacts &&
-                floatingContacts.map(
-                  ({
-                    className: positionClassName,
-                    panelPositionClassName,
-                    panelOrigin,
-                    link,
-                  }) => {
-                    if (!link) return null;
+                {showContacts &&
+                  floatingContacts.map(
+                    ({
+                      className: positionClassName,
+                      panelPositionClassName,
+                      panelOrigin,
+                      link,
+                    }) => {
+                      if (!link) return null;
 
-                    const {
-                      id: contactId,
-                      icon: Icon,
-                      label: name,
-                      href,
-                    } = link;
+                      const {
+                        id: contactId,
+                        icon: Icon,
+                        label: name,
+                        href,
+                      } = link;
 
-                    return (
-                      <Popover
-                        key={contactId}
-                        title={name}
-                        href={href}
-                        className={positionClassName}
-                        panelPositionClassName={panelPositionClassName}
-                        panelOrigin={panelOrigin}
-                        isOpen={openId === contactId}
-                        onOpenChange={(open) =>
-                          setOpenId(open ? contactId : null)
-                        }
-                        squareClassName={`${contactRingClassName} flex size-[6rem] max-425:size-[4rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]`}
-                        panelClassName={`${contactRingClassName} items-center rounded-full bg-white/20 px-[2rem] py-[1.2rem] backdrop-blur-[20px]`}
-                        trigger={
-                          <Icon
-                            aria-hidden="true"
-                            size={22}
-                            strokeWidth={2}
-                            className="max-425:size-[1.8rem] text-white"
-                          />
-                        }
-                      >
-                        <span className="text-subheading-01 max-425:text-[1.6rem] font-medium tracking-[-0.04em] whitespace-nowrap text-white">
-                          {name}
-                        </span>
-                      </Popover>
-                    );
-                  },
-                )}
+                      return (
+                        <Popover
+                          key={contactId}
+                          title={name}
+                          href={href}
+                          className={positionClassName}
+                          panelPositionClassName={panelPositionClassName}
+                          panelOrigin={panelOrigin}
+                          isOpen={openId === contactId}
+                          onOpenChange={(open) =>
+                            setOpenId(open ? contactId : null)
+                          }
+                          squareClassName={`${contactRingClassName} flex size-[6rem] max-425:size-[4rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]`}
+                          panelClassName={`${contactRingClassName} items-center rounded-full bg-white/20 px-[2rem] py-[1.2rem] backdrop-blur-[20px]`}
+                          trigger={
+                            <Icon
+                              aria-hidden="true"
+                              size={22}
+                              strokeWidth={2}
+                              className="max-425:size-[1.8rem] text-white"
+                            />
+                          }
+                        >
+                          <span className="text-subheading-01 max-425:text-[1.6rem] font-medium tracking-[-0.04em] whitespace-nowrap text-white">
+                            {name}
+                          </span>
+                        </Popover>
+                      );
+                    },
+                  )}
+              </FadeUp>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </RevealScope>
       </Section>
     </>
   );

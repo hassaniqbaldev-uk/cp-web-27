@@ -10,6 +10,7 @@ import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
 import { expertiseCards } from "@/config/common";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Starfield from "../ui/Starfield";
 import Section from "../ui/Section";
@@ -28,6 +29,7 @@ const Expertise = () => {
 
         <Container className="relative z-10">
           <SectionHeading
+            reveal
             label="Our Expertise"
             title={
               <>
@@ -45,60 +47,68 @@ const Expertise = () => {
           onBlurCapture={() => swiperRef.current?.autoplay?.start()}
           className="mt-2xl max-425:mt-lg relative z-10 ml-[max(0px,calc((100%-120rem)/2))]"
         >
-          <Swiper
-            onSwiper={(instance) => {
-              swiperRef.current = instance;
-            }}
-            modules={[A11y, Autoplay, Keyboard]}
+          {/* The cards follow one another in. */}
+          <Stagger>
+            <Swiper
+              onSwiper={(instance) => {
+                swiperRef.current = instance;
+              }}
+              modules={[A11y, Autoplay, Keyboard]}
 
-            autoplay={
-              prefersReducedMotion
-                ? false
-                : {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                  }
-            }
-            slidesPerView="auto"
-            spaceBetween={10}
-            slidesOffsetAfter={0}
-            keyboard={{ enabled: true }}
-            // Swiper's breakpoints are min-width, so the narrow state is the
-            // base and anything above 425 restores the wide one — the opposite
-            // way round to the max-* variants everywhere else.
-            centeredSlides
-            breakpoints={{
-              426: { centeredSlides: false, slidesOffsetAfter: 30 },
-            }}
-          >
-            {expertiseCards.map(
-              ({ id, icon: Icon, title, description, hoverClassName }) => (
-                <SwiperSlide key={id} className="max-425:w-full! w-[38rem]!">
-                  <div
-                    className={`p-lg max-425:p-md max-425:h-[30rem] flex h-[45rem] w-full flex-col justify-between rounded-md bg-[#454545] transition duration-300 ${hoverClassName}`}
-                  >
-                    <Icon
-                      aria-hidden="true"
-                      size={50}
-                      strokeWidth={1.5}
-                      className="shrink-0 text-white"
-                    />
+              autoplay={
+                prefersReducedMotion
+                  ? false
+                  : {
+                      delay: 3000,
+                      disableOnInteraction: false,
+                      pauseOnMouseEnter: true,
+                    }
+              }
+              slidesPerView="auto"
+              spaceBetween={10}
+              slidesOffsetAfter={0}
+              keyboard={{ enabled: true }}
+              // Swiper's breakpoints are min-width, so the narrow state is the
+              // base and anything above 425 restores the wide one — the opposite
+              // way round to the max-* variants everywhere else.
+              centeredSlides
+              breakpoints={{
+                426: { centeredSlides: false, slidesOffsetAfter: 30 },
+              }}
+            >
+              {expertiseCards.map(
+                ({ id, icon: Icon, title, description, hoverClassName }) => (
+                  <SwiperSlide key={id} className="max-425:w-full! w-[38rem]!">
+                    {/* The reveal sits on a wrapper rather than the card: the
+                        card's transition class would otherwise catch the
+                        movement too and drag it out. */}
+                    <FadeUp>
+                      <div
+                        className={`p-lg max-425:p-md max-425:h-[30rem] flex h-[45rem] w-full flex-col justify-between rounded-md bg-[#454545] transition duration-300 ${hoverClassName}`}
+                      >
+                        <Icon
+                          aria-hidden="true"
+                          size={50}
+                          strokeWidth={1.5}
+                          className="shrink-0 text-white"
+                        />
 
-                    <div className="flex flex-col items-start">
-                      <h3 className="text-subheading-01 font-bold tracking-[-0.04em] text-white">
-                        {title}
-                      </h3>
+                        <div className="flex flex-col items-start">
+                          <h3 className="text-subheading-01 font-bold tracking-[-0.04em] text-white">
+                            {title}
+                          </h3>
 
-                      <p className="text-body-03 mt-xs leading-[2.6rem] tracking-[-0.02em] text-white/70">
-                        {description}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ),
-            )}
-          </Swiper>
+                          <p className="text-body-03 mt-xs leading-[2.6rem] tracking-[-0.02em] text-white/70">
+                            {description}
+                          </p>
+                        </div>
+                      </div>
+                    </FadeUp>
+                  </SwiperSlide>
+                ),
+              )}
+            </Swiper>
+          </Stagger>
 
           <span
             aria-hidden="true"

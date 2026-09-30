@@ -1,6 +1,7 @@
 import { workProjects } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import Button from "../ui/Button";
 import CircularTextButton from "../ui/CircularTextButton";
 import { Container } from "../ui/Container";
@@ -17,7 +18,7 @@ const Work = () => {
           <div className="gap-sm max-425:gap-md max-425:flex-col-reverse max-425:items-center relative flex justify-center text-center">
             {/* The wrapper owns the position, leaving the button free to
                 use transform for its magnetic offset. */}
-            <div className="">
+            <FadeUp>
               <CircularTextButton
                 href="/work"
                 image="/images/home/circular-text-projects.png"
@@ -33,10 +34,11 @@ const Work = () => {
                   className="text-black"
                 />
               </CircularTextButton>
-            </div>
+            </FadeUp>
 
             {/* TODO: replace the label, title and subtitle with the real copy. */}
             <SectionHeading
+              reveal
               label="OUR WORK"
               title="Digital done right"
               labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-black uppercase"
@@ -44,10 +46,15 @@ const Work = () => {
             />
           </div>
 
-          <ul className="gap-md max-425:gap-lg max-425:mt-lg mt-2xl max-425:grid-cols-1 grid grid-cols-2 items-start">
+          {/* The projects follow one another in. */}
+          <Stagger
+            as="ul"
+            className="gap-md max-425:gap-lg max-425:mt-lg mt-2xl max-425:grid-cols-1 grid grid-cols-2 items-start"
+          >
             {workProjects.map(
               ({ id, image, imageAlt, title, subtitle, ctaLabel, href }) => (
-                <li
+                <FadeUp
+                  as="li"
                   key={id}
                   className="even:mt-md max-425:even:mt-0 overflow-hidden"
                 >
@@ -84,10 +91,10 @@ const Work = () => {
                       {ctaLabel}
                     </Button>
                   </div>
-                </li>
+                </FadeUp>
               ),
             )}
-          </ul>
+          </Stagger>
         </Container>
       </Section>
     </>

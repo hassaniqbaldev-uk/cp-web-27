@@ -31,6 +31,24 @@ const SETTINGS = {
   maxScale: 1.8,
 };
 
+/**
+ * The formation an `intro` field plays once its artwork is ready: every
+ * particle starts somewhere loose across the field and flies to its place,
+ * fading in as it goes. Milliseconds.
+ */
+const INTRO = {
+  /** Before the first particle sets off, so the header and the copy lead. */
+  delay: 300,
+  /** Each particle's own flight. */
+  duration: 1400,
+  /** Particles set off at random across this window rather than together,
+   *  so the logo gathers rather than snapping into place. */
+  spread: 600,
+};
+
+/** Fast off the mark and settling gently into place. */
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
 type Particle = {
   x: number;
   y: number;
@@ -51,6 +69,11 @@ type Particle = {
   twinkle: number;
   amplitude: number;
   spreadAngle: number;
+  /** Where the intro starts it, as an offset from its place. */
+  ix: number;
+  iy: number;
+  /** When it sets off within the intro's spread, in milliseconds. */
+  introDelay: number;
 };
 
 /** Cheap deterministic hash, so a particle's drift is stable across rebuilds. */
@@ -91,6 +114,17 @@ type ParticleLogoProps = {
   /** Names the whole field, which is one image rather than thousands. */
   label: string;
   className?: string;
+  /**
+   * Forms the artwork on load: the particles start scattered and gather into
+   * it. Off by default, so only the fields that ask for it play it.
+   */
+  intro?: boolean;
+  /**
+   * Called once the intro has formed the artwork. Also called straight away
+   * when there is nothing to wait for — no intro, reduced motion, or artwork
+   * that could not load — so whatever waits on it is never left hidden.
+   */
+  onIntroComplete?: () => void;
 };
 
 /** "#EC3593" to [236, 53, 147]. */
@@ -107,6 +141,8 @@ export default function ParticleLogo({
   gradientTo = "#FFE400",
   label,
   className = "",
+  intro = false,
+  onIntroComplete,
 }: ParticleLogoProps) {
   // Whichever form the artwork arrived in, as something CSS can point at.
   const artworkUrl =
@@ -118,13 +154,32 @@ export default function ParticleLogo({
   // Only set when the field cannot run, so the still artwork has to stand in.
   const [hasFailed, setHasFailed] = useState(false);
 
+  // Kept in a ref so an inline callback from the parent does not tear the
+  // whole field down and rebuild it on every render.
+  const onIntroCompleteRef = useRef(onIntroComplete);
+
+  useEffect(() => {
+    onIntroCompleteRef.current = onIntroComplete;
+  }, [onIntroComplete]);
+
   useEffect(() => {
     const host = hostRef.current;
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
+    // Once only, however many of the paths below reach it.
+    let hasAnnounced = false;
+
+    const announceIntroDone = () => {
+      if (hasAnnounced) return;
+
+      hasAnnounced = true;
+      onIntroCompleteRef.current?.();
+    };
+
     if (!host || !canvas || !context) {
       setHasFailed(true);
+      announceIntroDone();
       return;
     }
 
@@ -154,7 +209,10 @@ export default function ParticleLogo({
     const sampling = document.createElement("canvas");
     const sampler = sampling.getContext("2d", { willReadFrequently: true });
 
-    if (!mask || !sampler) return;
+    if (!mask || !sampler) {
+      announceIntroDone();
+      return;
+    }
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -169,6 +227,12 @@ export default function ParticleLogo({
     let clock = 0;
     let inView = true;
     let ready = false;
+
+    // When the intro's first particle may set off, taken from the moment the
+    // artwork is first laid out. Zero until then. Skipped outright for anyone
+    // who has asked for less motion.
+    let introStart = 0;
+    let isIntroDone = !intro || reduced.matches;
 
     // Starts at zero rather than now, so the field is already running its
     // own pass by the time anyone looks at it.
@@ -223,8 +287,21 @@ export default function ParticleLogo({
 
       context.clearRect(-pad, -pad, width + pad * 2, height + pad * 2);
 
+      const now = performance.now();
+
       for (const p of particles) {
         drift(p);
+
+        // How far through its flight this particle is: 0 while it is still
+        // waiting to set off, 1 once it has landed and for good after that.
+        const landed = isIntroDone
+          ? 1
+          : easeOutCubic(
+              Math.min(
+                1,
+                Math.max(0, (now - introStart - p.introDelay) / INTRO.duration),
+              ),
+            );
 
         const b = p.influence;
         const rgb = SETTINGS.neutral.map((c, i) =>
@@ -232,16 +309,23 @@ export default function ParticleLogo({
         );
 
         context.fillStyle = `rgb(${rgb.join(",")})`;
-        context.globalAlpha = p.alpha + (1 - p.alpha) * b;
+        context.globalAlpha = (p.alpha + (1 - p.alpha) * b) * landed;
 
         const size = SETTINGS.pixelSize * (1 + (SETTINGS.maxScale - 1) * b);
 
         context.fillRect(
-          p.x + p.ax + p.dx - size / 2,
-          p.y + p.ay + p.dy - size / 2,
+          p.x + p.ax + p.dx + p.ix * (1 - landed) - size / 2,
+          p.y + p.ay + p.dy + p.iy * (1 - landed) - size / 2,
           size,
           size,
         );
+      }
+
+      context.globalAlpha = 1;
+
+      if (!isIntroDone && now > introStart + INTRO.spread + INTRO.duration) {
+        isIntroDone = true;
+        announceIntroDone();
       }
     };
 
@@ -484,9 +568,25 @@ export default function ParticleLogo({
               ? SETTINGS.ambientAmplitude * (0.65 + seed(x, y, 5) * 0.35)
               : 0.85,
             spreadAngle: seed(x, y, 6) * Math.PI * 2,
+            // Anywhere across the canvas, slack included, so the loose
+            // particles fill the whole field before they gather.
+            ix: -pad + Math.random() * (width + pad * 2) - x,
+            iy: -pad + Math.random() * (height + pad * 2) - y,
+            introDelay: Math.random() * INTRO.spread,
           });
         }
       }
+
+      // The intro's clock starts the first time there is artwork to form. A
+      // resize part way through reseats the particles but keeps the clock,
+      // so the formation carries on rather than starting again.
+      if (!isIntroDone && !introStart) {
+        introStart = performance.now() + INTRO.delay;
+      }
+
+      // Nothing to form — no intro, or reduced motion — so the artwork is
+      // already complete the moment it is first laid out.
+      if (isIntroDone) announceIntroDone();
 
       pointer.active = false;
       draw();
@@ -517,6 +617,12 @@ export default function ParticleLogo({
       frame = 0;
       lastTime = 0;
       pointer.active = false;
+
+      // Asking for less motion part way through lands the logo at once.
+      if (reduced.matches) {
+        isIntroDone = true;
+        announceIntroDone();
+      }
 
       particles.forEach((p) => {
         p.influence = 0;
@@ -575,7 +681,10 @@ export default function ParticleLogo({
       const parsed = new DOMParser().parseFromString(markup, "image/svg+xml");
       const viewBox = parsed.documentElement.getAttribute("viewBox");
 
-      if (!viewBox) return;
+      if (!viewBox) {
+        announceIntroDone();
+        return;
+      }
 
       [vx, vy, vw, vh] = viewBox.split(/\s+/).map(Number);
 
@@ -616,7 +725,10 @@ export default function ParticleLogo({
       fetch(svgSrc)
         .then((response) => response.text())
         .then(start)
-        .catch(() => setHasFailed(true));
+        .catch(() => {
+          setHasFailed(true);
+          announceIntroDone();
+        });
     } else if (svg) {
       start(svg);
     }
@@ -636,7 +748,7 @@ export default function ParticleLogo({
       reduced.removeEventListener("change", resetMotion);
       image.onload = null;
     };
-  }, [svg, svgSrc, gradientFrom, gradientTo]);
+  }, [svg, svgSrc, gradientFrom, gradientTo, intro]);
 
   return (
     // One image as far as assistive tech is concerned, not thousands of squares.

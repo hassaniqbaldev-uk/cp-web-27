@@ -17,6 +17,7 @@ const PartnerWithUs = () => {
       <PartnerHandover />
       <PartnerFit />
       <WorkReviews
+        reveal
         id="partner-work-reviews"
         label="Work + reviews"
         title={
@@ -29,6 +30,7 @@ const PartnerWithUs = () => {
         review={partnerReview}
       />
       <Faqs
+        reveal
         id="partner-faqs"
         label="Agency questions"
         title={
@@ -41,6 +43,7 @@ const PartnerWithUs = () => {
       />
 
       <BookCall
+        reveal
         id="partner-book-call"
         showContacts={false}
         logoSvgSrc="/images/common/cp-logo-particle.svg"

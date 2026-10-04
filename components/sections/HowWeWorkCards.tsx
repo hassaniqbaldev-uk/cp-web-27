@@ -18,6 +18,7 @@ import "swiper/css";
 import "swiper/css/a11y";
 import "swiper/css/autoplay";
 
+import FadeUp from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 
@@ -140,7 +141,12 @@ const StackedCard = ({ card, index, total, progress }: StackedCardProps) => {
         }}
         className="relative origin-top"
       >
-        <CardBody card={card} />
+        {/* Rises as it scrolls into view, before the stack takes it over.
+            A third element again, so the rise has a transform of its own
+            rather than sharing the scale's. */}
+        <FadeUp>
+          <CardBody card={card} />
+        </FadeUp>
       </motion.div>
     </li>
   );
@@ -186,34 +192,39 @@ const HowWeWorkCards = () => {
               needs sticky positioning and the page's own scroll, which a
               carousel cannot share. */}
           {isNarrow ? (
-            <Swiper
-              modules={[A11y, Autoplay, Keyboard]}
-              slidesPerView={1}
-              spaceBetween={10}
-              keyboard={{ enabled: true }}
-              // Off entirely for anyone who has asked for less motion, rather
-              // than merely slowed down.
-              autoplay={
-                prefersReducedMotion
-                  ? false
-                  : { delay: AUTOPLAY_DELAY, disableOnInteraction: false }
-              }
-              // Held while a finger is down. pauseOnMouseEnter would not do
-              // it: that waits on an emulated mouse event a touch screen may
-              // never send.
-              onTouchStart={(swiper: SwiperClass) => swiper.autoplay?.pause()}
-              onTouchEnd={(swiper: SwiperClass) => swiper.autoplay?.resume()}
-              // Slides are as tall as the tallest card rather than their own
-              // content, so the height does not jump between them.
-              autoHeight={false}
-              onSwiper={(instance: SwiperClass) => instance.update()}
-            >
-              {processCards.map((card) => (
-                <SwiperSlide key={card.id} className="h-auto!">
-                  <CardBody card={card} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            // The carousel rises as one piece. The slides waiting off to the
+            // side would each rise as autoplay first brought them across,
+            // which reads as a fault rather than a reveal.
+            <FadeUp>
+              <Swiper
+                modules={[A11y, Autoplay, Keyboard]}
+                slidesPerView={1}
+                spaceBetween={10}
+                keyboard={{ enabled: true }}
+                // Off entirely for anyone who has asked for less motion, rather
+                // than merely slowed down.
+                autoplay={
+                  prefersReducedMotion
+                    ? false
+                    : { delay: AUTOPLAY_DELAY, disableOnInteraction: false }
+                }
+                // Held while a finger is down. pauseOnMouseEnter would not do
+                // it: that waits on an emulated mouse event a touch screen may
+                // never send.
+                onTouchStart={(swiper: SwiperClass) => swiper.autoplay?.pause()}
+                onTouchEnd={(swiper: SwiperClass) => swiper.autoplay?.resume()}
+                // Slides are as tall as the tallest card rather than their own
+                // content, so the height does not jump between them.
+                autoHeight={false}
+                onSwiper={(instance: SwiperClass) => instance.update()}
+              >
+                {processCards.map((card) => (
+                  <SwiperSlide key={card.id} className="h-auto!">
+                    <CardBody card={card} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </FadeUp>
           ) : (
             /* A list, so six cards announce as six items rather than a run of
                unrelated blocks. */

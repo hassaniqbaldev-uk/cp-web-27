@@ -1,4 +1,5 @@
 import { behaviours } from "@/config/common";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Starfield from "../ui/Starfield";
 import Section from "../ui/Section";
@@ -19,6 +20,7 @@ const AboutBehaviours = () => {
 
         <Container className="relative z-10">
           <SectionHeading
+            reveal
             label="How we actually operate"
             title={
               <>
@@ -29,34 +31,47 @@ const AboutBehaviours = () => {
             titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[27rem] max-425:mx-auto leading-[8rem] mt-xs text-center font-extrabold tracking-[-0.07em] text-white"
           />
 
-          <ul className="gap-md mt-xl max-425:grid-cols-1 grid grid-cols-2 items-start">
+          {/* The cards, one after another. */}
+          <Stagger
+            as="ul"
+            className="gap-md mt-xl max-425:grid-cols-1 grid grid-cols-2 items-start"
+          >
             {behaviours.map(
               ({ id, icon: Icon, title, description, hoverClassName }) => (
                 // even:mt picks out the second and fourth cards, so the two
                 // columns stagger rather than reading as flat rows.
-                <li
+                //
+                // The item is what rises and only places the card; the card
+                // itself is the div inside. Its transition class, there for
+                // the hover, would otherwise catch the rise and drag it out.
+                <FadeUp
+                  as="li"
                   key={id}
-                  className={`p-lg max-425:p-md max-425:!mt-[0rem] rounded-md bg-[#1A1A1A] transition duration-300 even:mt-[3rem] ${hoverClassName}`}
+                  className="max-425:!mt-[0rem] even:mt-[3rem]"
                 >
-                  <Icon
-                    aria-hidden="true"
-                    size={50}
-                    strokeWidth={1.5}
-                    className="max-425:size-[3rem] shrink-0 text-white"
-                  />
+                  <div
+                    className={`p-lg max-425:p-md rounded-md bg-[#1A1A1A] transition duration-300 ${hoverClassName}`}
+                  >
+                    <Icon
+                      aria-hidden="true"
+                      size={50}
+                      strokeWidth={1.5}
+                      className="max-425:size-[3rem] shrink-0 text-white"
+                    />
 
-                  {/* h3, since the section heading above is the h2. */}
-                  <h3 className="text-subheading-02 max-425:text-[2.2rem] mt-lg max-425:mt-sm font-bold tracking-[-0.07em] text-white">
-                    {title}
-                  </h3>
+                    {/* h3, since the section heading above is the h2. */}
+                    <h3 className="text-subheading-02 max-425:text-[2.2rem] mt-lg max-425:mt-sm font-bold tracking-[-0.07em] text-white">
+                      {title}
+                    </h3>
 
-                  <p className="text-body-01 max-425:text-[1.4rem] mt-xs tracking-[-0.02em] text-white">
-                    {description}
-                  </p>
-                </li>
+                    <p className="text-body-01 max-425:text-[1.4rem] mt-xs tracking-[-0.02em] text-white">
+                      {description}
+                    </p>
+                  </div>
+                </FadeUp>
               ),
             )}
-          </ul>
+          </Stagger>
         </Container>
       </Section>
     </>

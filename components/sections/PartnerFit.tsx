@@ -1,4 +1,5 @@
 import { partnerFit } from "@/config/common";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -17,6 +18,7 @@ const PartnerFit = () => {
 
         <Container className="relative z-10">
           <SectionHeading
+            reveal
             label="Is it a good fit?"
             title={
               <>
@@ -28,60 +30,66 @@ const PartnerFit = () => {
             titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs text-center leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
           />
 
-          <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
+          {/* The good fit, then the poor one. */}
+          <Stagger className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {partnerFit.map(
               ({ id, icon: Icon, title, points, note, isPositive }) => (
-                <div
+                // The second card sits lower, so the pair reads as a
+                // preference rather than as two equal options.
+                //
+                // This is what rises, and it only places the card. The card
+                // is the div inside: its transition class, there for the
+                // hover, would otherwise catch the rise and drag it out.
+                <FadeUp
                   key={id}
-                  // Both cards are dark until pointed at. active: as well as
-                  // hover:, since Tailwind gates hover: behind
-                  // @media (hover: hover) and a phone never matches it.
-                  //
-                  // The second card sits lower, so the pair reads as a
-                  // preference rather than as two equal options.
-                  className={`group p-lg max-425:p-md rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC] ${
-                    isPositive ? "" : "mt-md max-425:mt-0"
-                  }`}
+                  className={isPositive ? "" : "mt-md max-425:mt-0"}
                 >
-                  <Icon
-                    aria-hidden="true"
-                    size={30}
-                    strokeWidth={2}
-                    className="shrink-0 text-white transition-colors duration-300 group-hover:text-black group-active:text-black"
-                  />
+                  <div
+                    // Both cards are dark until pointed at. active: as well as
+                    // hover:, since Tailwind gates hover: behind
+                    // @media (hover: hover) and a phone never matches it.
+                    className="group p-lg max-425:p-md rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC]"
+                  >
+                    <Icon
+                      aria-hidden="true"
+                      size={30}
+                      strokeWidth={2}
+                      className="shrink-0 text-white transition-colors duration-300 group-hover:text-black group-active:text-black"
+                    />
 
-                  {/* h3, since the section heading above is the h2. */}
-                  <h3 className="text-subheading-01 max-425:text-[2rem] mt-md max-425:mt-sm font-bold tracking-[-0.04em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
-                    {title}
-                  </h3>
+                    {/* h3, since the section heading above is the h2. */}
+                    <h3 className="text-subheading-01 max-425:text-[2rem] mt-md max-425:mt-sm font-bold tracking-[-0.04em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
+                      {title}
+                    </h3>
 
-                  <ul className="gap-xs mt-sm flex flex-col">
-                    {points.map((point) => (
-                      <li key={point} className="gap-xs flex items-start">
-                        {/* The marker is drawn rather than left to the list
+                    <ul className="gap-xs mt-sm flex flex-col">
+                      {points.map((point) => (
+                        <li key={point} className="gap-xs flex items-start">
+                          {/* The marker is drawn rather than left to the list
                             style, so it lines up with the first line of a
                             point that wraps. */}
-                        <span
-                          aria-hidden="true"
-                          className="max-425:mt-[0.9rem] mt-[1rem] size-[0.4rem] shrink-0 rounded-full bg-white transition-colors duration-300 group-hover:bg-black group-active:bg-black"
-                        />
+                          <span
+                            aria-hidden="true"
+                            className="max-425:mt-[0.9rem] mt-[1rem] size-[0.4rem] shrink-0 rounded-full bg-white transition-colors duration-300 group-hover:bg-black group-active:bg-black"
+                          />
 
-                        <span className="text-body-03 max-425:text-[1.4rem] max-425:leading-[2.2rem] leading-[2.4rem] tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
-                          {point}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                          <span className="text-body-03 max-425:text-[1.4rem] max-425:leading-[2.2rem] leading-[2.4rem] tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
+                            {point}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
 
-                  {note && (
-                    <p className="text-body-04 max-425:text-[1.2rem] max-425:leading-[1.8rem] group-hover:text-text-body group-active:text-text-body mt-md max-425:mt-sm leading-[2rem] tracking-[-0.02em] text-white/60 transition-colors duration-300">
-                      {note}
-                    </p>
-                  )}
-                </div>
+                    {note && (
+                      <p className="text-body-04 max-425:text-[1.2rem] max-425:leading-[1.8rem] group-hover:text-text-body group-active:text-text-body mt-md max-425:mt-sm leading-[2rem] tracking-[-0.02em] text-white/60 transition-colors duration-300">
+                        {note}
+                      </p>
+                    )}
+                  </div>
+                </FadeUp>
               ),
             )}
-          </div>
+          </Stagger>
         </Container>
       </Section>
     </>

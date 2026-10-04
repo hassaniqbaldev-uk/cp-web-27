@@ -90,11 +90,11 @@ const Header = () => {
 
   const textClassName = isDark ? "text-black" : "text-white";
 
-  // The home page opens with the header dropping in, ahead of the hero. Only
-  // on the first load there: the header lives in the layout, so moving to the
-  // home page from another one finds it already in place and nothing replays.
+  // Every page opens with the header dropping in, ahead of its hero. Only on
+  // the first load: the header lives in the layout, so moving from one page
+  // to another finds it already in place and nothing replays.
   const prefersReducedMotion = useReducedMotion();
-  const entrance = pathname === "/" && !prefersReducedMotion;
+  const entrance = !prefersReducedMotion;
 
   return (
     <motion.header

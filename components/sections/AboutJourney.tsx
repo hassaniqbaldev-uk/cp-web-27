@@ -1,8 +1,14 @@
 import { journeySteps } from "@/config/common";
+import FadeUp, { LineReveal } from "../animations/FadeUp";
 import DragMarquee from "../ui/DragMarquee";
 import Starfield from "../ui/Starfield";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
+import SectionHeading from "../ui/SectionHeading";
+
+// "Kept Building" answers "Start Building", so it starts a beat after it:
+// once the label and the title's first line are under way.
+const KEPT_BUILDING_DELAY = 0.3;
 
 const AboutJourney = () => {
   return (
@@ -18,9 +24,14 @@ const AboutJourney = () => {
         </div>
 
         {/* The window the track travels through. Hidden from assistive tech
-            because the track is duplicated; the readable copy is below. */}
-        <div
-          aria-hidden="true"
+            because the track is duplicated; the readable copy is below.
+
+            Rises as one piece. It has a width of its own, so moving its
+            classes onto the animated element cannot shrink it, and its
+            centring is Tailwind's translate, which framer's movement adds to
+            rather than replaces. */}
+        <FadeUp
+          aria-hidden
           className="max-425:h-auto max-425:w-full group max-425:-translate-y-0 max-425:top-[24rem] absolute top-1/2 left-1/2 h-full w-[38rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         >
           {/* Drives and drags the track below 425. Its only child must be
@@ -71,7 +82,7 @@ const AboutJourney = () => {
           <span className="max-425:inset-x-auto max-425:inset-y-0 max-425:left-0 max-425:h-full max-425:w-[6rem] max-425:bg-linear-to-r pointer-events-none absolute inset-x-0 top-0 z-10 h-[12rem] bg-linear-to-b from-black to-transparent" />
 
           <span className="max-425:inset-x-auto max-425:inset-y-0 max-425:right-0 max-425:h-full max-425:w-[6rem] max-425:bg-linear-to-l pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[12rem] bg-linear-to-t from-black to-transparent" />
-        </div>
+        </FadeUp>
 
         {/* The readable copy of the marquee, since the scrolling track is
                 duplicated and cannot be read in order. */}
@@ -86,21 +97,31 @@ const AboutJourney = () => {
         <Container className="relative z-10">
           <div className="gap-lg max-425:gap-xs max-425:flex-col max-425:text-center flex items-center justify-between">
             <div className="max-425:w-full max-425:items-center flex w-[38rem] flex-col items-start">
-              <p className="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase">
-                12+ Years
-              </p>
-
-              <h2 className="max-425:text-[4.5rem] max-425:leading-[4.5rem] text-[11rem] leading-[12rem] font-bold tracking-[-0.07em]">
-                {/* pr compensates for the negative tracking, which otherwise
-                    pulls the paint box in and clips the last glyph. */}
-                <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_74.04%)] bg-clip-text pr-[0.07em] text-transparent">
-                  Start Building
-                </span>
-              </h2>
+              {/* The label out of its mask, then the title a line at a time.
+                  At 425 the pair sits centred by the row's text-center, which
+                  both still inherit inside the heading's wrapper. */}
+              <SectionHeading
+                reveal
+                label="12+ Years"
+                title={
+                  // pr compensates for the negative tracking, which otherwise
+                  // pulls the paint box in and clips the last glyph.
+                  <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_74.04%)] bg-clip-text pr-[0.07em] text-transparent">
+                    Start Building
+                  </span>
+                }
+                labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
+                titleClassName="max-425:text-[4.5rem] max-425:leading-[4.5rem] text-[11rem] leading-[12rem] font-bold tracking-[-0.07em]"
+              />
             </div>
 
+            {/* The answer to the title, a line at a time once it has begun.
+                Not a heading, so it watches its own box rather than riding
+                on SectionHeading's. */}
             <p className="max-425:w-full max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:text-center w-[38rem] text-end text-[11rem] leading-[12rem] font-bold tracking-[-0.07em] text-white">
-              Kept Building
+              <LineReveal trigger="view" delay={KEPT_BUILDING_DELAY}>
+                Kept Building
+              </LineReveal>
             </p>
           </div>
         </Container>

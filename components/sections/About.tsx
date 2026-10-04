@@ -29,7 +29,7 @@ const About = () => {
           <Stagger className="gap-sm mt-2xl max-425:mt-[3rem] max-425:mb-[24rem] mb-xl max-425:flex-col flex items-start justify-between">
             {/* The position sits on the wrapper, which is what moves; the
                 image only sizes itself inside it. */}
-            <FadeUp className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute bottom-0 left-[31rem] z-[10]">
+            <FadeUp className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute bottom-0 left-[31rem] z-[10] w-max">
               <Image
                 src="/images/home/hassan-about-img.png"
                 alt=""

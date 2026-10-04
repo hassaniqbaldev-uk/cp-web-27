@@ -16,8 +16,9 @@ const About = () => {
       <AboutTeam />
       <AboutBehaviours />
       <AboutReach />
-      <WorkReviews />
+      <WorkReviews reveal />
       <BookCall
+        reveal
         id="about-book-call"
         showContacts={false}
         label="How we work"

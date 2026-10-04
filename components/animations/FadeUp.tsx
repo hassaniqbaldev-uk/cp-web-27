@@ -46,6 +46,7 @@ const tags = {
   p: motion.p,
   span: motion.span,
   blockquote: motion.blockquote,
+  figure: motion.figure,
 };
 
 type Tag = keyof typeof tags;
@@ -56,6 +57,12 @@ type RevealProps = {
   className?: string;
   /** Seconds to wait before this one starts. */
   delay?: number;
+  /**
+   * Held hidden while false and played once true, for something that waits
+   * on another part of the page rather than on being scrolled to. FadeUp
+   * only; a Stagger ignores it.
+   */
+  play?: boolean;
   "aria-hidden"?: boolean;
 };
 
@@ -87,6 +94,7 @@ export default function FadeUp({
   children,
   className,
   delay = 0,
+  play,
   ...rest
 }: RevealProps) {
   const isInStagger = useContext(InStagger);
@@ -123,11 +131,13 @@ export default function FadeUp({
   return (
     <Component
       variants={variants}
-      {...(!isInStagger && {
-        initial: "hidden",
-        whileInView: "visible",
-        viewport: VIEWPORT,
-      })}
+      {...(play !== undefined
+        ? { initial: "hidden", animate: play ? "visible" : "hidden" }
+        : !isInStagger && {
+            initial: "hidden",
+            whileInView: "visible",
+            viewport: VIEWPORT,
+          })}
       className={className}
       {...rest}
     >
@@ -145,6 +155,10 @@ export function Stagger({
   children,
   className,
   delay = 0,
+  // Taken out so it is not passed on to the element: a group plays when it
+  // is scrolled to, not on a signal.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  play,
   ...rest
 }: RevealProps) {
   const isOn = useContext(IsRevealOn);
@@ -238,6 +252,19 @@ export function MaskReveal({
   const isOn = useContext(IsRevealOn);
   const prefersReducedMotion = useReducedMotion();
 
+  // Left to the scroll, it watches the mask it sits in rather than itself.
+  // It starts pushed down out of that mask, and the browser counts what a
+  // clip-path hides as out of view, so watching itself it would never be
+  // seen and never play.
+  const selfRef = useRef<HTMLDivElement>(null);
+  const maskRef = useRef<Element | null>(null);
+
+  useLayoutEffect(() => {
+    maskRef.current = selfRef.current?.parentElement ?? null;
+  }, []);
+
+  const isMaskInView = useInView(maskRef as React.RefObject<Element>, VIEWPORT);
+
   if (!isOn) {
     const Plain = as;
 
@@ -260,6 +287,7 @@ export function MaskReveal({
 
   return (
     <Component
+      ref={selfRef}
       variants={variants}
       {...(play !== undefined
         ? { initial: "hidden", animate: play ? "visible" : "hidden" }
@@ -267,8 +295,7 @@ export function MaskReveal({
           ? { initial: "hidden", animate: "visible" }
           : !isInStagger && {
               initial: "hidden",
-              whileInView: "visible",
-              viewport: VIEWPORT,
+              animate: isMaskInView ? "visible" : "hidden",
             })}
       className={className}
     >
@@ -505,6 +532,7 @@ export function LineReveal({
   children,
   delay = 0,
   play,
+  trigger = "mount",
   onMeasure,
 }: {
   children: React.ReactNode;
@@ -512,10 +540,17 @@ export function LineReveal({
   delay?: number;
   /**
    * Held hidden while false and played once true — for a heading that waits
-   * to be scrolled to. Left out, it plays as soon as it has been measured,
-   * which is what a hero on screen from the start wants.
+   * to be scrolled to. Left out, the trigger below decides.
    */
   play?: boolean;
+  /**
+   * When to play, if play is not given. "mount" plays as soon as the text is
+   * measured, which is what a hero on screen from the start wants. "view"
+   * waits for the text's own box to scroll into view, for text that is not a
+   * SectionHeading — the box is never clipped, so it is seen even though the
+   * lines inside it start out of sight below their masks.
+   */
+  trigger?: "mount" | "view";
   /**
    * Told how many lines the text broke into, the first time it is measured,
    * so whatever follows can start in the slot after the last one.
@@ -544,7 +579,9 @@ export function LineReveal({
 
   const words = toWords(children);
 
-  const isPlaying = play ?? true;
+  const isHostInView = useInView(hostRef, VIEWPORT);
+
+  const isPlaying = play ?? (trigger === "view" ? isHostInView : true);
 
   useLayoutEffect(() => {
     const host = hostRef.current;
@@ -676,6 +713,13 @@ type HeadingRevealProps = {
   labelClassName?: string;
   titleClassName?: string;
   subtitleClassName?: string;
+  /** Seconds before the label starts, for a hero that waits on the header. */
+  delay?: number;
+  /** Told how many lines the title broke into, so the page can place what
+   *  follows it — a button, a card — in the slots after its last line. */
+  onTitleMeasure?: (lineCount: number) => void;
+  /** The same for the subtitle, so what follows can come after it instead. */
+  onSubtitleMeasure?: (lineCount: number) => void;
 };
 
 /**
@@ -693,6 +737,9 @@ export function HeadingReveal({
   labelClassName,
   titleClassName,
   subtitleClassName,
+  delay = 0,
+  onTitleMeasure,
+  onSubtitleMeasure,
 }: HeadingRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, VIEWPORT);
@@ -701,13 +748,24 @@ export function HeadingReveal({
   // follow the title's last line rather than a guess at it.
   const [titleLines, setTitleLines] = useState<number | null>(null);
 
-  const titleDelay = label ? LINE_STAGGER : 0;
+  // In refs so inline callbacks from the page do not count as a change.
+  const onTitleMeasureRef = useRef(onTitleMeasure);
+  const onSubtitleMeasureRef = useRef(onSubtitleMeasure);
+
+  useEffect(() => {
+    onTitleMeasureRef.current = onTitleMeasure;
+    onSubtitleMeasureRef.current = onSubtitleMeasure;
+  }, [onTitleMeasure, onSubtitleMeasure]);
+
+  const titleDelay = delay + (label ? LINE_STAGGER : 0);
 
   return (
     <div ref={ref} className={className}>
       {label && (
         <p className={`${labelClassName ?? ""} ${LINE_MASK}`}>
-          <MaskReveal play={isInView}>{label}</MaskReveal>
+          <MaskReveal play={isInView} delay={delay}>
+            {label}
+          </MaskReveal>
         </p>
       )}
 
@@ -715,7 +773,10 @@ export function HeadingReveal({
         <LineReveal
           play={isInView}
           delay={titleDelay}
-          onMeasure={setTitleLines}
+          onMeasure={(lineCount) => {
+            setTitleLines(lineCount);
+            onTitleMeasureRef.current?.(lineCount);
+          }}
         >
           {title}
         </LineReveal>
@@ -726,6 +787,7 @@ export function HeadingReveal({
           <LineReveal
             play={isInView && titleLines !== null}
             delay={titleDelay + (titleLines ?? 0) * LINE_STAGGER}
+            onMeasure={(lineCount) => onSubtitleMeasureRef.current?.(lineCount)}
           >
             {subtitle}
           </LineReveal>

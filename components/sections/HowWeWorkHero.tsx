@@ -1,5 +1,9 @@
+"use client";
+
 import { workflowSteps } from "@/config/common";
 import Image from "next/image";
+import { useState } from "react";
+import FadeUp, { LINE_STAGGER, LineReveal } from "../animations/FadeUp";
 import DragMarquee from "../ui/DragMarquee";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -14,7 +18,28 @@ const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 // Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
+// The load sequence, in seconds, as the other heroes': the header drops in
+// first, over 0.8s, and the heading starts once it is well on its way. The
+// mockup rises with the title. The paragraph and the cards have no time of
+// their own: the paragraph takes the slot after the title's last line, and
+// the cards the slots after the paragraph's, since how many lines each
+// breaks into depends on the width.
+const HEADING_DELAY = 0.5;
+const MOCKUP_DELAY = 0.6;
+
+/** Gap between one card and the next, as the scroll reveals' stagger. */
+const CARD_STAGGER = 0.12;
+
 const HowWeWorkHero = () => {
+  // How many lines the title and then the paragraph broke into, once each is
+  // measured. What follows each waits for it.
+  const [titleLines, setTitleLines] = useState<number | null>(null);
+  const [paragraphLines, setParagraphLines] = useState<number | null>(null);
+
+  // The label takes the first slot and each title line one more.
+  const paragraphDelay = HEADING_DELAY + (1 + (titleLines ?? 0)) * LINE_STAGGER;
+  const cardsDelay = paragraphDelay + (paragraphLines ?? 0) * LINE_STAGGER;
+
   return (
     <>
       <Section
@@ -24,26 +49,43 @@ const HowWeWorkHero = () => {
         <div className="absolute inset-0 overflow-hidden">
           <Starfield className="max-425:hidden absolute top-1/2 right-[-5rem] z-0 h-[80rem] w-[21.4rem] -translate-y-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
-          <Image
-            src="/images/how-we-work/hero-mockup-img.png"
-            alt=""
-            aria-hidden="true"
-            width={729}
-            height={649}
-            className="max-425:hidden absolute right-0 bottom-0 shrink-0"
-          />
+          {/* Rises with the title, from behind the blur. The position sits
+              on the wrapper, which is what moves; w-max holds it to the
+              image's own width, which an absolute box would otherwise shrink
+              away from. */}
+          <FadeUp
+            play
+            delay={MOCKUP_DELAY}
+            className="max-425:hidden absolute right-0 bottom-0 w-max"
+          >
+            <Image
+              src="/images/how-we-work/hero-mockup-img.png"
+              alt=""
+              aria-hidden="true"
+              width={729}
+              height={649}
+              className="block shrink-0"
+            />
+          </FadeUp>
 
           {/* The mockup's own crop for this width, in the same layer as the
               one above so the blur still passes over it. Decorative:
-              nothing depends on recognising the screen it shows. */}
-          <Image
-            src="/images/how-we-work/hero-mockup-img-mobile.png"
-            alt=""
-            aria-hidden="true"
-            width={1560}
-            height={1726}
-            className="max-425:block absolute bottom-0 left-1/2 hidden h-auto w-full -translate-x-1/2"
-          />
+              nothing depends on recognising the screen it shows. Its wrapper
+              takes the full width the image had, and the image fills it. */}
+          <FadeUp
+            play
+            delay={MOCKUP_DELAY}
+            className="max-425:block absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2"
+          >
+            <Image
+              src="/images/how-we-work/hero-mockup-img-mobile.png"
+              alt=""
+              aria-hidden="true"
+              width={1560}
+              height={1726}
+              className="block h-auto w-full"
+            />
+          </FadeUp>
 
           <div
             aria-hidden="true"
@@ -75,10 +117,13 @@ const HowWeWorkHero = () => {
         </div>
 
         <Container className="pt-section-lg max-425:pt-[10rem] relative z-[20] flex flex-col items-start">
-          <div className="max-425:w-full max-425:px-[3rem] w-[58.2rem]">
+          <div className="max-425:w-full max-425:px-[3rem] w-[60rem]">
             <SectionHeading
               // The page's single h1 — the outline starts here.
               as="h1"
+              reveal
+              revealDelay={HEADING_DELAY}
+              onRevealTitleMeasure={setTitleLines}
               label="How we work"
               title={
                 <>
@@ -96,9 +141,15 @@ const HowWeWorkHero = () => {
             />
 
             <p className="text-body-02 max-425:text-[1.6rem] max-425:text-center max-425:mx-auto text-grey max-425:mt-sm mt-md max-w-[48.3rem] leading-[2.8rem] tracking-[-0.02em]">
-              What happens before a proposal, what is fixed before work starts,
-              how the build runs, and what we still do after launch. No mystery,
-              no six-week silence.
+              <LineReveal
+                play={titleLines !== null}
+                delay={paragraphDelay}
+                onMeasure={setParagraphLines}
+              >
+                What happens before a proposal, what is fixed before work
+                starts, how the build runs, and what we still do after launch.
+                No mystery, no six-week silence.
+              </LineReveal>
             </p>
           </div>
 
@@ -112,10 +163,15 @@ const HowWeWorkHero = () => {
                 {/* The second pass is the copy the loop needs. It is kept from
                     assistive tech and from every width above the breakpoint, so
                     the grid stays four cards and no step is announced twice. */}
+                {/* The cards follow the paragraph's last line, one after
+                    another; each copy rises with its original. */}
                 {[false, true].map((isCopy) =>
-                  workflowSteps.map(({ id, step, title, details }) => (
-                    <li
+                  workflowSteps.map(({ id, step, title, details }, index) => (
+                    <FadeUp
+                      as="li"
                       key={isCopy ? `${id}-copy` : id}
+                      play={paragraphLines !== null}
+                      delay={cardsDelay + index * CARD_STAGGER}
                       {...(isCopy && { "aria-hidden": true })}
                       className={`p-md bg-grey/70 max-425:w-[30rem] max-425:shrink-0 rounded-md backdrop-blur-[20px] ${
                         isCopy ? "max-425:block hidden" : ""
@@ -142,7 +198,7 @@ const HowWeWorkHero = () => {
                           </li>
                         ))}
                       </ul>
-                    </li>
+                    </FadeUp>
                   )),
                 )}
               </ul>

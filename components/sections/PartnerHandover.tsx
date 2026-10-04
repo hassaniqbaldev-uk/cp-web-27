@@ -1,5 +1,6 @@
 import { handoverDelivery, handoverGrowth } from "@/config/common";
 import type { HandoverCard } from "@/types/common";
+import FadeUp, { Stagger } from "../animations/FadeUp";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -13,9 +14,11 @@ type ColumnProps = {
 /** The two card columns are identical but for their width and contents. */
 const CardColumn = ({ cards, className }: ColumnProps) => (
   // A list, so each column announces as a set rather than three loose blocks.
-  <ul className={`gap-sm flex shrink-0 flex-col ${className}`}>
+  // Its three cards follow one another in.
+  <Stagger as="ul" className={`gap-sm flex shrink-0 flex-col ${className}`}>
     {cards.map(({ id, icon: Icon, iconClassName, title, subtitle }) => (
-      <li
+      <FadeUp
+        as="li"
         key={id}
         className="bg-grey/40 p-md max-425:p-sm max-425:text-center rounded-md"
       >
@@ -34,9 +37,9 @@ const CardColumn = ({ cards, className }: ColumnProps) => (
         <p className="text-body-03 max-425:text-[1.4rem] max-425:leading-[2.2rem] text-text-body mt-xs leading-[2.4rem] tracking-[-0.02em]">
           {subtitle}
         </p>
-      </li>
+      </FadeUp>
     ))}
-  </ul>
+  </Stagger>
 );
 
 const PartnerHandover = () => {
@@ -55,6 +58,7 @@ const PartnerHandover = () => {
 
           <div className="max-425:order-1 max-425:mb-md max-425:w-full flex w-[52rem] shrink-0 flex-col items-center text-center">
             <SectionHeading
+              reveal
               label="What you can hand over"
               title={
                 <>
@@ -67,12 +71,16 @@ const PartnerHandover = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] mx-auto text-text-body max-w-[40rem] mt-sm leading-[2.8rem] tracking-[-0.02em]"
             />
 
-            <Button
-              href="/contact"
-              className="text-body-03 max-425:w-full max-425:text-[1.2rem] max-425:mt-md px-sm py-xs mt-lg rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
-            >
-              Tell us what you need capacity for
-            </Button>
+            {/* flex, so the wrapper adds no line box beneath the button, and
+                full width at 425 so the button still stretches across. */}
+            <FadeUp className="max-425:w-full flex">
+              <Button
+                href="/contact"
+                className="text-body-03 max-425:w-full max-425:text-[1.2rem] max-425:mt-md px-sm py-xs mt-lg rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
+              >
+                Tell us what you need capacity for
+              </Button>
+            </FadeUp>
           </div>
 
           <CardColumn

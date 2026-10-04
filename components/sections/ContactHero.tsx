@@ -1,14 +1,46 @@
+"use client";
+
 import { contactLinks } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import FadeUp, { LINE_STAGGER, MaskReveal } from "../animations/FadeUp";
 import ContactForm from "../ui/ContactForm";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 import Starfield from "../ui/Starfield";
 
+// The load sequence, in seconds, as the other heroes': the header drops in
+// first, over 0.8s, and the heading starts once it is well on its way. The
+// form is the page's purpose, so it rises with the title rather than waiting
+// on the column beside it. Everything else in the column has no time of its
+// own: it takes the slots after the subtitle's last line, since how many
+// lines the title and subtitle break into depends on the width.
+const HEADING_DELAY = 0.5;
+const FORM_DELAY = 0.6;
+
+/** Gap between one item and the next below the heading, as the scroll
+ *  reveals' stagger. */
+const ITEM_STAGGER = 0.12;
+
 const ContactHero = () => {
+  // How many lines the title and the subtitle broke into, once measured.
+  const [titleLines, setTitleLines] = useState<number | null>(null);
+  const [subtitleLines, setSubtitleLines] = useState<number | null>(null);
+
+  const isMeasured = titleLines !== null && subtitleLines !== null;
+
+  // The label takes the first slot and each title and subtitle line one more,
+  // so the first item below the heading takes the slot after the last line.
+  const afterHeading =
+    HEADING_DELAY +
+    (1 + (titleLines ?? 0) + (subtitleLines ?? 0)) * LINE_STAGGER;
+
+  // The quote, then "Prefer another way?", then each link in turn.
+  const slot = (position: number) => afterHeading + position * ITEM_STAGGER;
+
   return (
     <>
       <Section
@@ -24,6 +56,10 @@ const ContactHero = () => {
             <SectionHeading
               // The page's single h1 — the outline starts here.
               as="h1"
+              reveal
+              revealDelay={HEADING_DELAY}
+              onRevealTitleMeasure={setTitleLines}
+              onRevealSubtitleMeasure={setSubtitleLines}
               label="Get in touch"
               title={
                 <>
@@ -44,7 +80,12 @@ const ContactHero = () => {
 
             {/* figure and figcaption are the pair that ties a message to the
                 person who wrote it. */}
-            <figure className="gradient-border gap-sm p-md max-425:p-sm max-425:gap-xs mt-md flex items-start rounded-md bg-white/10 [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
+            <FadeUp
+              as="figure"
+              play={isMeasured}
+              delay={slot(0)}
+              className="gradient-border gap-sm p-md max-425:p-sm max-425:gap-xs mt-md flex items-start rounded-md bg-white/10 [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]"
+            >
               {/* Decorative: the caption below already names him. */}
               <Image
                 src="/images/home/hassan-avatar-img.png"
@@ -65,17 +106,25 @@ const ContactHero = () => {
                   Hassan Iqbal, Managing Director
                 </figcaption>
               </div>
-            </figure>
+            </FadeUp>
 
-            <p className="text-body-02 max-425:text-[1.4rem] mt-md tracking-[-0.02em] text-white/80">
-              Prefer another way?
+            {/* Rises out of a mask, as the labels do. */}
+            <p className="text-body-02 max-425:text-[1.4rem] mt-md tracking-[-0.02em] text-white/80 [clip-path:inset(-100vh_-100vw_-0.25em_-100vw)]">
+              <MaskReveal play={isMeasured} delay={slot(1)}>
+                Prefer another way?
+              </MaskReveal>
             </p>
 
             {/* A list, so the three announce as three ways to reach us rather
-                than loose links. */}
+                than loose links. One after another, after the label above. */}
             <ul className="mt-sm flex flex-col">
-              {contactLinks.map(({ id, icon: Icon, label, href }) => (
-                <li key={id}>
+              {contactLinks.map(({ id, icon: Icon, label, href }, index) => (
+                <FadeUp
+                  as="li"
+                  key={id}
+                  play={isMeasured}
+                  delay={slot(2 + index)}
+                >
                   <Link
                     href={href}
                     className="gap-sm max-425:py-xs py-sm flex items-center justify-between border-b border-white/20"
@@ -100,14 +149,19 @@ const ContactHero = () => {
                       className="max-425:size-[1.8rem] shrink-0 text-white"
                     />
                   </Link>
-                </li>
+                </FadeUp>
               ))}
             </ul>
           </div>
 
-          <div className="p-lg max-425:w-full max-425:p-sm w-[60rem] shrink-0 rounded-md bg-white">
+          {/* Rises with the title: the form is what the page is for. */}
+          <FadeUp
+            play
+            delay={FORM_DELAY}
+            className="p-lg max-425:w-full max-425:p-sm w-[60rem] shrink-0 rounded-md bg-white"
+          >
             <ContactForm showAssurances />
-          </div>
+          </FadeUp>
         </Container>
       </Section>
     </>

@@ -3,8 +3,10 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import FadeUp, { MaskReveal } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
+import SectionHeading from "../ui/SectionHeading";
 
 // TODO: add the film, its poster frame and a captions track.
 const originFilm = {
@@ -26,11 +28,12 @@ const AboutStory = () => {
             <div className="max-425:w-full w-[54rem]">
               {/* Deliberately not a heading: the section's heading is the
                   title in the next column, and two would split the outline. */}
-              <p className="text-body-01 max-425:hidden max-425:text-center font-medium tracking-[-0.02em] text-black uppercase">
-                Origin story
+              {/* Rises out of a mask, as the section headings' labels do. */}
+              <p className="text-body-01 max-425:hidden max-425:text-center font-medium tracking-[-0.02em] text-black uppercase [clip-path:inset(-100vh_-100vw_-0.25em_-100vw)]">
+                <MaskReveal>Origin story</MaskReveal>
               </p>
 
-              <div className="mt-xl max-425:mt-0 max-425:h-[40rem] relative h-[66.7rem] w-full overflow-hidden rounded-md bg-[#D9D9D9]">
+              <FadeUp className="mt-xl max-425:mt-0 max-425:h-[40rem] relative h-[66.7rem] w-full overflow-hidden rounded-md bg-[#D9D9D9]">
                 <video
                   ref={videoRef}
                   playsInline
@@ -73,28 +76,35 @@ const AboutStory = () => {
                     </button>
                   </div>
                 )}
-              </div>
+              </FadeUp>
             </div>
 
             <div className="max-425:w-full max-425:flex w-[55rem] flex-col items-center">
-              <h2 className="text-heading-02 max-425:text-[4.5rem] max-425:text-center max-425:leading-[4.5rem] max-425:max-w-[30rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-black">
-                Started young.{" "}
-                <span className="text-text-body/60">
-                  Built properly over time.
-                </span>
-              </h2>
-
-              <p className="text-body-01 max-425:text-[1.8rem] max-425:text-center text-text-body mt-sm max-425:mt-xs tracking-[-0.02em]">
-                I started building websites at 13. That early obsession
-                eventually became CreativePixels - and the same idea still
-                drives the agency now: understand the problem, make the work
-                useful, and care about what happens after launch.
-              </p>
+              {/* The title, then the paragraph, each a line at a time. The
+                  title centres itself at 425 rather than leaning on the
+                  column's items-center, which now centres the pair. */}
+              <SectionHeading
+                reveal
+                title={
+                  <>
+                    Started young.{" "}
+                    <span className="text-text-body/60">
+                      Built properly over time.
+                    </span>
+                  </>
+                }
+                subtitle="I started building websites at 13. That early obsession eventually became CreativePixels - and the same idea still drives the agency now: understand the problem, make the work useful, and care about what happens after launch."
+                titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:text-center max-425:leading-[4.5rem] max-425:max-w-[30rem] max-425:mx-auto leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
+                subtitleClassName="text-body-01 max-425:text-[1.8rem] max-425:text-center text-text-body mt-sm max-425:mt-xs tracking-[-0.02em]"
+              />
 
               {/* figure and figcaption are the pair that ties a quote to the
                   person who said it, rather than leaving them as two
                   unrelated paragraphs. */}
-              <figure className="bg-orange/10 p-md mt-lg max-425:mt-md rounded-md">
+              <FadeUp
+                as="figure"
+                className="bg-orange/10 p-md mt-lg max-425:mt-md rounded-md"
+              >
                 <Image
                   src="/icons/quote-icon.svg"
                   alt=""
@@ -111,7 +121,7 @@ const AboutStory = () => {
                 <figcaption className="text-body-03 max-425:text-[1.2rem] text-text-body font-medium tracking-[-0.02em]">
                   Hassan Iqbal, Founder &amp; Managing Director
                 </figcaption>
-              </figure>
+              </FadeUp>
             </div>
           </div>
         </Container>

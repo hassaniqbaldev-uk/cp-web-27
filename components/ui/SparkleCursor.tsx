@@ -153,7 +153,7 @@ type Sparkle = {
 };
 
 type SparkleCursorProps = {
-  /** The words in the pill under the cursor. */
+  /** The words in the pill under the cursor. Left out, there is no pill. */
   label?: string;
   /**
    * The pill's colours, as Tailwind classes, e.g. "bg-blue text-white".
@@ -182,7 +182,7 @@ type SparkleCursorProps = {
  * the loose sparkles.
  */
 export default function SparkleCursor({
-  label = "you",
+  label,
   labelClassName = "bg-blue text-white",
   arrowFrom = "#3078FF",
   arrowTo = "#7AA8FF",
@@ -216,7 +216,7 @@ export default function SparkleCursor({
     const pill = labelRef.current;
     const context = canvas?.getContext("2d");
 
-    if (!isEnabled || !canvas || !pill || !context) return;
+    if (!isEnabled || !canvas || !context) return;
 
     const root = document.documentElement;
     root.classList.add(ACTIVE_CLASS);
@@ -354,14 +354,16 @@ export default function SparkleCursor({
 
       // Written straight to the element rather than through state, since a
       // render a frame would cost more than the move itself.
-      pill.style.transform = `translate3d(${tip.x + SETTINGS.labelX}px, ${
-        tip.y + arrow.height + SETTINGS.labelGap
-      }px, 0)`;
+      if (pill) {
+        pill.style.transform = `translate3d(${tip.x + SETTINGS.labelX}px, ${
+          tip.y + arrow.height + SETTINGS.labelGap
+        }px, 0)`;
+      }
     };
 
     const show = (isVisible: boolean) => {
       isPointerInside = isVisible;
-      pill.style.opacity = isVisible ? "1" : "0";
+      if (pill) pill.style.opacity = isVisible ? "1" : "0";
     };
 
     const onPointerMove = (event: PointerEvent) => {
@@ -422,13 +424,15 @@ export default function SparkleCursor({
         className="pointer-events-none fixed inset-0 z-[10000] h-full w-full"
       />
 
-      <span
-        ref={labelRef}
-        aria-hidden="true"
-        className={`pointer-events-none fixed top-0 left-0 z-[10000] rounded-full px-[1.2rem] py-[0.5rem] text-[1.2rem] font-bold tracking-[-0.02em] whitespace-nowrap opacity-0 transition-opacity duration-300 will-change-transform ${labelClassName}`}
-      >
-        {label}
-      </span>
+      {label && (
+        <span
+          ref={labelRef}
+          aria-hidden="true"
+          className={`pointer-events-none fixed top-0 left-0 z-[10000] rounded-full px-[1.2rem] py-[0.5rem] text-[1.2rem] font-bold tracking-[-0.02em] whitespace-nowrap opacity-0 transition-opacity duration-300 will-change-transform ${labelClassName}`}
+        >
+          {label}
+        </span>
+      )}
     </>
   );
 }

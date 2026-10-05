@@ -37,12 +37,10 @@ export default function RootLayout({
             Colours are full six-digit hex; labelClassName is complete
             Tailwind classes, written out in full. */}
         <SparkleCursor
-          label="you"
-          labelClassName="bg-blue text-white"
-          arrowFrom="#3078FF"
-          arrowTo="#7AA8FF"
-          sparkleFrom="#3078FF"
-          sparkleTo="#A9C8FF"
+          arrowFrom="#9D9D9D"
+          arrowTo="#B5B5B5"
+          sparkleFrom="#9D9D9D"
+          sparkleTo="#C4C4C4"
         />
       </body>
     </html>

@@ -40,7 +40,7 @@ const ARROW = {
 
 const SETTINGS = {
   /** Loose sparkles a second while the pointer is still. */
-  restRate: 10,
+  restRate: 50,
 
   /** Extra loose sparkles per pixel moved, which is what draws the trail. */
   moveRate: 0.22,

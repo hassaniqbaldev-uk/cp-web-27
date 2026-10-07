@@ -81,6 +81,12 @@ type BookCallProps = {
    */
   showContacts?: boolean;
   /**
+   * Takes the artwork's place in the second column — a form, on the pages
+   * that ask for one. Given this, the four logo props and `showContacts` do
+   * nothing, since the field they describe is not drawn.
+   */
+  aside?: React.ReactNode;
+  /**
    * Unique per page. Two of these on one page would otherwise give the
    * document two elements with the same id, which breaks fragment links.
    */
@@ -104,6 +110,7 @@ const BookCall = ({
   logoSvgSrc = HEADSET_ARTWORK,
   logoLabel = "Headset made of drifting particles",
   showContacts = true,
+  aside,
   id = "book-call",
   // Clipped at 425: the particle canvas overhangs its host by 72px a side, to
   // catch particles pushed outwards, and there is no room for that once the
@@ -147,14 +154,19 @@ const BookCall = ({
                 collapses and the canvas never gets a size to draw into. The
                 artwork and its popovers rise together. */}
               <FadeUp className="relative w-full">
-                <ParticleLogo
-                  svg={logoSvg}
-                  svgSrc={logoSvg ? undefined : logoSvgSrc}
-                  label={logoLabel}
-                  className="aspect-square w-full"
-                />
+                {aside}
 
-                {showContacts &&
+                {!aside && (
+                  <ParticleLogo
+                    svg={logoSvg}
+                    svgSrc={logoSvg ? undefined : logoSvgSrc}
+                    label={logoLabel}
+                    className="aspect-square w-full"
+                  />
+                )}
+
+                {!aside &&
+                  showContacts &&
                   floatingContacts.map(
                     ({
                       className: positionClassName,

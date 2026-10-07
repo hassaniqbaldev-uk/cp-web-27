@@ -40,7 +40,14 @@ const Hero = () => {
 
   return (
     <>
-      <Section className="flex min-h-screen items-center overflow-hidden bg-black">
+      <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
+        {/* Sits behind everything the hero draws, and is clipped by the
+            section's own overflow where it runs past the viewport. */}
+        {/* <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-[95rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem] -translate-x-1/2 rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem]"
+        /> */}
+
         <Container className="max-425:pt-[13rem] max-425:pb-[6rem] pt-[15rem] pb-[10rem]">
           <div className="max-425:flex-col max-425:items-center flex items-end justify-between gap-[4.5rem]">
             {/* Plays on load, a beat after the header starts dropping in:

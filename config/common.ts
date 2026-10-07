@@ -20,6 +20,8 @@ import type {
   HeroPopover,
   JourneyStep,
   ProcessCard,
+  ReviewPoint,
+  ReviewStep,
   ProcessStep,
   ReachLocation,
   ServiceDiscipline,
@@ -28,6 +30,8 @@ import type {
   TeamMember,
   TeamProfile,
   Testimonial,
+  WorkCaseStudy,
+  WorkFilter,
   WorkProject,
   WorkflowStep,
 } from "@/types/common";
@@ -82,7 +86,7 @@ export const heroPopovers: HeroPopover[] = [
   {
     id: "casa-botanica",
     title: "Casa Botanica ",
-    href: "/case-studies",
+    href: "/work",
     image: "/images/home/casa-popover-img.png",
     className: "right-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
     squareClassName: "bg-dark-pink",
@@ -133,7 +137,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-one",
     src: "/images/home/casa-logo.png",
     alt: "Casabotanica Client",
-    href: "/case-studies/casabotanica",
+    href: "/work/casabotanica",
     width: 124,
     height: 71,
     className: "max-425:h-[4.5rem] max-425:w-auto",
@@ -142,7 +146,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-two",
     src: "/images/home/ivy-duke-logo.png",
     alt: "Ivy & Duke Client",
-    href: "/case-studies/ivy-duke",
+    href: "/work/ivy-duke",
     width: 125,
     height: 60,
     className: "max-425:h-[3.8rem] max-425:w-auto",
@@ -151,7 +155,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-three",
     src: "/images/home/new-compass-logo.png",
     alt: "New Compass Client",
-    href: "/case-studies/new-compass",
+    href: "/work/new-compass",
     width: 181,
     height: 32,
     className: "max-425:h-[2rem] max-425:w-auto",
@@ -160,7 +164,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-four",
     src: "/images/home/fultons-logo.png",
     alt: "Fultons Client",
-    href: "/case-studies/fultons",
+    href: "/work/fultons",
     width: 107,
     height: 26,
     className: "max-425:h-[1.6rem] max-425:w-auto",
@@ -169,7 +173,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-five",
     src: "/images/home/game-art-logo.png",
     alt: "Game Art Brain Client",
-    href: "/case-studies/game-art-brain",
+    href: "/work/game-art-brain",
     width: 92,
     height: 44,
     className: "max-425:h-[2.8rem] max-425:w-auto",
@@ -178,7 +182,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-six",
     src: "/images/home/ayoa-logo.png",
     alt: "Ayoa Client",
-    href: "/case-studies/ayoa",
+    href: "/work/ayoa",
     width: 129,
     height: 40,
     className: "max-425:h-[2.5rem] max-425:w-auto",
@@ -187,7 +191,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-seven",
     src: "/images/home/peter-jones-logo.png",
     alt: "Peter Jones Foundation Client",
-    href: "/case-studies/peter-jones-foundation",
+    href: "/work/peter-jones-foundation",
     width: 139,
     height: 43,
     className: "max-425:h-[2.7rem] max-425:w-auto",
@@ -319,7 +323,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
       label: "Featured project",
       title: "Casa botanica Panama",
       categories: ["Web Design", "Wordpress"],
-      href: "/case-studies/web-design-project",
+      href: "/work/web-design-project",
     },
   },
   {
@@ -368,7 +372,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
       label: "Featured work",
       title: "Ndifo Safari",
       categories: ["Brand", "UI/UX"],
-      href: "/case-studies/web-design-project",
+      href: "/work/web-design-project",
     },
   },
   {
@@ -412,7 +416,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
       label: "Featured work",
       title: "Fultons Jewellery",
       categories: ["Ecommerce", "Growth"],
-      href: "/case-studies/development-project",
+      href: "/work/development-project",
     },
   },
   {
@@ -456,7 +460,7 @@ export const serviceDisciplines: ServiceDiscipline[] = [
       label: "Featured work",
       title: "Ivy & Duke",
       categories: ["Ecommerce", "Automation"],
-      href: "/case-studies/seo-project",
+      href: "/work/seo-project",
     },
   },
 ];
@@ -546,7 +550,7 @@ export const guaranteeCaseStudy: GuaranteeCaseStudy = {
   title: "£478k",
   subtitle: "raised at one event",
   ctaLabel: "View case study",
-  href: "/case-studies/unicef",
+  href: "/work/unicef",
 };
 
 export const processSteps: ProcessStep[] = [
@@ -597,6 +601,7 @@ export const processSteps: ProcessStep[] = [
 export const workProjects: WorkProject[] = [
   {
     id: "casa-botanica",
+    category: "web",
     image: "/images/home/casa-work-img.jpg",
     imageAlt: "Casa Botanica website homepage",
     title: "Casa Botanica",
@@ -606,6 +611,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "ivy-and-duke",
+    category: "ecommerce",
     image: "/images/home/ivy-work-img.jpg",
     imageAlt: "Ivy & Duke website homepage",
     title: "Ivy & Duke",
@@ -615,6 +621,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "ndifo-safari",
+    category: "web",
     image: "/images/home/ndifo-work-img.jpg",
     imageAlt: "Ndifo Safari website homepage",
     title: "Ndifo Safari",
@@ -624,6 +631,7 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "fultons-jewellery",
+    category: "ecommerce",
     image: "/images/home/fultons-work-img.jpg",
     imageAlt: "Fultons Jewellery website homepage",
     title: "Fultons Jewellery",
@@ -1775,3 +1783,104 @@ export const partnerFaqs: Faq[] = [
       "Never. The client relationship is yours, and we have no interest in competing for it.",
   },
 ];
+
+export const reviewPoints: ReviewPoint[] = [
+  {
+    id: "clarity",
+    title: "Clarity & conversion",
+    subtitle: "Can a visitor tell what you do and what to do next?",
+    swatchClassName: "bg-dark-pink",
+  },
+  {
+    id: "search",
+    title: "Search foundations",
+    subtitle: "Structure, titles, speed and the obvious gaps.",
+    swatchClassName: "bg-orange",
+  },
+  {
+    id: "ux",
+    title: "UX / mobile",
+    subtitle: "Where the journey gets awkward on a phone.",
+    swatchClassName: "bg-blue",
+  },
+  {
+    id: "performance",
+    title: "Performance",
+    subtitle: "Technical friction that affects behaviour.",
+    swatchClassName: "bg-[#6FDC8C]",
+  },
+];
+
+export const reviewSteps: ReviewStep[] = [
+  { id: "send", step: "01", text: "Send the URL" },
+  { id: "review", step: "02", text: "Senior review, recorded" },
+  {
+    id: "receive",
+    step: "03",
+    text: "Receive priorities, discuss next step if you want to",
+  },
+];
+
+// TODO: placeholder. These stand in for a real review's findings.
+export const reviewPriorities = [
+  "Improve headline & messaging",
+  "Add social proof / trust signals",
+  "Make CTA more prominent",
+  "Optimise for mobile",
+];
+
+// TODO: one entry so far, and its artwork is the home page's. Drop the real
+// mockups into public/images/work/ and add the rest.
+export const workCaseStudies: WorkCaseStudy[] = [
+  {
+    id: "casa-botanica",
+    image: "/images/home/casa-work-img.jpg",
+    imageAlt: "The Casa Botanica Panama homepage on a laptop",
+    tags: ["Featured", "Web", "Wordpress", "Migration"],
+    title: "Casa Botanica Panama",
+    description:
+      "A luxury villa brand moved off Squarespace and rebuilt around the stay, the photography and one clear route to book.",
+    role: "Design, build, migration",
+    platform: "WordPress",
+    href: "/work/casabotanica",
+    panelClassName: "bg-orange/10",
+    imagePanelClassName: "bg-orange/10",
+  },
+];
+
+// "all" first, which is what the work page opens on.
+export const workFilters: WorkFilter[] = [
+  { id: "all", label: "All" },
+  { id: "web", label: "Web" },
+  { id: "ecommerce", label: "Ecommerce" },
+  { id: "brand", label: "Brand" },
+  { id: "apps", label: "Apps" },
+  { id: "growth", label: "Growth" },
+];
+
+// TODO: placeholder. The artwork is the one the website review page uses, and
+// the reviewer is invented — swap both for the real Teleqo Tech assets and
+// their own words.
+export const workShowcase: WorkProject = {
+  id: "teleqo-tech",
+  image: "/images/website-review/teleqo-tech-project.png",
+  imageAlt: "The Teleqo Tech website on a laptop",
+  title: "Teleqo Tech",
+  subtitle: "Luxury safari website redesigned.",
+  ctaLabel: "Visit live site",
+  href: "https://example.com",
+};
+
+export const workReview: TestimonialType = {
+  id: "teleqo-tech-review",
+  avatar: "/images/home/ayoa-client-avatar.png",
+  logo: "/images/home/ayoa-client-logo.png",
+  logoAlt: "Teleqo Tech",
+  logoWidth: 62,
+  logoHeight: 23,
+  quote:
+    "I would highly recommend CreativePixels, they were excellent throughout the process of designing and developing our new website.",
+  name: "James Brian",
+  role: "Teleqo Tech, Founder",
+  rating: 5,
+};

@@ -47,7 +47,7 @@ const SETTINGS = {
 
   /** Drift speed range of a loose sparkle, in pixels a second. */
   minSpeed: 6,
-  maxSpeed: 34,
+  maxSpeed: 10,
 
   /** Lifetime range of a loose sparkle, in milliseconds. */
   minLife: 450,

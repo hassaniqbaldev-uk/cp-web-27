@@ -197,6 +197,16 @@ export type WorkProject = {
   ctaLabel: string;
   /** The live site, so these open in a new tab. */
   href: string;
+  /**
+   * Which filter this falls under on the work page, matching a WorkFilter's
+   * id. Optional, since the home page shows every project and does not filter.
+   */
+  category?: string;
+};
+
+export type WorkFilter = {
+  id: string;
+  label: string;
 };
 
 export type ConsultationBenefit = {
@@ -454,4 +464,42 @@ export type PartnerFitCard = {
   note?: string;
   /** The work we want, which is the card drawn in white. */
   isPositive?: boolean;
+};
+
+export type ReviewPoint = {
+  id: string;
+  title: string;
+  subtitle: string;
+  /**
+   * The swatch beside the title. Keep it a complete, literal class string —
+   * Tailwind scans source files for full class names.
+   */
+  swatchClassName: string;
+};
+
+export type ReviewStep = {
+  id: string;
+  /** The figure in the pill, e.g. "01". */
+  step: string;
+  text: string;
+};
+
+export type WorkCaseStudy = {
+  id: string;
+  image: string;
+  imageAlt: string;
+  /** Shown as pills above the title, in this order. */
+  tags: string[];
+  title: string;
+  description: string;
+  role: string;
+  platform: string;
+  href: string;
+  /**
+   * The card's two tints, so each case study can carry its own. Keep these as
+   * complete, literal class strings — Tailwind scans source files for full
+   * class names, so anything built by concatenation will not be generated.
+   */
+  panelClassName: string;
+  imagePanelClassName: string;
 };

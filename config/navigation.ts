@@ -25,7 +25,7 @@ export const mainNavigation: NavItem[] = [
   },
   {
     label: "Work",
-    href: "/case-studies",
+    href: "/work",
   },
   {
     label: "Industries",
@@ -57,7 +57,7 @@ export const footerNavigation: FooterNavColumn[] = [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
-      { label: "Case Studies", href: "/case-studies" },
+      { label: "Case Studies", href: "/work" },
       { label: "Contact", href: "/contact" },
       { label: "Blog", href: "/blog" },
       { label: "Sitemap", href: "/sitemap" },

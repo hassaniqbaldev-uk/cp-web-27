@@ -188,7 +188,7 @@ export default function Popover({
           transformOrigin: "center",
           backfaceVisibility: "hidden",
         }}
-        className={`pointer-events-auto absolute top-0 right-0 cursor-pointer ${trigger ? "" : "size-[.5rem]"} ${squareClassName}`}
+        className={`pointer-events-auto absolute top-0 right-0 cursor-pointer ${trigger ? "" : "size-[.8rem]"} ${squareClassName}`}
       >
         {trigger}
       </motion.button>

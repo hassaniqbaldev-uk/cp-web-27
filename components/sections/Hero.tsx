@@ -7,9 +7,16 @@ import Section from "@/components/ui/Section";
 import DragMarquee from "@/components/ui/DragMarquee";
 import ParticleLogo from "@/components/ui/ParticleLogo";
 import { clientLogos, heroBadges, heroPopovers } from "@/config/common";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FadeUp, {
   LINE_STAGGER,
   LineReveal,
@@ -26,9 +33,44 @@ const HERO_TITLE_DELAY = 0.62;
 const HERO_PARAGRAPH_DELAY = 0.9;
 const HERO_MARQUEE_DELAY = 0.3;
 
+/**
+ * How much of the cursor's distance from the middle the gradient covers. At 1
+ * its own middle sits under the cursor, so it reaches the full way to either
+ * edge; below that it only leans.
+ */
+const GLOW_REACH = 1;
+
+/** Follows loosely rather than exactly, so it drifts after the cursor. */
+const GLOW_SPRING = { stiffness: 45, damping: 20, mass: 0.8 };
+
 const Hero = () => {
   // A single id rather than per-popover state, so opening one closes the rest.
   const [openId, setOpenId] = useState<string | null>(null);
+
+  const prefersReducedMotion = useReducedMotion();
+
+  // Where the pointer is, as pixels either side of the middle. A motion value
+  // rather than state: this changes on every pointer move, and a render a
+  // move would cost more than the move itself.
+  const pointerX = useMotionValue(0);
+  const glowX = useSpring(pointerX, GLOW_SPRING);
+
+  // The gradient is centred by a half of its own width, so the follow has to
+  // be added to that rather than replacing it — one transform, both jobs.
+  const glowOffset = useTransform(glowX, (value) => `calc(-50% + ${value}px)`);
+
+  useEffect(() => {
+    const onPointerMove = (event: PointerEvent) => {
+      const fromCentre = event.clientX - window.innerWidth / 2;
+
+      pointerX.set(fromCentre * GLOW_REACH);
+    };
+
+    // Passive, so the listener can never delay a scroll.
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+
+    return () => window.removeEventListener("pointermove", onPointerMove);
+  }, [pointerX]);
 
   // Set once the particles have gathered into the logo, which is when the
   // popover dots are shown.
@@ -42,11 +84,18 @@ const Hero = () => {
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
         {/* Sits behind everything the hero draws, and is clipped by the
-            section's own overflow where it runs past the viewport. */}
-        {/* <div
+            section's own overflow where it runs past the viewport.
+
+            Two layers, because transform can only hold one job: this one
+            carries the slide towards the cursor, and the one inside carries
+            the turn. */}
+        <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute top-[95rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem] -translate-x-1/2 rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem]"
-        /> */}
+          style={{ x: prefersReducedMotion ? "-50%" : glowOffset }}
+          className="pointer-events-none absolute top-[95rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem]"
+        >
+          <div className="size-full animate-[spin_30s_linear_infinite] rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem] motion-reduce:animate-none" />
+        </motion.div>
 
         <Container className="max-425:pt-[13rem] max-425:pb-[6rem] pt-[15rem] pb-[10rem]">
           <div className="max-425:flex-col max-425:items-center flex items-end justify-between gap-[4.5rem]">

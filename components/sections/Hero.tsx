@@ -92,7 +92,7 @@ const Hero = () => {
         <motion.div
           aria-hidden="true"
           style={{ x: prefersReducedMotion ? "-50%" : glowOffset }}
-          className="pointer-events-none absolute top-[95rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem]"
+          className="pointer-events-none absolute top-[90rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem]"
         >
           <div className="size-full animate-[spin_30s_linear_infinite] rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem] motion-reduce:animate-none" />
         </motion.div>

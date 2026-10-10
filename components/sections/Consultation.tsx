@@ -41,7 +41,7 @@ const Consultation = () => {
                 }
                 subtitle="Tell us what you're trying to achieve and we'll help you figure out the best way forward."
                 labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:mb-sm mt-xs mb-md leading-[8.5rem] font-extrabold tracking-[-0.07em] text-white"
+                titleClassName="text-heading-02 max-425:text-[4rem] max-425:leading-[4.5rem] max-425:mb-sm mt-xs mb-md leading-[8.5rem] font-extrabold tracking-[-0.07em] text-white"
                 subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] text-white max-w-[38rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 

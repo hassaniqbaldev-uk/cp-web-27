@@ -59,9 +59,9 @@ const ARROW_MOTION = "transition-transform ease-[cubic-bezier(0.22,1,0.36,1)]";
 // background token, exactly — bg-white/20 and the like are left alone, as is
 // any other colour, which keeps whatever hover it already has.
 const INVERT_WHITE =
-  "hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white";
+  "hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white active:bg-black active:text-white";
 const INVERT_BLACK =
-  "hover:bg-white hover:text-black focus-visible:bg-white focus-visible:text-black";
+  "hover:bg-white hover:text-black focus-visible:bg-white focus-visible:text-black active:bg-white active:text-black";
 
 const invertFor = (className: string) => {
   if (/(^|\s)bg-white(\s|$)/.test(className)) return INVERT_WHITE;
@@ -88,6 +88,9 @@ export default function Button({
       animate="rest"
       whileHover="hover"
       whileFocus="hover"
+      // A touch screen has no hover, so a press plays it instead, for as
+      // long as the finger is down.
+      whileTap="hover"
       className={`group/button gap-xs inline-flex items-center justify-center transition-colors ${invertFor(className)} ${className}`}
       style={{ transitionDuration: `${COLOUR_DURATION}s` }}
       {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
@@ -112,14 +115,14 @@ export default function Button({
             style={{ transitionDuration: `${ARROW_DURATION}s` }}
             size={iconSize}
             strokeWidth={2.5}
-            className={`shrink-0 ${ARROW_MOTION} motion-safe:group-hover/button:translate-x-full motion-safe:group-hover/button:-translate-y-full motion-safe:group-focus-visible/button:translate-x-full motion-safe:group-focus-visible/button:-translate-y-full ${iconClassName}`}
+            className={`shrink-0 ${ARROW_MOTION} motion-safe:group-hover/button:translate-x-full motion-safe:group-hover/button:-translate-y-full motion-safe:group-focus-visible/button:translate-x-full motion-safe:group-focus-visible/button:-translate-y-full motion-safe:group-active/button:translate-x-full motion-safe:group-active/button:-translate-y-full ${iconClassName}`}
           />
 
           <ArrowUpRight
             style={{ transitionDuration: `${ARROW_DURATION}s` }}
             size={iconSize}
             strokeWidth={2.5}
-            className={`absolute inset-0 shrink-0 -translate-x-full translate-y-full ${ARROW_MOTION} motion-safe:group-hover/button:translate-x-0 motion-safe:group-hover/button:translate-y-0 motion-safe:group-focus-visible/button:translate-x-0 motion-safe:group-focus-visible/button:translate-y-0 ${iconClassName}`}
+            className={`absolute inset-0 shrink-0 -translate-x-full translate-y-full ${ARROW_MOTION} motion-safe:group-hover/button:translate-x-0 motion-safe:group-hover/button:translate-y-0 motion-safe:group-focus-visible/button:translate-x-0 motion-safe:group-focus-visible/button:translate-y-0 motion-safe:group-active/button:translate-x-0 motion-safe:group-active/button:translate-y-0 ${iconClassName}`}
           />
         </span>
       )}

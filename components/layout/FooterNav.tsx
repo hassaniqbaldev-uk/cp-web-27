@@ -24,7 +24,7 @@ const LinkList = ({ links }: { links: readonly FooterLink[] }) => (
             do. */}
         <RollingLink
           href={href}
-          className="text-body-03 leading-[3.6rem] tracking-[-0.02em] text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white"
+          className="text-body-03 leading-[3.6rem] tracking-[-0.02em] text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white active:text-white"
         >
           {label}
         </RollingLink>

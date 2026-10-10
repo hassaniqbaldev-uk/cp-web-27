@@ -133,6 +133,7 @@ export default function RollingText({
           initial="rest"
           animate="rest"
           whileHover="hover"
+          whileTap="hover"
         >
           {letterSpans}
         </motion.span>
@@ -172,6 +173,9 @@ export function RollingLink({ children, ...props }: RollingLinkProps) {
       animate="rest"
       whileHover="hover"
       whileFocus="hover"
+      // A touch screen has no hover, so a press plays it instead, for as
+      // long as the finger is down.
+      whileTap="hover"
       {...props}
     >
       <RollingText text={children} />

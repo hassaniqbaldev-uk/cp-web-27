@@ -3,7 +3,9 @@
 import { aboutStats } from "@/config/common";
 import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
-import { useState } from "react";
+import { useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import CountUp from "../animations/CountUp";
 import FadeUp, { LINE_STAGGER, MaskReveal } from "../animations/FadeUp";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
@@ -38,6 +40,25 @@ const AboutHero = () => {
   const buttonDelay = HEADING_DELAY + (1 + (titleLines ?? 0)) * LINE_STAGGER;
   const cardDelay = buttonDelay + LINE_STAGGER;
   const statsDelay = cardDelay + LINE_STAGGER;
+
+  // The figures count up once the stats have begun to rise and are actually
+  // on screen: on load where they are visible from the start, and on the way
+  // down to them where they are not, as at 425, where they sit below the
+  // photo. "some" rather than a share, since at 425 the list is the marquee's
+  // track, twice the screen's width, of which only part is ever showing.
+  const statsRef = useRef<HTMLUListElement>(null);
+  const isStatsInView = useInView(statsRef, { once: true, amount: "some" });
+  const [haveStatsRisen, setHaveStatsRisen] = useState(false);
+
+  useEffect(() => {
+    if (!isMeasured) return;
+
+    const timer = setTimeout(() => setHaveStatsRisen(true), statsDelay * 1000);
+
+    return () => clearTimeout(timer);
+  }, [isMeasured, statsDelay]);
+
+  const shouldCount = haveStatsRisen && isStatsInView;
 
   return (
     <>
@@ -123,7 +144,10 @@ const AboutHero = () => {
             <DragMarquee>
               {/* A list, so it announces as four items rather than eight loose
                 strings. */}
-              <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
+              <ul
+                ref={statsRef}
+                className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]"
+              >
                 {/* The second pass is the copy the loop needs. It is hidden from
                   assistive tech and from every width above the breakpoint, so
                   the grid stays four cards and nothing is announced twice. */}
@@ -136,8 +160,10 @@ const AboutHero = () => {
                         isCopy ? "max-425:flex hidden" : "flex"
                       }`}
                     >
+                      {/* Counts up from zero; each copy counts with its
+                          original. */}
                       <p className="max-425:text-[3.5rem] shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
-                        {value}
+                        <CountUp value={value} play={shouldCount} />
                       </p>
 
                       <span

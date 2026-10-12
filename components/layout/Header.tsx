@@ -3,7 +3,6 @@
 import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Dropdown from "@/components/ui/Dropdown";
-import RollingText, { RollingLink } from "@/components/ui/RollingText";
 import Image from "next/image";
 import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
@@ -166,14 +165,11 @@ const Header = () => {
                     <Dropdown
                       isOpen={openId === item.href}
                       onOpenChange={toggle(item.href)}
-                      triggerClassName={`text-body-02 font-normal tracking-[-0.02em] ${textClassName}`}
+                      triggerClassName={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
                       panelClassName="top-full left-0 mt-[1rem] min-w-[18rem] rounded-sm bg-white p-[0.5rem] text-black shadow-lg"
                       trigger={
                         <>
-                          {/* Rolls on its own: the trigger is the dropdown's
-                              button, which is not a motion element for it
-                              to follow. */}
-                          <RollingText text={item.label} trigger="self" />
+                          {item.label}
                           <ChevronDown
                             size={16}
                             strokeWidth={2.5}
@@ -186,13 +182,13 @@ const Header = () => {
                       <ul>
                         {item.children.map((child) => (
                           <li key={child.href}>
-                            <RollingLink
+                            <Link
                               href={child.href}
                               onClick={() => setOpenId(null)}
                               className="text-body-03 hover:bg-grey block rounded-xs px-[1rem] py-[0.8rem]"
                             >
                               {child.label}
-                            </RollingLink>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -200,12 +196,12 @@ const Header = () => {
                   </li>
                 ) : (
                   <li key={item.href}>
-                    <RollingLink
+                    <Link
                       href={item.href}
-                      className={`text-body-02 font-normal tracking-[-0.02em] ${textClassName}`}
+                      className={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
                     >
                       {item.label}
-                    </RollingLink>
+                    </Link>
                   </li>
                 ),
               )}

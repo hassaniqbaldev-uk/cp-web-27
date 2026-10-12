@@ -83,19 +83,25 @@ const Hero = () => {
   return (
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
-        {/* Sits behind everything the hero draws, and is clipped by the
+        {/* TEMPORARY: off while we find out why the site will not finish
+            loading on an iPhone. A 1303 by 1386 element with a 300px blur,
+            rotating, is re-rasterised every frame and the texture a blur that
+            size needs is far larger than the element — which a phone's GPU
+            may not have. Put it back once that is ruled in or out.
+
+            Sits behind everything the hero draws, and is clipped by the
             section's own overflow where it runs past the viewport.
 
             Two layers, because transform can only hold one job: this one
             carries the slide towards the cursor, and the one inside carries
             the turn. */}
-        <motion.div
+        {/* <motion.div
           aria-hidden="true"
           style={{ x: prefersReducedMotion ? "-50%" : glowOffset }}
           className="pointer-events-none absolute top-[90rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem]"
         >
           <div className="size-full animate-[spin_30s_linear_infinite] rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem] motion-reduce:animate-none" />
-        </motion.div>
+        </motion.div> */}
 
         <Container className="max-425:pt-[13rem] max-425:pb-[6rem] pt-[15rem] pb-[10rem]">
           <div className="max-425:flex-col max-425:items-center flex items-end justify-between gap-[4.5rem]">

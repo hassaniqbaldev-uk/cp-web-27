@@ -1,5 +1,4 @@
 import { partnerFit } from "@/config/common";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -18,7 +17,6 @@ const PartnerFit = () => {
 
         <Container className="relative z-10">
           <SectionHeading
-            reveal
             label="Is it a good fit?"
             title={
               <>
@@ -31,16 +29,12 @@ const PartnerFit = () => {
           />
 
           {/* The good fit, then the poor one. */}
-          <Stagger className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
+          <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {partnerFit.map(
               ({ id, icon: Icon, title, points, note, isPositive }) => (
                 // The second card sits lower, so the pair reads as a
                 // preference rather than as two equal options.
-                //
-                // This is what rises, and it only places the card. The card
-                // is the div inside: its transition class, there for the
-                // hover, would otherwise catch the rise and drag it out.
-                <FadeUp
+                <div
                   key={id}
                   className={isPositive ? "" : "mt-md max-425:mt-0"}
                 >
@@ -86,10 +80,10 @@ const PartnerFit = () => {
                       </p>
                     )}
                   </div>
-                </FadeUp>
+                </div>
               ),
             )}
-          </Stagger>
+          </div>
         </Container>
       </Section>
     </>

@@ -83,8 +83,8 @@ export default function Accordion({
 
         observer.disconnect();
       },
-      // Waits until the accordion has risen into the upper three quarters of
-      // the viewport, rather than firing on the first pixel of its top edge.
+      // Waits until the accordion is in the upper three quarters of the
+      // viewport, rather than firing on the first pixel of its top edge.
       { rootMargin: "0px 0px -50% 0px" },
     );
 

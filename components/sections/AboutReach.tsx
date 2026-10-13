@@ -1,6 +1,5 @@
 import { reachLocations } from "@/config/common";
 import Image from "next/image";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -11,7 +10,6 @@ const AboutReach = () => {
       <Section id="reach" className="py-3xl max-425:py-xl max-425:px-[3rem]">
         <Container>
           <SectionHeading
-            reveal
             label="International work, UK accountability"
             title={
               <>
@@ -48,11 +46,11 @@ const AboutReach = () => {
               beneath the map, and would not start until the map had all but
               scrolled past. The box stays relative, so the cards still place
               themselves against it. */}
-          <Stagger className="mt-xl max-425:mt-lg max-425:h-auto relative h-[60rem] w-full">
+          <div className="mt-xl max-425:mt-lg max-425:h-auto relative h-[60rem] w-full">
             {/* Decorative: the places are named in the cards, so the map adds
                 nothing for a reader who cannot see it. The wrapper fills the
                 box as the image did, so the image still fills it in turn. */}
-            <FadeUp className="max-425:hidden h-full w-full">
+            <div className="max-425:hidden h-full w-full">
               <Image
                 src="/images/about/dot-map.png"
                 alt=""
@@ -61,16 +59,15 @@ const AboutReach = () => {
                 height={611}
                 className="max-425:hidden h-full w-full object-contain"
               />
-            </FadeUp>
+            </div>
 
             {/* A list, so it announces as three places rather than six loose
                 strings scattered over a picture. Each card keeps every class
-                it had, its own width among them, so rising cannot resize it. */}
+                it had, its own width among them. */}
             <ul>
               {reachLocations.map(
                 ({ id, image, imageAlt, title, clients, className }) => (
-                  <FadeUp
-                    as="li"
+                  <li
                     key={id}
                     className={`gap-sm p-xs max-425:static max-425:mx-auto not-last:mb-xs absolute flex w-[29rem] items-center rounded-sm bg-[#f4f4f4] ${className}`}
                   >
@@ -92,11 +89,11 @@ const AboutReach = () => {
                         {clients}
                       </p>
                     </div>
-                  </FadeUp>
+                  </li>
                 ),
               )}
             </ul>
-          </Stagger>
+          </div>
         </Container>
       </Section>
     </>

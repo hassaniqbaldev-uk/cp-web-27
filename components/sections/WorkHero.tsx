@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
-import DragMarquee from "../ui/DragMarquee";
 import ParticleLogo from "../ui/ParticleLogo";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -55,42 +54,28 @@ const WorkHero = () => {
           </div>
         </Container>
 
-        {/* Clips the track, which is two copies wide. */}
         <div className="mt-xl max-425:mt-lg max-425:-mx-[3rem] relative z-10 overflow-hidden">
-          <DragMarquee query={null} pauseOnHover>
-            {/* A list, so the logos announce as a set. The second pass is the
-                copy the loop needs: hidden from assistive tech, so no client
-                is announced twice. */}
-            <ul className="gap-sm flex w-max items-center">
-              {[false, true].map((isCopy) =>
-                clientLogos.map(
-                  ({ id, src, alt, href, width, height, className }) => (
-                    <li
-                      key={isCopy ? `${id}-copy` : id}
-                      {...(isCopy && { "aria-hidden": true })}
-                      className="shrink-0"
-                    >
-                      {/* The copy is out of the tab order as well as hidden,
-                          so the row offers seven links rather than fourteen. */}
-                      <Link
-                        href={href}
-                        tabIndex={isCopy ? -1 : undefined}
-                        className="px-xl max-425:px-md max-425:h-[7rem] flex h-[9.5rem] items-center justify-center rounded-xl bg-[#2E2E2E]"
-                      >
-                        <Image
-                          src={src}
-                          alt={isCopy ? "" : alt}
-                          width={width}
-                          height={height}
-                          className={className}
-                        />
-                      </Link>
-                    </li>
-                  ),
-                ),
-              )}
-            </ul>
-          </DragMarquee>
+          {/* A list, so the logos announce as a set. */}
+          <ul className="gap-sm flex w-max items-center">
+            {clientLogos.map(
+              ({ id, src, alt, href, width, height, className }) => (
+                <li key={id} className="shrink-0">
+                  <Link
+                    href={href}
+                    className="px-xl max-425:px-md max-425:h-[7rem] flex h-[9.5rem] items-center justify-center rounded-xl bg-[#2E2E2E]"
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      className={className}
+                    />
+                  </Link>
+                </li>
+              ),
+            )}
+          </ul>
 
           {/* The track runs to the viewport's edges, so it fades out either
               side rather than being cut off. pointer-events-none keeps them

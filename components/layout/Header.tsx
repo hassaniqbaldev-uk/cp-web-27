@@ -6,7 +6,6 @@ import Dropdown from "@/components/ui/Dropdown";
 import Image from "next/image";
 import { contactPhone, mainNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
-import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown, Menu, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -35,11 +34,6 @@ const LIGHT_ROUTES = ["/about", "/partner-with-us"];
 // Below this the band is there from the top: there is no room for a bar that
 // only resolves once the page has moved.
 const NARROW_QUERY = "(max-width: 425px)";
-
-const HEADER_ENTRANCE_DURATION = 0.8;
-
-/** The reveals' curve, so the header lands the way everything else does. */
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 const Header = () => {
   // A single id rather than per-dropdown state, so opening one closes the rest.
@@ -90,19 +84,8 @@ const Header = () => {
 
   const textClassName = isDark ? "text-black" : "text-white";
 
-  // Every page opens with the header dropping in, ahead of its hero. Only on
-  // the first load: the header lives in the layout, so moving from one page
-  // to another finds it already in place and nothing replays.
-  const prefersReducedMotion = useReducedMotion();
-  const entrance = !prefersReducedMotion;
-
   return (
-    <motion.header
-      initial={entrance ? { y: "-100%", opacity: 0 } : false}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: HEADER_ENTRANCE_DURATION, ease: EASE }}
-      className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.3rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]"
-    >
+    <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.3rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
       <Container
         // The border is there in both states, only transparent in one: giving
         // it to the white band alone would add a pixel to the height and make
@@ -252,7 +235,7 @@ const Header = () => {
           </button>
         </div>
       </Container>
-    </motion.header>
+    </header>
   );
 };
 

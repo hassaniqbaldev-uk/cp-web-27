@@ -1,5 +1,4 @@
 import { behaviours } from "@/config/common";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Starfield from "../ui/Starfield";
 import Section from "../ui/Section";
@@ -20,7 +19,6 @@ const AboutBehaviours = () => {
 
         <Container className="relative z-10">
           <SectionHeading
-            reveal
             label="How we actually operate"
             title={
               <>
@@ -31,24 +29,12 @@ const AboutBehaviours = () => {
             titleClassName="text-heading-02 max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[27rem] max-425:mx-auto leading-[8rem] mt-xs text-center font-extrabold tracking-[-0.07em] text-white"
           />
 
-          {/* The cards, one after another. */}
-          <Stagger
-            as="ul"
-            className="gap-md mt-xl max-425:grid-cols-1 grid grid-cols-2 items-start"
-          >
+          <ul className="gap-md mt-xl max-425:grid-cols-1 grid grid-cols-2 items-start">
             {behaviours.map(
               ({ id, icon: Icon, title, description, hoverClassName }) => (
                 // even:mt picks out the second and fourth cards, so the two
-                // columns stagger rather than reading as flat rows.
-                //
-                // The item is what rises and only places the card; the card
-                // itself is the div inside. Its transition class, there for
-                // the hover, would otherwise catch the rise and drag it out.
-                <FadeUp
-                  as="li"
-                  key={id}
-                  className="max-425:!mt-[0rem] even:mt-[3rem]"
-                >
+                // columns step rather than reading as flat rows.
+                <li key={id} className="max-425:!mt-[0rem] even:mt-[3rem]">
                   <div
                     className={`p-lg max-425:p-md rounded-md bg-[#1A1A1A] transition duration-300 ${hoverClassName}`}
                   >
@@ -68,10 +54,10 @@ const AboutBehaviours = () => {
                       {description}
                     </p>
                   </div>
-                </FadeUp>
+                </li>
               ),
             )}
-          </Stagger>
+          </ul>
         </Container>
       </Section>
     </>

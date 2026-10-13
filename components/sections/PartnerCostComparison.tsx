@@ -1,5 +1,4 @@
 import { costComparison } from "@/config/common";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -13,7 +12,6 @@ const PartnerCostComparison = () => {
       >
         <Container>
           <SectionHeading
-            reveal
             label="Cost comparison"
             title={
               <>
@@ -27,10 +25,10 @@ const PartnerCostComparison = () => {
           />
 
           {/* The in-house column, then the partner one. */}
-          <Stagger className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
+          <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {costComparison.map(
               ({ id, title, rows, totalLabel, totalValue, isFeatured }) => (
-                <FadeUp
+                <div
                   key={id}
                   className={`p-md max-425:p-sm rounded-md border border-[#CCCCCC] ${
                     isFeatured ? "bg-blue" : "bg-white"
@@ -97,10 +95,10 @@ const PartnerCostComparison = () => {
                       </div>
                     </dl>
                   </div>
-                </FadeUp>
+                </div>
               ),
             )}
-          </Stagger>
+          </div>
         </Container>
       </Section>
     </>

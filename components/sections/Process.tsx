@@ -5,7 +5,6 @@ import type { ProcessStep } from "@/types/common";
 import type { MotionValue } from "framer-motion";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -56,7 +55,7 @@ const Step = ({
   );
 
   return (
-    <FadeUp as="li" className="gap-sm flex items-stretch">
+    <li className="gap-sm flex items-stretch">
       <div className="flex w-[1.2rem] shrink-0 flex-col items-center">
         {/* Neutral base with the accent fading in over it, so the dot reads as
             unreached before its step and filled once passed. Opacity keeps it
@@ -104,7 +103,7 @@ const Step = ({
           {description}
         </p>
       </div>
-    </FadeUp>
+    </li>
   );
 };
 
@@ -129,7 +128,6 @@ const Process = () => {
         <Container className="bg-grey/40 max-425:gap-lg max-425:flex-col max-425:pt-[3rem] max-425:px-[2rem] flex justify-between gap-[4rem] rounded-md pt-[6rem] pr-[6rem] pl-[8rem]">
           <div className="max-425:w-full max-425:items-center max-425:text-center flex w-[53rem] flex-col items-start">
             <SectionHeading
-              reveal
               label="The process"
               title={
                 <>
@@ -149,14 +147,14 @@ const Process = () => {
 
             {/* flex, so the wrapper adds no line box beneath the button and
                 w-full still stretches it at 425. */}
-            <FadeUp className="max-425:w-full flex">
+            <div className="max-425:w-full flex">
               <Button
                 href="/contact"
                 className="text-body-02 max-425:text-[1.4rem] max-425:w-full max-425:mt-sm px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
               >
                 Start your project
               </Button>
-            </FadeUp>
+            </div>
           </div>
 
           <div className="max-425:w-full relative w-[48rem]">
@@ -170,7 +168,7 @@ const Process = () => {
               className="pb-md max-425:h-[42rem] no-scrollbar h-[50rem] overflow-y-auto"
             >
               {/* The steps follow one another in. */}
-              <Stagger as="ol" className="gap-sm flex flex-col">
+              <ol className="gap-sm flex flex-col">
                 {processSteps.map((processStep, index) => (
                   <Step
                     key={processStep.id}
@@ -180,7 +178,7 @@ const Process = () => {
                     progress={progress}
                   />
                 ))}
-              </Stagger>
+              </ol>
             </div>
 
             {/* Sit over the head and foot of the scroll area so the list fades

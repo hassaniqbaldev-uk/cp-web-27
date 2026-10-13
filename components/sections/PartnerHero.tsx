@@ -2,10 +2,7 @@
 
 import { partnerStats } from "@/config/common";
 import Image from "next/image";
-import { useState } from "react";
-import FadeUp, { LINE_STAGGER, MaskReveal } from "../animations/FadeUp";
 import Button from "../ui/Button";
-import DragMarquee from "../ui/DragMarquee";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -36,35 +33,7 @@ const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 // Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
-// The load sequence, in seconds, as the other heroes': the header drops in
-// first, over 0.8s, and the heading starts once it is well on its way. The
-// mockup rises with the title. The button, the terms and the stats have no
-// time of their own: they take the slots after the subtitle's last line, one
-// after another, since how many lines the heading breaks into depends on the
-// width.
-const HEADING_DELAY = 0.5;
-const MOCKUP_DELAY = 0.6;
-
-/** Gap between one item and the next below the heading, as the scroll
- *  reveals' stagger. */
-const ITEM_STAGGER = 0.12;
-
 const PartnerHero = () => {
-  // How many lines the title and the subtitle broke into, once measured.
-  const [titleLines, setTitleLines] = useState<number | null>(null);
-  const [subtitleLines, setSubtitleLines] = useState<number | null>(null);
-
-  const isMeasured = titleLines !== null && subtitleLines !== null;
-
-  // The label takes the first slot and each title and subtitle line one more,
-  // so the button takes the slot after the subtitle's last line.
-  const afterHeading =
-    HEADING_DELAY +
-    (1 + (titleLines ?? 0) + (subtitleLines ?? 0)) * LINE_STAGGER;
-
-  // The button, then the terms, then the stats.
-  const slot = (position: number) => afterHeading + position * ITEM_STAGGER;
-
   return (
     <>
       <Section
@@ -79,11 +48,7 @@ const PartnerHero = () => {
               The position sits on the wrapper, which is what rises; w-max
               holds the wrapper to the image's own width, which an absolute
               box would otherwise shrink away from. */}
-          <FadeUp
-            play
-            delay={MOCKUP_DELAY}
-            className="max-425:right-auto max-425:left-1/2 max-425:-translate-x-1/2 max-425:bottom-[3rem] absolute right-0 bottom-[8rem] w-max"
-          >
+          <div className="max-425:right-auto max-425:left-1/2 max-425:-translate-x-1/2 max-425:bottom-[3rem] absolute right-0 bottom-[8rem] w-max">
             <Image
               src="/images/partner-with-us/hero-mockup-img.png"
               alt=""
@@ -92,7 +57,7 @@ const PartnerHero = () => {
               height={850}
               className="max-425:h-auto max-425:w-[40rem] max-425:max-w-none block shrink-0"
             />
-          </FadeUp>
+          </div>
 
           <div
             aria-hidden="true"
@@ -125,10 +90,6 @@ const PartnerHero = () => {
           <div className="max-425:w-full max-425:px-[3rem] max-425:items-center max-425:text-center flex w-[56.5rem] flex-col items-start">
             <SectionHeading
               as="h1"
-              reveal
-              revealDelay={HEADING_DELAY}
-              onRevealTitleMeasure={setTitleLines}
-              onRevealSubtitleMeasure={setSubtitleLines}
               label="For agencies"
               title={
                 <>
@@ -144,22 +105,14 @@ const PartnerHero = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] text-text-body mt-sm max-w-[70rem] leading-[2.8rem] tracking-[-0.02em]"
             />
 
-            {/* Rises out of a mask, as the other heroes' buttons do. flex
-                inside it, so no line box is left beneath the button. */}
-            <div className="[clip-path:inset(-100vh_-100vw_-0.25em_-100vw)]">
-              <MaskReveal
-                as="div"
-                className="flex"
-                play={isMeasured}
-                delay={slot(0)}
+            {/* flex, so no line box is left beneath the button. */}
+            <div className="flex">
+              <Button
+                href="/contact"
+                className="text-body-03 max-425:text-[1.4rem] max-425:mt-[2rem] px-sm py-xs mt-md rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
               >
-                <Button
-                  href="/contact"
-                  className="text-body-03 max-425:text-[1.4rem] max-425:mt-[2rem] px-sm py-xs mt-md rounded-full bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
-                >
-                  Tell us what you need
-                </Button>
-              </MaskReveal>
+                Tell us what you need
+              </Button>
             </div>
           </div>
 
@@ -170,12 +123,7 @@ const PartnerHero = () => {
 
               It rises itself, with every class it had, rather than inside a
               wrapper, so its absolute box is sized exactly as before. */}
-          <FadeUp
-            as="ul"
-            play={isMeasured}
-            delay={slot(1)}
-            className="p-md max-425:static max-425:mx-[3rem] max-425:mt-md max-425:p-[2rem] absolute top-[-7rem] right-0 flex flex-col gap-[.8rem] rounded-md bg-white"
-          >
+          <ul className="p-md max-425:static max-425:mx-[3rem] max-425:mt-md max-425:p-[2rem] absolute top-[-7rem] right-0 flex flex-col gap-[.8rem] rounded-md bg-white">
             {terms.map(({ id, text, swatchClassName }) => (
               <li key={id} className="gap-xs flex items-center">
                 <span
@@ -188,53 +136,35 @@ const PartnerHero = () => {
                 </span>
               </li>
             ))}
-          </FadeUp>
+          </ul>
 
           {/* Clips the track below 425, where the four sit in a row wider than
               the screen. Under reduced motion the animation stops and this
               becomes an ordinary horizontal scroller, so every card stays
               reachable. */}
-          <FadeUp
-            play={isMeasured}
-            delay={slot(2)}
-            className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[22rem] mt-[6rem]"
-          >
-            {/* Drives the track below 425, where it can also be grabbed and
-                thrown. Its only child must be the track, which is what it
-                measures. */}
-            <DragMarquee>
-              <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
-                {/* The second pass is the copy the loop needs. It is hidden
-                    from assistive tech and from every width above the
-                    breakpoint, so the grid stays four cards and nothing is
-                    announced twice. */}
-                {[false, true].map((isCopy) =>
-                  partnerStats.map(({ id, value, label }) => (
-                    <li
-                      key={isCopy ? `${id}-copy` : id}
-                      {...(isCopy && { "aria-hidden": true })}
-                      className={`gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm items-center rounded-md bg-white select-none ${
-                        isCopy ? "max-425:flex hidden" : "flex"
-                      }`}
-                    >
-                      <p className="max-425:text-[3.5rem] shrink-0 text-[5rem] font-extrabold tracking-[-0.07em] text-black">
-                        {value}
-                      </p>
+          <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[22rem] mt-[6rem]">
+            <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
+              {partnerStats.map(({ id, value, label }) => (
+                <li
+                  key={id}
+                  className="gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm flex items-center rounded-md bg-white select-none"
+                >
+                  <p className="max-425:text-[3.5rem] shrink-0 text-[5rem] font-extrabold tracking-[-0.07em] text-black">
+                    {value}
+                  </p>
 
-                      <span
-                        aria-hidden="true"
-                        className="max-425:h-[2rem] h-[4rem] w-px shrink-0 bg-black"
-                      />
+                  <span
+                    aria-hidden="true"
+                    className="max-425:h-[2rem] h-[4rem] w-px shrink-0 bg-black"
+                  />
 
-                      <p className="max-425:text-[1.2rem] max-425:leading-[1.8rem] text-text-body leading-[2.2rem] font-medium tracking-[-0.02em]">
-                        {label}
-                      </p>
-                    </li>
-                  )),
-                )}
-              </ul>
-            </DragMarquee>
-          </FadeUp>
+                  <p className="max-425:text-[1.2rem] max-425:leading-[1.8rem] text-text-body leading-[2.2rem] font-medium tracking-[-0.02em]">
+                    {label}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Container>
       </Section>
     </>

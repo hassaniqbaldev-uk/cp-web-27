@@ -4,14 +4,9 @@ import { teamHandoffs, teamProfiles } from "@/config/common";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import FadeUp, { LineReveal, MaskReveal, Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
-
-/** The intro paragraph starts this long after the heading, once the label
- *  and the title's first line are under way. */
-const INTRO_DELAY = 0.3;
 
 /** Must match the transition on the track, or the snap is seen. */
 const SLIDE_DURATION = 300;
@@ -106,7 +101,6 @@ const AboutTeam = () => {
         <Container>
           <div className="gap-lg max-425:gap-sm max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center flex items-end justify-between">
             <SectionHeading
-              reveal
               className="max-425:max-w-[30rem] max-w-[65rem]"
               label="The team"
               title={
@@ -123,23 +117,16 @@ const AboutTeam = () => {
 
             {/* A line at a time, a beat after the title begins. */}
             <p className="text-body-01 max-425:text-[1.6rem] text-text-body max-425:w-full max-425:max-w-[35rem] w-[48.3rem] tracking-[-0.02em]">
-              <LineReveal trigger="view" delay={INTRO_DELAY}>
-                CreativePixels brings together project leadership, UX and visual
-                design, WordPress and ecommerce development, custom application
-                engineering and growth expertise. The person leading the
-                conversation stays close to the work, while specialists own the
-                parts they are best at.
-              </LineReveal>
+              CreativePixels brings together project leadership, UX and visual
+              design, WordPress and ecommerce development, custom application
+              engineering and growth expertise. The person leading the
+              conversation stays close to the work, while specialists own the
+              parts they are best at.
             </p>
           </div>
 
-          {/* The profile, then the avatars. Each rises inside a wrapper that
-              takes over its sizing in the row: the profile carries aria-live
-              and the avatar column its pause handlers, which the animated
-              element cannot take, and the avatar list slides on a transition
-              that would drag the rise out at 425. */}
-          <Stagger className="gap-lg max-425:gap-sm max-425:mt-[3.5rem] mt-2xl max-425:flex-col-reverse max-425:px-[1.8rem] flex items-start justify-between">
-            <FadeUp className="max-425:w-full w-[58rem]">
+          <div className="gap-lg max-425:gap-sm max-425:mt-[3.5rem] mt-2xl max-425:flex-col-reverse max-425:px-[1.8rem] flex items-start justify-between">
+            <div className="max-425:w-full w-[58rem]">
               <div
                 // Silent while the carousel is moving on its own, or every
                 // profile would be read out unasked; it speaks again as soon
@@ -189,13 +176,13 @@ const AboutTeam = () => {
                   {selected.description}
                 </p>
               </div>
-            </FadeUp>
+            </div>
 
             {/* A grid on desktop; at 425 a track three slots wide with the
                 middle slot active. The profiles are laid down three times over,
                 so a step off either end lands on a copy rather than on nothing
                 and the carousel can go round for ever. */}
-            <FadeUp className="max-425:w-full w-[59rem]">
+            <div className="max-425:w-full w-[59rem]">
               <div
                 // Autoplay stops while the carousel is being used and starts
                 // again when it is let go. Capture, so it also covers focus
@@ -287,26 +274,22 @@ const AboutTeam = () => {
                   <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
                 </button>
               </div>
-            </FadeUp>
-          </Stagger>
+            </div>
+          </div>
 
           <div className="px-[1.8rem]">
             <div className="bg-blue/10 max-425:mt-lg mt-2xl rounded-md px-[5rem] py-[4.5rem]">
               {/* Deliberately not a heading: it names this box rather than
                 opening a new part of the section. Rises out of a mask, as
                 the section labels do. */}
-              <p className="text-body-01 max-425:text-[1.6rem] text-center font-medium tracking-[-0.02em] text-black uppercase [clip-path:inset(-100vh_-100vw_-0.25em_-100vw)]">
-                <MaskReveal>How the teams work together</MaskReveal>
+              <p className="text-body-01 max-425:text-[1.6rem] text-center font-medium tracking-[-0.02em] text-black uppercase">
+                How the teams work together
               </p>
 
               {/* The handoff, one person after another. */}
-              <Stagger
-                as="ul"
-                className="mt-md max-425:flex-col max-425:items-center max-425:gap-2xl flex items-start justify-between"
-              >
+              <ul className="mt-md max-425:flex-col max-425:items-center max-425:gap-2xl flex items-start justify-between">
                 {teamHandoffs.map(({ id, image, name, text }, index) => (
-                  <FadeUp
-                    as="li"
+                  <li
                     key={id}
                     className="relative flex w-[17rem] flex-col items-center text-center"
                   >
@@ -334,9 +317,9 @@ const AboutTeam = () => {
                     <p className="text-body-02 max-425:text-[1.6rem] text-text-body max-425:leading-[2.4rem] mt-[0.5rem] leading-[2.8rem] tracking-[-0.02em]">
                       {text}
                     </p>
-                  </FadeUp>
+                  </li>
                 ))}
-              </Stagger>
+              </ul>
             </div>
           </div>
         </Container>

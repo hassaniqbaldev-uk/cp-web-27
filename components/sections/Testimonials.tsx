@@ -12,7 +12,6 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -40,7 +39,6 @@ const Testimonials = () => {
       >
         <Container>
           <SectionHeading
-            reveal
             label="Testimonials"
             title={
               <>
@@ -57,10 +55,10 @@ const Testimonials = () => {
             the viewport edge, so slides bleed off to the right. max() keeps
             the margin from going negative on a narrow viewport. */}
         {/* The film, then the track of quotes. */}
-        <Stagger className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
+        <div className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
           {/* Its own column beside the track, not a slide, so it stays put
               while the quotes move. */}
-          <FadeUp className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
+          <div className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
             <video
               ref={videoRef}
               playsInline
@@ -103,7 +101,7 @@ const Testimonials = () => {
                 </button>
               </div>
             )}
-          </FadeUp>
+          </div>
 
           <div
             // pauseOnMouseEnter only covers pointers. Pausing on focus too
@@ -120,7 +118,7 @@ const Testimonials = () => {
             {/* The track rises as one piece. A looped Swiper moves its slides
                 about to keep the loop going, which would leave any slide
                 revealed on its own caught part way. */}
-            <FadeUp className="h-full">
+            <div className="h-full">
               <Swiper
                 onSwiper={(instance) => {
                   swiperRef.current = instance;
@@ -248,7 +246,7 @@ const Testimonials = () => {
                   ),
                 )}
               </Swiper>
-            </FadeUp>
+            </div>
 
             {/* Sit over each end of the track so cards fade out rather than
                 being cut off. pointer-events-none keeps them from swallowing
@@ -263,7 +261,7 @@ const Testimonials = () => {
               className="max-425:hidden pointer-events-none absolute inset-y-0 right-0 z-10 w-[6rem] bg-linear-to-l from-white to-transparent"
             />
           </div>
-        </Stagger>
+        </div>
       </Section>
     </>
   );

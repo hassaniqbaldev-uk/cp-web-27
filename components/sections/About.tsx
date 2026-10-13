@@ -1,8 +1,6 @@
 import { aboutHighlights, aboutQuote, teamMembers } from "@/config/common";
 import Image from "next/image";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import Button from "../ui/Button";
-import DragMarquee from "../ui/DragMarquee";
 import { Container } from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 import Section from "../ui/Section";
@@ -13,7 +11,6 @@ const About = () => {
       <Section className="py-3xl max-425:px-[2rem] max-425:py-xl">
         <Container className="bg-grey/40 max-425:pt-[5rem] pt-2xl max-425:pb-[2rem] pb-lg px-2xl max-425:px-[2rem] relative rounded-md">
           <SectionHeading
-            reveal
             label="About Creative Pixels"
             title="Strategy first always."
             subtitle={
@@ -26,10 +23,10 @@ const About = () => {
 
           {/* The highlights, the button, the photo and the quote follow one
               another in, in source order. */}
-          <Stagger className="gap-sm mt-2xl max-425:mt-[3rem] max-425:mb-[24rem] mb-xl max-425:flex-col flex items-start justify-between">
+          <div className="gap-sm mt-2xl max-425:mt-[3rem] max-425:mb-[24rem] mb-xl max-425:flex-col flex items-start justify-between">
             {/* The position sits on the wrapper, which is what moves; the
                 image only sizes itself inside it. */}
-            <FadeUp className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute bottom-0 left-[31rem] z-[10] w-max">
+            <div className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute bottom-0 left-[31rem] z-[10] w-max">
               <Image
                 src="/images/home/hassan-about-img.png"
                 alt=""
@@ -37,17 +34,13 @@ const About = () => {
                 height={576}
                 className="max-425:h-auto max-425:max-w-[30rem] block"
               />
-            </FadeUp>
+            </div>
 
             <div className="max-425:items-center max-425:w-full flex flex-col items-start">
               <ul className="max-425:flex max-425:w-full gap-lg items-center justify-between">
                 {aboutHighlights.map(
                   ({ id, icon: Icon, title, subtitle }, index) => (
-                    <FadeUp
-                      as="li"
-                      key={id}
-                      className="max-425:flex max-425:items-center"
-                    >
+                    <li key={id} className="max-425:flex max-425:items-center">
                       <div className="gap-sm max-425:gap-xs max-425:flex-col max-425:items-center max-425:text-center flex items-start">
                         <Icon
                           aria-hidden="true"
@@ -73,27 +66,24 @@ const About = () => {
                           className="bg-grey my-sm max-425:my-0 max-425:relative max-425:h-[11.6rem] max-425:w-px left-[2rem] block h-px w-[30.8rem]"
                         />
                       )}
-                    </FadeUp>
+                    </li>
                   ),
                 )}
               </ul>
 
               {/* flex, so the wrapper adds no line box beneath the button and
                   w-full still stretches it at 425. */}
-              <FadeUp className="max-425:w-full flex">
+              <div className="max-425:w-full flex">
                 <Button
                   href="/about"
                   className="text-body-02 max-425:w-full max-425:text-[1.4rem] px-sm py-xs mt-lg rounded-xl bg-black font-extrabold tracking-[-0.02em] text-white uppercase"
                 >
                   Read our story
                 </Button>
-              </FadeUp>
+              </div>
             </div>
 
-            <FadeUp
-              as="blockquote"
-              className="px-md gap-sm max-425:w-full max-425:py-md flex w-[38.5rem] flex-col items-start rounded-md bg-white py-[3.5rem]"
-            >
+            <blockquote className="px-md gap-sm max-425:w-full max-425:py-md flex w-[38.5rem] flex-col items-start rounded-md bg-white py-[3.5rem]">
               <Image
                 src="/icons/quote-icon.svg"
                 alt=""
@@ -104,36 +94,32 @@ const About = () => {
               <p className="text-body-01 max-425:text-[1.8rem] text-text-body font-medium tracking-[-0.02em]">
                 &quot;{aboutQuote}&quot;
               </p>
-            </FadeUp>
-          </Stagger>
+            </blockquote>
+          </div>
 
-          <FadeUp
+          <div
             aria-hidden
             className="p-sm max-425:p-[1rem] relative z-[20] rounded-sm bg-white"
           >
             <div className="relative overflow-hidden">
-              <DragMarquee query={null} pauseOnHover>
-                <div className="flex w-max items-center">
-                  {[0, 1].map((pass) =>
-                    teamMembers.map(({ id, src, width, height }) => (
-                      <Image
-                        key={`${id}-${pass}`}
-                        src={src}
-                        alt=""
-                        width={width}
-                        height={height}
-                        className="max-425:mx-[.4rem] max-425:size-[6.7rem] mx-[1.5rem] shrink-0 rounded-sm"
-                      />
-                    )),
-                  )}
-                </div>
-              </DragMarquee>
+              <div className="flex w-max items-center">
+                {teamMembers.map(({ id, src, width, height }) => (
+                  <Image
+                    key={id}
+                    src={src}
+                    alt=""
+                    width={width}
+                    height={height}
+                    className="max-425:mx-[.4rem] max-425:size-[6.7rem] mx-[1.5rem] shrink-0 rounded-sm"
+                  />
+                ))}
+              </div>
 
               <span className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 left-0 w-[12rem] bg-linear-to-r from-white to-transparent" />
 
               <span className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 right-0 w-[12rem] bg-linear-to-l from-white to-transparent" />
             </div>
-          </FadeUp>
+          </div>
 
           <ul className="sr-only">
             {teamMembers.map(({ id, name }) => (

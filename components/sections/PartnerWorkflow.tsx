@@ -1,7 +1,6 @@
 import { agencyWorkflow } from "@/config/common";
 import { Plus } from "lucide-react";
 import Image from "next/image";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -19,13 +18,9 @@ const PartnerWorkflow = () => {
           {/* A list, so the four read as a set of arrangements rather than
               four loose blocks. One column at 425: the board card's row of
               marks is wider than half the screen. */}
-          <Stagger
-            as="ul"
-            className="gap-xs max-425:w-full max-425:grid-cols-1 grid w-[58.5rem] grid-cols-2"
-          >
+          <ul className="gap-xs max-425:w-full max-425:grid-cols-1 grid w-[58.5rem] grid-cols-2">
             {agencyWorkflow.map(({ id, icons, showPlus, title, subtitle }) => (
-              <FadeUp
-                as="li"
+              <li
                 key={id}
                 className="bg-grey/40 p-md max-425:p-sm max-425:items-center max-425:text-center flex flex-col items-start rounded-md"
               >
@@ -63,13 +58,12 @@ const PartnerWorkflow = () => {
                 <p className="text-body-03 max-425:text-[1.4rem] max-425:leading-[2.2rem] text-text-body mt-[0.4rem] leading-[2.4rem] tracking-[-0.02em]">
                   {subtitle}
                 </p>
-              </FadeUp>
+              </li>
             ))}
-          </Stagger>
+          </ul>
 
           <div className="max-425:w-full max-425:text-center w-[55.8rem]">
             <SectionHeading
-              reveal
               label="How we work with agencies"
               title={
                 <>

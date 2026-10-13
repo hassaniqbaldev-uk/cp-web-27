@@ -2,9 +2,6 @@
 
 import { workflowSteps } from "@/config/common";
 import Image from "next/image";
-import { useState } from "react";
-import FadeUp, { LINE_STAGGER, LineReveal } from "../animations/FadeUp";
-import DragMarquee from "../ui/DragMarquee";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -18,28 +15,7 @@ const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 // Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
-// The load sequence, in seconds, as the other heroes': the header drops in
-// first, over 0.8s, and the heading starts once it is well on its way. The
-// mockup rises with the title. The paragraph and the cards have no time of
-// their own: the paragraph takes the slot after the title's last line, and
-// the cards the slots after the paragraph's, since how many lines each
-// breaks into depends on the width.
-const HEADING_DELAY = 0.5;
-const MOCKUP_DELAY = 0.6;
-
-/** Gap between one card and the next, as the scroll reveals' stagger. */
-const CARD_STAGGER = 0.12;
-
 const HowWeWorkHero = () => {
-  // How many lines the title and then the paragraph broke into, once each is
-  // measured. What follows each waits for it.
-  const [titleLines, setTitleLines] = useState<number | null>(null);
-  const [paragraphLines, setParagraphLines] = useState<number | null>(null);
-
-  // The label takes the first slot and each title line one more.
-  const paragraphDelay = HEADING_DELAY + (1 + (titleLines ?? 0)) * LINE_STAGGER;
-  const cardsDelay = paragraphDelay + (paragraphLines ?? 0) * LINE_STAGGER;
-
   return (
     <>
       <Section
@@ -53,11 +29,7 @@ const HowWeWorkHero = () => {
               on the wrapper, which is what moves; w-max holds it to the
               image's own width, which an absolute box would otherwise shrink
               away from. */}
-          <FadeUp
-            play
-            delay={MOCKUP_DELAY}
-            className="max-425:hidden absolute right-0 bottom-0 w-max"
-          >
+          <div className="max-425:hidden absolute right-0 bottom-0 w-max">
             <Image
               src="/images/how-we-work/hero-mockup-img.png"
               alt=""
@@ -66,17 +38,13 @@ const HowWeWorkHero = () => {
               height={649}
               className="block shrink-0"
             />
-          </FadeUp>
+          </div>
 
           {/* The mockup's own crop for this width, in the same layer as the
               one above so the blur still passes over it. Decorative:
               nothing depends on recognising the screen it shows. Its wrapper
               takes the full width the image had, and the image fills it. */}
-          <FadeUp
-            play
-            delay={MOCKUP_DELAY}
-            className="max-425:block absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2"
-          >
+          <div className="max-425:block absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2">
             <Image
               src="/images/how-we-work/hero-mockup-img-mobile.png"
               alt=""
@@ -85,7 +53,7 @@ const HowWeWorkHero = () => {
               height={1726}
               className="block h-auto w-full"
             />
-          </FadeUp>
+          </div>
 
           <div
             aria-hidden="true"
@@ -121,9 +89,6 @@ const HowWeWorkHero = () => {
             <SectionHeading
               // The page's single h1 — the outline starts here.
               as="h1"
-              reveal
-              revealDelay={HEADING_DELAY}
-              onRevealTitleMeasure={setTitleLines}
               label="How we work"
               title={
                 <>
@@ -141,68 +106,45 @@ const HowWeWorkHero = () => {
             />
 
             <p className="text-body-02 max-425:text-[1.6rem] max-425:text-center max-425:mx-auto text-grey max-425:mt-sm mt-md max-w-[48.3rem] leading-[2.8rem] tracking-[-0.02em]">
-              <LineReveal
-                play={titleLines !== null}
-                delay={paragraphDelay}
-                onMeasure={setParagraphLines}
-              >
-                What happens before a proposal, what is fixed before work
-                starts, how the build runs, and what we still do after launch.
-                No mystery, no six-week silence.
-              </LineReveal>
+              What happens before a proposal, what is fixed before work starts,
+              how the build runs, and what we still do after launch. No mystery,
+              no six-week silence.
             </p>
           </div>
 
           {/* Clips the track at 425, where the four steps sit in a row
               wider than the screen. */}
           <div className="max-425:overflow-hidden max-425:mt-[40rem] mt-2xl w-full">
-            {/* Drives and drags the track below 425. Its only child must be
-                the track, which is what it measures. */}
-            <DragMarquee>
-              <ul className="gap-xs max-425:w-max max-425:flex-nowrap max-425:flex grid w-full grid-cols-4">
-                {/* The second pass is the copy the loop needs. It is kept from
-                    assistive tech and from every width above the breakpoint, so
-                    the grid stays four cards and no step is announced twice. */}
-                {/* The cards follow the paragraph's last line, one after
-                    another; each copy rises with its original. */}
-                {[false, true].map((isCopy) =>
-                  workflowSteps.map(({ id, step, title, details }, index) => (
-                    <FadeUp
-                      as="li"
-                      key={isCopy ? `${id}-copy` : id}
-                      play={paragraphLines !== null}
-                      delay={cardsDelay + index * CARD_STAGGER}
-                      {...(isCopy && { "aria-hidden": true })}
-                      className={`p-md bg-grey/70 max-425:w-[30rem] max-425:shrink-0 rounded-md backdrop-blur-[20px] ${
-                        isCopy ? "max-425:block hidden" : ""
-                      }`}
-                    >
-                      <p className="text-body-01 max-425:text-body-02 py-xs px-sm inline-flex w-fit rounded-xl bg-white font-medium tracking-[-0.02em]">
-                        STEP {step}
-                      </p>
+            <ul className="gap-xs max-425:w-max max-425:flex-nowrap max-425:flex grid w-full grid-cols-4">
+              {workflowSteps.map(({ id, step, title, details }) => (
+                <li
+                  key={id}
+                  className="p-md bg-grey/70 max-425:w-[30rem] max-425:shrink-0 rounded-md backdrop-blur-[20px]"
+                >
+                  <p className="text-body-01 max-425:text-body-02 py-xs px-sm inline-flex w-fit rounded-xl bg-white font-medium tracking-[-0.02em]">
+                    STEP {step}
+                  </p>
 
-                      <h2 className="text-subheading-02 max-425:text-[3.5rem] mt-md max-425:mt-sm font-bold tracking-[-0.07em]">
-                        {title}
-                      </h2>
+                  <h2 className="text-subheading-02 max-425:text-[3.5rem] mt-md max-425:mt-sm font-bold tracking-[-0.07em]">
+                    {title}
+                  </h2>
 
-                      <ul className="gap-sm mt-xs flex flex-col">
-                        {details.map((detail) => (
-                          <li key={detail.id}>
-                            <p className="text-body-04 font-extrabold">
-                              {detail.title}
-                            </p>
+                  <ul className="gap-sm mt-xs flex flex-col">
+                    {details.map((detail) => (
+                      <li key={detail.id}>
+                        <p className="text-body-04 font-extrabold">
+                          {detail.title}
+                        </p>
 
-                            <p className="text-body-03 text-text-body leading-[2.4rem]">
-                              {detail.subtitle}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                    </FadeUp>
-                  )),
-                )}
-              </ul>
-            </DragMarquee>
+                        <p className="text-body-03 text-text-body leading-[2.4rem]">
+                          {detail.subtitle}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
           </div>
         </Container>
       </Section>

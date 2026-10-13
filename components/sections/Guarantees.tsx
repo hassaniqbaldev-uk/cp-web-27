@@ -2,7 +2,6 @@ import { guaranteeCaseStudy, guarantees } from "@/config/common";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import FadeUp, { Stagger } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 
@@ -17,9 +16,9 @@ const Guarantees = () => {
           <h2 className="sr-only">Our guarantees</h2>
 
           {/* The three guarantees, then the case study, one after another. */}
-          <Stagger className="gap-sm max-425:grid-cols-1 grid grid-cols-4">
+          <div className="gap-sm max-425:grid-cols-1 grid grid-cols-4">
             {guarantees.map(({ id, title, description }) => (
-              <FadeUp
+              <div
                 key={id}
                 className="border-grey p-md max-425:p-sm flex flex-col rounded-md border"
               >
@@ -30,10 +29,10 @@ const Guarantees = () => {
                 <p className="text-body-03 max-425:text-[1.4rem] max-425:mt-xs text-text-body mt-sm leading-[2.4rem] tracking-[-0.02em]">
                   {description}
                 </p>
-              </FadeUp>
+              </div>
             ))}
 
-            <FadeUp className="max-425:min-h-[30rem] relative overflow-hidden rounded-md">
+            <div className="max-425:min-h-[30rem] relative overflow-hidden rounded-md">
               <Image
                 src={guaranteeCaseStudy.image}
                 alt={guaranteeCaseStudy.imageAlt}
@@ -81,8 +80,8 @@ const Guarantees = () => {
                   </span>
                 </Link>
               </div>
-            </FadeUp>
-          </Stagger>
+            </div>
+          </div>
         </Container>
       </Section>
     </>

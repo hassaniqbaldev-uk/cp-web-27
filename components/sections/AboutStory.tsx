@@ -3,7 +3,6 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import FadeUp, { MaskReveal } from "../animations/FadeUp";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -29,11 +28,11 @@ const AboutStory = () => {
               {/* Deliberately not a heading: the section's heading is the
                   title in the next column, and two would split the outline. */}
               {/* Rises out of a mask, as the section headings' labels do. */}
-              <p className="text-body-01 max-425:hidden max-425:text-center font-medium tracking-[-0.02em] text-black uppercase [clip-path:inset(-100vh_-100vw_-0.25em_-100vw)]">
-                <MaskReveal>Origin story</MaskReveal>
+              <p className="text-body-01 max-425:hidden max-425:text-center font-medium tracking-[-0.02em] text-black uppercase">
+                Origin story
               </p>
 
-              <FadeUp className="mt-xl max-425:mt-0 max-425:h-[40rem] relative h-[66.7rem] w-full overflow-hidden rounded-md bg-[#D9D9D9]">
+              <div className="mt-xl max-425:mt-0 max-425:h-[40rem] relative h-[66.7rem] w-full overflow-hidden rounded-md bg-[#D9D9D9]">
                 <video
                   ref={videoRef}
                   playsInline
@@ -76,7 +75,7 @@ const AboutStory = () => {
                     </button>
                   </div>
                 )}
-              </FadeUp>
+              </div>
             </div>
 
             <div className="max-425:w-full max-425:flex w-[55rem] flex-col items-center">
@@ -84,7 +83,6 @@ const AboutStory = () => {
                   title centres itself at 425 rather than leaning on the
                   column's items-center, which now centres the pair. */}
               <SectionHeading
-                reveal
                 title={
                   <>
                     Started young.{" "}
@@ -101,10 +99,7 @@ const AboutStory = () => {
               {/* figure and figcaption are the pair that ties a quote to the
                   person who said it, rather than leaving them as two
                   unrelated paragraphs. */}
-              <FadeUp
-                as="figure"
-                className="bg-orange/10 p-md mt-lg max-425:mt-md rounded-md"
-              >
+              <figure className="bg-orange/10 p-md mt-lg max-425:mt-md rounded-md">
                 <Image
                   src="/icons/quote-icon.svg"
                   alt=""
@@ -121,7 +116,7 @@ const AboutStory = () => {
                 <figcaption className="text-body-03 max-425:text-[1.2rem] text-text-body font-medium tracking-[-0.02em]">
                   Hassan Iqbal, Founder &amp; Managing Director
                 </figcaption>
-              </FadeUp>
+              </figure>
             </div>
           </div>
         </Container>

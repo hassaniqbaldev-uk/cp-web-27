@@ -10,7 +10,6 @@ const HowWeWork = () => {
       <HowWeWorkHero />
       <HowWeWorkCards />
       <Faqs
-        reveal
         id="how-we-work-faqs"
         label="Process questions"
         title={
@@ -22,7 +21,7 @@ const HowWeWork = () => {
         items={howWeWorkFaqs}
       />
 
-      <BookCall reveal id="how-we-work-book-call" />
+      <BookCall id="how-we-work-book-call" />
     </>
   );
 };

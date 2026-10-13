@@ -1,6 +1,6 @@
 "use client";
 
-import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
+import { useMediaQuery, usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 import gsap from "gsap";
 import {
   Children,
@@ -28,6 +28,7 @@ type DragMarqueeProps = {
   slideClassName?: string;
   as?: "ul" | "div";
   speed?: number;
+  query?: string | null;
   pauseOnHover?: boolean;
 };
 
@@ -38,12 +39,14 @@ export default function DragMarquee({
   slideClassName = "",
   as = "ul",
   speed = PIXELS_PER_SECOND,
+  query = null,
   pauseOnHover = false,
 }: DragMarqueeProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLElement>(null);
 
   const prefersReducedMotion = usePrefersReducedMotion();
+  const isActive = useMediaQuery(query ?? "all");
 
   const items = Children.toArray(children);
   const count = items.length;
@@ -53,7 +56,10 @@ export default function DragMarquee({
     const viewport = viewportRef.current;
     const track = trackRef.current;
 
-    if (!viewport || !track) return;
+    if (!viewport || !track || !isActive) {
+      setPasses(1);
+      return;
+    }
 
     const children = Array.from(track.children) as HTMLElement[];
 
@@ -253,7 +259,7 @@ export default function DragMarquee({
     }, viewport);
 
     return () => context.revert();
-  }, [count, passes, pauseOnHover, prefersReducedMotion, speed]);
+  }, [count, isActive, passes, pauseOnHover, prefersReducedMotion, speed]);
 
   const Track = as;
   const Slide = as === "ul" ? "li" : "div";
@@ -269,11 +275,17 @@ export default function DragMarquee({
   return (
     <div
       ref={viewportRef}
-      className={`cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing [&_a]:cursor-pointer ${className}`}
+      className={[
+        isActive &&
+          "cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing [&_a]:cursor-pointer",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <Track
         ref={trackRef as React.Ref<HTMLUListElement & HTMLDivElement>}
-        className={`flex w-max ${trackClassName}`}
+        className={trackClassName}
       >
         {Array.from({ length: passes }, (_, pass) =>
           items.map((item, index) => (

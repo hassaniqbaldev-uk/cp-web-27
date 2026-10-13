@@ -1,4 +1,5 @@
 import { clientLogos } from "@/config/common";
+import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
@@ -54,26 +55,31 @@ const WorkHero = () => {
         </Container>
 
         <div className="mt-xl max-425:mt-lg max-425:-mx-[3rem] relative z-10 overflow-hidden">
-          <ul className="gap-sm flex w-max items-center">
+          <DragMarquee
+            pauseOnHover
+            trackClassName="gap-sm flex w-max items-center"
+            slideClassName="shrink-0"
+          >
             {clientLogos.map(
               ({ id, src, alt, href, width, height, className }) => (
-                <li key={id} className="shrink-0">
-                  <Link
-                    href={href}
-                    className="px-xl max-425:px-md max-425:h-[7rem] flex h-[9.5rem] items-center justify-center rounded-xl bg-[#2E2E2E]"
-                  >
-                    <Image
-                      src={src}
-                      alt={alt}
-                      width={width}
-                      height={height}
-                      className={className}
-                    />
-                  </Link>
-                </li>
+                <Link
+                  key={id}
+                  href={href}
+                  draggable={false}
+                  className="px-xl max-425:px-md max-425:h-[7rem] flex h-[9.5rem] items-center justify-center rounded-xl bg-[#2E2E2E]"
+                >
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    draggable={false}
+                    className={className}
+                  />
+                </Link>
               ),
             )}
-          </ul>
+          </DragMarquee>
 
           <span
             aria-hidden="true"

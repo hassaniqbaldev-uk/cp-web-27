@@ -1,6 +1,8 @@
 "use client";
 
 import { workflowSteps } from "@/config/common";
+import { Fragment } from "react";
+import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -95,12 +97,13 @@ const HowWeWorkHero = () => {
           </div>
 
           <div className="max-425:overflow-hidden max-425:mt-[40rem] mt-2xl w-full">
-            <ul className="gap-xs max-425:w-max max-425:flex-nowrap max-425:flex grid w-full grid-cols-4">
+            <DragMarquee
+              query="(max-width: 425px)"
+              trackClassName="gap-xs max-425:w-max max-425:flex-nowrap max-425:flex grid w-full grid-cols-4"
+              slideClassName="p-md bg-grey/70 max-425:w-[30rem] max-425:shrink-0 rounded-md backdrop-blur-[20px]"
+            >
               {workflowSteps.map(({ id, step, title, details }) => (
-                <li
-                  key={id}
-                  className="p-md bg-grey/70 max-425:w-[30rem] max-425:shrink-0 rounded-md backdrop-blur-[20px]"
-                >
+                <Fragment key={id}>
                   <p className="text-body-01 max-425:text-body-02 py-xs px-sm inline-flex w-fit rounded-xl bg-white font-medium tracking-[-0.02em]">
                     STEP {step}
                   </p>
@@ -122,9 +125,9 @@ const HowWeWorkHero = () => {
                       </li>
                     ))}
                   </ul>
-                </li>
+                </Fragment>
               ))}
-            </ul>
+            </DragMarquee>
           </div>
         </Container>
       </Section>

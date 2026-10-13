@@ -1,6 +1,8 @@
 "use client";
 
 import { partnerStats } from "@/config/common";
+import { Fragment } from "react";
+import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
@@ -117,12 +119,13 @@ const PartnerHero = () => {
           </ul>
 
           <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[22rem] mt-[6rem]">
-            <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
+            <DragMarquee
+              query="(max-width: 425px)"
+              trackClassName="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]"
+              slideClassName="gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm flex items-center rounded-md bg-white select-none"
+            >
               {partnerStats.map(({ id, value, label }) => (
-                <li
-                  key={id}
-                  className="gap-sm max-425:gap-xs p-sm max-425:w-[20rem] max-425:shrink-0 max-425:rounded-sm flex items-center rounded-md bg-white select-none"
-                >
+                <Fragment key={id}>
                   <p className="max-425:text-[3.5rem] shrink-0 text-[5rem] font-extrabold tracking-[-0.07em] text-black">
                     {value}
                   </p>
@@ -135,9 +138,9 @@ const PartnerHero = () => {
                   <p className="max-425:text-[1.2rem] max-425:leading-[1.8rem] text-text-body leading-[2.2rem] font-medium tracking-[-0.02em]">
                     {label}
                   </p>
-                </li>
+                </Fragment>
               ))}
-            </ul>
+            </DragMarquee>
           </div>
         </Container>
       </Section>

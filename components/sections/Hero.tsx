@@ -74,7 +74,7 @@ const Hero = () => {
 
             <DragMarquee
               pauseOnHover
-              trackClassName="items-center"
+              trackClassName="flex w-max items-center"
               slideClassName="shrink-0"
             >
               {clientLogos.map(

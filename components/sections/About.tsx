@@ -1,4 +1,5 @@
 import { aboutHighlights, aboutQuote, teamMembers } from "@/config/common";
+import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
@@ -96,7 +97,12 @@ const About = () => {
             className="p-sm max-425:p-[1rem] relative z-[20] rounded-sm bg-white"
           >
             <div className="relative overflow-hidden">
-              <div className="flex w-max items-center">
+              <DragMarquee
+                as="div"
+                pauseOnHover
+                trackClassName="flex w-max items-center"
+                slideClassName="shrink-0"
+              >
                 {teamMembers.map(({ id, src, width, height }) => (
                   <Image
                     key={id}
@@ -104,10 +110,11 @@ const About = () => {
                     alt=""
                     width={width}
                     height={height}
+                    draggable={false}
                     className="max-425:mx-[.4rem] max-425:size-[6.7rem] mx-[1.5rem] shrink-0 rounded-sm"
                   />
                 ))}
-              </div>
+              </DragMarquee>
 
               <span className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 left-0 w-[12rem] bg-linear-to-r from-white to-transparent" />
 

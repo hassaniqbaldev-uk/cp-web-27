@@ -132,7 +132,7 @@ export const clientLogos: ClientLogo[] = [
     id: "client-one",
     src: "/images/home/casa-logo.png",
     alt: "Casabotanica Client",
-    href: "tahabaig.dev",
+    href: "/work/casabotanica",
     width: 124,
     height: 71,
     className: "max-425:h-[4.5rem] max-425:w-auto",

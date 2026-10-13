@@ -2,8 +2,6 @@
 
 import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 import gsap from "gsap";
-import { Draggable } from "gsap/Draggable";
-import { InertiaPlugin } from "gsap/InertiaPlugin";
 import {
   Children,
   cloneElement,
@@ -17,7 +15,11 @@ const PIXELS_PER_SECOND = 60;
 
 const SCREENFULS = 2;
 
-const TOUCH_SLOP = 6;
+const AXIS_SLOP = 8;
+
+const THROW_DURATION = 0.9;
+
+const THROW_REACH = 0.3;
 
 type DragMarqueeProps = {
   children: React.ReactNode;
@@ -72,8 +74,6 @@ export default function DragMarquee({
       return;
     }
 
-    gsap.registerPlugin(Draggable, InertiaPlugin);
-
     const context = gsap.context(() => {
       const duration = passWidth / speed;
 
@@ -92,14 +92,19 @@ export default function DragMarquee({
       if (prefersReducedMotion) tween.pause();
 
       const wrapTime = gsap.utils.wrap(0, duration);
-      const proxy = document.createElement("div");
+      const throwState = { travelled: 0 };
 
       const canHover = window.matchMedia("(hover: hover)").matches;
 
+      let pointerId: number | null = null;
+      let axis: "pending" | "x" | "y" = "pending";
+      let startX = 0;
+      let startY = 0;
       let lastX = 0;
-      let isDragging = false;
+      let lastAt = 0;
+      let velocity = 0;
       let isHovered = false;
-      let targetTime = tween.time();
+      let targetTime = 0;
       let needsRender = false;
 
       const render = () => {
@@ -111,57 +116,119 @@ export default function DragMarquee({
 
       gsap.ticker.add(render);
 
+      const isDragging = () => pointerId !== null && axis === "x";
+
       const resume = () => {
-        if (isDragging || prefersReducedMotion) return;
+        if (isDragging() || prefersReducedMotion) return;
         if (pauseOnHover && isHovered) return;
 
         tween.play();
       };
 
-      const scrub = (x: number) => {
-        const delta = x - lastX;
-
-        lastX = x;
-        targetTime = wrapTime(targetTime - delta / speed);
+      const moveBy = (pixels: number) => {
+        targetTime = wrapTime(targetTime - pixels / speed);
         needsRender = true;
       };
 
-      Draggable.create(proxy, {
-        type: "x",
-        trigger: viewport,
-        inertia: true,
-        allowNativeTouchScrolling: true,
-        lockAxis: true,
-        minimumMovement: TOUCH_SLOP,
-        onPress() {
-          isDragging = true;
-          lastX = this.x;
-          targetTime = tween.time();
-          tween.pause();
-        },
-        onDrag() {
-          scrub(this.x);
-        },
-        onThrowUpdate() {
-          scrub(this.x);
-        },
-        onRelease() {
-          isDragging = false;
+      const hold = () => {
+        gsap.killTweensOf(throwState);
+        targetTime = tween.time();
+        tween.pause();
+      };
 
-          if (!this.isThrowing) resume();
-        },
-        onThrowComplete() {
-          isDragging = false;
+      const onPointerDown = (event: PointerEvent) => {
+        if (pointerId !== null || !event.isPrimary) return;
+
+        pointerId = event.pointerId;
+        axis = event.pointerType === "mouse" ? "x" : "pending";
+        startX = event.clientX;
+        startY = event.clientY;
+        lastX = event.clientX;
+        lastAt = event.timeStamp;
+        velocity = 0;
+
+        hold();
+      };
+
+      const onPointerMove = (event: PointerEvent) => {
+        if (event.pointerId !== pointerId) return;
+
+        if (axis === "pending") {
+          const dx = Math.abs(event.clientX - startX);
+          const dy = Math.abs(event.clientY - startY);
+
+          if (Math.max(dx, dy) < AXIS_SLOP) return;
+
+          axis = dx > dy ? "x" : "y";
+
+          if (axis === "y") {
+            pointerId = null;
+            resume();
+            return;
+          }
+
+          viewport.setPointerCapture(event.pointerId);
+          lastX = event.clientX;
+          lastAt = event.timeStamp;
+        }
+
+        if (axis !== "x") return;
+
+        const delta = event.clientX - lastX;
+        const elapsed = event.timeStamp - lastAt;
+
+        moveBy(delta);
+
+        if (elapsed > 0) velocity = (delta / elapsed) * 1000;
+
+        lastX = event.clientX;
+        lastAt = event.timeStamp;
+      };
+
+      const onPointerUp = (event: PointerEvent) => {
+        if (event.pointerId !== pointerId) return;
+
+        const wasDragging = axis === "x";
+        const held = event.timeStamp - lastAt > 120;
+
+        pointerId = null;
+        axis = "pending";
+
+        if (!wasDragging) {
           resume();
-        },
-      });
+          return;
+        }
 
-      if (!pauseOnHover || !canHover) return () => gsap.ticker.remove(render);
+        if (held || !velocity) {
+          resume();
+          return;
+        }
+
+        throwState.travelled = 0;
+
+        let applied = 0;
+
+        gsap.to(throwState, {
+          travelled: velocity * THROW_REACH,
+          duration: THROW_DURATION,
+          ease: "power2.out",
+          onUpdate() {
+            moveBy(throwState.travelled - applied);
+            applied = throwState.travelled;
+          },
+          onComplete: resume,
+          onInterrupt: resume,
+        });
+      };
+
+      viewport.addEventListener("pointerdown", onPointerDown);
+      viewport.addEventListener("pointermove", onPointerMove);
+      viewport.addEventListener("pointerup", onPointerUp);
+      viewport.addEventListener("pointercancel", onPointerUp);
 
       const onEnter = () => {
         isHovered = true;
-        gsap.killTweensOf(proxy);
-        tween.pause();
+        hold();
       };
 
       const onLeave = () => {
@@ -169,11 +236,17 @@ export default function DragMarquee({
         resume();
       };
 
-      viewport.addEventListener("mouseenter", onEnter);
-      viewport.addEventListener("mouseleave", onLeave);
+      if (pauseOnHover && canHover) {
+        viewport.addEventListener("mouseenter", onEnter);
+        viewport.addEventListener("mouseleave", onLeave);
+      }
 
       return () => {
         gsap.ticker.remove(render);
+        viewport.removeEventListener("pointerdown", onPointerDown);
+        viewport.removeEventListener("pointermove", onPointerMove);
+        viewport.removeEventListener("pointerup", onPointerUp);
+        viewport.removeEventListener("pointercancel", onPointerUp);
         viewport.removeEventListener("mouseenter", onEnter);
         viewport.removeEventListener("mouseleave", onLeave);
       };

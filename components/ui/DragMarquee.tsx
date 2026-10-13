@@ -4,11 +4,20 @@ import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
-import { Children, useEffect, useRef, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const PIXELS_PER_SECOND = 60;
 
 const SCREENFULS = 2;
+
+const TOUCH_SLOP = 6;
 
 type DragMarqueeProps = {
   children: React.ReactNode;
@@ -71,7 +80,13 @@ export default function DragMarquee({
       const tween = gsap.fromTo(
         track,
         { x: 0 },
-        { x: -passWidth, duration, ease: "none", repeat: -1 },
+        {
+          x: -passWidth,
+          duration,
+          ease: "none",
+          repeat: -1,
+          force3D: true,
+        },
       );
 
       if (prefersReducedMotion) tween.pause();
@@ -84,6 +99,17 @@ export default function DragMarquee({
       let lastX = 0;
       let isDragging = false;
       let isHovered = false;
+      let targetTime = tween.time();
+      let needsRender = false;
+
+      const render = () => {
+        if (!needsRender) return;
+
+        needsRender = false;
+        tween.time(targetTime);
+      };
+
+      gsap.ticker.add(render);
 
       const resume = () => {
         if (isDragging || prefersReducedMotion) return;
@@ -96,7 +122,8 @@ export default function DragMarquee({
         const delta = x - lastX;
 
         lastX = x;
-        tween.time(wrapTime(tween.time() - delta / speed));
+        targetTime = wrapTime(targetTime - delta / speed);
+        needsRender = true;
       };
 
       Draggable.create(proxy, {
@@ -104,9 +131,12 @@ export default function DragMarquee({
         trigger: viewport,
         inertia: true,
         allowNativeTouchScrolling: true,
+        lockAxis: true,
+        minimumMovement: TOUCH_SLOP,
         onPress() {
           isDragging = true;
           lastX = this.x;
+          targetTime = tween.time();
           tween.pause();
         },
         onDrag() {
@@ -126,10 +156,11 @@ export default function DragMarquee({
         },
       });
 
-      if (!pauseOnHover || !canHover) return;
+      if (!pauseOnHover || !canHover) return () => gsap.ticker.remove(render);
 
       const onEnter = () => {
         isHovered = true;
+        gsap.killTweensOf(proxy);
         tween.pause();
       };
 
@@ -142,6 +173,7 @@ export default function DragMarquee({
       viewport.addEventListener("mouseleave", onLeave);
 
       return () => {
+        gsap.ticker.remove(render);
         viewport.removeEventListener("mouseenter", onEnter);
         viewport.removeEventListener("mouseleave", onLeave);
       };
@@ -153,10 +185,18 @@ export default function DragMarquee({
   const Track = as;
   const Slide = as === "ul" ? "li" : "div";
 
+  const asCopy = (item: React.ReactNode) =>
+    isValidElement(item)
+      ? cloneElement(item as React.ReactElement<Record<string, unknown>>, {
+          tabIndex: -1,
+          "aria-hidden": true,
+        })
+      : item;
+
   return (
     <div
       ref={viewportRef}
-      className={`cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing ${className}`}
+      className={`cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing [&_a]:cursor-pointer ${className}`}
     >
       <Track
         ref={trackRef as React.Ref<HTMLUListElement & HTMLDivElement>}
@@ -167,9 +207,9 @@ export default function DragMarquee({
             <Slide
               key={`${pass}-${index}`}
               className={slideClassName}
-              {...(pass > 0 && { "aria-hidden": true, inert: true })}
+              {...(pass > 0 && { "aria-hidden": true })}
             >
-              {item}
+              {pass > 0 ? asCopy(item) : item}
             </Slide>
           )),
         )}

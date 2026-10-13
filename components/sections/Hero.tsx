@@ -2,6 +2,7 @@ import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import ParticleLogo from "@/components/ui/ParticleLogo";
+import DragMarquee from "@/components/ui/DragMarquee";
 import { clientLogos, heroBadges } from "@/config/common";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,26 +72,31 @@ const Hero = () => {
               className="bg-text-body mb-lg max-425:mb-md block h-px w-full"
             />
 
-            <ul className="flex w-max items-center">
+            <DragMarquee
+              pauseOnHover
+              trackClassName="items-center"
+              slideClassName="shrink-0"
+            >
               {clientLogos.map(
                 ({ id, src, alt, href, width, height, className }) => (
-                  <li key={id} className="shrink-0">
-                    <Link
-                      href={href}
-                      className="mx-md max-425:mx-sm block opacity-80 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100"
-                    >
-                      <Image
-                        src={src}
-                        alt={alt}
-                        width={width}
-                        height={height}
-                        className={className}
-                      />
-                    </Link>
-                  </li>
+                  <Link
+                    key={id}
+                    href={href}
+                    draggable={false}
+                    className="mx-md max-425:mx-sm block opacity-80 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100"
+                  >
+                    <Image
+                      src={src}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      draggable={false}
+                      className={className}
+                    />
+                  </Link>
                 ),
               )}
-            </ul>
+            </DragMarquee>
           </div>
         </Container>
       </Section>

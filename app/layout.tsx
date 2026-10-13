@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import SparkleCursor from "@/components/ui/SparkleCursor";
 import { DM_Sans } from "next/font/google";
 import Script from "next/script";
@@ -30,6 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <body>
+        <SmoothScroll />
+
         <Header />
 
         <main>{children}</main>

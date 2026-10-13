@@ -89,6 +89,7 @@ const Process = () => {
               tabIndex={0}
               role="region"
               aria-label="Process steps"
+              data-lenis-prevent
               className="pb-md max-425:h-[42rem] no-scrollbar h-[50rem] overflow-y-auto"
             >
               <ol className="gap-sm flex flex-col">

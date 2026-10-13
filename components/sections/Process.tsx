@@ -1,5 +1,11 @@
+"use client";
+
 import { processSteps } from "@/config/common";
+import { usePrefersReducedMotion } from "@/hooks/useMediaQuery";
 import type { ProcessStep } from "@/types/common";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -24,10 +30,23 @@ const Step = ({
       <div className="flex w-[1.2rem] shrink-0 flex-col items-center">
         <span
           aria-hidden="true"
-          className={`size-[1.2rem] shrink-0 rounded-full ${accentClassName}`}
-        />
+          className="bg-text-body/30 relative size-[1.2rem] shrink-0 rounded-full"
+        >
+          <span
+            data-dot
+            className={`absolute inset-0 rounded-full opacity-0 ${accentClassName}`}
+          />
+        </span>
 
-        <span aria-hidden="true" className={`w-px flex-1 ${accentClassName}`} />
+        <span
+          aria-hidden="true"
+          className="bg-text-body/30 relative w-px flex-1"
+        >
+          <span
+            data-fill
+            className={`absolute inset-0 origin-top scale-y-0 ${accentClassName}`}
+          />
+        </span>
       </div>
 
       <div className="p-md max-425:p-sm flex-1 rounded-md bg-white">
@@ -50,7 +69,49 @@ const Step = ({
   );
 };
 
+const DOT_SHARE = 0.15;
+
+const SCRUB = 0.4;
+
 const Process = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    const node = scrollRef.current;
+    const track = node?.firstElementChild;
+
+    if (!node || !track) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const context = gsap.context(() => {
+      const dots = gsap.utils.toArray<HTMLElement>("[data-dot]", node);
+      const fills = gsap.utils.toArray<HTMLElement>("[data-fill]", node);
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          scroller: node,
+          trigger: track,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: prefersReducedMotion ? true : SCRUB,
+        },
+      });
+
+      fills.forEach((fill, index) => {
+        timeline.to(fill, { scaleY: 1, duration: 1 }, index);
+
+        if (dots[index]) {
+          timeline.to(dots[index], { opacity: 1, duration: DOT_SHARE }, index);
+        }
+      });
+    }, node);
+
+    return () => context.revert();
+  }, [prefersReducedMotion]);
+
   return (
     <>
       <Section className="max-425:px-[3rem]">
@@ -86,6 +147,7 @@ const Process = () => {
 
           <div className="max-425:w-full relative w-[48rem]">
             <div
+              ref={scrollRef}
               tabIndex={0}
               role="region"
               aria-label="Process steps"

@@ -2,6 +2,7 @@
 
 import { aboutStats } from "@/config/common";
 import { Fragment } from "react";
+import CountUp from "../ui/CountUp";
 import DragMarquee from "../ui/DragMarquee";
 import Image from "next/image";
 import Button from "../ui/Button";
@@ -71,7 +72,7 @@ const AboutHero = () => {
               {aboutStats.map(({ id, value, label }) => (
                 <Fragment key={id}>
                   <p className="max-425:text-[3.5rem] shrink-0 text-[6.5rem] font-extrabold tracking-[-0.07em] text-black">
-                    {value}
+                    <CountUp value={value} />
                   </p>
 
                   <span

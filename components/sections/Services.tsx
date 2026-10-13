@@ -42,6 +42,7 @@ const Services = () => {
 
           <Accordion
             className="mt-lg"
+            openFirstOnView
             items={serviceDisciplines.map(
               ({
                 id,
@@ -255,6 +256,8 @@ const Services = () => {
             )}
             itemClassName="border-black/30 border-b"
             triggerClassName="py-md max-425:py-sm"
+            indicatorClassName="size-[5rem] max-425:size-[2.7rem] rounded-full border border-black text-black"
+            iconClassName="max-425:size-[1.5rem]"
             contentClassName="pb-md"
           />
         </Container>

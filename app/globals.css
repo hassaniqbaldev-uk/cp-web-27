@@ -53,11 +53,11 @@
   --text-heading-02: 8.5rem;
   --text-heading-01: 13rem;
 
-  --animate-marquee-up: marquee-up 24s linear infinite;
+  --animate-spin-slow: spin-slow 16s linear infinite;
 
-  @keyframes marquee-up {
+  @keyframes spin-slow {
     to {
-      transform: translateY(-50%);
+      transform: rotate(360deg);
     }
   }
 }

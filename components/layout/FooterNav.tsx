@@ -54,6 +54,8 @@ const FooterNav = () => {
           }))}
           itemClassName="border-b border-white/20"
           triggerClassName="py-sm gap-sm"
+          indicatorClassName="size-[2.4rem] text-white"
+          iconClassName="size-[1.8rem]"
           contentClassName="pb-sm"
         />
       </nav>

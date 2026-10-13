@@ -1,6 +1,7 @@
 import { journeySteps } from "@/config/common";
 import { Fragment } from "react";
 import DragMarquee from "../ui/DragMarquee";
+import VerticalDragMarquee from "../ui/VerticalDragMarquee";
 import Starfield from "../ui/Starfield";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -21,26 +22,60 @@ const AboutJourney = () => {
 
         <div
           aria-hidden
-          className="max-425:h-auto max-425:w-full group max-425:-translate-y-0 max-425:top-[24rem] absolute top-1/2 left-1/2 h-full w-[38rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden"
+          className="max-425:h-auto max-425:w-full group max-425:-translate-y-0 max-425:top-[24rem] absolute top-1/2 left-1/2 z-20 h-full w-[38rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         >
+          <VerticalDragMarquee
+            query="(min-width: 426px)"
+            pauseOnHover
+            className="max-425:hidden h-full"
+            trackClassName="flex flex-col"
+            slideClassName="p-lg mb-sm w-[36rem] shrink-0 rounded-md bg-white"
+          >
+            {journeySteps.map(
+              ({
+                id,
+                step,
+                title,
+                description,
+                borderClassName,
+                textClassName,
+              }) => (
+                <Fragment key={id}>
+                  <p
+                    className={`text-body-01 max-425:text-[1.2rem] px-sm py-xs inline-flex w-fit rounded-full border font-medium tracking-[-0.02em] ${borderClassName} ${textClassName}`}
+                  >
+                    STEP {step}
+                  </p>
+
+                  <p className="text-subheading-02 max-425:text-[2rem] mt-md max-425:mt-xs font-bold tracking-[-0.07em] text-black">
+                    {title}
+                  </p>
+
+                  <p className="text-body-03 max-425:text-[1.4rem] text-text-body mt-xs leading-[2.4rem]">
+                    {description}
+                  </p>
+                </Fragment>
+              ),
+            )}
+          </VerticalDragMarquee>
+
           <DragMarquee
             query="(max-width: 425px)"
-            trackClassName="animate-marquee-up max-425:animate-none max-425:w-max max-425:flex-row flex flex-col group-hover:[animation-play-state:paused] motion-reduce:animate-none"
-            slideClassName="p-lg max-425:p-md mb-sm max-425:mr-sm max-425:mb-0 max-425:w-[30rem] w-[36rem] shrink-0 rounded-md bg-white"
+            pauseOnHover
+            className="max-425:block hidden"
+            trackClassName="flex w-max flex-row"
+            slideClassName="p-md mr-sm w-[30rem] shrink-0 rounded-md bg-white"
           >
-            {[...journeySteps, ...journeySteps].map(
-              (
-                {
-                  id,
-                  step,
-                  title,
-                  description,
-                  borderClassName,
-                  textClassName,
-                },
-                index,
-              ) => (
-                <Fragment key={`${id}-${index}`}>
+            {journeySteps.map(
+              ({
+                id,
+                step,
+                title,
+                description,
+                borderClassName,
+                textClassName,
+              }) => (
+                <Fragment key={id}>
                   <p
                     className={`text-body-01 max-425:text-[1.2rem] px-sm py-xs inline-flex w-fit rounded-full border font-medium tracking-[-0.02em] ${borderClassName} ${textClassName}`}
                   >

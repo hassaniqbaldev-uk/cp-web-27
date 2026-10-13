@@ -5,6 +5,7 @@ import gsap from "gsap";
 import {
   Children,
   cloneElement,
+  Fragment,
   isValidElement,
   useEffect,
   useRef,
@@ -265,7 +266,7 @@ export default function DragMarquee({
   const Slide = as === "ul" ? "li" : "div";
 
   const asCopy = (item: React.ReactNode) =>
-    isValidElement(item)
+    isValidElement(item) && item.type !== Fragment
       ? cloneElement(item as React.ReactElement<Record<string, unknown>>, {
           tabIndex: -1,
           "aria-hidden": true,

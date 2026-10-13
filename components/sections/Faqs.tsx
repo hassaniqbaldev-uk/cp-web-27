@@ -57,6 +57,8 @@ const Faqs = ({
                 }))}
                 itemClassName="border-black/20 border-b"
                 triggerClassName="py-md max-425:py-sm gap-sm"
+                indicatorClassName="size-[3rem] max-425:size-[2.4rem] rounded-full border border-black/30 text-black"
+                iconClassName="max-425:size-[1.4rem]"
                 contentClassName="pb-md max-425:pb-sm"
               />
             </div>

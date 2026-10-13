@@ -30,7 +30,6 @@ const WorkHero = () => {
                   </span>
                 </>
               }
-              // TODO: placeholder, taken from the website review page.
               subtitle="Send us your URL. We will review the page experience, conversion friction and search foundations, then give you a short list of the things we would prioritise first."
               labelClassName="text-body-01 max-425:text-[1.4rem] font-medium tracking-[-0.02em] text-white uppercase"
               titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[29rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
@@ -55,7 +54,6 @@ const WorkHero = () => {
         </Container>
 
         <div className="mt-xl max-425:mt-lg max-425:-mx-[3rem] relative z-10 overflow-hidden">
-          {/* A list, so the logos announce as a set. */}
           <ul className="gap-sm flex w-max items-center">
             {clientLogos.map(
               ({ id, src, alt, href, width, height, className }) => (
@@ -77,9 +75,6 @@ const WorkHero = () => {
             )}
           </ul>
 
-          {/* The track runs to the viewport's edges, so it fades out either
-              side rather than being cut off. pointer-events-none keeps them
-              from swallowing a drag on the logos underneath. */}
           <span
             aria-hidden="true"
             className="max-425:w-[6rem] pointer-events-none absolute inset-y-0 left-0 z-10 w-[12rem] bg-linear-to-r from-black to-transparent"

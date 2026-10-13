@@ -14,7 +14,6 @@ const Services = () => {
     <>
       <Section className="pb-3xl max-425:pb-xl max-425:px-[2rem]">
         <Container>
-          {/* The heading, then the button. */}
           <div className="gap-sm max-425:gap-[3.5rem] max-425:items-center max-425:flex-col max-425:text-center flex items-end justify-between">
             <SectionHeading
               label="Our Services"
@@ -31,7 +30,6 @@ const Services = () => {
               titleClassName="text-heading-02 max-425:max-w-[31rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs max-425:mt-[.5rem] font-extrabold tracking-[-0.07em] text-black leading-[9rem]"
             />
 
-            {/* flex, so the wrapper adds no line box beneath the button. */}
             <div className="flex">
               <Button
                 href="/services"
@@ -44,7 +42,6 @@ const Services = () => {
 
           <Accordion
             className="mt-lg"
-            openFirstOnView
             items={serviceDisciplines.map(
               ({
                 id,
@@ -72,10 +69,10 @@ const Services = () => {
 
                     <span
                       aria-hidden="true"
-                      className="bg-grey max-425:hidden h-[3rem] w-px shrink-0 transition-opacity duration-300 group-aria-expanded:opacity-0"
+                      className="bg-grey max-425:hidden h-[3rem] w-px shrink-0"
                     />
 
-                    <span className="text-body-04 max-425:hidden text-text-body inline-flex items-center font-normal tracking-[-0.02em] transition-opacity duration-300 group-aria-expanded:opacity-0">
+                    <span className="text-body-04 max-425:hidden text-text-body inline-flex items-center font-normal tracking-[-0.02em]">
                       {categories.map((category, index) => (
                         <Fragment key={category}>
                           {index > 0 && (
@@ -258,8 +255,6 @@ const Services = () => {
             )}
             itemClassName="border-black/30 border-b"
             triggerClassName="py-md max-425:py-sm"
-            indicatorClassName="size-[5rem] max-425:size-[2.7rem] rounded-full border border-black text-black"
-            iconClassName="max-425:size-[1.5rem]"
             contentClassName="pb-md"
           />
         </Container>

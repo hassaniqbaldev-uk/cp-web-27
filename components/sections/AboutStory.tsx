@@ -7,7 +7,6 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-// TODO: add the film, its poster frame and a captions track.
 const originFilm = {
   src: "/videos/origin-story.mp4",
   poster: "/images/about/hassan-about-img.png",
@@ -25,9 +24,6 @@ const AboutStory = () => {
         <Container>
           <div className="gap-lg max-425:gap-md max-425:flex-col-reverse max-425:items-center flex items-end">
             <div className="max-425:w-full w-[54rem]">
-              {/* Deliberately not a heading: the section's heading is the
-                  title in the next column, and two would split the outline. */}
-              {/* Rises out of a mask, as the section headings' labels do. */}
               <p className="text-body-01 max-425:hidden max-425:text-center font-medium tracking-[-0.02em] text-black uppercase">
                 Origin story
               </p>
@@ -47,8 +43,6 @@ const AboutStory = () => {
                   Your browser does not support the video tag.
                 </video>
 
-                {/* Hidden once playing, so it stops covering the native
-                    controls and the picture. */}
                 {!isPlaying && (
                   <div className="p-sm gap-sm absolute inset-x-0 bottom-0 flex items-end justify-between">
                     <div className="border-l border-white/60 pl-[1.2rem]">
@@ -79,9 +73,6 @@ const AboutStory = () => {
             </div>
 
             <div className="max-425:w-full max-425:flex w-[55rem] flex-col items-center">
-              {/* The title, then the paragraph, each a line at a time. The
-                  title centres itself at 425 rather than leaning on the
-                  column's items-center, which now centres the pair. */}
               <SectionHeading
                 title={
                   <>
@@ -96,9 +87,6 @@ const AboutStory = () => {
                 subtitleClassName="text-body-01 max-425:text-[1.8rem] max-425:text-center text-text-body mt-sm max-425:mt-xs tracking-[-0.02em]"
               />
 
-              {/* figure and figcaption are the pair that ties a quote to the
-                  person who said it, rather than leaving them as two
-                  unrelated paragraphs. */}
               <figure className="bg-orange/10 p-md mt-lg max-425:mt-md rounded-md">
                 <Image
                   src="/icons/quote-icon.svg"

@@ -8,10 +8,6 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-/**
- * The about page's copy, kept as the defaults so pages that want it render
- * `<WorkReviews />` and nothing else. Anywhere else passes its own.
- */
 const defaultTitle = (
   <>
     The work is the <br />
@@ -19,24 +15,16 @@ const defaultTitle = (
   </>
 );
 
-// TODO: choose which project and which review lead this section, rather than
-// taking whichever happens to be first.
 const defaultProject = workProjects[0];
 const defaultReview = testimonials[0];
 
 type WorkReviewsProps = {
   label?: string;
-  /** Accepts nodes, so it can carry a line break or a coloured span. */
   title?: React.ReactNode;
   project?: WorkProject;
   review?: Testimonial;
-  /** Where the circular button goes. */
   exploreHref?: string;
   reviewsHref?: string;
-  /**
-   * Unique per page. Two of these on one page would otherwise give the
-   * document two elements with the same id, which breaks fragment links.
-   */
   id?: string;
   className?: string;
 };
@@ -63,9 +51,6 @@ const WorkReviews = ({
               titleClassName="text-heading-02 max-425:text-center max-425:text-[3.5rem] max-425:leading-[3.5rem] max-425:max-w-[35rem] mt-xs leading-[9rem] max-425:mx-auto font-extrabold tracking-[-0.07em] text-black"
             />
 
-            {/* Holds the button's place in the row, so its width beside the
-                heading does not depend on its own transform, which its
-                magnetic pull uses. */}
             <div className="shrink-0">
               <CircularTextButton
                 href={exploreHref}
@@ -85,7 +70,6 @@ const WorkReviews = ({
             </div>
           </div>
 
-          {/* The project, then the review. */}
           <div className="gap-md mt-xl max-425:flex-col flex">
             <div className="p-md max-425:p-xs max-425:pb-md max-425:w-full max-425:text-center w-[79rem] rounded-md bg-white">
               <div className="max-425:h-[25rem] relative h-[42.4rem] w-full overflow-hidden rounded-md">
@@ -99,7 +83,6 @@ const WorkReviews = ({
 
               <div className="gap-sm pt-sm max-425:flex-col flex items-center justify-between">
                 <div>
-                  {/* h3, since the section heading above is the h2. */}
                   <h3 className="text-subheading-02 max-425:text-[2.2rem] font-bold tracking-[-0.07em] text-black">
                     {project.title}
                   </h3>
@@ -120,11 +103,8 @@ const WorkReviews = ({
             </div>
 
             <div className="max-425:w-full flex w-[37rem] shrink-0 flex-col items-stretch">
-              {/* figure and figcaption are the pair that ties a quote to the
-                  person who said it. */}
               <figure className="p-md max-425:p-sm h-full rounded-md bg-white">
                 <div className="gap-sm flex items-center justify-between">
-                  {/* Decorative: the attribution below already names them. */}
                   <Image
                     src={review.avatar}
                     alt=""
@@ -169,8 +149,6 @@ const WorkReviews = ({
                   </div>
 
                   <div className="flex flex-col items-end">
-                    {/* The stars are a picture of the score, so the figure
-                        beside them carries it in text. */}
                     <span aria-hidden="true" className="flex">
                       {Array.from({ length: 5 }, (_, index) => (
                         <Star

@@ -7,12 +7,8 @@ import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 import Starfield from "../ui/Starfield";
 
-// backdrop-filter takes one radius, so a blur that ramps has to be stacked:
-// each layer doubles the radius and is masked to start a little lower, and the
-// overlap reads as a smooth progression.
 const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 
-// Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
 const HowWeWorkHero = () => {
@@ -25,10 +21,6 @@ const HowWeWorkHero = () => {
         <div className="absolute inset-0 overflow-hidden">
           <Starfield className="max-425:hidden absolute top-1/2 right-[-5rem] z-0 h-[80rem] w-[21.4rem] -translate-y-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
-          {/* Rises with the title, from behind the blur. The position sits
-              on the wrapper, which is what moves; w-max holds it to the
-              image's own width, which an absolute box would otherwise shrink
-              away from. */}
           <div className="max-425:hidden absolute right-0 bottom-0 w-max">
             <Image
               src="/images/how-we-work/hero-mockup-img.png"
@@ -40,10 +32,6 @@ const HowWeWorkHero = () => {
             />
           </div>
 
-          {/* The mockup's own crop for this width, in the same layer as the
-              one above so the blur still passes over it. Decorative:
-              nothing depends on recognising the screen it shows. Its wrapper
-              takes the full width the image had, and the image fills it. */}
           <div className="max-425:block absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2">
             <Image
               src="/images/how-we-work/hero-mockup-img-mobile.png"
@@ -78,8 +66,6 @@ const HowWeWorkHero = () => {
               );
             })}
 
-            {/* The fill sits over the blur, as it does in the design — black
-                here, since this hero's band is black rather than off white. */}
             <span className="absolute inset-0 bg-[linear-gradient(0deg,#000000_0%,rgba(0,0,0,0)_100%)]" />
           </div>
         </div>
@@ -87,14 +73,10 @@ const HowWeWorkHero = () => {
         <Container className="pt-section-lg max-425:pt-[10rem] relative z-[20] flex flex-col items-start">
           <div className="max-425:w-full max-425:px-[3rem] w-[60rem]">
             <SectionHeading
-              // The page's single h1 — the outline starts here.
               as="h1"
               label="How we work"
               title={
                 <>
-                  {/* pr compensates for the negative tracking, which otherwise
-                      pulls the paint box in and clips the last glyph of a
-                      gradient span. */}
                   <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                     A clear process.
                   </span>{" "}
@@ -112,8 +94,6 @@ const HowWeWorkHero = () => {
             </p>
           </div>
 
-          {/* Clips the track at 425, where the four steps sit in a row
-              wider than the screen. */}
           <div className="max-425:overflow-hidden max-425:mt-[40rem] mt-2xl w-full">
             <ul className="gap-xs max-425:w-max max-425:flex-nowrap max-425:flex grid w-full grid-cols-4">
               {workflowSteps.map(({ id, step, title, details }) => (

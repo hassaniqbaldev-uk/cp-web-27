@@ -12,20 +12,13 @@ const PartnerWorkflow = () => {
         id="partner-workflow"
         className="py-3xl max-425:py-xl max-425:px-[3rem]"
       >
-        {/* Reversed at 425 so the heading, which sits beside the cards on
-            desktop, leads the stack. */}
         <Container className="gap-lg max-425:gap-md max-425:flex-col-reverse flex items-center justify-between">
-          {/* A list, so the four read as a set of arrangements rather than
-              four loose blocks. One column at 425: the board card's row of
-              marks is wider than half the screen. */}
           <ul className="gap-xs max-425:w-full max-425:grid-cols-1 grid w-[58.5rem] grid-cols-2">
             {agencyWorkflow.map(({ id, icons, showPlus, title, subtitle }) => (
               <li
                 key={id}
                 className="bg-grey/40 p-md max-425:p-sm max-425:items-center max-425:text-center flex flex-col items-start rounded-md"
               >
-                {/* The marks are decorative: the title and subtitle below
-                    already say what each card is. */}
                 <span
                   aria-hidden="true"
                   className="gap-xs mb-md max-425:mb-sm max-425:h-[4.4rem] flex h-[5rem] shrink-0 items-center rounded-md bg-white px-[1.4rem]"
@@ -50,7 +43,6 @@ const PartnerWorkflow = () => {
                   )}
                 </span>
 
-                {/* h3, since the section heading beside it is the h2. */}
                 <h3 className="text-body-01 max-425:text-[1.8rem] font-bold tracking-[-0.02em] text-black">
                   {title}
                 </h3>

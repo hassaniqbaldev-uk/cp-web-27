@@ -17,15 +17,11 @@ const WebsiteReviewHero = () => {
         <Container className="gap-lg max-425:gap-xl max-425:flex-col relative z-10 flex items-start justify-between">
           <div className="max-425:w-full w-[52.3rem]">
             <SectionHeading
-              // The page's single h1 — the outline starts here.
               as="h1"
               label="Website review"
               title={
                 <>
                   Want more enquiries?{" "}
-                  {/* pr compensates for the negative tracking, which otherwise
-                      pulls the paint box in and clips the last glyph of a
-                      gradient span. */}
                   <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                     Find out why.
                   </span>
@@ -37,12 +33,7 @@ const WebsiteReviewHero = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:text-center text-grey mt-sm leading-[2.8rem] tracking-[-0.02em]"
             />
 
-            {/* The rules are drawn over the grid rather than as borders on the
-                items, so each one runs unbroken across the gaps instead of
-                stopping at every cell edge. */}
             <div className="mt-xl max-425:mt-lg relative">
-              {/* A list, so the four read as a set of what we look at rather
-                  than four loose blocks. */}
               <ul className="gap-md max-425:gap-sm max-425:grid-cols-1 grid grid-cols-2">
                 {reviewPoints.map(
                   ({ id, title, subtitle, swatchClassName }) => (

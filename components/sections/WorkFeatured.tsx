@@ -12,13 +12,8 @@ const WorkFeatured = () => {
         className="py-3xl max-425:py-xl max-425:px-[3rem]"
       >
         <Container>
-          {/* Names the group, since each case study below carries a heading and
-              the outline would otherwise jump from the page h1 to a run of
-              h2s with nothing introducing them. */}
           <h2 className="sr-only">Featured work</h2>
 
-          {/* A list, so the case studies announce as a set rather than a run of
-              unrelated blocks. */}
           <ul className="gap-md max-425:gap-lg flex flex-col">
             {workCaseStudies.map(
               ({
@@ -52,8 +47,6 @@ const WorkFeatured = () => {
                   <div
                     className={`p-lg max-425:p-md flex flex-1 flex-col items-start rounded-md ${panelClassName}`}
                   >
-                    {/* A list, so the four read as a set of labels rather than
-                        four loose words. */}
                     <ul className="gap-xs flex flex-wrap items-center">
                       {tags.map((tag) => (
                         <li
@@ -95,8 +88,6 @@ const WorkFeatured = () => {
                       </div>
                     </dl>
 
-                    {/* Each one names its own case study: four identical labels
-                        would be indistinguishable in a list of links. */}
                     <Button
                       href={href}
                       aria-label={`View the ${title} case study`}

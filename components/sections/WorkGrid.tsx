@@ -8,7 +8,6 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 
 const WorkGrid = () => {
-  // The first filter, which is "all".
   const [activeId, setActiveId] = useState(workFilters[0].id);
 
   const projects =
@@ -23,14 +22,8 @@ const WorkGrid = () => {
         className="pb-3xl max-425:pb-xl max-425:px-[3rem]"
       >
         <Container>
-          {/* Names the group, since each project below carries a heading and
-              the outline would otherwise jump from the page h1 to a run of h3s
-              with nothing introducing them. */}
           <h2 className="sr-only">All work</h2>
 
-          {/* Buttons with aria-pressed rather than a tablist: these filter a
-              list in place, they do not switch between panels, and a tablist
-              would promise arrow-key navigation this does not have. */}
           <ul className="gap-xs max-425:gap-[0.6rem] flex flex-wrap items-center justify-center">
             {workFilters.map(({ id, label }) => {
               const isActive = id === activeId;
@@ -54,8 +47,6 @@ const WorkGrid = () => {
             })}
           </ul>
 
-          {/* Polite, so a filter announces how much is left rather than
-              changing the page silently under a screen reader. */}
           <div aria-live="polite">
             <ul className="gap-md max-425:gap-lg mt-lg max-425:mt-md max-425:grid-cols-1 grid grid-cols-2 items-start">
               {projects.map(
@@ -64,8 +55,6 @@ const WorkGrid = () => {
                     key={id}
                     className="even:mt-md max-425:even:mt-0 overflow-hidden"
                   >
-                    {/* Fixed ratio box so every thumbnail reserves the same
-                        space and the grid does not shift as images load. */}
                     <div className="relative aspect-[16/11] w-full overflow-hidden rounded-md">
                       <Image
                         src={image}
@@ -78,7 +67,6 @@ const WorkGrid = () => {
 
                     <div className="gap-sm pt-sm flex items-center justify-between">
                       <div>
-                        {/* h3, since the sr-only heading above is the h2. */}
                         <h3 className="text-subheading-02 max-425:text-[2.2rem] font-bold tracking-[-0.07em] text-black">
                           {title}
                         </h3>
@@ -88,8 +76,6 @@ const WorkGrid = () => {
                         </p>
                       </div>
 
-                      {/* Identical labels would be indistinguishable in a list
-                          of links, so each one names its own project. */}
                       <Button
                         href={href}
                         aria-label={`Visit the ${title} live site`}

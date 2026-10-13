@@ -1,16 +1,11 @@
 "use client";
 
 import { processCards } from "@/config/common";
-import type { MotionValue } from "framer-motion";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useMediaQuery, usePrefersReducedMotion } from "@/hooks/useMediaQuery";
+import { useElementProgress } from "@/hooks/useScrollProgress";
 import type { ProcessCard } from "@/types/common";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import type { Swiper as SwiperClass } from "swiper";
 import { A11y, Autoplay, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,26 +16,14 @@ import "swiper/css/autoplay";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 
-/**
- * How far the card beneath shrinks for each card that lands on top of it. Low,
- * because these cards are tall: at the reference's 0.1 the first of six would
- * end up half size.
- */
 const SCALE_STEP = 0.04;
 
-/** How far each card sits below the one before it once stacked. */
 const STACK_OFFSET = 3;
 
-/** Below this the stack becomes a carousel: there is no room to pile cards up. */
 const MEDIA_QUERY = "(max-width: 425px)";
 
-/** How long each card is held before the carousel moves on. */
 const AUTOPLAY_DELAY = 5000;
 
-/**
- * The card itself, shared by both layouts. Only its surroundings differ: a
- * sticky, scaling wrapper on desktop, a slide at 425.
- */
 const CardBody = ({ card }: { card: ProcessCard }) => {
   const { step, title, description, details, image, imageAlt } = card;
 
@@ -51,7 +34,6 @@ const CardBody = ({ card }: { card: ProcessCard }) => {
           {step}
         </p>
 
-        {/* h3, since the sr-only heading above is the h2. */}
         <h3 className="text-heading-03 max-425:text-[3.5rem] max-425:leading-[4.3rem] mt-xs leading-[5rem] font-bold tracking-[-0.07em] text-black">
           {title}
         </h3>
@@ -60,9 +42,6 @@ const CardBody = ({ card }: { card: ProcessCard }) => {
           {description}
         </p>
 
-        {/* divide draws the rule between the two rather than around them, so
-            neither end trails a stray line, and it turns with them: down the
-            list on desktop, across it at 425. */}
         <ul className="mt-lg max-425:mt-sm max-425:flex-row max-425:divide-x max-425:divide-y-0 flex flex-col divide-y divide-black/30">
           {details.map(
             ({ id: detailId, icon: Icon, iconClassName, ...detail }) => (
@@ -106,69 +85,64 @@ const CardBody = ({ card }: { card: ProcessCard }) => {
 type StackedCardProps = {
   card: ProcessCard;
   index: number;
-  total: number;
-  progress: MotionValue<number>;
 };
 
-/**
- * Its own component because each card derives a motion value with a hook, which
- * cannot be done inside a map callback.
- */
-const StackedCard = ({ card, index, total, progress }: StackedCardProps) => {
-  const prefersReducedMotion = useReducedMotion();
-
-  // The card shrinks from where it reaches the top until the stack is complete,
-  // so the ones underneath recede as the next arrives. The last card never
-  // scales: nothing lands on top of it.
-  const targetScale = 1 - (total - index - 1) * SCALE_STEP;
-
-  const scale = useTransform(
-    progress,
-    [index / Math.max(total - 1, 1), 1],
-    [1, targetScale],
-    { clamp: true },
-  );
-
+const StackedCard = ({ card, index }: StackedCardProps) => {
   return (
-    // The sticky wrapper holds the card in place; the card itself is what
-    // scales, so the two jobs do not fight over one transform.
     <li className="sticky top-[12rem]">
-      <motion.div
-        style={{
-          scale: prefersReducedMotion ? 1 : scale,
-          top: `${index * STACK_OFFSET}rem`,
-        }}
+      <div
+        data-card
+        style={{ top: `${index * STACK_OFFSET}rem` }}
         className="relative origin-top"
       >
         <CardBody card={card} />
-      </motion.div>
+      </div>
     </li>
   );
 };
 
 const HowWeWorkCards = () => {
   const stackRef = useRef<HTMLUListElement>(null);
-  const [isNarrow, setIsNarrow] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
+  const isNarrow = useMediaQuery(MEDIA_QUERY);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-  // Runs from the moment the stack's top meets the viewport's top to the moment
-  // its bottom does, so the whole stack completes exactly across this list.
-  const { scrollYProgress } = useScroll({
-    target: stackRef,
-    offset: ["start start", "end end"],
-  });
+  const total = processCards.length;
 
-  useEffect(() => {
-    const narrow = window.matchMedia(MEDIA_QUERY);
+  const shrink = useCallback(
+    (progress: number) => {
+      const node = stackRef.current;
 
-    const sync = () => setIsNarrow(narrow.matches);
+      if (!node) return;
 
-    sync();
+      const cards = node.querySelectorAll<HTMLElement>("[data-card]");
+      const span = Math.max(total - 1, 1);
 
-    narrow.addEventListener("change", sync);
+      cards.forEach((card, index) => {
+        if (prefersReducedMotion) {
+          card.style.scale = "";
+          return;
+        }
 
-    return () => narrow.removeEventListener("change", sync);
-  }, []);
+        const target = 1 - (total - index - 1) * SCALE_STEP;
+        const start = index / span;
+
+        if (start >= 1) {
+          card.style.scale = "";
+          return;
+        }
+
+        const reached = Math.min(
+          1,
+          Math.max(0, (progress - start) / (1 - start)),
+        );
+
+        card.style.scale = String(1 + (target - 1) * reached);
+      });
+    },
+    [prefersReducedMotion, total],
+  );
+
+  useElementProgress(stackRef, shrink);
 
   return (
     <>
@@ -177,34 +151,21 @@ const HowWeWorkCards = () => {
         className="max-425:px-[3rem] max-425:pb-[0rem] max-425:pt-[34rem] pt-[40rem] pb-[16rem]"
       >
         <Container>
-          {/* Names the group, since the cards below are headings and the
-              outline would otherwise jump from the page h1 to a run of h2s
-              with nothing introducing them. */}
           <h2 className="sr-only">Our process in detail</h2>
 
-          {/* A real branch rather than breakpoint classes: piling cards up
-              needs sticky positioning and the page's own scroll, which a
-              carousel cannot share. */}
           {isNarrow ? (
             <Swiper
               modules={[A11y, Autoplay, Keyboard]}
               slidesPerView={1}
               spaceBetween={10}
               keyboard={{ enabled: true }}
-              // Off entirely for anyone who has asked for less motion, rather
-              // than merely slowed down.
               autoplay={
                 prefersReducedMotion
                   ? false
                   : { delay: AUTOPLAY_DELAY, disableOnInteraction: false }
               }
-              // Held while a finger is down. pauseOnMouseEnter would not do
-              // it: that waits on an emulated mouse event a touch screen may
-              // never send.
               onTouchStart={(swiper: SwiperClass) => swiper.autoplay?.pause()}
               onTouchEnd={(swiper: SwiperClass) => swiper.autoplay?.resume()}
-              // Slides are as tall as the tallest card rather than their own
-              // content, so the height does not jump between them.
               autoHeight={false}
               onSwiper={(instance: SwiperClass) => instance.update()}
             >
@@ -215,17 +176,9 @@ const HowWeWorkCards = () => {
               ))}
             </Swiper>
           ) : (
-            /* A list, so six cards announce as six items rather than a run of
-               unrelated blocks. */
             <ul ref={stackRef} className="gap-md flex flex-col">
               {processCards.map((card, index) => (
-                <StackedCard
-                  key={card.id}
-                  card={card}
-                  index={index}
-                  total={processCards.length}
-                  progress={scrollYProgress}
-                />
+                <StackedCard key={card.id} card={card} index={index} />
               ))}
             </ul>
           )}

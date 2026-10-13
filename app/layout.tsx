@@ -14,11 +14,6 @@ export const metadata: Metadata = {
   description: "Agency website description",
 };
 
-/**
- * Set only on the deployment the team reviews, so the widget — and the
- * ordinary pointer it needs — appear there and nowhere else. Unset, this file
- * behaves exactly as it did before.
- */
 const feedbucketKey = process.env.NEXT_PUBLIC_FEEDBUCKET_KEY;
 
 const dmSans = DM_Sans({
@@ -41,13 +36,6 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Stood down while Feedbucket is in use: it hides the system cursor
-            everywhere, and a reviewer needs one to point at what they are
-            commenting on.
-
-            Change any of these to restyle the cursor across the whole site.
-            Colours are full six-digit hex; labelClassName is complete
-            Tailwind classes, written out in full. */}
         {!feedbucketKey && (
           <SparkleCursor
             arrowFrom="#9D9D9D"
@@ -57,8 +45,6 @@ export default function RootLayout({
           />
         )}
 
-        {/* afterInteractive, so it loads once the page is usable rather than
-            blocking it — the widget is for the team, not for visitors. */}
         {feedbucketKey && (
           <Script
             src="https://cdn.feedbucket.app/assets/feedbucket.js"

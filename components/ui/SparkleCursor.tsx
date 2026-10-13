@@ -2,20 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Only where there is a real pointer to replace, and only for anyone who has
-// not asked for less motion. Everywhere else the system cursor stays.
 const FINE_POINTER_QUERY = "(hover: hover) and (pointer: fine)";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
-// Set on <html> while the sparkles are the cursor, which is what hides the
-// system one in globals.css.
 const ACTIVE_CLASS = "has-sparkle-cursor";
 
-/**
- * The classic pointer, tip at the origin, in pixels before scaling. Walked
- * round from the tip: down the left edge, into the notch, down the tail and
- * back up to the right-hand point.
- */
 const ARROW_OUTLINE = [
   [0, 0],
   [0, 17],
@@ -27,49 +18,34 @@ const ARROW_OUTLINE = [
 ];
 
 const ARROW = {
-  /** Drawn at this multiple of the outline above. */
   scale: 1.35,
-  /** Space between particle centres, in pixels. */
   pitch: 1.8,
-  /** Side of each particle, in pixels. Short of the pitch, so a sliver of
-   *  gap still shows between them and it reads as sparkles, not a solid. */
   size: 1.4,
-  /** How far each particle wanders from its seat, in pixels. */
   jitter: 0.35,
 };
 
 const SETTINGS = {
-  /** Loose sparkles a second while the pointer is still. */
   restRate: 50,
 
-  /** Extra loose sparkles per pixel moved, which is what draws the trail. */
   moveRate: 0.22,
 
-  /** Drift speed range of a loose sparkle, in pixels a second. */
   minSpeed: 6,
   maxSpeed: 10,
 
-  /** Lifetime range of a loose sparkle, in milliseconds. */
   minLife: 450,
   maxLife: 1000,
 
-  /** Side range of a loose sparkle, in pixels. */
   minSize: 1.5,
   maxSize: 2.6,
 
-  /** Cap, so a frantic flick cannot pile up thousands. */
   maxSparkles: 260,
 
-  /** The label's place, from the tip: a little right, and clear below. */
   labelX: 8,
   labelGap: 6,
 
-  /** How quickly the arrow fades in and out as the pointer comes and goes,
-   *  as a share closed each 60fps frame. */
   fade: 0.2,
 };
 
-/** "#3078FF" to [48, 120, 255]. */
 const toRgb = (hex: string) => [
   parseInt(hex.slice(1, 3), 16),
   parseInt(hex.slice(3, 5), 16),
@@ -81,7 +57,6 @@ const mix = (from: number[], to: number[], t: number) =>
 
 const between = (min: number, max: number) => min + Math.random() * (max - min);
 
-/** Ray casting: whether a point falls inside the outline. */
 const isInside = (x: number, y: number, outline: number[][]) => {
   let inside = false;
 
@@ -98,7 +73,6 @@ const isInside = (x: number, y: number, outline: number[][]) => {
 };
 
 type ArrowParticle = {
-  /** Offset from the tip, in pixels. */
   x: number;
   y: number;
   color: string;
@@ -106,8 +80,6 @@ type ArrowParticle = {
   twinkle: number;
 };
 
-/** The arrow laid out as a grid of particles, coloured from its tip to its
- *  tail. Built once per set of colours, since the shape never changes. */
 const buildArrow = (from: number[], to: number[]) => {
   const outline = ARROW_OUTLINE.map(([x, y]) => [
     x * ARROW.scale,
@@ -119,8 +91,6 @@ const buildArrow = (from: number[], to: number[]) => {
 
   const particles: ArrowParticle[] = [];
 
-  // Half a pitch in, so the first row and column sit on the tip's edges
-  // rather than outside them.
   for (let y = ARROW.pitch / 2; y < height; y += ARROW.pitch) {
     for (let x = ARROW.pitch / 2; x < width; x += ARROW.pitch) {
       if (!isInside(x, y, outline)) continue;
@@ -128,7 +98,6 @@ const buildArrow = (from: number[], to: number[]) => {
       particles.push({
         x,
         y,
-        // The tip colour at the tip, turning to the tail colour down it.
         color: mix(from, to, Math.min(1, (x + y) / (width + height))),
         phase: Math.random() * Math.PI * 2,
         twinkle: between(3, 7),
@@ -153,34 +122,14 @@ type Sparkle = {
 };
 
 type SparkleCursorProps = {
-  /** The words in the pill under the cursor. Left out, there is no pill. */
   label?: string;
-  /**
-   * The pill's colours, as Tailwind classes, e.g. "bg-blue text-white".
-   * Keep it a complete, literal class string — Tailwind scans source files
-   * for full class names, so anything built by concatenation will not be
-   * generated.
-   */
   labelClassName?: string;
-  /** The arrow's colour at its tip, and at its tail, as hex. Both want to be
-   *  dark enough to read on the site's white sections. */
   arrowFrom?: string;
   arrowTo?: string;
-  /** The range the loose sparkles pick from, as hex. These only have to
-   *  glint, so the far end can be paler than the arrow's. */
   sparkleFrom?: string;
   sparkleTo?: string;
 };
 
-/**
- * A cursor made of the site's sparkles: the pointer itself drawn in twinkling
- * particles, loose ones breaking off it, and a label beneath. Replaces the
- * system cursor across the whole site on devices with a mouse; touch screens
- * and reduced motion keep the ordinary one.
- *
- * Defaults to the site's blue, run lighter down the arrow and paler still in
- * the loose sparkles.
- */
 export default function SparkleCursor({
   label,
   labelClassName = "bg-blue text-white",
@@ -230,17 +179,12 @@ export default function SparkleCursor({
     let lastTime = 0;
     let clock = 0;
 
-    // The tip follows the pointer exactly, with no lag: this is what the
-    // visitor aims with, so it has to point at what a click will hit.
     const tip = { x: 0, y: 0 };
     let hasPosition = false;
     let isPointerInside = false;
 
-    // Eased towards 1 while the pointer is in the window and 0 once it
-    // leaves, so the arrow fades rather than blinking out.
     let visibility = 0;
 
-    // Carried between frames, so fractions of a sparkle are not lost.
     let pending = 0;
     let moved = 0;
 
@@ -252,7 +196,6 @@ export default function SparkleCursor({
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    // A loose sparkle breaks off from somewhere on the arrow.
     const spawn = () => {
       const seat =
         arrow.particles[Math.floor(Math.random() * arrow.particles.length)];
@@ -276,7 +219,6 @@ export default function SparkleCursor({
     const animate = (now: number) => {
       frame = requestAnimationFrame(animate);
 
-      // Clamped, so coming back to a backgrounded tab does not jump.
       const elapsed = lastTime ? Math.min(now - lastTime, 64) : 16.67;
       lastTime = now;
       clock += elapsed / 1000;
@@ -310,7 +252,6 @@ export default function SparkleCursor({
         sparkle.x += (sparkle.vx * elapsed) / 1000;
         sparkle.y += (sparkle.vy * elapsed) / 1000;
 
-        // Fades over its life, and flickers on its own clock as it does.
         const fade = 1 - sparkle.age / sparkle.life;
         const flicker =
           0.55 +
@@ -329,9 +270,6 @@ export default function SparkleCursor({
         return true;
       });
 
-      // The arrow over its own sparkles, each particle shimmering in place
-      // like the logo's: a gentle twinkle, and a wander too small to blur
-      // the outline.
       if (hasPosition && visibility > 0.01) {
         for (const particle of arrow.particles) {
           const wave = Math.sin(clock * particle.twinkle + particle.phase);
@@ -352,8 +290,6 @@ export default function SparkleCursor({
 
       context.globalAlpha = 1;
 
-      // Written straight to the element rather than through state, since a
-      // render a frame would cost more than the move itself.
       if (pill) {
         pill.style.transform = `translate3d(${tip.x + SETTINGS.labelX}px, ${
           tip.y + arrow.height + SETTINGS.labelGap
@@ -367,7 +303,6 @@ export default function SparkleCursor({
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      // A pen or a finger on a hybrid screen keeps its own feedback.
       if (event.pointerType !== "mouse") return;
 
       if (hasPosition) {
@@ -381,8 +316,6 @@ export default function SparkleCursor({
       show(true);
     };
 
-    // Leaving the window takes the cursor with it; the sparkles already out
-    // simply finish fading.
     const onPointerOut = (event: PointerEvent) => {
       if (!event.relatedTarget) show(false);
     };
@@ -416,8 +349,6 @@ export default function SparkleCursor({
 
   return (
     <>
-      {/* Above everything, the header included, and never in the way of a
-          click. Decorative: the real pointer is still what does the work. */}
       <canvas
         ref={canvasRef}
         aria-hidden="true"

@@ -2,29 +2,19 @@
 
 import { useEffect, useRef } from "react";
 
-// Stars per square pixel, capped so a very wide screen does not pay for
-// thousands of draws it will never visibly benefit from.
 const DENSITY = 0.0075;
 const MAX_STARS = 1400;
 
 const MIN_SIZE = 0.4;
 const MAX_SIZE = 1;
 
-// Each star oscillates across this range on its own clock, which is what makes
-// the field sparkle rather than sit still.
 const MIN_OPACITY = 0.1;
 const MAX_OPACITY = 1;
 
-// Pixels per second.
 const MIN_SPEED = 6;
 const MAX_SPEED = 26;
 
 type Star = {
-  /**
-   * Fractions of the canvas, 0–1, not pixels. A canvas measures 300x150 until
-   * CSS lands, so pixel positions seeded at that moment would leave the whole
-   * field crammed into a band at one edge. Fractions stay correct at any size.
-   */
   x: number;
   y: number;
   radius: number;
@@ -36,11 +26,6 @@ type Star = {
 
 const between = (min: number, max: number) => min + Math.random() * (max - min);
 
-/**
- * Averaging two uniform randoms gives a triangular distribution: still 0–1, but
- * clustered around the middle and thinning towards the edges. Cheaper and
- * smoother than rejection-sampling a circle.
- */
 const centred = () => (Math.random() + Math.random()) / 2;
 
 export default function Starfield({ className = "" }: { className?: string }) {
@@ -67,9 +52,6 @@ export default function Starfield({ className = "" }: { className?: string }) {
       context.fillStyle = "#ffffff";
 
       for (const star of stars) {
-        // Sampled from each star's own phase, so the field shimmers out of
-        // sync. Held at full brightness when motion is off, so it reads as a
-        // clean static sky rather than frozen mid-fade.
         const wave = reducedMotion.matches
           ? 1
           : 0.5 + 0.5 * Math.sin(clock * star.twinkleSpeed + star.phase);
@@ -91,13 +73,9 @@ export default function Starfield({ className = "" }: { className?: string }) {
 
     const step = (delta: number) => {
       for (const star of stars) {
-        // Velocities are pixels per second, so they divide back down into the
-        // same 0–1 space the positions live in.
         star.x += (star.vx * delta) / width;
         star.y += (star.vy * delta) / height;
 
-        // Wraps on every edge rather than respawning at a fixed one, so a
-        // field drifting in all directions never thins out on any side.
         if (star.x < 0) star.x = 1;
         if (star.x > 1) star.x = 0;
         if (star.y < 0) star.y = 1;
@@ -114,8 +92,6 @@ export default function Starfield({ className = "" }: { className?: string }) {
     function animate(now: number) {
       frame = 0;
 
-      // Clamped so returning to a backgrounded tab does not jump the field
-      // forward by however long it was away.
       const elapsed = previousTime ? Math.min(now - previousTime, 64) : 16.67;
 
       previousTime = now;
@@ -142,8 +118,6 @@ export default function Starfield({ className = "" }: { className?: string }) {
 
       const count = Math.min(MAX_STARS, Math.round(width * height * DENSITY));
 
-      // Only reseeded when the count actually changes, so a resize does not
-      // visibly reshuffle the whole sky.
       if (stars.length === count) {
         draw();
         schedule();
@@ -151,8 +125,6 @@ export default function Starfield({ className = "" }: { className?: string }) {
       }
 
       stars = Array.from({ length: count }, () => {
-        // Any direction rather than a shared flow, so the field drifts like
-        // dust instead of scrolling.
         const angle = Math.random() * Math.PI * 2;
         const speed = between(MIN_SPEED, MAX_SPEED);
 

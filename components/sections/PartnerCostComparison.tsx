@@ -24,7 +24,6 @@ const PartnerCostComparison = () => {
             titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs max-w-[100rem] leading-[8rem] font-extrabold tracking-[-0.07em] text-black"
           />
 
-          {/* The in-house column, then the partner one. */}
           <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {costComparison.map(
               ({ id, title, rows, totalLabel, totalValue, isFeatured }) => (
@@ -34,7 +33,6 @@ const PartnerCostComparison = () => {
                     isFeatured ? "bg-blue" : "bg-white"
                   }`}
                 >
-                  {/* h3, since the section heading above is the h2. */}
                   <h3
                     className={`text-subheading-01 max-425:text-[2rem] font-bold tracking-[-0.04em] ${
                       isFeatured ? "text-white" : "text-black"
@@ -48,8 +46,6 @@ const PartnerCostComparison = () => {
                       isFeatured ? "bg-white" : "bg-grey/30"
                     }`}
                   >
-                    {/* A description list, so each figure is tied to the thing
-                        it is the cost of rather than sitting beside it. */}
                     <dl className="flex flex-col divide-y divide-[#CCCCCC]">
                       {rows.map(({ id: rowId, label, value }) => (
                         <div
@@ -60,16 +56,12 @@ const PartnerCostComparison = () => {
                             {label}
                           </dt>
 
-                          {/* Free to wrap at 425, where the longer values no
-                              longer fit beside their label on one line. */}
                           <dd className="text-body-03 max-425:text-[1.4rem] max-425:shrink max-425:text-right shrink-0 font-bold tracking-[-0.02em] text-black">
                             {value}
                           </dd>
                         </div>
                       ))}
 
-                      {/* The line the column exists to make, so it sits apart
-                          from the rows rather than as another one of them. */}
                       <div
                         className={`gap-sm px-sm py-sm max-425:px-[1.4rem] max-425:py-[1.4rem] mt-sm flex items-center justify-between rounded-sm ${
                           isFeatured

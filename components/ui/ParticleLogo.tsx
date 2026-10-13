@@ -3,27 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 
 const SETTINGS = {
-  /** Side of each square, and the space between them. */
   pixelSize: 2,
   gap: 4,
-  /** Slack around the host, so particles pushed outwards are not clipped. */
   padding: 72,
   spring: 175,
   damping: 18,
   maxDisplacement: 54,
   ambientAmplitude: 3.6,
-  /** Resting colour; each particle lerps to its own sampled colour on hover. */
   neutral: [245, 247, 250],
   interactionRadius: 175,
   motionRadius: 125,
 
-  /** How long after the last real pointer the field starts driving itself. */
   autoDelay: 1800,
 
-  /** Laps per second of the idle path. Slow, or it reads as a loading state. */
   autoSpeed: 0.1,
 
-  /** How much of the field the idle path covers, per axis. */
   autoReach: 0.34,
 
   fadeDuration: 650,
@@ -31,34 +25,22 @@ const SETTINGS = {
   maxScale: 1.8,
 };
 
-/**
- * The formation an `intro` field plays once its artwork is ready: every
- * particle starts somewhere loose across the field and flies to its place,
- * fading in as it goes. Milliseconds.
- */
 const INTRO = {
-  /** Before the first particle sets off, so the header and the copy lead. */
   delay: 300,
-  /** Each particle's own flight. */
   duration: 1400,
-  /** Particles set off at random across this window rather than together,
-   *  so the logo gathers rather than snapping into place. */
   spread: 600,
 };
 
-/** Fast off the mark and settling gently into place. */
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
 type Particle = {
   x: number;
   y: number;
   vivid: number[];
-  /** Spring displacement and its velocity. */
   dx: number;
   dy: number;
   vx: number;
   vy: number;
-  /** Ambient drift, which is what keeps the field alive when nothing hovers. */
   ax: number;
   ay: number;
   influence: number;
@@ -69,20 +51,16 @@ type Particle = {
   twinkle: number;
   amplitude: number;
   spreadAngle: number;
-  /** Where the intro starts it, as an offset from its place. */
   ix: number;
   iy: number;
-  /** When it sets off within the intro's spread, in milliseconds. */
   introDelay: number;
 };
 
-/** Cheap deterministic hash, so a particle's drift is stable across rebuilds. */
 const seed = (x: number, y: number, salt: number) => {
   const n = Math.sin(x * 127.1 + y * 311.7 + salt * 73.9) * 43758.5453;
   return n - Math.floor(n);
 };
 
-/** Pushes a sampled colour towards its saturated, brighter self. */
 const vivid = (color: number[]) => {
   const max = Math.max(...color);
   const min = Math.min(...color);
@@ -95,39 +73,16 @@ const vivid = (color: number[]) => {
 };
 
 type ParticleLogoProps = {
-  /**
-   * Source SVG markup, as paths to fill or as a grid of rects that are already
-   * the particles. Paths are sampled offscreen, so their own colour survives.
-   */
   svg?: string;
-  /**
-   * The same, fetched at runtime. Artwork of a thousand rects belongs in a
-   * cacheable file rather than inlined into the page's JavaScript.
-   */
   svgSrc?: string;
-  /**
-   * Colour for rect artwork, laid left to right, since a stipple exported flat
-   * carries a silhouette but no colour of its own.
-   */
   gradientFrom?: string;
   gradientTo?: string;
-  /** Names the whole field, which is one image rather than thousands. */
   label: string;
   className?: string;
-  /**
-   * Forms the artwork on load: the particles start scattered and gather into
-   * it. Off by default, so only the fields that ask for it play it.
-   */
   intro?: boolean;
-  /**
-   * Called once the intro has formed the artwork. Also called straight away
-   * when there is nothing to wait for — no intro, reduced motion, or artwork
-   * that could not load — so whatever waits on it is never left hidden.
-   */
   onIntroComplete?: () => void;
 };
 
-/** "#EC3593" to [236, 53, 147]. */
 const toRgb = (hex: string) => [
   parseInt(hex.slice(1, 3), 16),
   parseInt(hex.slice(3, 5), 16),
@@ -144,18 +99,14 @@ export default function ParticleLogo({
   intro = false,
   onIntroComplete,
 }: ParticleLogoProps) {
-  // Whichever form the artwork arrived in, as something CSS can point at.
   const artworkUrl =
     svgSrc ?? `data:image/svg+xml,${encodeURIComponent(svg ?? "")}`;
 
   const hostRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Only set when the field cannot run, so the still artwork has to stand in.
   const [hasFailed, setHasFailed] = useState(false);
 
-  // Kept in a ref so an inline callback from the parent does not tear the
-  // whole field down and rebuild it on every render.
   const onIntroCompleteRef = useRef(onIntroComplete);
 
   useEffect(() => {
@@ -167,7 +118,6 @@ export default function ParticleLogo({
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
 
-    // Once only, however many of the paths below reach it.
     let hasAnnounced = false;
 
     const announceIntroDone = () => {
@@ -190,9 +140,6 @@ export default function ParticleLogo({
 
     let shapes: { path: Path2D; rule: CanvasFillRule }[] = [];
 
-    // Rect artwork is already sampled: every rect is one particle, so there is
-    // no grid to lay over it and nothing to hit test. Laying our own grid on
-    // top would catch some rects and miss others, which reads as moire.
     let points: { x: number; y: number }[] = [];
     let occupied = new Set<string>();
     let pitch = 6;
@@ -203,8 +150,6 @@ export default function ParticleLogo({
     const key = (x: number, y: number) =>
       `${Math.round(x / pitch)},${Math.round(y / pitch)}`;
 
-    // A throwaway context purely for hit testing, and a second one for reading
-    // back pixels — separate because the sampler is resized on every rebuild.
     const mask = document.createElement("canvas").getContext("2d");
     const sampling = document.createElement("canvas");
     const sampler = sampling.getContext("2d", { willReadFrequently: true });
@@ -228,14 +173,9 @@ export default function ParticleLogo({
     let inView = true;
     let ready = false;
 
-    // When the intro's first particle may set off, taken from the moment the
-    // artwork is first laid out. Zero until then. Skipped outright for anyone
-    // who has asked for less motion.
     let introStart = 0;
     let isIntroDone = !intro || reduced.matches;
 
-    // Starts at zero rather than now, so the field is already running its
-    // own pass by the time anyone looks at it.
     let lastPointerAt = 0;
 
     const pointer = {
@@ -251,8 +191,6 @@ export default function ParticleLogo({
 
       if (sx < vx || sy < vy || sx > vx + vw || sy > vy + vh) return false;
 
-      // A set lookup rather than a scan of a thousand rects, so a pointer move
-      // costs the same however dense the artwork is.
       if (points.length) return occupied.has(key(sx, sy));
 
       return shapes.some(({ path, rule }) =>
@@ -292,8 +230,6 @@ export default function ParticleLogo({
       for (const p of particles) {
         drift(p);
 
-        // How far through its flight this particle is: 0 while it is still
-        // waiting to set off, 1 once it has landed and for good after that.
         const landed = isIntroDone
           ? 1
           : easeOutCubic(
@@ -345,13 +281,8 @@ export default function ParticleLogo({
       const smoothing = 1 - Math.exp((-4 * elapsed) / SETTINGS.fadeDuration);
       const radius = Math.min(SETTINGS.interactionRadius, width * 0.4);
       const motionRadius = Math.min(SETTINGS.motionRadius, width * 0.28);
-      // Sub-stepped so a slow frame cannot let the spring overshoot.
       const steps = Math.ceil(elapsed / (1000 / 120));
 
-      // With nothing on it, the field runs a cursor of its own: a slow figure
-      // of eight across the artwork, so the colour keeps moving rather than
-      // sitting still until someone arrives. A real pointer takes over the
-      // moment it moves, since that resets the clock this reads.
       const isAuto = now - lastPointerAt > SETTINGS.autoDelay;
 
       if (isAuto) {
@@ -386,18 +317,14 @@ export default function ParticleLogo({
             target = 1 - Math.pow(1 - cw, 3);
 
             if (pointer.onShape) {
-              // Over the shape the particles bulge away from the cursor.
               const pop = (22 * w) / Math.max(d, 1);
               tx = dx * w * 0.65 - dx * pop;
               ty = dy * w * 0.65 - dy * pop - 11 * w;
             } else {
-              // Outside it they are drawn towards the cursor instead.
               tx = dx * w * 1.7 + Math.cos(p.spreadAngle) * 7 * w;
               ty = dy * w * 1.7 + Math.sin(p.spreadAngle) * 7 * w;
             }
 
-            // Its own pass only lights the particles up. Moving them as well
-            // would leave the artwork shifting about with nobody touching it.
             if (isAuto) {
               tx = 0;
               ty = 0;
@@ -412,7 +339,6 @@ export default function ParticleLogo({
           }
         }
 
-        // Colour rushes in faster than it drains away.
         p.influence +=
           (target - p.influence) *
           (target > p.influence ? 1 - Math.exp(-elapsed / 90) : smoothing);
@@ -428,7 +354,6 @@ export default function ParticleLogo({
           p.dy += p.vy * dt;
         }
 
-        // Snap once the spring is close enough, so it stops costing frames.
         if (
           Math.hypot(p.dx - tx, p.dy - ty) < 0.008 &&
           Math.hypot(p.vx, p.vy) < 0.04
@@ -459,8 +384,6 @@ export default function ParticleLogo({
       offsetX = (width - vw * scale) / 2;
       offsetY = (height - vh * scale) / 2;
 
-      // Capped, because a 3x buffer costs three times the fill for no visible
-      // gain on squares this small.
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const pad = SETTINGS.padding;
 
@@ -472,9 +395,6 @@ export default function ParticleLogo({
 
       context.setTransform(rx, 0, 0, ry, pad * rx, pad * ry);
 
-      // Path artwork is rasterised offscreen so each particle can read the
-      // colour underneath it, which is how its own gradient survives. Rect
-      // artwork has no colour to read, so it is skipped.
       let raster: Uint8ClampedArray | null = null;
 
       if (!points.length) {
@@ -497,8 +417,6 @@ export default function ParticleLogo({
       const startX = 1 + Math.floor(((width - 2) % step) / 2);
       const startY = 1 + Math.floor(((height - 2) % step) / 2);
 
-      // Rect artwork places one particle per rect; path artwork walks a grid
-      // and keeps the points that land inside the shape.
       const seats = points.length
         ? points.map(({ x, y }) => ({
             x: offsetX + (x - vx) * scale,
@@ -527,13 +445,10 @@ export default function ParticleLogo({
               (Math.floor(y * 2) * sampling.width + Math.floor(x * 2)) * 4;
             color = [raster[index], raster[index + 1], raster[index + 2]];
           } else {
-            // Position across the artwork rather than the box, so the gradient
-            // stays anchored to the shape however it is letterboxed.
             const t = Math.min(1, Math.max(0, (sx - vx) / Math.max(vw, 1)));
             color = from.map((c, i) => c + (to[i] - c) * t);
           }
 
-          // Particles on the outline drift less, so the silhouette stays legible.
           const interior = points.length
             ? [
                 [pitch, 0],
@@ -568,8 +483,6 @@ export default function ParticleLogo({
               ? SETTINGS.ambientAmplitude * (0.65 + seed(x, y, 5) * 0.35)
               : 0.85,
             spreadAngle: seed(x, y, 6) * Math.PI * 2,
-            // Anywhere across the canvas, slack included, so the loose
-            // particles fill the whole field before they gather.
             ix: -pad + Math.random() * (width + pad * 2) - x,
             iy: -pad + Math.random() * (height + pad * 2) - y,
             introDelay: Math.random() * INTRO.spread,
@@ -577,15 +490,10 @@ export default function ParticleLogo({
         }
       }
 
-      // The intro's clock starts the first time there is artwork to form. A
-      // resize part way through reseats the particles but keeps the clock,
-      // so the formation carries on rather than starting again.
       if (!isIntroDone && !introStart) {
         introStart = performance.now() + INTRO.delay;
       }
 
-      // Nothing to form — no intro, or reduced motion — so the artwork is
-      // already complete the moment it is first laid out.
       if (isIntroDone) announceIntroDone();
 
       pointer.active = false;
@@ -618,7 +526,6 @@ export default function ParticleLogo({
       lastTime = 0;
       pointer.active = false;
 
-      // Asking for less motion part way through lands the logo at once.
       if (reduced.matches) {
         isIntroDone = true;
         announceIntroDone();
@@ -655,8 +562,6 @@ export default function ParticleLogo({
     const resizeObserver = new ResizeObserver(rebuild);
     resizeObserver.observe(host);
 
-    // Idle while off screen, so a field this dense costs nothing until it is
-    // actually being looked at.
     const intersectionObserver = new IntersectionObserver((entries) => {
       inView = entries[0].isIntersecting;
       if (inView) schedule();
@@ -665,7 +570,6 @@ export default function ParticleLogo({
 
     intersectionObserver.observe(host);
 
-    // Guards the fetch: a slow response must not build into a torn down host.
     const state = { cancelled: false };
 
     const image = new Image();
@@ -700,14 +604,11 @@ export default function ParticleLogo({
             Number(rect.getAttribute("height")) / 2,
         }));
 
-        // The spacing the artwork was exported on, read off the file rather
-        // than assumed, so a differently sampled export still lines up.
         const xs = [...new Set(points.map(({ x }) => x))].sort((a, b) => a - b);
         pitch = xs.length > 1 ? Math.round(xs[1] - xs[0]) : 6;
 
         occupied = new Set(points.map(({ x, y }) => key(x, y)));
 
-        // Nothing to rasterise: the rects are the particles.
         ready = true;
         rebuild();
         return;
@@ -751,23 +652,12 @@ export default function ParticleLogo({
   }, [svg, svgSrc, gradientFrom, gradientTo, intro]);
 
   return (
-    // One image as far as assistive tech is concerned, not thousands of squares.
     <div
       ref={hostRef}
       role="img"
       aria-label={label}
-      // touch-none is what makes a finger work the field: without it the
-      // browser claims the gesture for scrolling and the pointer stream stops
-      // after the first move. select-none stops a drag turning into a text
-      // selection on the way past.
       className={`relative touch-none select-none ${className}`}
     >
-      {/* A stand-in for the field: the artwork's own silhouette, filled
-          with the same grid of dots. Not part of the reveal — painting it
-          otherwise would show the finished logo as grey dots before the
-          particles arrive — so it waits until scripting is off (the rule
-          below sits outside Tailwind's layers and so beats opacity-0) or
-          the canvas could not start. */}
       <noscript>
         <style>{`.particle-logo-fallback{opacity:1}`}</style>
       </noscript>
@@ -786,8 +676,6 @@ export default function ParticleLogo({
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        // Overhangs the host on every side, so particles pushed outwards by the
-        // cursor are not cut off at the edge.
         className="pointer-events-none absolute top-[-7.2rem] left-[-7.2rem] h-[calc(100%+14.4rem)] w-[calc(100%+14.4rem)]"
       />
     </div>

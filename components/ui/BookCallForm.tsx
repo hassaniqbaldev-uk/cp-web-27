@@ -2,17 +2,10 @@ import { contactPhone } from "@/config/navigation";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-/**
- * Deliberately has no "use client" boundary. Every field is a plain input, so
- * the form works before — and without — JavaScript.
- */
 const BookCallForm = () => {
   return (
-    // TODO: wire to a route handler. app/api/contact is still empty.
     <form className="gap-sm py-lg px-md flex flex-col rounded-md bg-white">
       <div className="gap-sm max-425:grid-cols-1 grid grid-cols-2">
-        {/* The label sits on the border with a white background behind it, so
-            it notches the outline rather than covering it. */}
         <div className="relative">
           <label
             htmlFor="book-call-name"

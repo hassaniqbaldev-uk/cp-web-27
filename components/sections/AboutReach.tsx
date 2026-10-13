@@ -13,13 +13,9 @@ const AboutReach = () => {
             label="International work, UK accountability"
             title={
               <>
-                {/* pr compensates for the negative tracking, which otherwise
-                    pulls the paint box in and clips the last glyph of a
-                    gradient span. */}
                 <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                   Roots in Manchester.
                 </span>{" "}
-                {/* Decorative: the line reads the same without it. */}
                 <Image
                   src="/images/about/bee.png"
                   alt=""
@@ -38,18 +34,7 @@ const AboutReach = () => {
             subtitleClassName="text-body-03 text-text-body mt-sm mx-auto max-w-[100rem] text-center tracking-[-0.02em]"
           />
 
-          {/* The cards are placed as a share of this box, so they stay on
-              their countries however wide the map is drawn. */}
-          {/* The map, then the three places, one after another. The box
-              itself is the group, rather than the list: on desktop the list
-              holds only absolutely placed cards, so it has no height and sits
-              beneath the map, and would not start until the map had all but
-              scrolled past. The box stays relative, so the cards still place
-              themselves against it. */}
           <div className="mt-xl max-425:mt-lg max-425:h-auto relative h-[60rem] w-full">
-            {/* Decorative: the places are named in the cards, so the map adds
-                nothing for a reader who cannot see it. The wrapper fills the
-                box as the image did, so the image still fills it in turn. */}
             <div className="max-425:hidden h-full w-full">
               <Image
                 src="/images/about/dot-map.png"
@@ -61,9 +46,6 @@ const AboutReach = () => {
               />
             </div>
 
-            {/* A list, so it announces as three places rather than six loose
-                strings scattered over a picture. Each card keeps every class
-                it had, its own width among them. */}
             <ul>
               {reachLocations.map(
                 ({ id, image, imageAlt, title, clients, className }) => (
@@ -80,7 +62,6 @@ const AboutReach = () => {
                     />
 
                     <div>
-                      {/* h3, since the section heading above is the h2. */}
                       <h3 className="text-body-02 font-bold tracking-[-0.02em] text-black">
                         {title}
                       </h3>

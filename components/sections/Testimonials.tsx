@@ -1,23 +1,18 @@
 "use client";
 
 import { testimonials } from "@/config/common";
-import { useReducedMotion } from "framer-motion";
 import { Play, Star } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import type { Swiper as SwiperClass } from "swiper";
-import { A11y, Autoplay, Keyboard } from "swiper/modules";
+import { A11y, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-// TODO: swap in the real film, its poster frame and a captions track, and
-// move the speaker's details into config once there is more than one.
 const clientFilm = {
   src: "/videos/client-testimonial.mp4",
   poster: "/images/home/little-astro-client-video-thumbnail.png",
@@ -26,10 +21,8 @@ const clientFilm = {
 };
 
 const Testimonials = () => {
-  const swiperRef = useRef<SwiperClass | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <>
@@ -51,13 +44,7 @@ const Testimonials = () => {
           />
         </Container>
 
-        {/* The track starts at the container's own left gutter but runs on to
-            the viewport edge, so slides bleed off to the right. max() keeps
-            the margin from going negative on a narrow viewport. */}
-        {/* The film, then the track of quotes. */}
         <div className="gap-md max-425:gap-lg max-425:mt-lg max-425:flex-col mt-2xl ml-[max(0px,calc((100%-120rem)/2))] flex items-stretch">
-          {/* Its own column beside the track, not a slide, so it stays put
-              while the quotes move. */}
           <div className="max-425:order-2 max-425:h-[45rem] max-425:w-full relative w-[37rem] shrink-0 overflow-hidden rounded-md">
             <video
               ref={videoRef}
@@ -73,8 +60,6 @@ const Testimonials = () => {
               Your browser does not support the video tag.
             </video>
 
-            {/* Hidden once playing, so it stops covering the native controls
-                and the picture. */}
             {!isPlaying && (
               <div className="p-sm gap-sm absolute inset-x-0 bottom-0 flex items-end justify-between">
                 <div className="border-l border-white/60 pl-[1.2rem]">
@@ -103,49 +88,14 @@ const Testimonials = () => {
             )}
           </div>
 
-          <div
-            // pauseOnMouseEnter only covers pointers. Pausing on focus too
-            // means a keyboard reader tabbing into a card does not have it
-            // slide away underneath them.
-            onFocusCapture={() => swiperRef.current?.autoplay?.stop()}
-            onBlurCapture={() => swiperRef.current?.autoplay?.start()}
-            // The right margin pulls the track's edge in off the viewport, so
-            // the looping cards clear the screen edge instead of running into
-            // it. slidesOffsetAfter cannot do this job: a looped track has no
-            // last slide to offset from.
-            className="mr-md max-425:order-1 max-425:mr-0 relative min-w-0 flex-1"
-          >
-            {/* The track rises as one piece. A looped Swiper moves its slides
-                about to keep the loop going, which would leave any slide
-                revealed on its own caught part way. */}
+          <div className="mr-md max-425:order-1 max-425:mr-0 relative min-w-0 flex-1">
             <div className="h-full">
               <Swiper
-                onSwiper={(instance) => {
-                  swiperRef.current = instance;
-                }}
-                modules={[A11y, Autoplay, Keyboard]}
-                // Autoplay is switched off entirely for readers who ask for
-                // reduced motion, rather than merely slowed down.
-                autoplay={
-                  prefersReducedMotion
-                    ? false
-                    : {
-                        delay: 4000,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
-                      }
-                }
+                modules={[A11y, Keyboard]}
                 slidesPerView="auto"
                 spaceBetween={30}
-                // There are only three quotes, which do not fill the row on
-                // their own, so the track would end short of the viewport
-                // instead of bleeding past it. Looping keeps it full whatever
-                // the count, and means the carousel never dead-ends.
                 loop
                 keyboard={{ enabled: true }}
-                // Swiper's breakpoints are min-width, so the centred state is the
-                // base and anything above 425 turns it back off — the opposite
-                // way round to the max-* variants everywhere else.
                 centeredSlides
                 breakpoints={{ 426: { centeredSlides: false } }}
                 className="h-full"
@@ -163,17 +113,12 @@ const Testimonials = () => {
                     role,
                     rating,
                   }) => (
-                    // The important flag is needed because Swiper's own
-                    // stylesheet sets .swiper-slide to width: 100%, at the same
-                    // specificity as this class.
                     <SwiperSlide
                       key={id}
                       className="max-425:w-full! h-auto! w-[37rem]!"
                     >
                       <figure className="bg-grey/40 p-md flex h-full flex-col rounded-md">
                         <div className="gap-sm flex items-center justify-between">
-                          {/* Decorative: the attribution below already names
-                            the person. */}
                           <Image
                             src={avatar}
                             alt=""
@@ -206,8 +151,6 @@ const Testimonials = () => {
                           {quote}
                         </blockquote>
 
-                        {/* mt-auto pins the attribution to the foot of the card,
-                          so it lines up across slides of unequal quote length. */}
                         <figcaption className="gap-sm pt-md mt-auto flex items-end justify-between">
                           <div className="border-text-body/30 border-l pl-[1.2rem]">
                             <p className="text-body-03 font-bold tracking-[-0.02em] text-black">
@@ -220,8 +163,6 @@ const Testimonials = () => {
                           </div>
 
                           <div className="flex flex-col items-end">
-                            {/* The stars are a picture of the score, so the
-                              figure beside them carries it in text. */}
                             <span aria-hidden="true" className="flex">
                               {Array.from({ length: 5 }, (_, index) => (
                                 <Star
@@ -248,9 +189,6 @@ const Testimonials = () => {
               </Swiper>
             </div>
 
-            {/* Sit over each end of the track so cards fade out rather than
-                being cut off. pointer-events-none keeps them from swallowing
-                drags and clicks on the cards underneath. */}
             <span
               aria-hidden="true"
               className="max-425:hidden pointer-events-none absolute inset-y-0 left-0 z-10 w-[6rem] bg-linear-to-r from-white to-transparent"

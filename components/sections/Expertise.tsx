@@ -1,12 +1,8 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { useRef } from "react";
-import type { Swiper as SwiperClass } from "swiper";
-import { A11y, Autoplay, Keyboard } from "swiper/modules";
+import { A11y, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/autoplay";
 import "swiper/css/a11y";
 
 import { expertiseCards } from "@/config/common";
@@ -16,9 +12,6 @@ import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
 const Expertise = () => {
-  const swiperRef = useRef<SwiperClass | null>(null);
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <>
       <Section className="py-3xl max-425:py-xl max-425:px-[3rem] relative overflow-hidden bg-black">
@@ -38,33 +31,13 @@ const Expertise = () => {
           />
         </Container>
 
-        <div
-          onFocusCapture={() => swiperRef.current?.autoplay?.stop()}
-          onBlurCapture={() => swiperRef.current?.autoplay?.start()}
-          className="mt-2xl max-425:mt-lg relative z-10 ml-[max(0px,calc((100%-120rem)/2))]"
-        >
+        <div className="mt-2xl max-425:mt-lg relative z-10 ml-[max(0px,calc((100%-120rem)/2))]">
           <Swiper
-            onSwiper={(instance) => {
-              swiperRef.current = instance;
-            }}
-            modules={[A11y, Autoplay, Keyboard]}
-
-            autoplay={
-              prefersReducedMotion
-                ? false
-                : {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                  }
-            }
+            modules={[A11y, Keyboard]}
             slidesPerView="auto"
             spaceBetween={10}
             slidesOffsetAfter={0}
             keyboard={{ enabled: true }}
-            // Swiper's breakpoints are min-width, so the narrow state is the
-            // base and anything above 425 restores the wide one — the opposite
-            // way round to the max-* variants everywhere else.
             centeredSlides
             breakpoints={{
               426: { centeredSlides: false, slidesOffsetAfter: 30 },

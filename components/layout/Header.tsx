@@ -13,30 +13,16 @@ import { useEffect, useState } from "react";
 
 const PHONE_DROPDOWN_ID = "phone";
 
-// Far enough that the background does not flicker on and off while the page
-// settles, close enough that it lands as soon as the hero starts moving.
 const SCROLL_THRESHOLD = 20;
 
-// The mark occupies the left of the artwork and the wordmark the rest, so
-// hiding the first and showing the whole are a width and an offset apart.
-//
-// Read from custom properties set on the header rather than written as fixed
-// values: an inline style cannot be overridden by a media query, so the two
-// widths have to live in CSS for the logo to resize at a breakpoint. The
-// reveal below is unaffected, since calc() accepts a var().
 const MARK_WIDTH = "var(--mark-w)";
 const LOGO_WIDTH = "var(--logo-w)";
 
-// Routes whose hero is light. The header needs its dark treatment from the top
-// there, rather than only once a white band is behind it.
 const LIGHT_ROUTES = ["/about", "/partner-with-us"];
 
-// Below this the band is there from the top: there is no room for a bar that
-// only resolves once the page has moved.
 const NARROW_QUERY = "(max-width: 425px)";
 
 const Header = () => {
-  // A single id rather than per-dropdown state, so opening one closes the rest.
   const [openId, setOpenId] = useState<string | null>(null);
 
   const toggle = (id: string) => (open: boolean) => setOpenId(open ? id : null);
@@ -46,11 +32,8 @@ const Header = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Passive, so the listener can never delay the scroll itself, and it reads
-    // scrollY rather than measuring, which would force a layout every frame.
     const onScroll = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
 
-    // Run once on mount: a reload part way down the page starts scrolled.
     onScroll();
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -74,12 +57,8 @@ const Header = () => {
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
 
-  // The band, the padding and the logo's mark all arrive together — on scroll,
-  // or from the top at a narrow width.
   const isBanded = isScrolled || isNarrow;
 
-  // Colour follows what is behind the header, which is light either once the
-  // white band is there or from the top on a light page.
   const isDark = isBanded || isLightPage;
 
   const textClassName = isDark ? "text-black" : "text-white";
@@ -87,9 +66,6 @@ const Header = () => {
   return (
     <header className="pt-sm max-768:px-[2rem] max-425:[--logo-w:9.3rem] max-425:[--mark-w:3.71rem] max-1280:px-[4rem] fixed top-0 left-0 z-999 w-full [--logo-w:14.5rem] [--mark-w:5.6rem]">
       <Container
-        // The border is there in both states, only transparent in one: giving
-        // it to the white band alone would add a pixel to the height and make
-        // the bar jump as it arrives.
         className={`flex items-center justify-between rounded-xl border transition-all duration-300 ${
           isBanded
             ? "px-sm max-425:py-[.4rem] max-425:px-[.6rem] max-425:pl-[1.5rem] border-black/10 bg-white py-[1.5rem] shadow-[0_0.4rem_2.4rem_rgba(0,0,0,0.08)]"
@@ -98,10 +74,6 @@ const Header = () => {
       >
         <div className="gap-md max-425:gap-sm flex items-center">
           <Link href="/" aria-label={`${siteConfig.name} — home`}>
-            {/* A window over the artwork. Closed, it starts where the wordmark
-                does, so only that shows; opened, it widens to the full logo
-                while the artwork slides right into place, which reads as the
-                mark arriving from the left. */}
             <span
               aria-hidden="true"
               style={{
@@ -112,8 +84,6 @@ const Header = () => {
               className="block overflow-hidden transition-[width] duration-500 motion-reduce:transition-none"
             >
               <Image
-                // The wordmark has its colour baked in, so the white band
-                // gets a copy of the artwork with a dark one.
                 src={
                   isDark
                     ? "/images/common/cp-logo-with-text-dark.svg"
@@ -126,8 +96,6 @@ const Header = () => {
                   width: LOGO_WIDTH,
                   marginLeft: isBanded ? 0 : `calc(${MARK_WIDTH} * -1)`,
                 }}
-                // max-w-none so the artwork keeps its full width inside a
-                // narrower window rather than being squeezed to fit.
                 className="max-425:h-[3.6rem] h-auto max-w-none transition-[margin] duration-500 motion-reduce:transition-none"
               />
             </span>
@@ -219,8 +187,6 @@ const Header = () => {
             Free Website Audit
           </Button>
 
-          {/* Takes over from the nav, which is hidden from this width down.
-              Inert until there is a panel for it to open. */}
           <button
             type="button"
             aria-label="Open menu"

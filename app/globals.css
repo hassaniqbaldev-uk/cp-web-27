@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-/* Desktop first. The layout is authored at 1440 and each variant overrides it
-   downward, so an unprefixed class is the widest case and every prefixed one
-   applies at that width and below. Ordered widest to narrowest, which is also
-   the order they must cascade in. */
-
 @custom-variant max-1366 (@media (width <= 1366px));
 @custom-variant max-1280 (@media (width <= 1280px));
 @custom-variant max-1024 (@media (width <= 1024px));
@@ -12,7 +7,6 @@
 @custom-variant max-425 (@media (width <= 425px));
 
 @theme {
-  /* Colors */
   --color-white: #ffffff;
   --color-black: #000000;
   --color-dark-pink: #ec3593;
@@ -21,80 +15,49 @@
   --color-blue: #3078ff;
   --color-text-body: #3f3b37;
 
-  /* Radius */
-  --radius-xs: 0.5rem; /* 5px */
-  --radius-sm: 1rem; /* 10px */
-  --radius-md: 2rem; /* 20px */
-  --radius-lg: 3rem; /* 30px */
-  --radius-xl: 6rem; /* 60px */
+  --radius-xs: 0.5rem;
+  --radius-sm: 1rem;
+  --radius-md: 2rem;
+  --radius-lg: 3rem;
+  --radius-xl: 6rem;
 
-  /* Spacing  */
+  --spacing-xs: 1rem;
+  --spacing-sm: 2rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 4.5rem;
+  --spacing-xl: 6.5rem;
+  --spacing-2xl: 8rem;
+  --spacing-3xl: 12rem;
 
-  --spacing-xs: 1rem; /* 10px */
-  --spacing-sm: 2rem; /* 20px */
-  --spacing-md: 3rem; /* 30px */
-  --spacing-lg: 4.5rem; /* 45px */
-  --spacing-xl: 6.5rem; /* 65px */
-  --spacing-2xl: 8rem; /* 80px */
-  --spacing-3xl: 12rem; /* 120px */
+  --spacing-section-xs: 5rem;
+  --spacing-section-sm: 8rem;
+  --spacing-section-md: 14rem;
+  --spacing-section-lg: 18rem;
+  --spacing-section-xl: 27rem;
+  --spacing-section-2xl: 40.5rem;
 
-  --spacing-section-xs: 5rem; /* 50px */
-  --spacing-section-sm: 8rem; /* 80px */
-  --spacing-section-md: 14rem; /* 140px */
-  --spacing-section-lg: 18rem; /* 180px */
-  --spacing-section-xl: 27rem; /* 270px */
-  --spacing-section-2xl: 40.5rem; /* 405px */
-
-  --spacing-section-x: 3rem; /* 30px */
-
-  /* Font Family */
+  --spacing-section-x: 3rem;
 
   --font-heading: var(--font-dm-sans);
   --font-body: var(--font-dm-sans);
 
-  /* Font Size 1rem = 10px */
+  --text-body-04: 1.4rem;
+  --text-body-03: 1.6rem;
+  --text-body-02: 1.8rem;
+  --text-body-01: 2.2rem;
 
-  --text-body-04: 1.4rem; /* 14px */
-  --text-body-03: 1.6rem; /* 16px */
-  --text-body-02: 1.8rem; /* 18px */
-  --text-body-01: 2.2rem; /* 22px */
+  --text-subheading-01: 2.5rem;
+  --text-subheading-02: 3.5rem;
 
-  --text-subheading-01: 2.5rem; /* 25px */
-  --text-subheading-02: 3.5rem; /* 35px */
+  --text-heading-03: 4.5rem;
+  --text-heading-02: 8.5rem;
+  --text-heading-01: 13rem;
 
-  --text-heading-03: 4.5rem; /* 45px */
-  --text-heading-02: 8.5rem; /* 85px */
-  --text-heading-01: 13rem; /* 130px */
-
-  /* Animation */
-
-  --animate-spin-slow: spin-slow 16s linear infinite;
-
-  /* The track holds two identical copies of its content, so travelling exactly
-     half its height lands the second copy where the first began and the loop
-     is seamless. */
   --animate-marquee-up: marquee-up 24s linear infinite;
 
   @keyframes marquee-up {
     to {
       transform: translateY(-50%);
-    }
-  }
-
-  /* The horizontal twin. Half the track is one copy plus the gap that sits
-     between the two copies, so the travel is corrected by half a gap or the
-     loop jumps by that much on every pass. */
-  --animate-marquee-left: marquee-left 24s linear infinite;
-
-  @keyframes marquee-left {
-    to {
-      transform: translateX(calc(-50% - var(--marquee-gap, 0px) / 2));
-    }
-  }
-
-  @keyframes spin-slow {
-    to {
-      transform: rotate(360deg);
     }
   }
 }
@@ -111,12 +74,6 @@ body {
   line-height: 1.5;
 }
 
-/* A 1px gradient border that survives border-radius. `border-image` cannot be
-   rounded — it ignores `border-radius` and squares the corners off — so the
-   gradient is painted on a pseudo-element and masked down to a 1px ring. */
-/* In the components layer so a Tailwind utility still wins. Unlayered rules
-   beat layered ones, so declaring position here outside a layer would override
-   an `absolute` set on the same element. */
 @layer components {
   .gradient-border {
     position: relative;
@@ -127,10 +84,6 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  /* Overridable per element with --gradient-border-width and
-     --gradient-border-image. Declared as fallbacks rather than on
-     .gradient-border itself, so a Tailwind arbitrary property set on the same
-     element always wins regardless of stylesheet order. */
   padding: var(--gradient-border-width, 1px);
   border-radius: inherit;
   background: var(
@@ -153,10 +106,6 @@ body {
   pointer-events: none;
 }
 
-/* The sparkle cursor stands in for the system one while it runs, so the
-   system one is hidden everywhere — over links and buttons too, which set
-   their own. Unlayered and important, so no utility can bring it back. Text
-   fields keep a text cursor, so typing still feels like typing. */
 html.has-sparkle-cursor,
 html.has-sparkle-cursor * {
   cursor: none !important;
@@ -166,10 +115,6 @@ html.has-sparkle-cursor :is(input, textarea) {
   cursor: text !important;
 }
 
-/* Hides the scrollbar while keeping the element scrollable. Only for boxes
-   whose scrollability is obvious from an adjacent affordance — a progress rail
-   or a fade at the edge — since the bar is otherwise the only sign there is
-   more to read. */
 .no-scrollbar {
   scrollbar-width: none;
 }

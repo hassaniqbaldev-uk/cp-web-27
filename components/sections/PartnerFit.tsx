@@ -28,22 +28,14 @@ const PartnerFit = () => {
             titleClassName="text-heading-02 max-425:mx-auto max-425:max-w-[30rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] mt-xs text-center leading-[8rem] font-extrabold tracking-[-0.07em] text-white"
           />
 
-          {/* The good fit, then the poor one. */}
           <div className="gap-md max-425:mt-lg max-425:grid-cols-1 mt-2xl grid grid-cols-2 items-start">
             {partnerFit.map(
               ({ id, icon: Icon, title, points, note, isPositive }) => (
-                // The second card sits lower, so the pair reads as a
-                // preference rather than as two equal options.
                 <div
                   key={id}
                   className={isPositive ? "" : "mt-md max-425:mt-0"}
                 >
-                  <div
-                    // Both cards are dark until pointed at. active: as well as
-                    // hover:, since Tailwind gates hover: behind
-                    // @media (hover: hover) and a phone never matches it.
-                    className="group p-lg max-425:p-md rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC]"
-                  >
+                  <div className="group p-lg max-425:p-md rounded-md bg-[#454545] transition duration-300 hover:bg-white hover:shadow-[0px_4px_84px_0px_#FFFFFFCC] active:bg-white active:shadow-[0px_4px_84px_0px_#FFFFFFCC]">
                     <Icon
                       aria-hidden="true"
                       size={30}
@@ -51,7 +43,6 @@ const PartnerFit = () => {
                       className="shrink-0 text-white transition-colors duration-300 group-hover:text-black group-active:text-black"
                     />
 
-                    {/* h3, since the section heading above is the h2. */}
                     <h3 className="text-subheading-01 max-425:text-[2rem] mt-md max-425:mt-sm font-bold tracking-[-0.04em] text-white transition-colors duration-300 group-hover:text-black group-active:text-black">
                       {title}
                     </h3>
@@ -59,9 +50,6 @@ const PartnerFit = () => {
                     <ul className="gap-xs mt-sm flex flex-col">
                       {points.map((point) => (
                         <li key={point} className="gap-xs flex items-start">
-                          {/* The marker is drawn rather than left to the list
-                            style, so it lines up with the first line of a
-                            point that wraps. */}
                           <span
                             aria-hidden="true"
                             className="max-425:mt-[0.9rem] mt-[1rem] size-[0.4rem] shrink-0 rounded-full bg-white transition-colors duration-300 group-hover:bg-black group-active:bg-black"

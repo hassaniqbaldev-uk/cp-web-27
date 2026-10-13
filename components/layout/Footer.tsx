@@ -7,12 +7,8 @@ import { Container } from "../ui/Container";
 
 const Footer = () => {
   return (
-    // The footer landmark itself, so it is announced as one and nothing needs
-    // a role. It sits outside <main>, below the page's own sections.
     <footer className="max-425:px-[3rem] bg-black">
       <Container>
-        {/* Names the landmark for anyone listing a page's regions, without
-            printing a heading the design does not have. */}
         <h2 className="sr-only">Site footer</h2>
 
         <span aria-hidden="true" className="block h-px w-full bg-white/50" />
@@ -20,9 +16,6 @@ const Footer = () => {
         <div className="gap-lg max-425:mt-lg mt-2xl max-425:flex-col flex justify-between">
           <div className="max-425:w-full max-425:items-center flex w-[33rem] flex-col items-start">
             <Link href="/" aria-label="Creative Pixels, home">
-              {/* Decorative: the link above already carries the name, so the
-                  image would otherwise be announced twice. */}
-              {/* The white wordmark variant, since the footer band is black. */}
               <Image
                 src="/images/common/cp-logo-with-text.svg"
                 alt=""
@@ -33,13 +26,10 @@ const Footer = () => {
               />
             </Link>
 
-            {/* One link around the whole card rather than a nested one on the
-                arrow, so there is a single target with a single name. */}
             <Link
               href="/contact"
               className="gradient-border gap-sm py-sm px-md mt-lg flex w-full items-center rounded-md bg-white/20 pr-[2.5rem] backdrop-blur-[10px] [--gradient-border-image:linear-gradient(148.35deg,rgba(255,255,255,0)_11.97%,rgba(255,255,255,0.5)_39.82%,rgba(255,255,255,0)_59.85%)] [--gradient-border-width:1.24px]"
             >
-              {/* Decorative: the text beside it already says who it is. */}
               <Image
                 src="/images/home/hassan-avatar-img-2.png"
                 alt=""
@@ -73,14 +63,9 @@ const Footer = () => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    // The icon is a picture, so the link is named here —
-                    // an icon-only link otherwise announces as nothing.
                     aria-label={label}
                     className="group bg-grey/30 flex size-[4.7rem] items-center justify-center rounded-full transition-colors duration-300 hover:bg-white focus-visible:bg-white"
                   >
-                    {/* A mask rather than an <img>: the asset has its fill
-                        baked in, and a mask takes its colour from the element,
-                        so the glyph can invert with the background. */}
                     <span
                       aria-hidden="true"
                       style={{

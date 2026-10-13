@@ -11,8 +11,6 @@ const AboutBehaviours = () => {
         id="behaviours"
         className="py-3xl max-425:py-xl max-425:px-[3rem] relative overflow-hidden bg-black"
       >
-        {/* The mask curves each field off at its edges, so it reads as a soft
-            cloud rather than a rectangle of stars. */}
         <Starfield className="absolute top-0 left-[-5rem] z-0 h-[70rem] w-[19rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
         <Starfield className="absolute right-[-5rem] bottom-0 z-0 h-[70rem] w-[19rem] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
@@ -32,8 +30,6 @@ const AboutBehaviours = () => {
           <ul className="gap-md mt-xl max-425:grid-cols-1 grid grid-cols-2 items-start">
             {behaviours.map(
               ({ id, icon: Icon, title, description, hoverClassName }) => (
-                // even:mt picks out the second and fourth cards, so the two
-                // columns step rather than reading as flat rows.
                 <li key={id} className="max-425:!mt-[0rem] even:mt-[3rem]">
                   <div
                     className={`p-lg max-425:p-md rounded-md bg-[#1A1A1A] transition duration-300 ${hoverClassName}`}
@@ -45,7 +41,6 @@ const AboutBehaviours = () => {
                       className="max-425:size-[3rem] shrink-0 text-white"
                     />
 
-                    {/* h3, since the section heading above is the h2. */}
                     <h3 className="text-subheading-02 max-425:text-[2.2rem] mt-lg max-425:mt-sm font-bold tracking-[-0.07em] text-white">
                       {title}
                     </h3>

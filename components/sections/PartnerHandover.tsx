@@ -10,10 +10,7 @@ type ColumnProps = {
   className: string;
 };
 
-/** The two card columns are identical but for their width and contents. */
 const CardColumn = ({ cards, className }: ColumnProps) => (
-  // A list, so each column announces as a set rather than three loose blocks.
-  // Its three cards follow one another in.
   <ul className={`gap-sm flex shrink-0 flex-col ${className}`}>
     {cards.map(({ id, icon: Icon, iconClassName, title, subtitle }) => (
       <li
@@ -27,7 +24,6 @@ const CardColumn = ({ cards, className }: ColumnProps) => (
           className={`max-425:mx-auto shrink-0 ${iconClassName}`}
         />
 
-        {/* h3, since the section heading between the columns is the h2. */}
         <h3 className="text-subheading-01 max-425:text-[2rem] mt-sm max-425:mt-xs font-bold tracking-[-0.04em] text-black">
           {title}
         </h3>
@@ -44,10 +40,6 @@ const PartnerHandover = () => {
   return (
     <>
       <Section id="handover" className="py-3xl max-425:py-xl max-425:px-[3rem]">
-        {/* At 425 the heading is lifted to the top and the two columns run on
-            beneath it as one list, so the gap between them matches the gap
-            between their cards. Order only: the source stays as it is, so
-            desktop is untouched. */}
         <Container className="gap-lg max-425:gap-sm max-425:flex-col flex items-center justify-between">
           <CardColumn
             cards={handoverDelivery}
@@ -68,8 +60,6 @@ const PartnerHandover = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] mx-auto text-text-body max-w-[40rem] mt-sm leading-[2.8rem] tracking-[-0.02em]"
             />
 
-            {/* flex, so the wrapper adds no line box beneath the button, and
-                full width at 425 so the button still stretches across. */}
             <div className="max-425:w-full flex">
               <Button
                 href="/contact"

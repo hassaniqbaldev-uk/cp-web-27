@@ -12,7 +12,6 @@ const Work = () => {
       <WorkHero />
       <WorkFeatured />
       <WorkGrid />
-      {/* TODO: the project and the review are placeholders. */}
       <WorkReviews
         id="work-page-reviews"
         project={workShowcase}
@@ -28,9 +27,6 @@ const Work = () => {
         title={
           <>
             Nervous about{" "}
-            {/* One span across both words, so the ramp runs from the pink at
-                the start of "migration" to the orange "the" sits in — which
-                is why "the" reads orange although it comes first. */}
             <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
               the migration?
             </span>

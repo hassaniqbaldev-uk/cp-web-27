@@ -10,12 +10,8 @@ const Guarantees = () => {
     <>
       <Section className="py-3xl max-425:px-[3rem] max-425:py-xl">
         <Container>
-          {/* The section has no visible heading, but the cards below are
-              headings, so this names the group and keeps the outline in order
-              rather than jumping from the page h1 straight to h3s. */}
           <h2 className="sr-only">Our guarantees</h2>
 
-          {/* The three guarantees, then the case study, one after another. */}
           <div className="gap-sm max-425:grid-cols-1 grid grid-cols-4">
             {guarantees.map(({ id, title, description }) => (
               <div
@@ -60,8 +56,6 @@ const Guarantees = () => {
                   </p>
                 </div>
 
-                {/* Label and arrow sit in one link rather than two, so there is
-                    a single target with a single accessible name. */}
                 <Link
                   href={guaranteeCaseStudy.href}
                   className="gap-sm flex items-center justify-between"

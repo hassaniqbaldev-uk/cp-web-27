@@ -12,8 +12,6 @@ const Work = () => {
     <>
       <Section id="work" className="py-3xl max-425:px-[3rem] max-425:py-xl">
         <Container>
-          {/* Relative so the button can be pulled out to the left without
-              knocking the heading off centre. */}
           <div className="gap-sm max-425:gap-md max-425:flex-col-reverse max-425:items-center relative flex justify-center text-center">
             <CircularTextButton
               href="/work"
@@ -31,7 +29,6 @@ const Work = () => {
               />
             </CircularTextButton>
 
-            {/* TODO: replace the label, title and subtitle with the real copy. */}
             <SectionHeading
               label="OUR WORK"
               title="Digital done right"
@@ -40,7 +37,6 @@ const Work = () => {
             />
           </div>
 
-          {/* The projects follow one another in. */}
           <ul className="gap-md max-425:gap-lg max-425:mt-lg mt-2xl max-425:grid-cols-1 grid grid-cols-2 items-start">
             {workProjects.map(
               ({ id, image, imageAlt, title, subtitle, ctaLabel, href }) => (
@@ -48,8 +44,6 @@ const Work = () => {
                   key={id}
                   className="even:mt-md max-425:even:mt-0 overflow-hidden"
                 >
-                  {/* Fixed ratio box so every thumbnail reserves the same
-                      space and the grid does not shift as images load. */}
                   <div className="relative aspect-[16/11] w-full overflow-hidden rounded-md">
                     <Image
                       src={image}
@@ -71,8 +65,6 @@ const Work = () => {
                       </p>
                     </div>
 
-                    {/* Four identical labels would be indistinguishable in a
-                        list of links, so each one names its own project. */}
                     <Button
                       href={href}
                       aria-label={`Visit the ${title} live site`}

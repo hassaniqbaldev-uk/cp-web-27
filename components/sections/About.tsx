@@ -21,11 +21,7 @@ const About = () => {
             subtitleClassName="text-body-02 text-center leading-[2.8rem] text-text-body tracking-[-0.02em] max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:max-w-[30rem]"
           />
 
-          {/* The highlights, the button, the photo and the quote follow one
-              another in, in source order. */}
           <div className="gap-sm mt-2xl max-425:mt-[3rem] max-425:mb-[24rem] mb-xl max-425:flex-col flex items-start justify-between">
-            {/* The position sits on the wrapper, which is what moves; the
-                image only sizes itself inside it. */}
             <div className="max-425:left-1/2 max-425:-translate-x-1/2 pointer-events-none absolute bottom-0 left-[31rem] z-[10] w-max">
               <Image
                 src="/images/home/hassan-about-img.png"
@@ -71,8 +67,6 @@ const About = () => {
                 )}
               </ul>
 
-              {/* flex, so the wrapper adds no line box beneath the button and
-                  w-full still stretches it at 425. */}
               <div className="max-425:w-full flex">
                 <Button
                   href="/about"

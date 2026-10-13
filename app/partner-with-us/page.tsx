@@ -42,7 +42,6 @@ const PartnerWithUs = () => {
 
       <BookCall
         id="partner-book-call"
-        showContacts={false}
         logoSvgSrc="/images/common/cp-logo-particle.svg"
         logoLabel="CP logo formed from drifting particles"
         label="Let's work together"

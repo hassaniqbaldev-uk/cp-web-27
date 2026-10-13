@@ -1,6 +1,5 @@
 import { ArrowUpRight, CalendarDays, Clock } from "lucide-react";
 
-// TODO: placeholder until the real turnaround is agreed.
 const assurances = [
   {
     id: "senior",
@@ -14,16 +13,9 @@ const assurances = [
   },
 ];
 
-/**
- * Deliberately has no "use client" boundary. Every field is a plain input, so
- * the form works before — and without — JavaScript.
- */
 const WebsiteReviewForm = () => {
   return (
-    // TODO: wire to a route handler. app/api/contact is still empty.
     <form className="gap-md flex flex-col">
-      {/* The label sits on the border with a white background behind it, so it
-          notches the outline rather than covering it. */}
       <div className="relative">
         <label
           htmlFor="review-website"
@@ -111,10 +103,6 @@ const WebsiteReviewForm = () => {
         <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.5} />
       </button>
 
-      {/* What happens to the request once it is sent. A list, so the two
-          announce as a pair rather than as loose fragments after the button.
-          The rule is drawn between them rather than as a border on either, so
-          neither end trails a stray line. */}
       <ul className="gap-md max-425:gap-sm max-425:grid-cols-1 max-425:divide-x-0 max-425:divide-y grid grid-cols-2 divide-x divide-black/15">
         {assurances.map(({ id, icon: Icon, text }) => (
           <li

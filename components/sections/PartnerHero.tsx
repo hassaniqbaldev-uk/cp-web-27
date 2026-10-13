@@ -7,9 +7,6 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-// Kept here rather than in config: four lines that belong to this hero
-// alone. The swatch colours are complete class strings, since Tailwind scans
-// source files for full class names.
 const terms = [
   { id: "nda", text: "NDA before the brief", swatchClassName: "bg-dark-pink" },
   {
@@ -25,12 +22,8 @@ const terms = [
   },
 ];
 
-// backdrop-filter takes one radius, so a blur that ramps has to be stacked:
-// each layer doubles the radius and is masked to start a little lower, and the
-// overlap reads as a smooth progression.
 const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 
-// Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
 const PartnerHero = () => {
@@ -41,13 +34,6 @@ const PartnerHero = () => {
         className="bg-grey/40 max-425:min-h-auto max-425:pt-[13rem] max-425:pb-[3rem] relative flex min-h-screen flex-col justify-center pt-[20rem] pb-[8rem]"
       >
         <div className="absolute inset-0 overflow-hidden">
-          {/* At 425 it is centred and sits on the section's bottom padding,
-              so the stats run across the foot of it, as the about hero's
-              photo does.
-
-              The position sits on the wrapper, which is what rises; w-max
-              holds the wrapper to the image's own width, which an absolute
-              box would otherwise shrink away from. */}
           <div className="max-425:right-auto max-425:left-1/2 max-425:-translate-x-1/2 max-425:bottom-[3rem] absolute right-0 bottom-[8rem] w-max">
             <Image
               src="/images/partner-with-us/hero-mockup-img.png"
@@ -105,7 +91,6 @@ const PartnerHero = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] text-text-body mt-sm max-w-[70rem] leading-[2.8rem] tracking-[-0.02em]"
             />
 
-            {/* flex, so no line box is left beneath the button. */}
             <div className="flex">
               <Button
                 href="/contact"
@@ -116,13 +101,6 @@ const PartnerHero = () => {
             </div>
           </div>
 
-          {/* A list, so the four read as a set of terms rather than four loose
-              lines. After the heading in the source, so the h1 is read first;
-              above 425 it is absolute, so its place in the source moves
-              nothing, and at 425 it drops into the flow beneath the heading.
-
-              It rises itself, with every class it had, rather than inside a
-              wrapper, so its absolute box is sized exactly as before. */}
           <ul className="p-md max-425:static max-425:mx-[3rem] max-425:mt-md max-425:p-[2rem] absolute top-[-7rem] right-0 flex flex-col gap-[.8rem] rounded-md bg-white">
             {terms.map(({ id, text, swatchClassName }) => (
               <li key={id} className="gap-xs flex items-center">
@@ -138,10 +116,6 @@ const PartnerHero = () => {
             ))}
           </ul>
 
-          {/* Clips the track below 425, where the four sit in a row wider than
-              the screen. Under reduced motion the animation stops and this
-              becomes an ordinary horizontal scroller, so every card stays
-              reachable. */}
           <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[22rem] mt-[6rem]">
             <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
               {partnerStats.map(({ id, value, label }) => (

@@ -5,10 +5,6 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-/**
- * The home page's copy, kept as the defaults so pages that want it render
- * `<Faqs />` and nothing else. Anywhere else passes its own.
- */
 const defaultTitle = (
   <>
     Questions? <span className="text-black/50">We are here to help</span>
@@ -17,13 +13,8 @@ const defaultTitle = (
 
 type FaqsProps = {
   label?: string;
-  /** Accepts nodes, so part of it can be styled. */
   title?: React.ReactNode;
   items?: Faq[];
-  /**
-   * Unique per page. Two of these on one page would otherwise give the
-   * document two elements with the same id, which breaks fragment links.
-   */
   id?: string;
   className?: string;
 };
@@ -40,10 +31,6 @@ const Faqs = ({
       <Section id={id} className={className}>
         <Container>
           <div className="gap-lg max-425:gap-md max-425:flex-col flex items-start justify-between">
-            {/* The heading comes first in the source and is moved to the right
-                visually, so the h2 is still read before the h3 triggers that
-                belong to it. Reordering the markup instead would leave the
-                questions announced before the thing that names them. */}
             <div className="max-425:order-1 max-425:w-full order-2 w-[48.2rem]">
               <SectionHeading
                 label={label}
@@ -70,8 +57,6 @@ const Faqs = ({
                 }))}
                 itemClassName="border-black/20 border-b"
                 triggerClassName="py-md max-425:py-sm gap-sm"
-                indicatorClassName="size-[3rem] max-425:size-[2.4rem] rounded-full border border-black/30 text-black"
-                iconClassName="max-425:size-[1.4rem]"
                 contentClassName="pb-md max-425:pb-sm"
               />
             </div>

@@ -29,7 +29,6 @@ const Contact = () => {
                 subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:text-center text-text-body mt-sm max-w-[45rem] leading-[2.8rem] tracking-[-0.02em]"
               />
 
-              {/* The three ways to reach us, one after another. */}
               <ul className="mt-2xl max-425:mt-lg flex flex-col">
                 {contactLinks.map(({ id, icon: Icon, label, href }) => (
                   <li key={id}>

@@ -8,42 +8,28 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-/** Must match the transition on the track, or the snap is seen. */
 const SLIDE_DURATION = 300;
 
-/** How long each profile is held before the carousel moves on. */
 const AUTOPLAY_INTERVAL = 3500;
 
-// Autoplay belongs to the carousel, which only exists below this width.
 const MEDIA_QUERY = "(max-width: 425px)";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 const AboutTeam = () => {
-  // Allowed to run past either end of the list: the track holds three copies
-  // of the profiles, so there is always a neighbour to slide onto, and the
-  // index is brought back into range once the slide has finished.
   const [index, setIndex] = useState(0);
 
-  // Set only for the frame in which the index is brought back, so the jump
-  // between copies is not animated and therefore not seen.
   const [isSnapping, setIsSnapping] = useState(false);
 
-  // Off until the media queries have been read, so nothing moves on a wide
-  // screen or for anyone who has asked for less motion.
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Held while the carousel is being used, by pointer or by keyboard.
   const [isPaused, setIsPaused] = useState(false);
 
   const total = teamProfiles.length;
 
-  // Where the index lands once folded back into the list.
   const selectedPosition = ((index % total) + total) % total;
 
   const selected = teamProfiles[selectedPosition];
 
-  // The position in the tripled track. The middle copy is the real one, so
-  // an untouched carousel starts there.
   const slide = index + total;
 
   useEffect(() => {
@@ -60,8 +46,6 @@ const AboutTeam = () => {
   useEffect(() => {
     if (!isSnapping) return;
 
-    // A frame later, so the browser has painted the snapped position before
-    // transitions come back on.
     const frame = requestAnimationFrame(() => setIsSnapping(false));
 
     return () => cancelAnimationFrame(frame);
@@ -115,7 +99,6 @@ const AboutTeam = () => {
               titleClassName="text-heading-02 leading-[9rem] max-425:text-[3.5rem] max-425:leading-[3.5rem]  mt-xs font-extrabold tracking-[-0.07em] text-black"
             />
 
-            {/* A line at a time, a beat after the title begins. */}
             <p className="text-body-01 max-425:text-[1.6rem] text-text-body max-425:w-full max-425:max-w-[35rem] w-[48.3rem] tracking-[-0.02em]">
               CreativePixels brings together project leadership, UX and visual
               design, WordPress and ecommerce development, custom application
@@ -128,9 +111,6 @@ const AboutTeam = () => {
           <div className="gap-lg max-425:gap-sm max-425:mt-[3.5rem] mt-2xl max-425:flex-col-reverse max-425:px-[1.8rem] flex items-start justify-between">
             <div className="max-425:w-full w-[58rem]">
               <div
-                // Silent while the carousel is moving on its own, or every
-                // profile would be read out unasked; it speaks again as soon
-                // as a person is the one driving it.
                 aria-live={isPlaying && !isPaused ? "off" : "polite"}
                 className="bg-grey/40 max-425:w-full max-425:p-[2rem] w-[58rem] rounded-md px-[3rem] pt-[3rem] pb-[3.5rem]"
               >
@@ -149,7 +129,6 @@ const AboutTeam = () => {
                         {selected.role}
                       </p>
 
-                      {/* h3, since the section heading above is the h2. */}
                       <h3 className="text-heading-03 max-425:text-[2rem] max-425:leading-[4rem] leading-[7rem] font-bold tracking-[-0.07em] text-black">
                         {selected.name}
                       </h3>
@@ -178,15 +157,8 @@ const AboutTeam = () => {
               </div>
             </div>
 
-            {/* A grid on desktop; at 425 a track three slots wide with the
-                middle slot active. The profiles are laid down three times over,
-                so a step off either end lands on a copy rather than on nothing
-                and the carousel can go round for ever. */}
             <div className="max-425:w-full w-[59rem]">
               <div
-                // Autoplay stops while the carousel is being used and starts
-                // again when it is let go. Capture, so it also covers focus
-                // moving onto the arrows or an avatar.
                 onPointerEnter={() => setIsPaused(true)}
                 onPointerLeave={() => setIsPaused(false)}
                 onPointerDown={() => setIsPaused(true)}
@@ -207,9 +179,6 @@ const AboutTeam = () => {
                 <div className="max-425:w-[27rem] max-425:overflow-hidden">
                   <ul
                     id="team-profiles"
-                    // The offset is a custom property so the movement can stay in
-                    // a breakpoint-scoped class; an inline transform would apply
-                    // at every width and break the grid.
                     style={{ "--slide": slide } as React.CSSProperties}
                     className={`gap-xs max-425:gap-0 max-425:w-max max-425:flex max-425:px-[9rem] max-425:translate-x-[calc(var(--slide)_*_-9rem)] grid w-full grid-cols-5 ${
                       isSnapping
@@ -217,10 +186,6 @@ const AboutTeam = () => {
                         : "max-425:transition-transform max-425:duration-300 max-425:motion-reduce:transition-none"
                     }`}
                   >
-                    {/* The outer copies exist only to be slid onto. They are kept
-                      from assistive tech and from every width above the
-                      breakpoint, so the grid stays twenty avatars and no name
-                      is announced three times. */}
                     {[0, 1, 2].flatMap((pass) =>
                       teamProfiles.map(
                         ({ id, image, name, role }, position) => {
@@ -279,14 +244,10 @@ const AboutTeam = () => {
 
           <div className="px-[1.8rem]">
             <div className="bg-blue/10 max-425:mt-lg mt-2xl rounded-md px-[5rem] py-[4.5rem]">
-              {/* Deliberately not a heading: it names this box rather than
-                opening a new part of the section. Rises out of a mask, as
-                the section labels do. */}
               <p className="text-body-01 max-425:text-[1.6rem] text-center font-medium tracking-[-0.02em] text-black uppercase">
                 How the teams work together
               </p>
 
-              {/* The handoff, one person after another. */}
               <ul className="mt-md max-425:flex-col max-425:items-center max-425:gap-2xl flex items-start justify-between">
                 {teamHandoffs.map(({ id, image, name, text }, index) => (
                   <li
@@ -300,7 +261,6 @@ const AboutTeam = () => {
                       />
                     )}
 
-                    {/* Decorative: the name is printed right below it. */}
                     <Image
                       src={image}
                       alt=""

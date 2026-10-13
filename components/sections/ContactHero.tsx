@@ -24,15 +24,11 @@ const ContactHero = () => {
         <Container className="gap-lg max-425:gap-xl max-425:flex-col relative z-10 flex items-start justify-between">
           <div className="max-425:w-full w-[52.3rem]">
             <SectionHeading
-              // The page's single h1 — the outline starts here.
               as="h1"
               label="Get in touch"
               title={
                 <>
                   Tell us what{" "}
-                  {/* pr compensates for the negative tracking, which otherwise
-                      pulls the paint box in and clips the last glyph of a
-                      gradient span. */}
                   <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                     you need.
                   </span>
@@ -44,10 +40,7 @@ const ContactHero = () => {
               subtitleClassName="text-body-02 max-425:text-[1.6rem] max-425:leading-[2.4rem] max-425:text-center text-white mt-[1.4rem] tracking-[-0.02em]"
             />
 
-            {/* figure and figcaption are the pair that ties a message to the
-                person who wrote it. */}
             <figure className="gradient-border gap-sm p-md max-425:p-sm max-425:gap-xs mt-md flex items-start rounded-md bg-white/10 [--gradient-border-image:linear-gradient(140.55deg,rgba(255,255,255,0)_7.24%,rgba(255,255,255,0.6)_47.59%,rgba(255,255,255,0)_76.61%)] [--gradient-border-width:1.24px]">
-              {/* Decorative: the caption below already names him. */}
               <Image
                 src="/images/home/hassan-avatar-img.png"
                 alt=""
@@ -69,13 +62,10 @@ const ContactHero = () => {
               </div>
             </figure>
 
-            {/* Rises out of a mask, as the labels do. */}
             <p className="text-body-02 max-425:text-[1.4rem] mt-md tracking-[-0.02em] text-white/80">
               Prefer another way?
             </p>
 
-            {/* A list, so the three announce as three ways to reach us rather
-                than loose links. */}
             <ul className="mt-sm flex flex-col">
               {contactLinks.map(({ id, icon: Icon, label, href }) => (
                 <li key={id}>
@@ -108,7 +98,6 @@ const ContactHero = () => {
             </ul>
           </div>
 
-          {/* Rises with the title: the form is what the page is for. */}
           <div className="p-lg max-425:w-full max-425:p-sm w-[60rem] shrink-0 rounded-md bg-white">
             <ContactForm showAssurances />
           </div>

@@ -5,23 +5,8 @@ export type HeroPopover = {
   title: string;
   href: string;
   image: string;
-  /**
-   * Tailwind position utilities for this popover, e.g. "right-[7rem] bottom-[9rem]".
-   * Keep these as complete, literal class strings — Tailwind scans source files for
-   * full class names, so anything built by concatenation will not be generated.
-   */
   className: string;
-  /**
-   * Background utility for the square trigger, e.g. "bg-dark-pink". Same rule as
-   * `className` — keep it a complete, literal class string.
-   */
   squareClassName: string;
-  /**
-   * Where this popover's panel sits, and which corner it grows from, e.g.
-   * "top-[2rem] left-[2rem] max-425:[--panel-origin:top_left]". Left over
-   * from the component's own default when omitted. Same rule as the two
-   * above — complete, literal class strings only.
-   */
   panelPositionClassName?: string;
 };
 
@@ -33,7 +18,6 @@ export type NavChild = {
 export type NavItem = {
   label: string;
   href: string;
-  /** Present only on items that open a dropdown. */
   children?: NavChild[];
 };
 
@@ -41,7 +25,6 @@ export type HeroBadge = {
   id: string;
   src: string;
   alt: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
 };
@@ -50,24 +33,14 @@ export type ClientLogo = {
   id: string;
   src: string;
   alt: string;
-  /** Where the logo links to — a case study, or the client's own site. */
   href: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
-  /**
-   * Per logo sizing, since they are drawn to different heights, e.g.
-   * "max-425:h-[3.5rem] max-425:w-auto". Pair any height with w-auto, or the
-   * intrinsic width stays put and the logo squashes. Keep these as complete,
-   * literal class strings — Tailwind scans source files for full class names,
-   * so anything built by concatenation will not be generated.
-   */
   className?: string;
 };
 
 export type AboutHighlight = {
   id: string;
-  /** Lucide icon component, e.g. `Compass`. */
   icon: LucideIcon;
   title: string;
   subtitle: string;
@@ -76,9 +49,7 @@ export type AboutHighlight = {
 export type TeamMember = {
   id: string;
   src: string;
-  /** The person's name — used as the image's accessible text. */
   name: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
 };
@@ -86,12 +57,10 @@ export type TeamMember = {
 export type ServiceFeature = {
   image: string;
   imageAlt: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
   label: string;
   title: string;
-  /** Only the first two are shown, joined by a dot. */
   categories: string[];
   href: string;
 };
@@ -119,21 +88,12 @@ export type ServiceDetail = {
 
 export type ServiceDiscipline = {
   id: string;
-  /** Lucide icon component, e.g. `Palette`. */
   icon: LucideIcon;
   title: string;
-  /** Short tags shown beside the title, joined by dots in the UI. */
   categories: string[];
-  /**
-   * Accent for this discipline. Keep these as complete, literal class strings —
-   * Tailwind scans source files for full class names, so anything built by
-   * concatenation will not be generated.
-   */
   iconClassName: string;
   dotClassName: string;
-  /** Everything in the left column of the open panel. */
   detail: ServiceDetail;
-  /** The highlighted piece of work shown beside this discipline. */
   featured: ServiceFeature;
 };
 
@@ -142,11 +102,6 @@ export type ExpertiseCard = {
   icon: LucideIcon;
   title: string;
   description: string;
-  /**
-   * Background and glow applied on hover. Keep these as complete, literal class
-   * strings — Tailwind scans source files for full class names, so anything
-   * built by concatenation will not be generated.
-   */
   hoverClassName: string;
 };
 
@@ -161,7 +116,6 @@ export type GuaranteeCaseStudy = {
   imageAlt: string;
   logo: string;
   logoAlt: string;
-  /** Intrinsic size of the logo — next/image needs it to reserve space. */
   logoWidth: number;
   logoHeight: number;
   title: string;
@@ -172,16 +126,9 @@ export type GuaranteeCaseStudy = {
 
 export type ProcessStep = {
   id: string;
-  /** Display number, e.g. "01". */
   step: string;
   title: string;
   description: string;
-  /**
-   * Colour of this step's dot and line fill, its card border and its title.
-   * Three fields rather than one name because Tailwind scans source files for
-   * complete class names, so a concatenated `border-` plus a colour name would
-   * never be generated.
-   */
   accentClassName: string;
   borderClassName: string;
   textClassName: string;
@@ -193,14 +140,8 @@ export type WorkProject = {
   imageAlt: string;
   title: string;
   subtitle: string;
-  /** Label on the card's link, e.g. "Visit live site". */
   ctaLabel: string;
-  /** The live site, so these open in a new tab. */
   href: string;
-  /**
-   * Which filter this falls under on the work page, matching a WorkFilter's
-   * id. Optional, since the home page shows every project and does not filter.
-   */
   category?: string;
 };
 
@@ -211,7 +152,6 @@ export type WorkFilter = {
 
 export type ConsultationBenefit = {
   id: string;
-  /** Lucide icon component, e.g. `Clock`. */
   icon: LucideIcon;
   title: string;
   subtitle: string;
@@ -221,41 +161,27 @@ export type Testimonial = {
   id: string;
   avatar: string;
   logo: string;
-  /** The client's company — the logo's accessible text. */
   logoAlt: string;
-  /** Intrinsic size of the logo — next/image needs it to reserve space. */
   logoWidth: number;
   logoHeight: number;
   quote: string;
   name: string;
-  /** Role and company, e.g. "Loop, Founder". */
   role: string;
-  /** Out of five, e.g. 5 — drives both the stars and the printed figure. */
   rating: number;
 };
 
 export type ContactLink = {
   id: string;
-  /** Lucide icon component, e.g. `Mail`. */
   icon: LucideIcon;
   label: string;
-  /** A mailto:, tel: or page link. */
   href: string;
 };
 
 export type ContactTopic = {
   id: string;
-  /** Lucide icon component, e.g. `Monitor`. */
   icon: LucideIcon;
   label: string;
-  /** Submitted value for this choice. */
   value: string;
-  /**
-   * Accent for this card — the icon colour, and the border and tint it takes
-   * once chosen. Two fields rather than one name because Tailwind scans source
-   * files for complete class names, so a concatenated colour would never be
-   * generated.
-   */
   iconClassName: string;
   selectedClassName: string;
 };
@@ -268,20 +194,13 @@ export type Faq = {
 
 export type SocialLink = {
   id: string;
-  /** Platform name, used as the link's accessible name. */
   label: string;
   href: string;
-  /**
-   * Path to the icon file. Painted as a CSS mask rather than an <img>, because
-   * the assets have their fill baked in and a mask takes its colour from the
-   * element, so the icon can invert on hover.
-   */
   icon: string;
 };
 
 export type FooterNavColumn = {
   id: string;
-  /** Column heading, e.g. "Quick links". */
   title: string;
   links: NavChild[];
 };
@@ -290,7 +209,6 @@ export type Brand = {
   id: string;
   src: string;
   alt: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
   href: string;
@@ -298,22 +216,15 @@ export type Brand = {
 
 export type AboutStat = {
   id: string;
-  /** The figure itself, e.g. "12+". */
   value: string;
   label: string;
 };
 
 export type JourneyStep = {
   id: string;
-  /** Display number, e.g. "01". */
   step: string;
   title: string;
   description: string;
-  /**
-   * Accent for this step's label, as the Process section does it. Two fields
-   * rather than one name because Tailwind scans source files for complete
-   * class names, so a concatenated colour would never be generated.
-   */
   borderClassName: string;
   textClassName: string;
 };
@@ -321,10 +232,8 @@ export type JourneyStep = {
 export type TeamProfile = {
   id: string;
   image: string;
-  /** The person's name — used as the portrait's accessible text. */
   name: string;
   role: string;
-  /** Years of experience, e.g. "12+". */
   years: string;
   description: string;
 };
@@ -333,20 +242,14 @@ export type TeamHandoff = {
   id: string;
   image: string;
   name: string;
-  /** What this person does at this stage, e.g. "Scopes it with you". */
   text: string;
 };
 
 export type Behaviour = {
   id: string;
-  /** Lucide icon component, e.g. `Users`. */
   icon: LucideIcon;
   title: string;
   description: string;
-  /**
-   * Background and glow applied on hover. Keep it a complete, literal class
-   * string, as Tailwind never generates a concatenated one.
-   */
   hoverClassName: string;
 };
 
@@ -355,13 +258,7 @@ export type ReachLocation = {
   image: string;
   imageAlt: string;
   title: string;
-  /** The clients served from there, already joined into one line. */
   clients: string;
-  /**
-   * Where the card sits on the map, as a share of the box so it tracks the
-   * artwork at any width. Keep it a complete, literal class string — Tailwind
-   * scans source files for full class names.
-   */
   className: string;
 };
 
@@ -373,7 +270,6 @@ export type WorkflowDetail = {
 
 export type WorkflowStep = {
   id: string;
-  /** Display number, e.g. "01". */
   step: string;
   title: string;
   details: WorkflowDetail[];
@@ -381,13 +277,7 @@ export type WorkflowStep = {
 
 export type ProcessCardDetail = {
   id: string;
-  /** Lucide icon component, e.g. `ClipboardList`. */
   icon: LucideIcon;
-  /**
-   * Accent for this icon. Kept as a complete, literal class string — Tailwind
-   * scans source files for full class names, so a concatenated colour would
-   * never be generated.
-   */
   iconClassName: string;
   title: string;
   subtitle: string;
@@ -395,7 +285,6 @@ export type ProcessCardDetail = {
 
 export type ProcessCard = {
   id: string;
-  /** Display number, e.g. "01". */
   step: string;
   title: string;
   description: string;
@@ -406,19 +295,14 @@ export type ProcessCard = {
 
 export type AgencyWorkflowIcon = {
   id: string;
-  /** Path under /public. These are brand marks, so they are files rather than
-   *  lucide components, which carry no logos. */
   src: string;
-  /** Intrinsic size of the asset — next/image needs it to reserve space. */
   width: number;
   height: number;
 };
 
 export type AgencyWorkflowCard = {
   id: string;
-  /** Drawn in a row, in this order. */
   icons: AgencyWorkflowIcon[];
-  /** Adds the plus that stands for "and whatever else you use". */
   showPlus?: boolean;
   title: string;
   subtitle: string;
@@ -434,21 +318,14 @@ export type CostComparisonColumn = {
   id: string;
   title: string;
   rows: CostComparisonRow[];
-  /** The line under the rule, which is the figure the column exists to make. */
   totalLabel: string;
   totalValue: string;
-  /** The partner column, which is the one being argued for. */
   isFeatured?: boolean;
 };
 
 export type HandoverCard = {
   id: string;
-  /** Lucide icon component, e.g. `Compass`. */
   icon: LucideIcon;
-  /**
-   * Accent for this card. Keep it a complete, literal class string — Tailwind
-   * scans source files for full class names.
-   */
   iconClassName: string;
   title: string;
   subtitle: string;
@@ -456,13 +333,10 @@ export type HandoverCard = {
 
 export type PartnerFitCard = {
   id: string;
-  /** Lucide icon component, e.g. `Briefcase`. */
   icon: LucideIcon;
   title: string;
   points: string[];
-  /** Sits under the points, in the darker card only. */
   note?: string;
-  /** The work we want, which is the card drawn in white. */
   isPositive?: boolean;
 };
 
@@ -470,16 +344,11 @@ export type ReviewPoint = {
   id: string;
   title: string;
   subtitle: string;
-  /**
-   * The swatch beside the title. Keep it a complete, literal class string —
-   * Tailwind scans source files for full class names.
-   */
   swatchClassName: string;
 };
 
 export type ReviewStep = {
   id: string;
-  /** The figure in the pill, e.g. "01". */
   step: string;
   text: string;
 };
@@ -488,18 +357,12 @@ export type WorkCaseStudy = {
   id: string;
   image: string;
   imageAlt: string;
-  /** Shown as pills above the title, in this order. */
   tags: string[];
   title: string;
   description: string;
   role: string;
   platform: string;
   href: string;
-  /**
-   * The card's two tints, so each case study can carry its own. Keep these as
-   * complete, literal class strings — Tailwind scans source files for full
-   * class names, so anything built by concatenation will not be generated.
-   */
   panelClassName: string;
   imagePanelClassName: string;
 };

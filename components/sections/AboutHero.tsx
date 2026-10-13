@@ -7,12 +7,8 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-// backdrop-filter takes one radius, so a blur that ramps has to be stacked:
-// each layer doubles the radius and is masked to start a little lower, and the
-// overlap reads as a smooth progression. Ends at 90, as the design specifies.
 const BLUR_LAYERS = [0.7, 1.4, 2.8, 5.6, 11.25, 22.5, 45, 90];
 
-// Where the blur begins, as a share of the layer's height.
 const BLUR_START = 12.45;
 
 const AboutHero = () => {
@@ -26,14 +22,10 @@ const AboutHero = () => {
           <div className="gap-lg max-425:gap-md max-425:px-[3rem] max-425:flex-col max-425:items-center max-425:text-center relative z-[12] flex items-center items-start justify-between pt-[6.3rem]">
             <div className="max-425:items-center max-425:w-full flex w-[51rem] flex-col items-start">
               <SectionHeading
-                // The page's single h1 — the outline starts here.
                 as="h1"
                 label="About Creative Pixels"
                 title={
                   <>
-                    {/* pr compensates for the negative tracking, which
-                        otherwise pulls the paint box in and clips the last
-                        glyph of a gradient span. */}
                     <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                       Strategy first.
                     </span>{" "}
@@ -44,7 +36,6 @@ const AboutHero = () => {
                 titleClassName="text-heading-02 max-425:mt-[.4rem] max-425:text-[4.5rem] max-425:leading-[4.5rem] max-425:max-w-[27rem] leading-[9rem] font-extrabold tracking-[-0.07em] text-black"
               />
 
-              {/* flex, so no line box is left beneath the button. */}
               <div className="flex">
                 <Button
                   href="/contact"
@@ -56,7 +47,6 @@ const AboutHero = () => {
             </div>
 
             <div className="px-md pt-md max-425:w-full max-425:p-[2rem] w-[30.5rem] rounded-md bg-white pb-[4rem]">
-              {/* h2, since the page's h1 is the heading beside it. */}
               <h2 className="text-subheading-01 max-425:text-[1.6rem] text-text-body font-bold tracking-[-0.07em]">
                 Strategy, Design &amp; Technology, Together
               </h2>
@@ -70,13 +60,7 @@ const AboutHero = () => {
             </div>
           </div>
 
-          {/* Clips the track below 425, where the four sit in a row wider than
-              the screen. Under reduced motion the animation stops and this
-              becomes an ordinary horizontal scroller, so every card stays
-              reachable. */}
           <div className="max-425:overflow-hidden max-425:motion-reduce:overflow-x-auto max-425:mt-[29rem] relative z-[12] mt-[14rem]">
-            {/* A list, so it announces as four items rather than eight
-                loose strings. */}
             <ul className="max-425:w-max max-425:flex-nowrap max-425:flex grid grid-cols-4 gap-[.6rem]">
               {aboutStats.map(({ id, value, label }) => (
                 <li
@@ -99,13 +83,7 @@ const AboutHero = () => {
               ))}
             </ul>
           </div>
-          {/* Anchored to the container rather than the section, so it stays
-              centred on the content column at any width. Decorative: nothing
-              here depends on recognising the photo.
 
-              The position sits on the wrapper, which is what rises; the image
-              only sizes itself inside it. It rises with the title, from
-              behind the blur that sits over its foot. */}
           <div className="max-425:left-1/2 max-425:-translate-x-1/2 max-425:mt-md pointer-events-none absolute bottom-0 left-[42.4rem] z-[10] w-max">
             <Image
               src="/images/about/hassan-hero-img.png"
@@ -117,8 +95,6 @@ const AboutHero = () => {
             />
           </div>
 
-          {/* After the image in the source, so it paints over it without
-              needing a z-index. */}
           <div
             aria-hidden="true"
             className="max-425:h-[16rem] pointer-events-none absolute bottom-0 left-0 z-[11] h-[37.1rem] w-full"
@@ -142,7 +118,6 @@ const AboutHero = () => {
               );
             })}
 
-            {/* The fill sits over the blur, as it does in the design. */}
             <span className="absolute inset-0 bg-[linear-gradient(0deg,#F4F4F4_0%,rgba(244,244,244,0)_100%)]" />
           </div>
         </Container>

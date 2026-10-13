@@ -4,7 +4,6 @@ export const mainNavigation: NavItem[] = [
   {
     label: "Services",
     href: "/services",
-    // TODO: replace with the real service list.
     children: [
       { label: "Branding", href: "/services/branding" },
       { label: "Web Design", href: "/services/web-design" },
@@ -15,8 +14,6 @@ export const mainNavigation: NavItem[] = [
   {
     label: "Solutions",
     href: "/solutions",
-    // TODO: replace with the real solution list. The /solutions route does not
-    // exist yet, so these links 404 until it is built.
     children: [
       { label: "Solution One", href: "/solutions/solution-one" },
       { label: "Solution Two", href: "/solutions/solution-two" },
@@ -41,14 +38,11 @@ export const mainNavigation: NavItem[] = [
   },
 ];
 
-// TODO: replace with the real number.
 export const contactPhone = {
   label: "+1 (555) 000-0000",
   href: "tel:+15550000000",
 };
 
-// TODO: /solutions and /sitemap do not exist yet, so those links 404 until
-// the routes are built.
 export const footerNavigation: FooterNavColumn[] = [
   {
     id: "quick-links",

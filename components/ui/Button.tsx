@@ -4,16 +4,9 @@ import { ArrowUpRight } from "lucide-react";
 type ButtonProps = {
   href: string;
   children: React.ReactNode;
-  /**
-   * All visual styling lives here — colour, padding, radius, font size. The
-   * component itself only sets layout and motion, so nothing it applies can
-   * collide with the utilities passed in.
-   */
   className?: string;
-  /** Styling for the arrow, e.g. a different colour to the label. */
   iconClassName?: string;
   iconSize?: number;
-  /** Set false for a label-only button. */
   showArrow?: boolean;
 } & Omit<
   React.ComponentPropsWithoutRef<typeof Link>,

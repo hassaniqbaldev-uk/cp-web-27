@@ -1,7 +1,6 @@
 import { contactTopics } from "@/config/common";
 import { ArrowUpRight, Calendar, ChevronDown, Clock, Plus } from "lucide-react";
 
-// TODO: the second line is placeholder copy.
 const assurances = [
   {
     id: "reviewed",
@@ -15,24 +14,13 @@ const assurances = [
   },
 ];
 
-/**
- * Deliberately has no "use client" boundary. The selected card is styled with
- * has-[:checked], and the optional section is a native disclosure, so the whole
- * form works before — and without — JavaScript.
- */
 type ContactFormProps = {
-  /** The reassurance pair under the button. Off by default, since only the
-   *  contact page asks for it. */
   showAssurances?: boolean;
 };
 
 const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
   return (
-    // TODO: wire to the route handler at app/api/contact, which is still empty.
     <form className="gap-md flex flex-col">
-      {/* A group of radios needs a fieldset and a legend: that is what names
-          the choice for a screen reader, rather than leaving four unlabelled
-          options next to a stray paragraph. */}
       <fieldset>
         <legend className="text-body-04 max-425:text-[1.2rem] font-semibold tracking-[-0.02em] text-black uppercase">
           What do you need help with? (required)
@@ -52,8 +40,6 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
                 key={id}
                 className={`gap-xs px-sm py-sm has-focus-visible:outline-blue flex cursor-pointer flex-col items-center justify-center rounded-sm border border-black/15 text-center has-focus-visible:outline-2 has-focus-visible:outline-offset-2 ${selectedClassName}`}
               >
-                {/* sr-only rather than hidden: the input keeps its place in the
-                  tab order and stays operable by keyboard. */}
                 <input
                   type="radio"
                   name="topic"
@@ -79,8 +65,6 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
       </fieldset>
 
       <div className="gap-sm max-425:grid-cols-1 grid grid-cols-2">
-        {/* The label sits on the border with a white background behind it, so
-            it notches the outline rather than covering it. */}
         <div className="relative">
           <label
             htmlFor="contact-name"
@@ -137,8 +121,6 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
         />
       </div>
 
-      {/* A native disclosure, so it opens and closes with no JavaScript and
-          carries its own expanded state for assistive tech. */}
       <details className="group rounded-sm border border-black/15">
         <summary className="gap-sm p-sm flex cursor-pointer list-none items-center justify-between">
           <span className="gap-sm flex items-center">
@@ -202,9 +184,6 @@ const ContactForm = ({ showAssurances = false }: ContactFormProps) => {
         <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.5} />
       </button>
 
-      {/* What happens to the enquiry once it is sent. A list, so the two
-          announce as a pair rather than as loose fragments after the
-          button. */}
       {showAssurances && (
         <ul className="gap-md max-425:gap-sm max-425:grid-cols-1 grid grid-cols-2">
           {assurances.map(({ id, icon: Icon, text }) => (

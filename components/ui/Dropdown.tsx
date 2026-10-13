@@ -4,12 +4,7 @@ import { useDismiss } from "@/hooks/useDismiss";
 import { useId, useRef } from "react";
 
 type DropdownProps = {
-  /** Trigger content — text, an icon, or both. */
   trigger: React.ReactNode;
-  /**
-   * Accessible name for the trigger. Required when `trigger` is icon-only,
-   * otherwise the button announces as unlabelled.
-   */
   triggerLabel?: string;
   children: React.ReactNode;
   isOpen: boolean;

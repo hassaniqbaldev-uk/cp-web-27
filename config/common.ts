@@ -73,7 +73,7 @@ export const heroPopovers: HeroPopover[] = [
     className: "left-[15rem] top-[5rem] max-425:left-[5rem]",
     squareClassName: "bg-[#FFE400]",
     panelPositionClassName:
-      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem] max-425:[--panel-origin:top_left]",
+      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem]",
   },
   {
     id: "web-desig",
@@ -99,12 +99,10 @@ export const heroPopovers: HeroPopover[] = [
     className: "left-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
     squareClassName: "bg-orange",
     panelPositionClassName:
-      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem] max-425:[--panel-origin:top_left]",
+      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem]",
   },
 ];
 
-// TODO: drop the real assets into /public/images/home/ and correct the
-// intrinsic width/height to match each file.
 export const heroBadges: HeroBadge[] = [
   {
     id: "clutch",
@@ -129,9 +127,6 @@ export const heroBadges: HeroBadge[] = [
   },
 ];
 
-// TODO: replace with the real client logos and correct each intrinsic
-// width/height to match the file.
-// TODO: point each href at the real case study or client site.
 export const clientLogos: ClientLogo[] = [
   {
     id: "client-one",
@@ -198,7 +193,6 @@ export const clientLogos: ClientLogo[] = [
   },
 ];
 
-// TODO: replace with the real copy, and swap the icons for the intended ones.
 export const aboutHighlights: AboutHighlight[] = [
   {
     id: "years-experience",
@@ -214,11 +208,9 @@ export const aboutHighlights: AboutHighlight[] = [
   },
 ];
 
-// TODO: replace with the real quote.
 export const aboutQuote =
   "I started CreativePixels at 13 to make a difference; that same drive still runs through the team today - creating work that’s, thoughtful and well designed.";
 
-// TODO: replace with the real team photos, names and intrinsic dimensions.
 export const teamMembers: TeamMember[] = [
   {
     id: "team-one",
@@ -272,7 +264,6 @@ export const teamMembers: TeamMember[] = [
   },
 ];
 
-// TODO: replace with the real four disciplines and their descriptions.
 export const serviceDisciplines: ServiceDiscipline[] = [
   {
     id: "web-ecommerce",
@@ -465,8 +456,6 @@ export const serviceDisciplines: ServiceDiscipline[] = [
   },
 ];
 
-// TODO: replace with the real expertise cards, and swap the icons for the
-// intended ones.
 export const expertiseCards: ExpertiseCard[] = [
   {
     id: "sme-founders",
@@ -518,7 +507,6 @@ export const expertiseCards: ExpertiseCard[] = [
   },
 ];
 
-// TODO: confirm the final wording for each guarantee.
 export const guarantees: Guarantee[] = [
   {
     id: "fixed-scope",
@@ -538,11 +526,9 @@ export const guarantees: Guarantee[] = [
   },
 ];
 
-// TODO: point href at the real case study.
 export const guaranteeCaseStudy: GuaranteeCaseStudy = {
   image: "/images/home/unicef-thumbnail-img.jpg",
   imageAlt: "Unicef fundraising campaign",
-  // TODO: add the logo asset and correct its intrinsic dimensions.
   logo: "/images/home/unicef-logo.png",
   logoAlt: "Unicef",
   logoWidth: 123,
@@ -596,8 +582,6 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-// TODO: write the real alt
-// text and point each href at the live site.
 export const workProjects: WorkProject[] = [
   {
     id: "casa-botanica",
@@ -668,8 +652,6 @@ export const consultationBenefits: ConsultationBenefit[] = [
   },
 ];
 
-// TODO: confirm the third client's avatar and logo — Alert Force has neither
-// in the assets yet, so it is borrowing Loop's.
 export const testimonials: Testimonial[] = [
   {
     id: "loop",
@@ -725,7 +707,6 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-// TODO: point "Schedule a time" at the real booking page.
 export const contactLinks: ContactLink[] = [
   {
     id: "email",
@@ -736,7 +717,6 @@ export const contactLinks: ContactLink[] = [
   {
     id: "phone",
     icon: Phone,
-    // tel: strips the spaces, since a dialler cannot read them.
     label: "0161 820 2667",
     href: "tel:+441618202667",
   },
@@ -785,7 +765,6 @@ export const contactTopics: ContactTopic[] = [
   },
 ];
 
-// TODO: replace the answers with the real copy.
 export const faqs: Faq[] = [
   {
     id: "different",
@@ -825,7 +804,6 @@ export const faqs: Faq[] = [
   },
 ];
 
-// TODO: point these at the real profiles.
 export const socialLinks: SocialLink[] = [
   {
     id: "instagram",
@@ -853,7 +831,6 @@ export const socialLinks: SocialLink[] = [
   },
 ];
 
-// TODO: point each href at the real site.
 export const ourBrands: Brand[] = [
   {
     id: "creative-hosting",
@@ -904,7 +881,6 @@ export const aboutStats: AboutStat[] = [
   },
 ];
 
-// TODO: replace with the real milestones.
 export const journeySteps: JourneyStep[] = [
   {
     id: "first-site",
@@ -940,8 +916,6 @@ export const journeySteps: JourneyStep[] = [
   },
 ];
 
-// TODO: replace with the real team — names, roles, years, biographies and
-// portraits. The first entry is the one shown until someone is picked.
 export const teamProfiles: TeamProfile[] = [
   {
     id: "member-01",
@@ -1125,7 +1099,6 @@ export const teamProfiles: TeamProfile[] = [
   },
 ];
 
-// TODO: replace with the real people and their part in the handover.
 export const teamHandoffs: TeamHandoff[] = [
   {
     id: "scope",
@@ -1225,7 +1198,6 @@ export const reachLocations: ReachLocation[] = [
   },
 ];
 
-// TODO: replace with the real process copy.
 export const workflowSteps: WorkflowStep[] = [
   {
     id: "before-proposal",
@@ -1317,7 +1289,6 @@ export const workflowSteps: WorkflowStep[] = [
   },
 ];
 
-// TODO: cards two to six are placeholder copy, and the images need alt text.
 export const processCards: ProcessCard[] = [
   {
     id: "before-proposal",
@@ -1471,7 +1442,6 @@ export const processCards: ProcessCard[] = [
   },
 ];
 
-// TODO: replace with the real questions and answers for this page.
 export const howWeWorkFaqs: Faq[] = [
   {
     id: "timeline",
@@ -1511,8 +1481,6 @@ export const howWeWorkFaqs: Faq[] = [
   },
 ];
 
-// The same shape as the about page's figures, so it reuses that type rather
-// than declaring an identical one.
 export const partnerStats: AboutStat[] = [
   {
     id: "first-partner",
@@ -1643,7 +1611,6 @@ export const costComparison: CostComparisonColumn[] = [
   },
 ];
 
-// The two columns that flank the heading, in the order they are drawn.
 export const handoverDelivery: HandoverCard[] = [
   {
     id: "strategy",
@@ -1718,8 +1685,6 @@ export const partnerFit: PartnerFitCard[] = [
   },
 ];
 
-// TODO: placeholder. Swap in a real white label project and the agency's own
-// review, with their artwork, once both are cleared for use.
 export const partnerShowcase: WorkProject = {
   id: "partner-showcase",
   image: "/images/home/ivy-work-img.jpg",
@@ -1744,7 +1709,6 @@ export const partnerReview: TestimonialType = {
   rating: 5,
 };
 
-// TODO: placeholder. Replace with the questions agencies actually ask.
 export const partnerFaqs: Faq[] = [
   {
     id: "white-label",
@@ -1821,7 +1785,6 @@ export const reviewSteps: ReviewStep[] = [
   },
 ];
 
-// TODO: placeholder. These stand in for a real review's findings.
 export const reviewPriorities = [
   "Improve headline & messaging",
   "Add social proof / trust signals",
@@ -1829,8 +1792,6 @@ export const reviewPriorities = [
   "Optimise for mobile",
 ];
 
-// TODO: one entry so far, and its artwork is the home page's. Drop the real
-// mockups into public/images/work/ and add the rest.
 export const workCaseStudies: WorkCaseStudy[] = [
   {
     id: "casa-botanica",
@@ -1848,7 +1809,6 @@ export const workCaseStudies: WorkCaseStudy[] = [
   },
 ];
 
-// "all" first, which is what the work page opens on.
 export const workFilters: WorkFilter[] = [
   { id: "all", label: "All" },
   { id: "web", label: "Web" },
@@ -1858,9 +1818,6 @@ export const workFilters: WorkFilter[] = [
   { id: "growth", label: "Growth" },
 ];
 
-// TODO: placeholder. The artwork is the one the website review page uses, and
-// the reviewer is invented — swap both for the real Teleqo Tech assets and
-// their own words.
 export const workShowcase: WorkProject = {
   id: "teleqo-tech",
   image: "/images/website-review/teleqo-tech-project.png",

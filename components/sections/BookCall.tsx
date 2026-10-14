@@ -1,10 +1,35 @@
+"use client";
+
+import { contactLinks } from "@/config/common";
+import Link from "next/link";
+import { useState } from "react";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import ParticleLogo from "../ui/ParticleLogo";
+import Popover from "../ui/Popover";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
 const HEADSET_ARTWORK = "/images/common/headset-particle.svg";
+
+const contactRingClassName =
+  "gradient-border [--gradient-border-width:1.24px] [--gradient-border-image:linear-gradient(148.35deg,rgba(255,255,255,0)_11.97%,rgba(255,255,255,0.5)_39.82%,rgba(255,255,255,0)_59.85%)]";
+
+const floatingContacts = [
+  {
+    id: "email",
+    className: "top-[55%] left-[15%]",
+    orientation: "right" as const,
+  },
+  {
+    id: "phone",
+    className: "top-[34%] right-[14%]",
+    orientation: "left" as const,
+  },
+].map((placement) => ({
+  ...placement,
+  link: contactLinks.find((contact) => contact.id === placement.id),
+}));
 
 const defaultTitle = (
   <>
@@ -27,6 +52,7 @@ type BookCallProps = {
   logoSvgSrc?: string;
   logoLabel?: string;
   aside?: React.ReactNode;
+  showContacts?: boolean;
   id?: string;
   className?: string;
 };
@@ -41,9 +67,12 @@ const BookCall = ({
   logoSvgSrc = HEADSET_ARTWORK,
   logoLabel = "Headset made of drifting particles",
   aside,
+  showContacts = true,
   id = "book-call",
   className = "py-xl max-425:px-[3rem] max-425:overflow-hidden bg-black",
 }: BookCallProps) => {
+  const [openId, setOpenId] = useState<string | null>(null);
+
   return (
     <>
       <Section id={id} className={className}>
@@ -80,6 +109,51 @@ const BookCall = ({
                   className="aspect-square w-full"
                 />
               )}
+
+              {!aside &&
+                showContacts &&
+                floatingContacts.map(
+                  ({ className: positionClassName, orientation, link }) => {
+                    if (!link) return null;
+
+                    const {
+                      id: contactId,
+                      icon: Icon,
+                      label: name,
+                      href,
+                    } = link;
+
+                    return (
+                      <Popover
+                        key={contactId}
+                        label={name}
+                        isOpen={openId === contactId}
+                        onOpenChange={(open) =>
+                          setOpenId(open ? contactId : null)
+                        }
+                        orientation={orientation}
+                        className={positionClassName}
+                        squareClassName={`${contactRingClassName} flex size-[6rem] max-425:size-[4rem] items-center justify-center rounded-full bg-white/20 backdrop-blur-[20px]`}
+                        panelClassName={`${contactRingClassName} flex items-center rounded-full bg-white/20 px-[2rem] py-[1.2rem] backdrop-blur-[20px]`}
+                        trigger={
+                          <Icon
+                            aria-hidden="true"
+                            size={22}
+                            strokeWidth={2}
+                            className="max-425:size-[1.8rem] text-white"
+                          />
+                        }
+                      >
+                        <Link
+                          href={href}
+                          className="text-subheading-01 max-425:text-[1.6rem] font-medium tracking-[-0.04em] whitespace-nowrap text-white"
+                        >
+                          {name}
+                        </Link>
+                      </Popover>
+                    );
+                  },
+                )}
             </div>
           </div>
         </Container>

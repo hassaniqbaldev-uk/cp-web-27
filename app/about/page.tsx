@@ -19,6 +19,7 @@ const About = () => {
       <WorkReviews />
       <BookCall
         id="about-book-call"
+        showContacts={false}
         label="How we work"
         title={
           <>

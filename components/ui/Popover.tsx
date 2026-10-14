@@ -134,9 +134,11 @@ export default function Popover({
         aria-expanded={isOpen}
         className="relative block cursor-pointer"
       >
-        <div
-          className={`absolute top-1/2 left-1/2 -translate-1/2 animate-ping motion-reduce:animate-none ${triggerClassName}`}
-        />
+        {!trigger && (
+          <div
+            className={`absolute top-1/2 left-1/2 -translate-1/2 animate-ping motion-reduce:animate-none ${triggerClassName}`}
+          />
+        )}
 
         <div className={`relative ${squareClassName}`}>{trigger}</div>
       </button>

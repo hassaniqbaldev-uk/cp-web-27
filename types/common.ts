@@ -7,7 +7,7 @@ export type HeroPopover = {
   image: string;
   className: string;
   squareClassName: string;
-  panelPositionClassName?: string;
+  orientation?: "top" | "bottom" | "left" | "right";
 };
 
 export type NavChild = {

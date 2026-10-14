@@ -14,12 +14,6 @@ const SETTINGS = {
   interactionRadius: 175,
   motionRadius: 125,
 
-  autoDelay: 1800,
-
-  autoSpeed: 0.1,
-
-  autoReach: 0.34,
-
   fadeDuration: 650,
   opacity: 0.82,
   maxScale: 1.8,
@@ -176,8 +170,6 @@ export default function ParticleLogo({
     let introStart = 0;
     let isIntroDone = !intro || reduced.matches;
 
-    let lastPointerAt = 0;
-
     const pointer = {
       x: -Infinity,
       y: -Infinity,
@@ -283,16 +275,6 @@ export default function ParticleLogo({
       const motionRadius = Math.min(SETTINGS.motionRadius, width * 0.28);
       const steps = Math.ceil(elapsed / (1000 / 120));
 
-      const isAuto = now - lastPointerAt > SETTINGS.autoDelay;
-
-      if (isAuto) {
-        const t = clock * SETTINGS.autoSpeed * Math.PI * 2;
-
-        pointer.x = width / 2 + Math.sin(t) * width * SETTINGS.autoReach;
-        pointer.y = height / 2 + Math.sin(t * 2) * height * SETTINGS.autoReach;
-        pointer.onShape = insideLogo(pointer.x, pointer.y);
-        pointer.active = true;
-      }
       const dt = elapsed / 1000 / steps;
 
       for (const p of particles) {
@@ -323,11 +305,6 @@ export default function ParticleLogo({
             } else {
               tx = dx * w * 1.7 + Math.cos(p.spreadAngle) * 7 * w;
               ty = dy * w * 1.7 + Math.sin(p.spreadAngle) * 7 * w;
-            }
-
-            if (isAuto) {
-              tx = 0;
-              ty = 0;
             }
 
             const length = Math.hypot(tx, ty);
@@ -510,7 +487,6 @@ export default function ParticleLogo({
       pointer.y = event.clientY - box.top;
       pointer.active = true;
       pointer.onShape = insideLogo(pointer.x, pointer.y);
-      lastPointerAt = performance.now();
 
       schedule();
     };

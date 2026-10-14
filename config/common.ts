@@ -71,9 +71,8 @@ export const heroPopovers: HeroPopover[] = [
     href: "/services",
     image: "/images/home/popover.jpg",
     className: "left-[15rem] top-[5rem] max-425:left-[5rem]",
-    squareClassName: "bg-[#FFE400]",
-    panelPositionClassName:
-      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem]",
+    squareClassName: "size-[.8rem] max-425:size-[.6rem] bg-white",
+    orientation: "bottom",
   },
   {
     id: "web-desig",
@@ -81,7 +80,8 @@ export const heroPopovers: HeroPopover[] = [
     href: "/services",
     image: "/images/home/popover.jpg",
     className: "right-[15rem] top-[4rem] max-425:right-[5rem]",
-    squareClassName: "bg-dark-pink",
+    squareClassName: "size-[.8rem] max-425:size-[.6rem] bg-white",
+    orientation: "bottom",
   },
   {
     id: "casa-botanica",
@@ -89,7 +89,8 @@ export const heroPopovers: HeroPopover[] = [
     href: "/work",
     image: "/images/home/casa-popover-img.png",
     className: "right-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
-    squareClassName: "bg-dark-pink",
+    squareClassName: "size-[.8rem] max-425:size-[.6rem] bg-white",
+    orientation: "bottom",
   },
   {
     id: "about",
@@ -97,9 +98,8 @@ export const heroPopovers: HeroPopover[] = [
     href: "/about",
     image: "/images/home/popover.jpg",
     className: "left-[7rem] bottom-[29rem] max-425:bottom-[11rem]",
-    squareClassName: "bg-orange",
-    panelPositionClassName:
-      "top-[2rem] right-[2rem] max-425:right-auto max-425:left-[2rem]",
+    squareClassName: "size-[.8rem] max-425:size-[.6rem] bg-white",
+    orientation: "bottom",
   },
 ];
 

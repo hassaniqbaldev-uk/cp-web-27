@@ -1,14 +1,21 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import CursorGlow from "@/components/ui/CursorGlow";
 import ParticleLogo from "@/components/ui/ParticleLogo";
+import Popover from "@/components/ui/Popover";
 import DragMarquee from "@/components/ui/DragMarquee";
-import { clientLogos, heroBadges } from "@/config/common";
+import { clientLogos, heroBadges, heroPopovers } from "@/config/common";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const Hero = () => {
+  const [openId, setOpenId] = useState<string | null>(null);
+
   return (
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
@@ -66,6 +73,54 @@ const Hero = () => {
             </div>
 
             <div className="relative">
+              {heroPopovers.map(
+                ({
+                  id,
+                  title,
+                  href,
+                  image,
+                  className,
+                  squareClassName,
+                  orientation,
+                }) => (
+                  <Popover
+                    key={id}
+                    label={title}
+                    isOpen={openId === id}
+                    onOpenChange={(open) => setOpenId(open ? id : null)}
+                    orientation={orientation}
+                    className={className}
+                    squareClassName={squareClassName}
+                    panelClassName="gap-sm w-[24rem] max-425:w-[13.9rem] flex flex-col items-center max-425:rounded-[.5rem] rounded-sm bg-white/20 px-[1rem] max-425:px-[.5rem] max-425:pt-[.5rem] pt-[1rem] pb-[2rem] max-425:pb-[1rem] backdrop-blur-[20px]"
+                  >
+                    <Link href={href} className="contents">
+                      <span className="max-425:h-[8.5rem] max-425:rounded-[.3rem] max-425:w-full relative block h-[14.6rem] w-[21.9rem] overflow-hidden rounded-xs">
+                        <Image
+                          src={image}
+                          alt=""
+                          fill
+                          sizes="219px"
+                          className="object-cover"
+                        />
+                      </span>
+
+                      <span className="gap-xs flex w-full items-center justify-between">
+                        <span className="text-body-01 max-425:text-[1.2rem] font-medium tracking-[-0.02em] text-white">
+                          {title}
+                        </span>
+
+                        <ArrowUpRight
+                          color="white"
+                          strokeWidth={2}
+                          size={18}
+                          className="max-425:size-[1rem]"
+                        />
+                      </span>
+                    </Link>
+                  </Popover>
+                ),
+              )}
+
               <ParticleLogo
                 svgSrc="/images/common/cp-logo-particle.svg"
                 label="CP logo formed from square pixels with a four-pixel gap"

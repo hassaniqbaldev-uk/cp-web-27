@@ -53,6 +53,14 @@
   --text-heading-02: 8.5rem;
   --text-heading-01: 13rem;
 
+  --animate-glow-spin: glow-spin 30s linear infinite;
+
+  @keyframes glow-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   --animate-spin-slow: spin-slow 16s linear infinite;
 
   @keyframes spin-slow {

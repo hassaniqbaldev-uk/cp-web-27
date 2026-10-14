@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import CursorGlow from "@/components/ui/CursorGlow";
 import ParticleLogo from "@/components/ui/ParticleLogo";
 import DragMarquee from "@/components/ui/DragMarquee";
 import { clientLogos, heroBadges } from "@/config/common";
@@ -11,6 +12,13 @@ const Hero = () => {
   return (
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
+        <CursorGlow
+          query="(min-width: 1025px)"
+          className="pointer-events-none absolute top-[90rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem] -translate-x-1/2"
+        >
+          <div className="animate-glow-spin max-1024:animate-none size-full rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem] motion-reduce:animate-none" />
+        </CursorGlow>
+
         <Container className="max-425:pt-[13rem] max-425:pb-[6rem] pt-[15rem] pb-[10rem]">
           <div className="max-425:flex-col max-425:items-center flex items-end justify-between gap-[4.5rem]">
             <div className="pb-sm max-425:w-full max-425:items-center max-425:text-center max-425:px-[3rem] flex w-[55rem] flex-col items-start">

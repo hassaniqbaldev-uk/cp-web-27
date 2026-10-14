@@ -22,6 +22,9 @@ const LIGHT_ROUTES = ["/about", "/partner-with-us"];
 
 const NARROW_QUERY = "(max-width: 425px)";
 
+const NAV_LINK_CLASSNAME =
+  "text-body-02 font-normal tracking-[-0.02em] capitalize transition-opacity duration-300 group-hover/nav:opacity-40 hover:opacity-100! aria-expanded:opacity-100!";
+
 const Header = () => {
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -110,14 +113,14 @@ const Header = () => {
           />
 
           <nav aria-label="Main" className="max-1280:hidden">
-            <ul className="gap-md flex items-center">
+            <ul className="gap-md group/nav flex items-center">
               {mainNavigation.map((item) =>
                 item.children ? (
                   <li key={item.href}>
                     <Dropdown
                       isOpen={openId === item.href}
                       onOpenChange={toggle(item.href)}
-                      triggerClassName={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
+                      triggerClassName={`${NAV_LINK_CLASSNAME} ${textClassName}`}
                       panelClassName="top-full left-0 mt-[1rem] min-w-[18rem] rounded-sm bg-white p-[0.5rem] text-black shadow-lg"
                       trigger={
                         <>
@@ -150,7 +153,7 @@ const Header = () => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`text-body-02 font-normal tracking-[-0.02em] capitalize ${textClassName}`}
+                      className={`${NAV_LINK_CLASSNAME} ${textClassName}`}
                     >
                       {item.label}
                     </Link>

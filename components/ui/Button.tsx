@@ -27,7 +27,7 @@ export default function Button({
   return (
     <Link
       href={href}
-      className={`group gap-xs inline-flex items-center justify-center ${className}`}
+      className={`group gap-xs hover:bg-dark-pink! active:bg-dark-pink! inline-flex items-center justify-center transition-colors duration-300 ease-out hover:text-white! active:text-white! motion-reduce:transition-none ${className}`}
       {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
       {...props}
     >
@@ -38,7 +38,7 @@ export default function Button({
           size={iconSize}
           strokeWidth={2.5}
           aria-hidden="true"
-          className={`shrink-0 ${iconClassName}`}
+          className={`shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45 group-active:rotate-45 motion-reduce:transition-none ${iconClassName}`}
         />
       )}
     </Link>

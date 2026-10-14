@@ -1510,7 +1510,7 @@ export const agencyWorkflow: AgencyWorkflowCard[] = [
     icons: [
       {
         id: "slack",
-        src: "/icons/slack-icon.svg",
+        src: "/icons/slack-icon.png",
         width: 30,
         height: 30,
       },
@@ -1524,19 +1524,19 @@ export const agencyWorkflow: AgencyWorkflowCard[] = [
     icons: [
       {
         id: "notion",
-        src: "/icons/notion-icon.svg",
+        src: "/icons/notion-icon.png",
         width: 30,
         height: 30,
       },
       {
         id: "asana",
-        src: "/icons/asana-icon.svg",
+        src: "/icons/asana-icon.png",
         width: 40,
         height: 30,
       },
       {
         id: "trello",
-        src: "/icons/trello-icon.svg",
+        src: "/icons/trello-icon.png",
         width: 30,
         height: 30,
       },

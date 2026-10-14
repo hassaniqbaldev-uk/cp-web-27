@@ -92,6 +92,7 @@ const Header = () => {
                 alt=""
                 width={171}
                 height={65}
+                priority
                 style={{
                   width: LOGO_WIDTH,
                   marginLeft: isBanded ? 0 : `calc(${MARK_WIDTH} * -1)`,

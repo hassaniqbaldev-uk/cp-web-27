@@ -24,7 +24,7 @@ const Hero = () => {
           className="pointer-events-none absolute inset-0 z-0"
         >
           <Image
-            src="/images/home/hero-bg.jpg"
+            src="/images/home/hero-bg-2.jpg"
             alt=""
             fill
             priority
@@ -33,7 +33,7 @@ const Hero = () => {
           />
 
           <Image
-            src="/images/home/hero-bg-responsive.jpg"
+            src="/images/home/hero-bg-2-responsive.jpg"
             alt=""
             fill
             priority

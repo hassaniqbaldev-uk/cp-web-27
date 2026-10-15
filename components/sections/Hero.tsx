@@ -19,6 +19,20 @@ const Hero = () => {
   return (
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
+          <Image
+            src="/images/home/hero-bg.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
         {/* <CursorGlow
           query="(min-width: 1025px)"
           className="pointer-events-none absolute top-[90rem] left-1/2 z-0 h-[138.6rem] w-[130.3rem] -translate-x-1/2"
@@ -26,7 +40,7 @@ const Hero = () => {
           <div className="animate-glow-spin max-1024:animate-none size-full rounded-full bg-[linear-gradient(90deg,#FFE400_0%,#EC9122_45.05%,#EC3593_98.64%)] blur-[30rem] motion-reduce:animate-none" />
         </CursorGlow> */}
 
-        <Container className="max-425:pt-[13rem] max-425:pb-[6rem] pt-[15rem] pb-[10rem]">
+        <Container className="max-425:pt-[13rem] max-425:pb-[6rem] relative z-10 pt-[15rem] pb-[10rem]">
           <div className="max-425:flex-col max-425:items-center flex items-end justify-between gap-[4.5rem]">
             <div className="pb-sm max-425:w-full max-425:items-center max-425:text-center max-425:px-[3rem] flex w-[55rem] flex-col items-start">
               <ul className="gap-sm max-425:gap-xs flex items-center">

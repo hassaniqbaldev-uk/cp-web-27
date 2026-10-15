@@ -24,12 +24,12 @@ const Hero = () => {
           className="pointer-events-none absolute inset-0 z-0"
         >
           <Image
-            src="/images/home/hero-bg-2.jpg"
+            src="/images/home/hero-background.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="max-425:hidden object-cover opacity-40"
+            className="max-425:hidden object-cover"
           />
 
           <Image

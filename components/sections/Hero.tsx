@@ -24,12 +24,12 @@ const Hero = () => {
           className="pointer-events-none absolute inset-0 z-0"
         >
           <Image
-            src="/images/home/hero-bg.png"
+            src="/images/home/hero-bg.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover opacity-40"
           />
         </div>
 

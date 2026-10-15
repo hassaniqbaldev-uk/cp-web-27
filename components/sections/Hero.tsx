@@ -29,7 +29,16 @@ const Hero = () => {
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-40"
+            className="max-425:hidden object-cover opacity-40"
+          />
+
+          <Image
+            src="/images/home/hero-bg-responsive.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="max-425:block hidden object-cover opacity-40"
           />
         </div>
 

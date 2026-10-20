@@ -1,10 +1,6 @@
 @import "tailwindcss";
-
-@custom-variant max-1366 (@media (width <= 1366px));
-@custom-variant max-1280 (@media (width <= 1280px));
-@custom-variant max-1024 (@media (width <= 1024px));
-@custom-variant max-768 (@media (width <= 768px));
-@custom-variant max-425 (@media (width <= 425px));
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @theme {
   --color-white: #ffffff;
@@ -15,51 +11,8 @@
   --color-blue: #3078ff;
   --color-text-body: #3f3b37;
 
-  --radius-xs: 0.5rem;
-  --radius-sm: 1rem;
-  --radius-md: 2rem;
-  --radius-lg: 3rem;
-  --radius-xl: 6rem;
-
-  --spacing-xs: 1rem;
-  --spacing-sm: 2rem;
-  --spacing-md: 3rem;
-  --spacing-lg: 4.5rem;
-  --spacing-xl: 6.5rem;
-  --spacing-2xl: 8rem;
-  --spacing-3xl: 12rem;
-
-  --spacing-section-xs: 5rem;
-  --spacing-section-sm: 8rem;
-  --spacing-section-md: 14rem;
-  --spacing-section-lg: 18rem;
-  --spacing-section-xl: 27rem;
-  --spacing-section-2xl: 40.5rem;
-
-  --spacing-section-x: 3rem;
-
   --font-heading: var(--font-dm-sans);
   --font-body: var(--font-dm-sans);
-
-  --text-body-04: 1.4rem;
-  --text-body-03: 1.6rem;
-  --text-body-02: 1.8rem;
-  --text-body-01: 2.2rem;
-
-  --text-subheading-01: 2.5rem;
-  --text-subheading-02: 3.5rem;
-
-  --text-heading-03: 4.5rem;
-  --text-heading-02: 8.5rem;
-  --text-heading-01: 13rem;
-
-  --animate-glow-spin: glow-spin 30s linear infinite;
-
-  @keyframes glow-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
 
   --animate-spin-slow: spin-slow 16s linear infinite;
 
@@ -71,14 +24,14 @@
 }
 
 html {
-  font-size: 62.5%;
+  scroll-padding-top: 120px;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--color-text-body);
   background-color: var(--color-white);
-  font-size: var(--text-body-03);
+  font-size: 16px;
   line-height: 1.5;
 }
 

@@ -14,6 +14,12 @@
   --font-heading: var(--font-dm-sans);
   --font-body: var(--font-dm-sans);
 
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
   --animate-spin-slow: spin-slow 16s linear infinite;
 
   @keyframes spin-slow {

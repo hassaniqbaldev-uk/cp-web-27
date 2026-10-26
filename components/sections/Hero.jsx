@@ -31,16 +31,6 @@ const Hero = () => {
   return (
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
-        <div className="pointer-events-none absolute inset-0 z-0">
-          <Image
-            src="/images/home/hero-bg.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-50"
-          />
-        </div>
         <Container className="relative z-10 pt-[150px] pb-[100px]">
           <div className="flex items-end justify-between gap-[45px]">
             <div className="flex w-[550px] flex-col items-start pb-[20px]">

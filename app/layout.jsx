@@ -1,6 +1,4 @@
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import SparkleCursor from "@/components/ui/SparkleCursor";
 import { DM_Sans } from "next/font/google";
 import Script from "next/script";
@@ -26,13 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={dmSans.variable}>
       <body>
-        <Header />
-
-        <main>
-          <Providers>{children}</Providers>
-        </main>
-
-        <Footer />
+        <Providers>{children}</Providers>
 
         {/* {!feedbucketKey && (
           <SparkleCursor

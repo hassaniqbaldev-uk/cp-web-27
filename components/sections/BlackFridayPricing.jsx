@@ -1,7 +1,7 @@
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
-import Button from "../ui/Button";
-import { Check } from "lucide-react";
+import ScrollLink from "../ui/ScrollLink";
+import { ArrowUpRight, Check } from "lucide-react";
 
 const fixedPrices = [
   {
@@ -85,16 +85,21 @@ const PlanCard = ({
         ))}
       </ul>
 
-      <Button
+      <ScrollLink
         href={ctaHref}
-        className={`mt-[35px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase max-xl:w-full max-xl:justify-center ${
+        className={`group mt-[35px] inline-flex items-center justify-center gap-[10px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase max-xl:w-full ${
           isGradient
             ? "bg-white text-black"
             : "border border-white/40 text-white"
         }`}
       >
         {ctaLabel}
-      </Button>
+        <ArrowUpRight
+          size={18}
+          strokeWidth={2.5}
+          className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45"
+        />
+      </ScrollLink>
     </div>
   );
 };
@@ -141,7 +146,7 @@ const BlackFridayPricing = () => {
             price="$1,500"
             unit="/month"
             ctaLabel="Ask about monthly"
-            ctaHref="/contact"
+            ctaHref="#black-friday-hero"
             features={[
               "Design, builds, maintenance and SEO",
               "Same developers every time, your jobs go first",

@@ -18,7 +18,7 @@ const schema = z.object({
   phone: z.string().max(60).default(""),
   contact: z.string().max(60).default(""),
   updates: z.boolean().default(false),
-  token: z.string().optional(),
+  token: z.string().nullish(),
   [spamConfig.honeypotField]: z.string().optional(),
 });
 

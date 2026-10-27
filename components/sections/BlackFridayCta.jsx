@@ -1,8 +1,9 @@
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
-import Button from "../ui/Button";
+import ScrollLink from "../ui/ScrollLink";
 import BookCallButton from "../ui/BookCallButton";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 const BlackFridayCta = () => {
   return (
@@ -27,12 +28,17 @@ const BlackFridayCta = () => {
             </p>
 
             <div className="mt-[30px] flex w-full flex-col gap-[20px]">
-              <Button
+              <ScrollLink
                 href="#black-friday-hero"
-                className="w-full justify-center rounded-full bg-white px-[24px] py-[14px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase max-sm:text-[15px]"
+                className="group inline-flex w-full items-center justify-center gap-[10px] rounded-full bg-white px-[24px] py-[14px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase max-sm:text-[15px]"
               >
                 Send us a small job
-              </Button>
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={2.5}
+                  className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45"
+                />
+              </ScrollLink>
 
               <BookCallButton className="w-full rounded-full border border-white/40 px-[24px] py-[14px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase max-sm:text-[15px]">
                 Book a 15 min call

@@ -4,6 +4,9 @@ import { useState } from "react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import BookCallButton from "../ui/BookCallButton";
+import HoneypotField from "../ui/HoneypotField";
+import { useSpamProtection } from "@/hooks/useSpamProtection";
+import { spamConfig } from "@/lib/spam/spamConfig";
 
 const jobTypes = [
   { id: "wordpress", label: "Wordpress" },
@@ -87,6 +90,45 @@ const BlackFridayQuoteForm = () => {
     setData((current) => ({ ...current, [key]: event.target.value }));
 
   const next = () => setStep((current) => Math.min(current + 1, TOTAL_STEPS));
+
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const { honeypotRef, honeypotName, getToken, getHoneypot } =
+    useSpamProtection(spamConfig.actions.blackFriday);
+
+  const submit = async () => {
+    setError("");
+
+    if (!data.name.trim() || !data.email.trim()) {
+      setError("Please add your name and email.");
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const token = await getToken();
+
+      const response = await fetch("/api/black-friday", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, token, [honeypotName]: getHoneypot() }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        setError("Something went wrong. Please try again, or book a call.");
+        return;
+      }
+
+      setStep(TOTAL_STEPS);
+    } catch {
+      setError("Something went wrong. Please try again, or book a call.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const cardClassName =
     "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px] max-xl:w-full max-sm:p-[20px]";
@@ -364,14 +406,23 @@ const BlackFridayQuoteForm = () => {
         </div>
       )}
 
+      <HoneypotField inputRef={honeypotRef} name={honeypotName} />
+
       <button
         type="button"
-        onClick={next}
-        className="mt-[33px] flex w-full items-center justify-center gap-[10px] rounded-full bg-black py-[15px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase"
+        onClick={step === 3 ? submit : next}
+        disabled={submitting}
+        className="mt-[33px] flex w-full items-center justify-center gap-[10px] rounded-full bg-black py-[15px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase disabled:opacity-60"
       >
-        {step === 3 ? "Get my quote" : "Next"}
-        <ArrowUpRight size={18} strokeWidth={2.5} />
+        {submitting ? "Sending…" : step === 3 ? "Get my quote" : "Next"}
+        {!submitting && <ArrowUpRight size={18} strokeWidth={2.5} />}
       </button>
+
+      {error && (
+        <p className="mt-[12px] text-center text-[13px] font-medium text-[#D33]">
+          {error}
+        </p>
+      )}
 
       <p className="text-text-body mt-[14px] text-center text-[12px] tracking-[-0.02em]">
         Prefer to talk?{" "}

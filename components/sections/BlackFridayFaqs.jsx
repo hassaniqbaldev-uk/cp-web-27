@@ -66,28 +66,28 @@ const faqs = [
 
 const BlackFridayFaqs = () => {
   return (
-    <Section id="faq" className="bg-[#F7F1E7] py-[120px]">
-      <Container>
-        <div className="flex items-start justify-between gap-[60px]">
-          <div className="w-[626px] shrink-0">
+    <Section id="faq" className="bg-[#F7F1E7] py-[120px] max-sm:py-[60px]">
+      <Container className="max-sm:px-[20px]">
+        <div className="flex items-start justify-between gap-[60px] max-sm:flex-col-reverse max-sm:gap-[35px]">
+          <div className="w-[626px] shrink-0 max-sm:w-full">
             <Accordion className="gap-[12px]">
               {faqs.map(({ id, question, answer }) => (
                 <AccordionItem
                   key={id}
                   value={id}
-                  className="rounded-[30px] border-transparent bg-white px-[30px]"
+                  className="rounded-[30px] border-transparent bg-white px-[30px] max-sm:px-[20px]"
                 >
                   <AccordionTrigger
                     className="gap-[20px] py-[18px]"
                     indicatorClassName="size-[30px] rounded-full border border-black/25 text-black"
                   >
-                    <span className="text-[25px] font-semibold tracking-[-0.07em] text-black">
+                    <span className="text-[25px] font-semibold tracking-[-0.07em] text-black max-sm:text-[15px]">
                       {question}
                     </span>
                   </AccordionTrigger>
 
                   <AccordionContent className="pb-[24px]">
-                    <p className="text-text-body text-[16px] leading-[22px] tracking-[-0.02em]">
+                    <p className="text-text-body text-[16px] leading-[22px] tracking-[-0.02em] max-sm:text-[14px]">
                       {answer}
                     </p>
                   </AccordionContent>
@@ -96,12 +96,12 @@ const BlackFridayFaqs = () => {
             </Accordion>
           </div>
 
-          <div className="w-[420px] shrink-0">
-            <p className="text-[22px] tracking-[-0.02em] text-black uppercase">
+          <div className="w-[420px] shrink-0 max-sm:w-full">
+            <p className="text-[22px] tracking-[-0.02em] text-black uppercase max-sm:text-center max-sm:text-[13px]">
               Frequently asked questions
             </p>
 
-            <h2 className="mt-[10px] text-[52px] leading-[60px] font-extrabold tracking-[-0.07em] text-black">
+            <h2 className="mt-[10px] text-[52px] leading-[60px] font-extrabold tracking-[-0.07em] text-black max-sm:text-center max-sm:text-[30px] max-sm:leading-[34px]">
               What agencies
               <br />
               <span className="text-black/40">ask us first</span>

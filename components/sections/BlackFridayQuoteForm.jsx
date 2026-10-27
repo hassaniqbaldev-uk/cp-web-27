@@ -48,21 +48,23 @@ const labelClassName =
   "mb-[8px] block text-[13px] font-medium tracking-[-0.02em] text-black";
 
 const OptionPill = ({ name, value, label, checked, onChange }) => (
-  <label className="has-[:checked]:bg-grey flex cursor-pointer items-center gap-[10px] rounded-full border border-black/15 px-[18px] py-[12px] transition-colors has-[:checked]:border-transparent">
+  <label className="group has-[:checked]:bg-grey flex cursor-pointer items-center gap-[10px] rounded-full border border-black/15 px-[18px] py-[12px] transition-colors has-[:checked]:border-transparent max-sm:gap-[5px]">
     <input
       type="radio"
       name={name}
       value={value}
       checked={checked}
       onChange={onChange}
-      className="peer sr-only"
+      className="sr-only"
     />
 
-    <span className="flex size-[14px] shrink-0 items-center justify-center rounded-full border border-black/30 peer-checked:border-black">
-      <span className="size-[6px] scale-0 rounded-full bg-black transition-transform peer-checked:scale-100" />
+    <span className="flex size-[14px] shrink-0 items-center justify-center rounded-full border border-black/30 group-has-[:checked]:border-black">
+      <span className="size-[6px] scale-0 rounded-full bg-black transition-transform group-has-[:checked]:scale-100" />
     </span>
 
-    <span className="text-[14px] tracking-[-0.02em] text-black">{label}</span>
+    <span className="text-[14px] tracking-[-0.02em] text-black max-sm:text-[12px]">
+      {label}
+    </span>
   </label>
 );
 
@@ -85,7 +87,8 @@ const BlackFridayQuoteForm = () => {
 
   const next = () => setStep((current) => Math.min(current + 1, TOTAL_STEPS));
 
-  const cardClassName = "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px]";
+  const cardClassName =
+    "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px] max-sm:w-full max-sm:p-[20px]";
 
   if (step === TOTAL_STEPS) {
     return (
@@ -188,7 +191,7 @@ const BlackFridayQuoteForm = () => {
           <fieldset className="mt-[30px]">
             <legend className="sr-only">What do you need help with?</legend>
 
-            <div className="grid grid-cols-2 gap-[10px]">
+            <div className="grid grid-cols-2 gap-[10px] max-sm:text-[14px]">
               {jobTypes.map(({ id, label }) => (
                 <OptionPill
                   key={id}
@@ -241,7 +244,7 @@ const BlackFridayQuoteForm = () => {
               Is this a one-off or ongoing?
             </legend>
 
-            <div className="grid grid-cols-3 gap-[12px]">
+            <div className="grid grid-cols-3 gap-[12px] max-sm:grid-cols-1">
               {engagementOptions.map(({ id, label }) => (
                 <OptionPill
                   key={id}

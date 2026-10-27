@@ -39,7 +39,7 @@ const PlanCard = ({
 
   return (
     <div
-      className={`flex flex-col rounded-[20px] p-[40px] text-white ${
+      className={`flex flex-col rounded-[20px] p-[40px] text-white max-sm:p-[15px] ${
         isGradient
           ? "bg-[linear-gradient(110deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)]"
           : "bg-black"
@@ -54,15 +54,19 @@ const PlanCard = ({
       </div>
 
       <div className="mt-[20px] flex items-end gap-[12px]">
-        <span className="text-[22px] text-white/50 line-through">
+        <span className="text-[22px] text-white/50 line-through max-sm:text-[26px]">
           {oldPrice}
         </span>
 
-        <span className="text-[56px] leading-none font-extrabold tracking-[-0.04em]">
+        <span className="text-[56px] leading-none font-extrabold tracking-[-0.04em] max-sm:text-[42px]">
           {price}
         </span>
 
-        {unit && <span className="text-[20px] text-white/70">{unit}</span>}
+        {unit && (
+          <span className="text-[20px] text-white/70 max-sm:text-[14px]">
+            {unit}
+          </span>
+        )}
       </div>
 
       <p className="mt-[20px] text-[15px] leading-[22px] tracking-[-0.02em] text-white/80">
@@ -83,7 +87,7 @@ const PlanCard = ({
 
       <Button
         href={ctaHref}
-        className={`mt-[35px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase ${
+        className={`mt-[35px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase max-sm:w-full max-sm:justify-center ${
           isGradient
             ? "bg-white text-black"
             : "border border-white/40 text-white"
@@ -97,19 +101,19 @@ const PlanCard = ({
 
 const BlackFridayPricing = () => {
   return (
-    <Section id="black-friday-pricing" className="pb-[120px]">
-      <Container>
-        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase">
+    <Section id="black-friday-pricing" className="pb-[120px] max-sm:pb-[60px]">
+      <Container className="max-sm:px-[20px]">
+        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]">
           Prices
         </p>
 
-        <h2 className="mt-[2.5px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black">
+        <h2 className="mt-[2.5px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black max-sm:text-[30px] max-sm:leading-[34px]">
           Per job or monthly,
           <br />
           <span className="text-black/40">your margin stays safe.</span>
         </h2>
 
-        <div className="mt-[50px] grid grid-cols-2 gap-[20px]">
+        <div className="mt-[50px] grid grid-cols-2 gap-[20px] max-sm:mt-[30px] max-sm:grid-cols-1">
           <PlanCard
             variant="gradient"
             name="Per job"
@@ -123,7 +127,8 @@ const BlackFridayPricing = () => {
               "3-month guarantee",
             ]}
           >
-            Or a fixed quote for bigger builds. Book by 30 November and <br />
+            Or a fixed quote for bigger builds. Book by 30 November and{" "}
+            <br className="max-sm:hidden" />
             <span className="font-bold text-white">
               keep this rate for 6 months.
             </span>
@@ -150,11 +155,11 @@ const BlackFridayPricing = () => {
           </PlanCard>
         </div>
 
-        <p className="mt-[40px] text-center text-[20px] font-bold text-black">
+        <p className="mt-[40px] text-center text-[20px] font-bold text-black max-sm:max-w-[230px] max-sm:text-left max-sm:text-[18px]">
           Prefer a fixed price? Typical starting points:
         </p>
 
-        <div className="mt-[30px] grid grid-cols-3 gap-[16px]">
+        <div className="mt-[30px] grid grid-cols-3 gap-[16px] max-sm:grid-cols-1">
           {fixedPrices.map(({ id, title, description, price }) => (
             <div key={id} className="rounded-[16px] bg-[#F6F6F6] p-[30px]">
               <h3 className="text-[18px] font-bold tracking-[-0.02em] text-black">

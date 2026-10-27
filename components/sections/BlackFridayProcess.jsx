@@ -97,23 +97,26 @@ const ToolLogo = ({ src, alt, width, height }) => (
     alt={alt}
     width={width}
     height={height}
-    className="h-[26px] w-auto object-contain"
+    className="h-[22px] w-auto object-contain"
   />
 );
 
 const BlackFridayProcess = () => {
   return (
-    <Section id="how-it-works" className="bg-[#EAF0FF] py-[80px]">
-      <Container>
-        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase">
+    <Section
+      id="how-it-works"
+      className="bg-[#EAF0FF] py-[80px] max-sm:py-[60px]"
+    >
+      <Container className="max-sm:px-[20px]">
+        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]">
           How it works
         </p>
 
-        <h2 className="mt-[10px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black">
+        <h2 className="mt-[10px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black max-sm:mx-auto max-sm:max-w-[190px] max-sm:text-[30px] max-sm:leading-[34px]">
           Start small. <span className="text-black/40">Pay as we go.</span>
         </h2>
 
-        <div className="relative mt-[94px]">
+        <div className="relative mt-[94px] max-sm:hidden">
           <div className="grid grid-cols-3">
             {steps.map(({ num }) => (
               <span
@@ -160,7 +163,36 @@ const BlackFridayProcess = () => {
           </div>
         </div>
 
-        <div className="mt-[60px] rounded-[20px] bg-white p-[40px]">
+        <div className="hidden max-sm:mt-[40px] max-sm:flex max-sm:flex-col max-sm:gap-[45px]">
+          {steps.map(({ num, title, description }) => (
+            <div key={num} className="text-center">
+              <span className="bg-[linear-gradient(180deg,#A8C6FF_-32.95%,rgba(168,198,255,0)_134.08%)] bg-clip-text text-[90px] leading-none font-extrabold tracking-[-0.04em] text-transparent">
+                {num}
+              </span>
+
+              <div className="relative mx-auto my-[16px] flex w-[150px] items-center justify-center">
+                <span
+                  style={{ boxShadow: "0px 4px 15px 0px #3078FF80" }}
+                  className="bg-blue absolute inset-x-0 top-1/2 h-[1px] -translate-y-1/2"
+                />
+
+                <span className="relative flex size-[24px] items-center justify-center rounded-full bg-white">
+                  <span className="bg-blue size-[16px] rounded-full" />
+                </span>
+              </div>
+
+              <h3 className="text-[20px] leading-[26px] font-bold tracking-[-0.07em] text-black">
+                {title}
+              </h3>
+
+              <p className="text-text-body mx-auto mt-[10px] max-w-[240px] text-[14px] tracking-[-0.02em]">
+                {description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-[60px] rounded-[20px] bg-white p-[40px] max-sm:mt-[40px] max-sm:p-[20px]">
           <p className="text-text-body text-center text-[16px] tracking-[-0.02em]">
             <span className="font-bold text-black">
               We work in the tools you already use.
@@ -168,13 +200,13 @@ const BlackFridayProcess = () => {
             Send a brief at the end of your day, and it’s moving by morning.
           </p>
 
-          <div className="mt-[30px] flex flex-wrap items-center justify-center gap-[40px]">
+          <div className="mt-[30px] flex flex-wrap items-center justify-center gap-[40px] max-sm:mt-[25px] max-sm:gap-[20px]">
             {toolsRowOne.map((tool) => (
               <ToolLogo key={tool.id} {...tool} />
             ))}
           </div>
 
-          <div className="mt-[20px] flex flex-wrap items-center justify-center gap-[40px]">
+          <div className="mt-[20px] flex flex-wrap items-center justify-center gap-[40px] max-sm:gap-[20px]">
             {toolsRowTwo.map((tool) => (
               <ToolLogo key={tool.id} {...tool} />
             ))}

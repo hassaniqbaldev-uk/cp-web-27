@@ -1,5 +1,11 @@
+"use client";
+
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const comparisonRows = [
   {
@@ -43,21 +49,45 @@ const comparisonRows = [
 const rowClassName =
   "grid grid-cols-[240px_1fr_1.1fr] items-start gap-[20px] px-[30px]";
 
+const CompareCard = ({ label, creativePixels, typical }) => (
+  <div className="flex h-full flex-col rounded-[20px] border border-black/10 bg-white p-[30px]">
+    <p className="text-text-body text-[14px] font-semibold tracking-[-0.02em]">
+      {label}
+    </p>
+
+    <p className="text-dark-pink mt-[10px] text-[13px] font-semibold tracking-[-0.02em]">
+      CreativePixels
+    </p>
+
+    <p className="mt-[4px] text-[16px] leading-[22px] font-bold tracking-[-0.02em] text-black">
+      {creativePixels}
+    </p>
+
+    <p className="text-text-body mt-[20px] text-[13px] tracking-[-0.02em]">
+      Typical service
+    </p>
+
+    <p className="mt-[4px] text-[16px] leading-[22px] tracking-[-0.02em] text-[#555555]">
+      {typical}
+    </p>
+  </div>
+);
+
 const BlackFridayCompare = () => {
   return (
-    <Section id="black-friday-compare" className="py-[120px]">
-      <Container>
-        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase">
+    <Section id="black-friday-compare" className="py-[120px] max-sm:py-[60px]">
+      <Container className="max-sm:pl-[20px]">
+        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:pr-[20px] max-sm:text-[14px]">
           How we compare
         </p>
 
-        <h2 className="mt-[10px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black">
+        <h2 className="mt-[10px] text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black max-sm:pr-[20px] max-sm:text-[30px] max-sm:leading-[34px]">
           Most white-label services
           <br />
           <span className="text-black/40">want paying first.</span>
         </h2>
 
-        <div className="mx-auto mt-[50px] max-w-[1200px] overflow-hidden rounded-[20px] border border-black/10">
+        <div className="mx-auto mt-[50px] max-w-[1200px] overflow-hidden rounded-[20px] border border-black/10 max-sm:hidden">
           <div className={`${rowClassName} bg-black py-[20px]`}>
             <span />
 
@@ -88,6 +118,28 @@ const BlackFridayCompare = () => {
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="hidden max-sm:mt-[30px] max-sm:block">
+          <Swiper
+            modules={[Pagination]}
+            slidesPerView="auto"
+            spaceBetween={16}
+            slidesOffsetAfter={20}
+            pagination={{ clickable: true }}
+            style={{
+              "--swiper-pagination-color": "#1A1A1A",
+              "--swiper-pagination-bullet-inactive-color": "#1A1A1A",
+              "--swiper-pagination-bullet-inactive-opacity": "0.2",
+            }}
+            className="pb-[40px]!"
+          >
+            {comparisonRows.map((row) => (
+              <SwiperSlide key={row.id} className="h-auto! w-[82%]!">
+                <CompareCard {...row} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </Container>
     </Section>

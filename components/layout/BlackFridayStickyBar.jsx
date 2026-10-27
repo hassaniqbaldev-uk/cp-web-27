@@ -1,11 +1,22 @@
 "use client";
 
 import Button from "../ui/Button";
+import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 
 const BlackFridayStickyBar = () => {
   const [show, setShow] = useState(false);
   const [atFooter, setAtFooter] = useState(false);
+  const lenis = useLenis();
+
+  const scrollToHero = (event) => {
+    const target = document.querySelector("#black-friday-hero");
+
+    if (!target || !lenis) return;
+
+    event.preventDefault();
+    lenis.scrollTo(target, { force: true });
+  };
 
   useEffect(() => {
     // Two thresholds (hysteresis) so Lenis' smoothed scrollY can't flicker the
@@ -63,6 +74,7 @@ const BlackFridayStickyBar = () => {
 
         <Button
           href="#black-friday-hero"
+          onClick={scrollToHero}
           className="shrink-0 rounded-full bg-white px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] text-black uppercase max-sm:px-[18px] max-sm:py-[12px] max-sm:text-[12px]"
         >
           Send a job

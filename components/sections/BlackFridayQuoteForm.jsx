@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import BookCallButton from "../ui/BookCallButton";
 
 const jobTypes = [
   { id: "wordpress", label: "Wordpress" },
@@ -78,6 +78,7 @@ const BlackFridayQuoteForm = () => {
     name: "",
     agency: "",
     email: "",
+    phone: "",
     contact: "email",
     updates: false,
   });
@@ -149,12 +150,9 @@ const BlackFridayQuoteForm = () => {
           </p>
         </div>
 
-        <Link
-          href="/contact"
-          className="mt-[25px] flex w-full items-center justify-center gap-[10px] rounded-full border border-black py-[16px] text-[14px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors hover:bg-black hover:text-white"
-        >
+        <BookCallButton className="mt-[25px] w-full gap-[10px] rounded-full border border-black py-[16px] text-[14px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors hover:bg-black hover:text-white">
           Prefer to talk? Book a 15-min call
-        </Link>
+        </BookCallButton>
       </div>
     );
   }
@@ -295,20 +293,38 @@ const BlackFridayQuoteForm = () => {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="quote-email" className={labelClassName}>
-              Work email
-            </label>
+          <div className="grid grid-cols-2 gap-[12px]">
+            <div>
+              <label htmlFor="quote-email" className={labelClassName}>
+                Work email
+              </label>
 
-            <input
-              id="quote-email"
-              type="email"
-              autoComplete="email"
-              placeholder="name@agency.co.uk"
-              value={data.email}
-              onChange={set("email")}
-              className={fieldClassName}
-            />
+              <input
+                id="quote-email"
+                type="email"
+                autoComplete="email"
+                placeholder="name@agency.co.uk"
+                value={data.email}
+                onChange={set("email")}
+                className={fieldClassName}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="quote-phone" className={labelClassName}>
+                Phone
+              </label>
+
+              <input
+                id="quote-phone"
+                type="tel"
+                autoComplete="tel"
+                placeholder="07123 456789"
+                value={data.phone}
+                onChange={set("phone")}
+                className={fieldClassName}
+              />
+            </div>
           </div>
 
           <fieldset>
@@ -359,12 +375,9 @@ const BlackFridayQuoteForm = () => {
 
       <p className="text-text-body mt-[14px] text-center text-[12px] tracking-[-0.02em]">
         Prefer to talk?{" "}
-        <Link
-          href="/contact"
-          className="font-bold underline underline-offset-2 hover:text-black"
-        >
+        <BookCallButton className="font-bold underline underline-offset-2 hover:text-black">
           Book a 15-min call
-        </Link>
+        </BookCallButton>
       </p>
     </div>
   );

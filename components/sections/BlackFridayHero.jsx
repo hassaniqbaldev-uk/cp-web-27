@@ -4,7 +4,7 @@ import Starfield from "../ui/Starfield";
 import BlackFridayQuoteForm from "./BlackFridayQuoteForm";
 import { CircleCheck } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import ScrollLink from "../ui/ScrollLink";
 
 const checklist = [
   "Flexible milestones, low risk for both",
@@ -84,12 +84,12 @@ const BlackFridayHero = () => {
               <span className="max-sm:max-w-[147px]">
                 from $30/hr or $1,500/month
               </span>
-              <Link
-                href="#prices"
+              <ScrollLink
+                href="#black-friday-pricing"
                 className="text-[16px] font-normal tracking-[-0.02em] text-white underline underline-offset-2 transition-opacity duration-300 hover:text-white hover:opacity-100 max-sm:max-w-[51px] max-sm:text-[13px]"
               >
                 See prices
-              </Link>
+              </ScrollLink>
             </p>
           </div>
 

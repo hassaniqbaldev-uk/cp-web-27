@@ -1,6 +1,7 @@
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import Button from "../ui/Button";
+import BookCallButton from "../ui/BookCallButton";
 import Image from "next/image";
 
 const BlackFridayCta = () => {
@@ -33,12 +34,9 @@ const BlackFridayCta = () => {
                 Send us a small job
               </Button>
 
-              <Button
-                href="/contact"
-                className="w-full justify-center rounded-full border border-white/40 px-[24px] py-[14px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase max-sm:text-[15px]"
-              >
+              <BookCallButton className="w-full rounded-full border border-white/40 px-[24px] py-[14px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase max-sm:text-[15px]">
                 Book a 15 min call
-              </Button>
+              </BookCallButton>
             </div>
           </div>
 

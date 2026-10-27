@@ -75,8 +75,8 @@ const CompareCard = ({ label, creativePixels, typical }) => (
 
 const BlackFridayCompare = () => {
   return (
-    <Section id="black-friday-compare" className="py-[120px] max-sm:py-[60px]">
-      <Container className="max-sm:pl-[20px]">
+    <Section id="black-friday-compare" className="py-[120px] max-xl:py-[60px]">
+      <Container className="max-xl:px-[40px] max-sm:pr-0 max-sm:pl-[20px]">
         <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:pr-[20px] max-sm:text-[14px]">
           How we compare
         </p>
@@ -87,7 +87,7 @@ const BlackFridayCompare = () => {
           <span className="text-black/40">want paying first.</span>
         </h2>
 
-        <div className="mx-auto mt-[50px] max-w-[1200px] overflow-hidden rounded-[20px] border border-black/10 max-sm:hidden">
+        <div className="mx-auto mt-[50px] max-w-[1200px] overflow-hidden rounded-[20px] border border-black/10 max-xl:hidden">
           <div className={`${rowClassName} bg-black py-[20px]`}>
             <span />
 
@@ -120,12 +120,16 @@ const BlackFridayCompare = () => {
           ))}
         </div>
 
-        <div className="hidden max-sm:mt-[30px] max-sm:block">
+        <div className="hidden max-xl:mt-[40px] max-xl:block max-sm:mt-[30px]">
           <Swiper
             modules={[Pagination]}
             slidesPerView="auto"
             spaceBetween={16}
             slidesOffsetAfter={20}
+            breakpoints={{
+              480: { slidesPerView: 2, slidesOffsetAfter: 0 },
+              1024: { slidesPerView: 3, slidesOffsetAfter: 0 },
+            }}
             pagination={{ clickable: true }}
             style={{
               "--swiper-pagination-color": "#1A1A1A",
@@ -135,7 +139,7 @@ const BlackFridayCompare = () => {
             className="pb-[40px]!"
           >
             {comparisonRows.map((row) => (
-              <SwiperSlide key={row.id} className="h-auto! w-[82%]!">
+              <SwiperSlide key={row.id} className="h-auto! max-sm:w-[82%]!">
                 <CompareCard {...row} />
               </SwiperSlide>
             ))}

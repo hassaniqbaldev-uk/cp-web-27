@@ -107,7 +107,7 @@ const BlackFridayProcess = () => {
       id="how-it-works"
       className="bg-[#EAF0FF] py-[80px] max-sm:py-[60px]"
     >
-      <Container className="max-sm:px-[20px]">
+      <Container className="max-xl:px-[40px] max-sm:px-[20px]">
         <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]">
           How it works
         </p>
@@ -116,7 +116,7 @@ const BlackFridayProcess = () => {
           Start small. <span className="text-black/40">Pay as we go.</span>
         </h2>
 
-        <div className="relative mt-[94px] max-sm:hidden">
+        <div className="relative mt-[94px] max-xl:hidden">
           <div className="grid grid-cols-3">
             {steps.map(({ num }) => (
               <span
@@ -163,7 +163,7 @@ const BlackFridayProcess = () => {
           </div>
         </div>
 
-        <div className="hidden max-sm:mt-[40px] max-sm:flex max-sm:flex-col max-sm:gap-[45px]">
+        <div className="hidden max-xl:mt-[40px] max-xl:flex max-xl:flex-col max-xl:gap-[45px]">
           {steps.map(({ num, title, description }) => (
             <div key={num} className="text-center">
               <span className="bg-[linear-gradient(180deg,#A8C6FF_-32.95%,rgba(168,198,255,0)_134.08%)] bg-clip-text text-[90px] leading-none font-extrabold tracking-[-0.04em] text-transparent">

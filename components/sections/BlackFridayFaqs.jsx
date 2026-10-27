@@ -66,10 +66,10 @@ const faqs = [
 
 const BlackFridayFaqs = () => {
   return (
-    <Section id="faq" className="bg-[#F7F1E7] py-[120px] max-sm:py-[60px]">
-      <Container className="max-sm:px-[20px]">
-        <div className="flex items-start justify-between gap-[60px] max-sm:flex-col-reverse max-sm:gap-[35px]">
-          <div className="w-[626px] shrink-0 max-sm:w-full">
+    <Section id="faq" className="bg-[#F7F1E7] py-[120px] max-xl:py-[60px]">
+      <Container className="max-xl:px-[40px] max-sm:px-[20px]">
+        <div className="flex items-start justify-between gap-[60px] max-xl:flex-col-reverse max-xl:gap-[35px]">
+          <div className="w-[626px] shrink-0 max-xl:w-full">
             <Accordion className="gap-[12px]">
               {faqs.map(({ id, question, answer }) => (
                 <AccordionItem
@@ -96,12 +96,12 @@ const BlackFridayFaqs = () => {
             </Accordion>
           </div>
 
-          <div className="w-[420px] shrink-0 max-sm:w-full">
-            <p className="text-[22px] tracking-[-0.02em] text-black uppercase max-sm:text-center max-sm:text-[13px]">
+          <div className="w-[420px] shrink-0 max-xl:w-full">
+            <p className="text-[22px] tracking-[-0.02em] text-black uppercase max-xl:text-center max-sm:text-[13px]">
               Frequently asked questions
             </p>
 
-            <h2 className="mt-[10px] text-[52px] leading-[60px] font-extrabold tracking-[-0.07em] text-black max-sm:text-center max-sm:text-[30px] max-sm:leading-[34px]">
+            <h2 className="mt-[10px] text-[52px] leading-[60px] font-extrabold tracking-[-0.07em] text-black max-xl:text-center max-sm:text-[30px] max-sm:leading-[34px]">
               What agencies
               <br />
               <span className="text-black/40">ask us first</span>

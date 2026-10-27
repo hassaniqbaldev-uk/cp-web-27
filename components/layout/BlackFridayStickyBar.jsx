@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const BlackFridayStickyBar = () => {
   const [show, setShow] = useState(false);
+  const [atFooter, setAtFooter] = useState(false);
 
   useEffect(() => {
     // Two thresholds (hysteresis) so Lenis' smoothed scrollY can't flicker the
@@ -26,10 +27,25 @@ const BlackFridayStickyBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Hide the bar once the footer scrolls into view.
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(([entry]) =>
+      setAtFooter(entry.isIntersecting),
+    );
+
+    observer.observe(footer);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className={`fixed bottom-[30px] left-1/2 z-[90] -translate-x-1/2 transition-all duration-300 max-sm:right-[20px] max-sm:bottom-[20px] max-sm:left-[20px] max-sm:translate-x-0 ${
-        show
+        show && !atFooter
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-[20px] opacity-0"
       }`}

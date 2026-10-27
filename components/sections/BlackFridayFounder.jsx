@@ -54,22 +54,22 @@ const BlackFridayFounder = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <Section id="black-friday-founder" className="py-[120px] max-sm:py-[60px]">
-      <Container className="max-sm:px-[20px]">
-        <div className="flex items-center justify-between gap-[60px] max-sm:flex-col max-sm:gap-[30px]">
-          <div className="w-[480px] shrink-0 max-sm:w-full max-sm:text-center">
+    <Section id="black-friday-founder" className="py-[120px] max-xl:py-[60px]">
+      <Container className="max-xl:px-[40px] max-sm:px-[20px]">
+        <div className="flex items-center justify-between gap-[60px] max-xl:flex-col max-xl:gap-[40px] max-sm:gap-[30px]">
+          <div className="w-[480px] shrink-0 max-xl:w-full max-xl:text-center">
             <p className="text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]">
               You’ll work with
             </p>
 
-            <h2 className="mt-[10px] text-[52px] leading-[55px] font-bold tracking-[-0.07em] text-black max-sm:text-[30px] max-sm:leading-[34px]">
+            <h2 className="mt-[10px] text-[52px] leading-[55px] font-bold tracking-[-0.07em] text-black max-xl:mx-auto max-xl:max-w-[700px] max-sm:text-[30px] max-sm:leading-[34px]">
               Hassan Iqbal, founder of{" "}
               <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
                 CreativePixels.
               </span>
             </h2>
 
-            <p className="mt-[30px] max-w-[420px] text-[22px] tracking-[-0.02em] text-black max-sm:mt-[20px] max-sm:max-w-full max-sm:text-[16px]">
+            <p className="mt-[30px] max-w-[420px] text-[22px] tracking-[-0.02em] text-black max-xl:mx-auto max-xl:max-w-[650px] max-sm:mt-[20px] max-sm:max-w-full max-sm:text-[16px]">
               I started building websites at 13. 14 years on, I lead a team of
               15 and look at every partner job myself. Here’s how we work, in a
               minute.
@@ -114,7 +114,7 @@ const BlackFridayFounder = () => {
           </div>
         </div>
 
-        <div className="bg-grey/40 mt-[50px] flex items-center justify-between gap-[40px] rounded-full px-[50px] py-[20px] max-sm:mt-[30px] max-sm:flex-col max-sm:items-center max-sm:gap-[25px] max-sm:rounded-[20px] max-sm:px-[20px] max-sm:py-[30px]">
+        <div className="bg-grey/40 mt-[50px] flex items-center justify-between gap-[40px] rounded-full px-[50px] py-[20px] max-xl:flex-col max-xl:items-center max-xl:gap-[25px] max-xl:rounded-[20px] max-xl:px-[40px] max-xl:py-[30px] max-sm:mt-[30px] max-sm:px-[20px]">
           <p className="text-text-body shrink-0 text-[22px] font-medium tracking-[-0.02em] whitespace-nowrap uppercase max-sm:text-[16px]">
             Stores we’ve built
           </p>
@@ -136,7 +136,7 @@ const BlackFridayFounder = () => {
             ))}
           </ul>
 
-          <p className="max-w-[260px] shrink-0 text-right text-[22px] font-extrabold tracking-[-0.04em] text-black max-sm:text-center max-sm:text-[18px]">
+          <p className="max-w-[260px] shrink-0 text-right text-[22px] font-extrabold tracking-[-0.04em] text-black max-xl:max-w-full max-xl:text-center max-sm:text-[18px]">
             As heard on BBC Radio Manchester &amp; Lancashire
           </p>
         </div>

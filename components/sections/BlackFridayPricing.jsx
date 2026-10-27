@@ -87,7 +87,7 @@ const PlanCard = ({
 
       <Button
         href={ctaHref}
-        className={`mt-[35px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase max-sm:w-full max-sm:justify-center ${
+        className={`mt-[35px] self-start rounded-full px-[24px] py-[14px] text-[14px] font-extrabold tracking-[-0.02em] uppercase max-xl:w-full max-xl:justify-center ${
           isGradient
             ? "bg-white text-black"
             : "border border-white/40 text-white"
@@ -101,8 +101,8 @@ const PlanCard = ({
 
 const BlackFridayPricing = () => {
   return (
-    <Section id="black-friday-pricing" className="pb-[120px] max-sm:pb-[60px]">
-      <Container className="max-sm:px-[20px]">
+    <Section id="black-friday-pricing" className="pb-[120px] max-xl:pb-[60px]">
+      <Container className="max-xl:px-[40px] max-sm:px-[20px]">
         <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]">
           Prices
         </p>
@@ -113,7 +113,7 @@ const BlackFridayPricing = () => {
           <span className="text-black/40">your margin stays safe.</span>
         </h2>
 
-        <div className="mt-[50px] grid grid-cols-2 gap-[20px] max-sm:mt-[30px] max-sm:grid-cols-1">
+        <div className="mt-[50px] grid grid-cols-2 gap-[20px] max-xl:grid-cols-1 max-sm:mt-[30px]">
           <PlanCard
             variant="gradient"
             name="Per job"
@@ -159,7 +159,7 @@ const BlackFridayPricing = () => {
           Prefer a fixed price? Typical starting points:
         </p>
 
-        <div className="mt-[30px] grid grid-cols-3 gap-[16px] max-sm:grid-cols-1">
+        <div className="mt-[30px] grid grid-cols-3 gap-[16px] max-xl:grid-cols-1">
           {fixedPrices.map(({ id, title, description, price }) => (
             <div key={id} className="rounded-[16px] bg-[#F6F6F6] p-[30px]">
               <h3 className="text-[18px] font-bold tracking-[-0.02em] text-black">

@@ -88,7 +88,7 @@ const BlackFridayQuoteForm = () => {
   const next = () => setStep((current) => Math.min(current + 1, TOTAL_STEPS));
 
   const cardClassName =
-    "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px] max-sm:w-full max-sm:p-[20px]";
+    "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px] max-xl:w-full max-sm:p-[20px]";
 
   if (step === TOTAL_STEPS) {
     return (

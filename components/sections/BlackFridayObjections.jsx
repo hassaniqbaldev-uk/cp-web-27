@@ -59,27 +59,31 @@ const BlackFridayObjections = () => {
   return (
     <Section
       id="black-friday-objections"
-      className="bg-[#FAF3E8] py-[120px] max-sm:py-[60px]"
+      className="bg-[#FAF3E8] py-[120px] max-xl:py-[60px]"
     >
-      <Container className="max-sm:pl-[20px]">
-        <h2 className="text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black max-sm:mx-auto max-sm:max-w-[270px] max-sm:text-[28px] max-sm:leading-[32px]">
+      <Container className="max-xl:px-[40px] max-sm:pr-0 max-sm:pl-[20px]">
+        <h2 className="text-center text-[52px] leading-[56px] font-extrabold tracking-[-0.07em] text-black max-lg:text-[40px] max-lg:leading-[45px] max-sm:mx-auto max-sm:max-w-[270px] max-sm:text-[28px] max-sm:leading-[32px]">
           Worried about handing work over?
           <br />
           <span className="text-black/40">So were most of our partners.</span>
         </h2>
 
-        <div className="mt-[60px] grid grid-cols-3 gap-[33px] max-sm:hidden">
+        <div className="mt-[60px] grid grid-cols-3 gap-[33px] max-xl:hidden">
           {objections.map(({ id, question, answer }) => (
             <ObjectionCard key={id} question={question} answer={answer} />
           ))}
         </div>
 
-        <div className="hidden max-sm:mt-[30px] max-sm:block">
+        <div className="hidden max-xl:mt-[40px] max-xl:block max-sm:mt-[30px]">
           <Swiper
             modules={[Pagination]}
             slidesPerView="auto"
             spaceBetween={16}
             slidesOffsetAfter={20}
+            breakpoints={{
+              480: { slidesPerView: 2, slidesOffsetAfter: 0 },
+              1024: { slidesPerView: 3, slidesOffsetAfter: 0 },
+            }}
             pagination={{ clickable: true }}
             style={{
               "--swiper-pagination-color": "#1A1A1A",
@@ -89,7 +93,7 @@ const BlackFridayObjections = () => {
             className="pb-[40px]!"
           >
             {objections.map(({ id, question, answer }) => (
-              <SwiperSlide key={id} className="h-auto! w-[82%]!">
+              <SwiperSlide key={id} className="h-auto! max-sm:w-[82%]!">
                 <ObjectionCard question={question} answer={answer} />
               </SwiperSlide>
             ))}

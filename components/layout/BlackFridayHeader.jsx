@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 
 const navLinks = [
@@ -26,10 +27,14 @@ const BlackFridayHeader = () => {
   const [open, setOpen] = useState(false);
 
   const close = () => setOpen(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     if (!open) return;
 
+    // Pause Lenis so it stops hijacking wheel/touch — the overlay then scrolls
+    // natively and the page behind stays put.
+    lenis?.stop();
     document.body.style.overflow = "hidden";
 
     const onKey = (event) => {
@@ -39,10 +44,11 @@ const BlackFridayHeader = () => {
     window.addEventListener("keydown", onKey);
 
     return () => {
+      lenis?.start();
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   return (
     <header className="absolute top-0 left-0 z-50 w-full">
@@ -55,7 +61,7 @@ const BlackFridayHeader = () => {
         </p>
       </div>
 
-      <Container className="flex items-center justify-between py-[25px] max-sm:px-[20px] max-sm:py-[16px]">
+      <Container className="flex items-center justify-between py-[25px] max-xl:px-[40px] max-sm:px-[20px] max-sm:py-[16px]">
         <Link href="/black-friday" aria-label="Creative Pixels home">
           <Image
             src="/images/common/cp-logo-with-text.svg"
@@ -72,12 +78,12 @@ const BlackFridayHeader = () => {
           aria-label="Open menu"
           aria-expanded={open}
           onClick={() => setOpen(true)}
-          className="hidden size-[44px] items-center justify-center rounded-[10px] border border-white/30 text-white max-sm:flex"
+          className="hidden size-[44px] items-center justify-center rounded-[10px] border border-white/30 text-white max-xl:flex"
         >
           <Menu size={22} strokeWidth={2} />
         </button>
 
-        <nav aria-label="Primary" className="max-sm:hidden">
+        <nav aria-label="Primary" className="max-xl:hidden">
           <ul className="flex items-center gap-[40px]">
             {navLinks.map(({ label, href }) => (
               <li key={href}>
@@ -96,7 +102,7 @@ const BlackFridayHeader = () => {
       <div
         aria-hidden={!open}
         inert={!open}
-        className={`fixed inset-0 z-[100] flex flex-col overflow-y-auto bg-black px-[20px] pt-[16px] pb-[30px] transition-[opacity,transform] duration-300 ease-out ${
+        className={`fixed inset-0 z-[100] flex flex-col overflow-y-auto overscroll-contain bg-black px-[20px] pt-[16px] pb-[30px] transition-[opacity,transform] duration-300 ease-out ${
           open
             ? "pointer-events-auto scale-100 opacity-100"
             : "pointer-events-none scale-[0.98] opacity-0"

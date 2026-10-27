@@ -65,7 +65,7 @@ const WorkCard = ({ image, title, category, href }) => (
       />
     </div>
 
-    <div className="mt-[16px] flex justify-between gap-[20px]">
+    <div className="mt-[16px] flex items-center justify-between gap-[20px]">
       <h3 className="text-[20px] font-bold tracking-[-0.02em] text-black max-sm:text-[18px]">
         {title}
       </h3>
@@ -81,8 +81,8 @@ const BlackFridayWork = () => {
   const [swiper, setSwiper] = useState(null);
 
   return (
-    <Section id="black-friday-work" className="py-[80px] max-sm:py-[60px]">
-      <Container className="max-sm:pl-[20px]">
+    <Section id="black-friday-work" className="py-[80px] max-xl:py-[60px]">
+      <Container className="max-xl:px-[40px] max-sm:pr-0 max-sm:pl-[20px]">
         <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:pr-[20px] max-sm:text-[14px]">
           Our work
         </p>
@@ -93,28 +93,32 @@ const BlackFridayWork = () => {
           <span className="text-black/40">we’ve designed and built.</span>
         </h2>
 
-        <div className="mt-[50px] grid grid-cols-3 gap-x-[24px] gap-y-[32px] max-sm:hidden">
+        <div className="mt-[50px] grid grid-cols-3 gap-x-[24px] gap-y-[32px] max-xl:hidden">
           {projects.map((project) => (
             <WorkCard key={project.id} {...project} />
           ))}
         </div>
 
-        <div className="hidden max-sm:mt-[30px] max-sm:block">
+        <div className="hidden max-xl:mt-[40px] max-xl:block max-sm:mt-[30px]">
           <Swiper
             onSwiper={setSwiper}
             loop
             slidesPerView="auto"
             spaceBetween={16}
             slidesOffsetAfter={20}
+            breakpoints={{
+              480: { slidesPerView: 2, slidesOffsetAfter: 0 },
+              1024: { slidesPerView: 3, slidesOffsetAfter: 0 },
+            }}
           >
             {projects.map((project) => (
-              <SwiperSlide key={project.id} className="w-[82%]!">
+              <SwiperSlide key={project.id} className="max-sm:w-[82%]!">
                 <WorkCard {...project} />
               </SwiperSlide>
             ))}
           </Swiper>
 
-          <div className="mt-[45px] flex justify-end pr-[20px]">
+          <div className="mt-[45px] flex justify-end max-sm:pr-[20px]">
             <button
               type="button"
               onClick={() => swiper?.slideNext()}

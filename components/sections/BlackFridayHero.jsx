@@ -17,7 +17,7 @@ const BlackFridayHero = () => {
   return (
     <Section
       id="black-friday-hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-black max-sm:items-start"
+      className="relative flex min-h-screen items-center overflow-hidden bg-black max-xl:items-start"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
@@ -41,9 +41,9 @@ const BlackFridayHero = () => {
         <Starfield className="absolute top-1/2 right-0 h-[916px] w-[245px] -translate-y-1/2 max-sm:top-auto max-sm:right-auto max-sm:bottom-0 max-sm:left-0 max-sm:h-[200px] max-sm:w-full max-sm:translate-y-0" />
       </div>
 
-      <Container className="relative z-10 pt-[180px] pb-[100px] max-sm:px-[20px] max-sm:pt-[130px] max-sm:pb-[60px]">
-        <div className="flex items-center justify-between gap-[60px] max-sm:flex-col max-sm:items-start max-sm:gap-[40px]">
-          <div className="w-[560px] shrink-0 max-sm:w-full">
+      <Container className="relative z-10 pt-[180px] pb-[100px] max-xl:px-[40px] max-sm:px-[20px] max-sm:pt-[130px] max-sm:pb-[60px]">
+        <div className="flex items-center justify-between gap-[60px] max-xl:flex-col max-xl:items-start max-xl:gap-[40px]">
+          <div className="w-[560px] shrink-0 max-xl:w-full">
             <h1 className="text-[75px] leading-[80px] font-extrabold tracking-[-0.07em] text-white max-sm:text-[44px] max-sm:leading-[46px]">
               Help that doesn’t
               <br />

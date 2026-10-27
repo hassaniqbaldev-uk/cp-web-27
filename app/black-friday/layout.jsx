@@ -1,4 +1,5 @@
 import BlackFridayHeader from "@/components/layout/BlackFridayHeader";
+import BlackFridayStickyBar from "@/components/layout/BlackFridayStickyBar";
 
 export default function BlackFridayLayout({ children }) {
   return (
@@ -6,6 +7,8 @@ export default function BlackFridayLayout({ children }) {
       <BlackFridayHeader />
 
       {children}
+
+      <BlackFridayStickyBar />
     </>
   );
 }

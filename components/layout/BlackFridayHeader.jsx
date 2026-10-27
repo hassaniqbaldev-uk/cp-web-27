@@ -8,6 +8,8 @@ import Link from "next/link";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
+import WhatsappIcon from "../ui/WhatsappIcon";
+import { useWhatsappChat } from "./WhatsappChatContext";
 
 const navLinks = [
   { label: "What you get", href: "#black-friday-compare" },
@@ -30,6 +32,7 @@ const BlackFridayHeader = () => {
 
   const close = () => setOpen(false);
   const lenis = useLenis();
+  const { open: chatOpen, toggle: toggleChat } = useWhatsappChat();
 
   const handleNav = (event, href) => {
     close();
@@ -91,7 +94,7 @@ const BlackFridayHeader = () => {
         }`}
       >
         <p className="text-center text-[15px] font-bold tracking-[-0.02em] text-white max-sm:text-[11px] max-sm:font-semibold">
-          Black Friday: 25% off for 6 months. 10 spots only.{" "}
+          Black Friday: 25% off for 6 months. 8 spots only.{" "}
           <Link
             href="#black-friday-pricing"
             onClick={(event) => handleNav(event, "#black-friday-pricing")}
@@ -125,7 +128,7 @@ const BlackFridayHeader = () => {
             />
           </Link>
 
-          <div className="flex items-center gap-[40px] max-xl:gap-[20px]">
+          <div className="flex items-center gap-[40px] max-xl:gap-[10px]">
             <nav aria-label="Primary" className="max-xl:hidden">
               <ul className="flex items-center gap-[40px]">
                 {navLinks.map(({ label, href }) => (
@@ -151,6 +154,17 @@ const BlackFridayHeader = () => {
             >
               <Phone size={20} strokeWidth={2} />
             </a>
+
+            <button
+              type="button"
+              onClick={toggleChat}
+              aria-expanded={chatOpen}
+              aria-controls="cp-wa-panel"
+              aria-label="Chat with us on WhatsApp"
+              className="hidden size-[44px] shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white max-xl:flex max-sm:size-[40px]"
+            >
+              <WhatsappIcon className="size-[22px] max-sm:size-[20px]" />
+            </button>
 
             <button
               type="button"

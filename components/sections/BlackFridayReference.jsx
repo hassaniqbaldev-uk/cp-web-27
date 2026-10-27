@@ -45,7 +45,7 @@ const BlackFridayReference = () => {
             </p>
 
             <h3 className="mt-[7px] text-[35px] font-bold tracking-[-0.07em] text-white max-sm:text-[26px]">
-              [UK agency, North West]
+              &quot;UK agency, North West&quot;
             </h3>
 
             <p className="mt-[28px] text-[25px] leading-[35px] text-[#E2E2E2] max-sm:mt-[20px] max-sm:text-[18px] max-sm:leading-[26px]">

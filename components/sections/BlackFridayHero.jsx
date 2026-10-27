@@ -77,7 +77,7 @@ const BlackFridayHero = () => {
               ))}
             </ul>
 
-            <p className="mt-[45px] flex items-center justify-between gap-[15px] text-[22px] font-bold tracking-[-0.02em] text-white max-sm:mt-[25px] max-sm:gap-[10px] max-sm:text-[16px]">
+            {/* <p className="mt-[45px] flex items-center justify-between gap-[15px] text-[22px] font-bold tracking-[-0.02em] text-white max-sm:mt-[25px] max-sm:gap-[10px] max-sm:text-[16px]">
               <span className="text-[16px] font-normal max-sm:max-w-[92px] max-sm:text-[13px]">
                 Black Friday prices:
               </span>{" "}
@@ -90,7 +90,7 @@ const BlackFridayHero = () => {
               >
                 See prices
               </ScrollLink>
-            </p>
+            </p> */}
           </div>
 
           <BlackFridayQuoteForm />

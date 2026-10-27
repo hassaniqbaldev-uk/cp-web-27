@@ -41,7 +41,7 @@ const projects = [
     id: "minessak",
     image: "/images/black-friday/minessak-thumbnail.jpg",
     title: "Minessak",
-    category: "Figma design",
+    category: "Shopify",
     href: "/work/minessak",
   },
   {

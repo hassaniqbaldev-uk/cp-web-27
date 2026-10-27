@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, ChevronLeft, Sparkles } from "lucide-react";
 import Image from "next/image";
 import BookCallButton from "../ui/BookCallButton";
 import HoneypotField from "../ui/HoneypotField";
@@ -17,16 +17,8 @@ const jobTypes = [
   { id: "something-else", label: "Something else" },
 ];
 
-const engagementOptions = [
-  { id: "one-off", label: "Just this job" },
-  { id: "ongoing", label: "Ongoing work" },
-  { id: "not-sure", label: "Not sure yet" },
-];
-
 const contactMethods = [
   { id: "email", label: "Email" },
-  { id: "whatsapp", label: "WhatsApp" },
-  { id: "slack", label: "Slack" },
   { id: "call", label: "Call back" },
 ];
 
@@ -36,13 +28,35 @@ const successPoints = [
   "Say yes, and we start on the job",
 ];
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 3;
+
+// After the thank-you screen, reset back to a blank form so the same person can
+// send another job.
+const RESET_DELAY_MS = 15000;
+
+const initialData = {
+  jobType: "wordpress",
+  website: "",
+  details: "",
+  engagement: "one-off",
+  name: "",
+  agency: "",
+  email: "",
+  phone: "",
+  contact: "email",
+  updates: false,
+};
 
 const META = {
   1: { label: "About 30 seconds", title: "Send us a small job" },
   2: { label: "About 20 seconds left", title: "Tell us about the job" },
   3: { label: "Last one", title: "Where should we send the quote?" },
 };
+
+const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+// Accepts international formats; just needs enough digits to be a real number.
+const isValidPhone = (value) => value.replace(/\D/g, "").length >= 7;
 
 const fieldClassName =
   "w-full rounded-[10px] border border-black/15 px-[16px] py-[12px] text-[16px] tracking-[-0.02em] text-black placeholder:text-text-body/50 focus:border-black focus:outline-none";
@@ -73,34 +87,54 @@ const OptionPill = ({ name, value, label, checked, onChange }) => (
 
 const BlackFridayQuoteForm = () => {
   const [step, setStep] = useState(1);
-  const [data, setData] = useState({
-    jobType: "wordpress",
-    website: "",
-    details: "",
-    engagement: "one-off",
-    name: "",
-    agency: "",
-    email: "",
-    phone: "",
-    contact: "email",
-    updates: false,
-  });
+  const [data, setData] = useState(initialData);
 
   const set = (key) => (event) =>
     setData((current) => ({ ...current, [key]: event.target.value }));
 
   const next = () => setStep((current) => Math.min(current + 1, TOTAL_STEPS));
 
+  const back = () => {
+    setError("");
+    setStep((current) => Math.max(current - 1, 1));
+  };
+
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+
+  // Once the thank-you screen has shown for a while, reset to a blank form so
+  // the same person can send another job.
+  useEffect(() => {
+    if (!submitted) return;
+
+    const timer = setTimeout(() => {
+      setData(initialData);
+      setStep(1);
+      setError("");
+      setSubmitted(false);
+    }, RESET_DELAY_MS);
+
+    return () => clearTimeout(timer);
+  }, [submitted]);
   const { honeypotRef, honeypotName, getToken, getHoneypot } =
     useSpamProtection(spamConfig.actions.blackFriday);
 
   const submit = async () => {
     setError("");
 
-    if (!data.name.trim() || !data.email.trim()) {
-      setError("Please add your name and email.");
+    if (!data.name.trim()) {
+      setError("Please add your name.");
+      return;
+    }
+
+    if (!isValidEmail(data.email)) {
+      setError("Please enter a valid email.");
+      return;
+    }
+
+    if (!isValidPhone(data.phone)) {
+      setError("Please enter a valid phone number.");
       return;
     }
 
@@ -122,7 +156,7 @@ const BlackFridayQuoteForm = () => {
         return;
       }
 
-      setStep(TOTAL_STEPS);
+      setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again, or book a call.");
     } finally {
@@ -133,7 +167,7 @@ const BlackFridayQuoteForm = () => {
   const cardClassName =
     "w-[540px] shrink-0 rounded-[20px] bg-white p-[30px] max-xl:w-full max-sm:p-[20px]";
 
-  if (step === TOTAL_STEPS) {
+  if (submitted) {
     return (
       <div className={cardClassName}>
         <div className="flex items-center gap-[12px]">
@@ -202,9 +236,22 @@ const BlackFridayQuoteForm = () => {
   return (
     <div className={cardClassName}>
       <div className="flex items-center justify-between">
-        <span className="text-dark-pink text-[16px] font-medium tracking-[-0.02em]">
-          Step {step} of {TOTAL_STEPS}
-        </span>
+        <div className="flex items-center gap-[12px]">
+          {step > 1 && (
+            <button
+              type="button"
+              onClick={back}
+              aria-label="Go back a step"
+              className="flex size-[32px] shrink-0 items-center justify-center rounded-full border border-black/15 text-black transition-colors hover:bg-black hover:text-white"
+            >
+              <ChevronLeft size={18} strokeWidth={2.5} />
+            </button>
+          )}
+
+          <span className="text-dark-pink text-[16px] font-medium tracking-[-0.02em]">
+            Step {step} of {TOTAL_STEPS}
+          </span>
+        </div>
 
         <span className="text-text-body/60 text-[14px] tracking-[-0.02em]">
           {META[step].label}
@@ -278,25 +325,6 @@ const BlackFridayQuoteForm = () => {
               className={`${fieldClassName} resize-none`}
             />
           </div>
-
-          <fieldset>
-            <legend className={labelClassName}>
-              Is this a one-off or ongoing?
-            </legend>
-
-            <div className="grid grid-cols-3 gap-[12px] max-sm:grid-cols-1">
-              {engagementOptions.map(({ id, label }) => (
-                <OptionPill
-                  key={id}
-                  name="engagement"
-                  value={id}
-                  label={label}
-                  checked={data.engagement === id}
-                  onChange={set("engagement")}
-                />
-              ))}
-            </div>
-          </fieldset>
         </div>
       )}
 
@@ -385,24 +413,6 @@ const BlackFridayQuoteForm = () => {
               ))}
             </div>
           </fieldset>
-
-          <label className="flex cursor-pointer items-center gap-[10px]">
-            <input
-              type="checkbox"
-              checked={data.updates}
-              onChange={(event) =>
-                setData((current) => ({
-                  ...current,
-                  updates: event.target.checked,
-                }))
-              }
-              className="size-[16px] shrink-0 accent-black"
-            />
-
-            <span className="text-text-body text-[13px] tracking-[-0.02em]">
-              Send me the occasional useful tip. No spam.
-            </span>
-          </label>
         </div>
       )}
 
@@ -410,11 +420,15 @@ const BlackFridayQuoteForm = () => {
 
       <button
         type="button"
-        onClick={step === 3 ? submit : next}
+        onClick={step === TOTAL_STEPS ? submit : next}
         disabled={submitting}
         className="mt-[33px] flex w-full items-center justify-center gap-[10px] rounded-full bg-black py-[15px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase disabled:opacity-60"
       >
-        {submitting ? "Sending…" : step === 3 ? "Get my quote" : "Next"}
+        {submitting
+          ? "Sending…"
+          : step === TOTAL_STEPS
+            ? "Get my quote"
+            : "Next"}
         {!submitting && <ArrowUpRight size={18} strokeWidth={2.5} />}
       </button>
 

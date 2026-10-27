@@ -3,18 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import BookCallButton from "../ui/BookCallButton";
-import { usePathname } from "next/navigation";
+import WhatsappIcon from "../ui/WhatsappIcon";
+import { useWhatsappChat } from "./WhatsappChatContext";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
-// Floating WhatsApp widget (replaces the Crisp chat).
+// WhatsApp chat (replaces the Crisp chat). On desktop a floating launcher opens
+// it; on max-xl the floating launcher is hidden and the header's WhatsApp icon
+// opens it instead. Both share open state through WhatsappChatContext.
 //  - Panel is "message the founder", not a faceless support bot.
 //  - One tap per service; the message is prefilled and tagged with the page
 //    it came from, so we know the context before replying.
 //  - The free 15 min call stays one tap away for people who'd rather talk.
-//  - Teaser bubble shows once per session, never on first paint.
+//  - Teaser bubble shows once per session (desktop only), never on first paint.
 
 // ---- Edit these -------------------------------------------------------------
 const WHATSAPP_NUMBER = "441618202667"; // international format, no + or spaces
@@ -87,17 +90,6 @@ const buildLink = (text) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(full)}`;
 };
 
-const WhatsAppIcon = ({ className = "" }) => (
-  <svg
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-    className={className}
-    fill="currentColor"
-  >
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-  </svg>
-);
-
 const ArrowIcon = () => (
   <svg
     viewBox="0 0 16 16"
@@ -128,11 +120,7 @@ const CloseIcon = ({ className = "h-[16px] w-[16px]" }) => (
 );
 
 const WhatsAppWidget = () => {
-  const pathname = usePathname();
-  // Panel is tied to the page it was opened on, so it closes on navigation
-  const [openOn, setOpenOn] = useState(null);
-  const open = openOn === pathname;
-  const setOpen = (value) => setOpenOn(value ? pathname : null);
+  const { open, setOpen } = useWhatsappChat();
   const [teaser, setTeaser] = useState(false);
   const [online, setOnline] = useState(true);
   const [message, setMessage] = useState("");
@@ -169,16 +157,18 @@ const WhatsAppWidget = () => {
   useEffect(() => {
     if (!open) return;
 
+    track("whatsapp_open");
     panelRef.current?.querySelector("button, a, textarea")?.focus();
     const onKey = (e) => {
       if (e.key === "Escape") {
-        setOpenOn(null);
+        setOpen(false);
         buttonRef.current?.focus();
       }
     };
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   // Panel open/close (GSAP)
@@ -230,7 +220,6 @@ const WhatsAppWidget = () => {
 
   const toggle = () => {
     dismissTeaser();
-    if (!open) track("whatsapp_open");
     setOpen(!open);
   };
 
@@ -257,7 +246,7 @@ const WhatsAppWidget = () => {
         aria-label="Chat with CreativePixels on WhatsApp"
         aria-hidden={!open}
         style={{ transformOrigin: "bottom right" }}
-        className="invisible absolute right-0 bottom-[calc(100%+12px)] w-[calc(100vw-32px)] max-w-[360px] overflow-hidden rounded-[24px] bg-white opacity-0 shadow-[0px_24px_60px_0px_#07070733]"
+        className="invisible absolute right-0 bottom-[calc(100%+12px)] w-[calc(100vw-32px)] max-w-[360px] overflow-hidden rounded-[24px] bg-white opacity-0 shadow-[0px_24px_60px_0px_#07070733] max-xl:fixed max-xl:top-[120px] max-xl:right-[16px] max-xl:bottom-auto max-xl:left-auto"
       >
         {/* Header */}
         <div className="relative overflow-hidden bg-[#070707] px-[20px] pt-[20px] pb-[24px] text-white">
@@ -295,10 +284,7 @@ const WhatsAppWidget = () => {
             </div>
             <button
               type="button"
-              onClick={() => {
-                setOpen(false);
-                buttonRef.current?.focus();
-              }}
+              onClick={() => setOpen(false)}
               aria-label="Close chat"
               className="flex h-[32px] w-[32px] items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
             >
@@ -360,7 +346,7 @@ const WhatsAppWidget = () => {
               aria-label="Send on WhatsApp"
               className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-opacity disabled:opacity-40"
             >
-              <WhatsAppIcon className="h-[20px] w-[20px]" />
+              <WhatsappIcon className="h-[20px] w-[20px]" />
             </button>
           </form>
         </div>
@@ -379,12 +365,12 @@ const WhatsAppWidget = () => {
         </div>
       </div>
 
-      {/* Teaser bubble */}
+      {/* Teaser bubble (desktop only) */}
       <div
         ref={teaserRef}
         aria-hidden={!(teaser && !open)}
         style={{ transformOrigin: "bottom right" }}
-        className="invisible absolute right-0 bottom-[calc(100%+12px)] flex max-w-[280px] items-start gap-[10px] rounded-[18px] rounded-br-[4px] bg-white py-[12px] pr-[36px] pl-[12px] opacity-0 shadow-[0px_12px_40px_0px_#07070726]"
+        className="invisible absolute right-0 bottom-[calc(100%+12px)] flex w-[280px] items-start gap-[10px] rounded-[18px] rounded-br-[4px] bg-white py-[12px] pr-[36px] pl-[12px] opacity-0 shadow-[0px_12px_40px_0px_#07070726] max-xl:hidden"
       >
         <Image
           src={AVATAR}
@@ -396,7 +382,7 @@ const WhatsAppWidget = () => {
         <button
           type="button"
           onClick={toggle}
-          className="text-left text-[14px] leading-[20px] text-[#070707]"
+          className="flex-1 text-left text-[14px] leading-[20px] text-[#070707]"
         >
           <span className="font-semibold">Got a project in mind?</span> Message
           me here, I reply myself.
@@ -411,7 +397,7 @@ const WhatsAppWidget = () => {
         </button>
       </div>
 
-      {/* Launcher */}
+      {/* Launcher (desktop only; max-xl opens from the header icon) */}
       <button
         ref={buttonRef}
         type="button"
@@ -419,7 +405,7 @@ const WhatsAppWidget = () => {
         aria-expanded={open}
         aria-controls="cp-wa-panel"
         aria-label={open ? "Close WhatsApp chat" : "Chat with us on WhatsApp"}
-        className="group relative flex h-[64px] w-[64px] items-center justify-center rounded-full transition-transform duration-300 hover:scale-105 active:scale-95 max-sm:h-[60px] max-sm:w-[60px]"
+        className="group relative flex h-[64px] w-[64px] items-center justify-center rounded-full transition-transform duration-300 hover:scale-105 active:scale-95 max-xl:hidden"
       >
         {/* CP gradient ring */}
         <span
@@ -431,11 +417,11 @@ const WhatsAppWidget = () => {
           }}
         />
         <span className="absolute inset-[3px] rounded-full bg-[#070707]" />
-        <span className="relative flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#25D366] text-white max-sm:h-[46px] max-sm:w-[46px]">
+        <span className="relative flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#25D366] text-white">
           {open ? (
             <CloseIcon className="h-[20px] w-[20px]" />
           ) : (
-            <WhatsAppIcon className="h-[26px] w-[26px]" />
+            <WhatsappIcon className="h-[26px] w-[26px]" />
           )}
         </span>
         {teaser && !open && (

@@ -78,7 +78,7 @@ const BookCall = ({
                 title={title}
                 subtitle={subtitle}
                 labelClassName="text-[22px] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName="text-[85px] mt-[10px] leading-[80px] font-extrabold tracking-[-0.07em] text-white"
+                titleClassName="text-[65px] mt-[10px] leading-[80px] font-extrabold tracking-[-0.06em] text-white"
                 subtitleClassName="text-[18px] text-grey mt-[20px] max-w-[450px] leading-[28px] tracking-[-0.02em]"
               />
 

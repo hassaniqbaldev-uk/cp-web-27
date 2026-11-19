@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CreditCard, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -19,50 +19,58 @@ import SectionHeading from "../ui/SectionHeading";
 const disciplineItems = serviceDisciplines.map(
   ({
     id,
-    icon: Icon,
+    triggerIcon,
     title,
     categories,
     iconClassName,
     dotClassName,
+    bgClassName,
+    ctaHoverClassName,
     detail,
     featured,
   }) => ({
     id,
     title: (
       <span key={id} className="flex items-center gap-[20px]">
-        <Icon
-          size={45}
-          strokeWidth={1.5}
-          className={`shrink-0 ${iconClassName}`}
+        <Image
+          src={triggerIcon}
+          alt=""
+          width={45}
+          height={45}
+          className="size-[45px] shrink-0"
         />
 
         <span className="text-[45px] font-bold tracking-[-0.07em] text-black">
           {title}
         </span>
 
-        <span className="bg-grey h-[30px] w-px shrink-0" />
+        <span className="flex max-w-[600px] items-center gap-[20px] overflow-hidden opacity-100 transition-all duration-500 ease-out group-data-panel-open/accordion-trigger:ml-[-20px] group-data-panel-open/accordion-trigger:max-w-0 group-data-panel-open/accordion-trigger:opacity-0">
+          <span className="bg-grey h-[30px] w-px shrink-0" />
 
-        <span className="text-text-body inline-flex items-center text-[14px] font-normal tracking-[-0.02em]">
-          {categories.map((category, index) => (
-            <Fragment key={category}>
-              {index > 0 && (
-                <span className="px-[10px] text-[18px]">&middot;</span>
-              )}
-              {category}
-            </Fragment>
-          ))}
+          <span className="text-text-body inline-flex shrink-0 items-center text-[14px] font-normal tracking-[-0.02em] whitespace-nowrap">
+            {categories.map((category, index) => (
+              <Fragment key={category}>
+                {index > 0 && (
+                  <span className="px-[10px] text-[18px]">&middot;</span>
+                )}
+                {category}
+              </Fragment>
+            ))}
+          </span>
         </span>
       </span>
     ),
     content: (
       <div
         key={id}
-        className="bg-blue/20 flex items-center justify-between gap-[45px] rounded-[20px] p-[45px]"
+        className={`${bgClassName} flex items-center justify-between gap-[45px] rounded-[20px] p-[45px]`}
       >
         <div className="w-[625px]">
           <ul className="flex items-center gap-[20px]">
-            {detail.highlights.map(
-              ({ id: highlightId, icon: HighlightIcon, text }, index) => (
+            {detail.highlights.map(({ id: highlightId, text }, index) => {
+              const HighlightIcon = index === 1 ? ShieldCheck : CreditCard;
+
+              return (
                 <li key={highlightId} className="flex items-center gap-[20px]">
                   <span className="flex items-center gap-[10px]">
                     <HighlightIcon
@@ -80,8 +88,8 @@ const disciplineItems = serviceDisciplines.map(
                     <span className="h-[16px] w-px shrink-0 bg-black/30" />
                   )}
                 </li>
-              ),
-            )}
+              );
+            })}
           </ul>
 
           <h4 className="mt-[20px] text-[35px] font-medium tracking-[-0.06em] text-black">
@@ -107,31 +115,44 @@ const disciplineItems = serviceDisciplines.map(
           <span className="my-[30px] block h-px w-full bg-black/20" />
 
           <ul className="flex gap-[45px]">
-            {detail.pricing.map(({ id: priceId, label, price }, index) => (
-              <li key={priceId} className="flex items-center gap-[45px]">
-                <span className="flex flex-col items-start">
-                  <span className="text-text-body text-[14px] font-medium tracking-[-0.02em]">
-                    {label}
+            {detail.pricing.map(
+              ({ id: priceId, label, price, suffix }, index) => (
+                <li key={priceId} className="flex items-center gap-[45px]">
+                  <span className="flex flex-col items-start">
+                    <span className="text-text-body text-[14px] font-medium tracking-[-0.02em]">
+                      {label}
+                    </span>
+
+                    <span className="text-[22px] font-bold tracking-[-0.07em] text-black">
+                      {price}
+                      {suffix && (
+                        <span className="text-text-body ml-[4px] text-[12px] font-medium tracking-[-0.02em]">
+                          {suffix}
+                        </span>
+                      )}
+                    </span>
                   </span>
 
-                  <span className="text-[22px] font-bold tracking-[-0.07em] text-black">
-                    {price}
-                  </span>
-                </span>
-
-                {index < detail.pricing.length - 1 && (
-                  <span className="h-[40px] w-px shrink-0 bg-black/20" />
-                )}
-              </li>
-            ))}
+                  {index < detail.pricing.length - 1 && (
+                    <span className="h-[40px] w-px shrink-0 bg-black/20" />
+                  )}
+                </li>
+              ),
+            )}
           </ul>
 
-          <Button
+          <Link
             href={detail.cta.href}
-            className="mt-[45px] rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase"
+            className={`group mt-[45px] inline-flex items-center justify-center gap-[10px] rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 ease-out hover:text-white ${ctaHoverClassName}`}
           >
             {detail.cta.label}
-          </Button>
+
+            <ArrowUpRight
+              size={18}
+              strokeWidth={2.5}
+              className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45"
+            />
+          </Link>
         </div>
 
         <div className="relative h-[536px] w-[440px] overflow-hidden rounded-[20px]">
@@ -213,11 +234,10 @@ const Services = () => {
   }, []);
   return (
     <>
-      <Section className="pb-[120px]">
+      <Section className="py-[120px]">
         <Container>
           <div className="flex items-end justify-between gap-[20px]">
             <SectionHeading
-              label="Our Services"
               title={
                 <>
                   <span className="mr-[-0.07em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
@@ -227,8 +247,7 @@ const Services = () => {
                   One joined-up team.
                 </>
               }
-              labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-[85px] mt-[10px] font-extrabold tracking-[-0.07em] text-black leading-[90px]"
+              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px]"
             />
 
             <div className="flex">
@@ -236,7 +255,7 @@ const Services = () => {
                 href="/services"
                 className="min-w-max rounded-[60px] bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase"
               >
-                Explore all services
+                See all services
               </Button>
             </div>
           </div>

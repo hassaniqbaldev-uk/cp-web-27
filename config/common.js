@@ -1,7 +1,6 @@
 import {
   Ban,
   Briefcase,
-  Building2,
   CalendarClock,
   CalendarDays,
   CircleArrowUp,
@@ -11,15 +10,12 @@ import {
   FileCheck,
   Layers,
   ClipboardList,
-  LayoutDashboard,
   LifeBuoy,
   Mail,
   Monitor,
   MessageSquare,
   Palette,
   Phone,
-  Rocket,
-  ShoppingBag,
   TrendingUp,
   UserRoundCheck,
   Users,
@@ -92,87 +88,209 @@ export const heroBadges = [
 
 export const clientLogos = [
   {
-    id: "client-one",
+    id: "casabotanica",
     src: "/images/home/casa-logo.png",
     alt: "Casabotanica Client",
     href: "/work/casabotanica",
-    width: 124,
-    height: 71,
-    className: "",
+    width: 141,
+    height: 30,
+    className: "w-[141px] h-[30px]",
   },
   {
-    id: "client-two",
+    id: "ivy-duke",
     src: "/images/home/ivy-duke-logo.png",
     alt: "Ivy & Duke Client",
     href: "/work/ivy-duke",
-    width: 125,
-    height: 60,
-    className: "",
+    width: 94,
+    height: 45,
+    className: "w-[94px] h-[45px]",
   },
   {
-    id: "client-three",
-    src: "/images/home/new-compass-logo.png",
-    alt: "New Compass Client",
-    href: "/work/new-compass",
-    width: 181,
-    height: 32,
-    className: "",
-  },
-  {
-    id: "client-four",
+    id: "fultons",
     src: "/images/home/fultons-logo.png",
     alt: "Fultons Client",
     href: "/work/fultons",
-    width: 107,
-    height: 26,
-    className: "",
+    width: 91,
+    height: 21,
+    className: "w-[91px] h-[21px]",
   },
   {
-    id: "client-five",
+    id: "game-art-brain",
     src: "/images/home/game-art-logo.png",
     alt: "Game Art Brain Client",
     href: "/work/game-art-brain",
-    width: 92,
-    height: 44,
-    className: "",
+    width: 73,
+    height: 34,
+    className: "w-[73px] h-[34px]",
   },
   {
-    id: "client-six",
+    id: "ayoa",
     src: "/images/home/ayoa-logo.png",
     alt: "Ayoa Client",
     href: "/work/ayoa",
-    width: 129,
-    height: 40,
-    className: "",
+    width: 95,
+    height: 29,
+    className: "w-[95px] h-[29px]",
   },
   {
-    id: "client-seven",
+    id: "peter-jones-foundation",
     src: "/images/home/peter-jones-logo.png",
     alt: "Peter Jones Foundation Client",
     href: "/work/peter-jones-foundation",
-    width: 139,
-    height: 43,
-    className: "",
+    width: 113,
+    height: 35,
+    className: "w-[113px] h-[35px]",
   },
 ];
 
-export const aboutHighlights = [
+export const heroStats = [
   {
-    id: "years-experience",
-    icon: Compass,
-    title: "12 Years",
-    subtitle: "Building digital  experiences",
+    id: "woocommerce",
+    icon: "/images/home/ivy-duke-icon.svg",
+    iconAlt: "Ivy & Duke",
+    width: 72,
+    height: 43,
+    iconClassName: "h-[43px] w-[72px]",
+    value: "+15%",
+    description: "First-week revenue after our WooCommerce changes.",
   },
   {
-    id: "team-experience",
-    icon: Users,
-    title: "120 Years",
-    subtitle: "Combined team experience",
+    id: "unicef",
+    icon: "/images/home/unicef-icon.svg",
+    iconAlt: "Unicef",
+    width: 59,
+    height: 49,
+    iconClassName: "h-[49px] w-[59px]",
+    value: "£478k",
+    description: "Raised at one event. [What CP built, TBC]",
+  },
+  {
+    id: "teleqo",
+    icon: "/images/home/teleco-tech-icon.svg",
+    iconAlt: "Teleqo Tech",
+    width: 52,
+    height: 51,
+    iconClassName: "h-[51px] w-[52px]",
+    value: "result TBC",
+    description: "[confirm the exact wording from the current card]",
+  },
+];
+
+export const caseStudyMetrics = [
+  {
+    id: "baseline",
+    label: "Baseline",
+    labelClassName: "bg-blue",
+    value: "9 in 10",
+    valueClassName: "text-white",
+    description: "Product viewers left without adding anything to the basket",
+  },
+  {
+    id: "change",
+    label: "Change",
+    labelClassName: "bg-orange",
+    value: "49 fixes",
+    valueClassName: "text-white",
+    description:
+      "Across 10 workstreams in about a week: buy box, checkout, speed, reviews, email",
+  },
+  {
+    id: "result",
+    label: "Result",
+    labelClassName: "bg-dark-pink",
+    value: "+15%",
+    valueClassName:
+      "bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text text-transparent pr-[5px]",
+    description: "Revenue in the first full week, with the same sale running",
+  },
+];
+
+export const caseStudyStats = [
+  {
+    id: "google-reviews",
+    icon: "/images/home/google-icon.svg",
+    iconAlt: "Google",
+    width: 28,
+    height: 30,
+    iconBgClassName: "bg-white",
+    value: "0 → 146",
+    description: "Google review stars",
+  },
+  {
+    id: "homepage-size",
+    icon: "/images/home/storage-icon.svg",
+    iconAlt: "",
+    width: 28,
+    height: 26,
+    iconBgClassName: "bg-orange",
+    value: "9.4 MB → 0.7 MB",
+    description: "Homepage",
+  },
+  {
+    id: "add-ons",
+    icon: "/images/home/addon-icon.svg",
+    iconAlt: "",
+    width: 25,
+    height: 28,
+    iconBgClassName: "bg-blue",
+    value: "8.3%",
+    description: "of orders now include an add-on",
+  },
+];
+
+export const brandLogos = [
+  {
+    id: "game-art-brain",
+    src: "/images/home/game-art-brain-logo-dark.png",
+    alt: "Game Art Brain",
+    href: "/work/game-art-brain",
+    width: 73,
+    height: 34,
+  },
+  {
+    id: "ayoa",
+    src: "/images/home/ayoa-logo-dark.png",
+    alt: "Ayoa",
+    href: "/work/ayoa",
+    width: 95,
+    height: 29,
+  },
+  {
+    id: "peter-jones-foundation",
+    src: "/images/home/peter-jones-foundation-logo-dark.png",
+    alt: "Peter Jones Foundation",
+    href: "/work/peter-jones-foundation",
+    width: 113,
+    height: 35,
+  },
+  {
+    id: "ivy-duke",
+    src: "/images/home/ivy-duke-logo-dark.png",
+    alt: "Ivy & Duke",
+    href: "/work/ivy-duke",
+    width: 94,
+    height: 45,
+  },
+  {
+    id: "fultons",
+    src: "/images/home/fultons-logo-dark.png",
+    alt: "Fultons",
+    href: "/work/fultons",
+    width: 91,
+    height: 21,
+  },
+  {
+    id: "casabotanica",
+    src: "/images/home/casabotanica-logo-dark.png",
+    alt: "Casa Botanica",
+    href: "/work/casabotanica",
+    width: 141,
+    height: 30,
   },
 ];
 
 export const aboutQuote =
-  "I started CreativePixels at 13 to make a difference; that same drive still runs through the team today - creating work that’s, thoughtful and well designed.";
+  "I started CreativePixels at 13 to make a difference. That same drive still runs through the team today: creating work that’s thoughtful and well designed.";
 
 export const teamMembers = [
   {
@@ -230,275 +348,307 @@ export const teamMembers = [
 export const serviceDisciplines = [
   {
     id: "web-ecommerce",
-    icon: Palette,
+    triggerIcon: "/images/home/web-ecommerce-icon.svg",
     title: "Web & Ecommerce",
     categories: ["Websites", "Ecommerce", "Custom Apps"],
-    iconClassName: "text-blue",
-    dotClassName: "bg-blue",
+    iconClassName: "text-[#49B277]",
+    dotClassName: "bg-[#49B277]",
+    bgClassName: "bg-[#49B277]/10",
+    ctaHoverClassName: "hover:bg-[#49B277]",
     detail: {
       highlights: [
-        {
-          id: "web-ecommerce-payments",
-          icon: Clock,
-          text: "Staged payments available",
-        },
-        {
-          id: "web-ecommerce-warranty",
-          icon: Users,
-          text: "3-month warranty on applicable builds",
-        },
+        { id: "web-ecommerce-payments", text: "Staged payments" },
+        { id: "web-ecommerce-guarantee", text: "3-month guarantee" },
       ],
-      title: "Websites, stores and apps built to perform.",
+      title: "Websites, stores and apps built to sell.",
       subtitle:
-        "From focused business websites to ecommerce platforms and bespoke applications, we design and build around your customers, goals and systems 0 not a favourite template or technology.",
+        "From business websites to online stores and custom software, we design and build around your customers, goals and systems. Not a favourite template or technology.",
       features: [
-        "Webdesign & Development",
-        "Wordpress",
-        "Custom App Development",
-        "Shopify",
+        "Web Design",
+        "WordPress",
         "Ecommerce",
+        "WooCommerce",
+        "Shopify",
+        "Custom Software",
       ],
       pricing: [
-        { id: "web-ecommerce-web", label: "Web from", price: "£1,500" },
+        { id: "web-ecommerce-web", label: "Websites from", price: "£1,500" },
         {
-          id: "web-ecommerce-ecommerce",
-          label: "Ecommerce from",
+          id: "web-ecommerce-stores",
+          label: "Stores from",
           price: "£3,500",
         },
         { id: "web-ecommerce-apps", label: "Apps from", price: "£5,000" },
       ],
-      cta: { label: "explore web & ecommerce", href: "/contact" },
+      cta: { label: "Explore Web & Ecommerce", href: "/contact" },
     },
     featured: {
-      image: "/images/home/casa-work-img.jpg",
-      imageAlt: "Web & Ecommerce project",
+      image: "/images/home/peter-jones-foundation-service-img.png",
+      imageAlt: "Tycoon project",
       width: 440,
       height: 536,
       label: "Featured project",
-      title: "Casa botanica Panama",
-      categories: ["Web Design", "Wordpress"],
-      href: "/work/web-design-project",
+      title: "Tycoon",
+      categories: ["Web Design", "WordPress"],
+      href: "/work/tycoon",
     },
   },
   {
     id: "brand-experience",
-    icon: LayoutDashboard,
+    triggerIcon: "/images/home/brand-experience-icon.svg",
     title: "Brand & Experience",
     categories: ["Branding", "UI/UX Design", "Digital Identity"],
-    iconClassName: "text-dark-pink",
-    dotClassName: "bg-dark-pink",
+    iconClassName: "text-[#3078FF]",
+    dotClassName: "bg-[#3078FF]",
+    bgClassName: "bg-[#3078FF]/10",
+    ctaHoverClassName: "hover:bg-[#3078FF]",
     detail: {
       highlights: [
         {
           id: "brand-experience-direction",
-          icon: Clock,
-          text: "Direction approved before the full build",
+          text: "You approve the direction first",
         },
+        { id: "brand-experience-files", text: "You own every file" },
       ],
-      title: "Brands that look the part and work everywhere.",
+      title: "Brands and journeys people trust.",
       subtitle:
-        "Identity systems, interfaces and the small details in between. We design for how a brand behaves on a screen, in print and in the hands of the people who use it every day.",
+        "We shape how your business looks, sounds and works on screen, from a brand refresh to a full redesign of your site or app. So people get it quickly and want to buy.",
       features: [
-        "Branding",
-        "UI/UX Design",
-        "Digital Identity",
-        "Design systems",
+        "Brand refresh",
+        "Full brand identity",
+        "UI/UX redesign",
+        "Wireframes and prototypes",
+        "Monthly design support",
       ],
       pricing: [
         {
           id: "brand-experience-branding",
           label: "Branding from",
-          price: "From £1,000",
+          price: "£1,000",
+        },
+        {
+          id: "brand-experience-identity",
+          label: "Full identity from",
+          price: "£2,500",
         },
         {
           id: "brand-experience-uiux",
           label: "UI/UX from",
-          price: "From £1,500",
+          price: "£1,500",
         },
       ],
       cta: { label: "Explore Brand & Experience", href: "/contact" },
     },
     featured: {
-      image: "/images/home/ndifo-work-img.jpg",
-      imageAlt: "Brand Experience Project",
+      image: "/images/home/sunbox-service-img.png",
+      imageAlt: "Sunbox Campers project",
       width: 440,
       height: 536,
-      label: "Featured work",
-      title: "Ndifo Safari",
-      categories: ["Brand", "UI/UX"],
-      href: "/work/web-design-project",
+      label: "Featured project",
+      title: "Sunbox Campers",
+      categories: ["Wordpress"],
+      href: "/work/sunbox-campers",
     },
   },
   {
     id: "growth-performance",
-    icon: Code2,
+    triggerIcon: "/images/home/growth-performance-icon.svg",
     title: "Growth & Performance",
     categories: ["CRO", "SEO", "Paid Media", "Support"],
-    iconClassName: "text-orange",
-    dotClassName: "bg-orange",
+    iconClassName: "text-[#EC3593]",
+    dotClassName: "bg-[#EC3593]",
+    bgClassName: "bg-[#EC3593]/10",
+    ctaHoverClassName: "hover:bg-[#EC3593]",
     detail: {
       highlights: [
+        { id: "growth-performance-monthly", text: "Rolling monthly" },
         {
           id: "growth-performance-contracts",
-          icon: Clock,
-          text: "Monthly, no long contracts",
+          text: "No lock-in contracts",
         },
       ],
-      title: "More of the right traffic, and more of it converting.",
+      title: "More visitors. More of them buying.",
       subtitle:
-        "We measure before we start, so you know what 'working' looks like. Then we improve search visibility, paid campaigns and the journeys people take once they land.",
-      features: [
-        "Conversion rate optimisation",
-        "SEO",
-        "Paid media",
-        "Growth & support",
-      ],
+        "We help the right people find you, turn more of them into customers, and keep your site fast, safe and up to date. Measured against a baseline we agree at the start.",
+      features: ["SEO", "CRO", "Growth & Support", "Paid Media"],
       pricing: [
         {
-          id: "growth-performance-ongoing",
-          label: "Ongoing growth",
-          price: "From £300/month",
+          id: "growth-performance-seo",
+          label: "SEO from",
+          price: "£500",
+          suffix: "a month",
+        },
+        {
+          id: "growth-performance-cro",
+          label: "CRO review from",
+          price: "£750",
+        },
+        {
+          id: "growth-performance-support",
+          label: "Support from",
+          price: "£300",
+          suffix: "a month",
         },
       ],
       cta: { label: "Explore Growth & Performance", href: "/contact" },
     },
     featured: {
-      image: "/images/home/fultons-work-img.jpg",
-      imageAlt: "Growth & Performance project",
+      image: "/images/home/drive-uk-service-img.png",
+      imageAlt: "Drive Uk project",
       width: 440,
       height: 536,
-      label: "Featured work",
-      title: "Fultons Jewellery",
-      categories: ["Ecommerce", "Growth"],
-      href: "/work/development-project",
+      label: "Featured project",
+      title: "Drive Uk",
+      categories: ["Wordpress"],
+      href: "/work/drive-uk",
     },
   },
   {
-    id: "seo",
-    icon: TrendingUp,
+    id: "ai-automation",
+    triggerIcon: "/images/home/ai-automation-icon.svg",
     title: "AI & Automation",
     categories: ["AI Agents", "Integration", "Workflows"],
-    iconClassName: "text-blue",
-    dotClassName: "bg-blue",
+    iconClassName: "text-[#EC9122]",
+    dotClassName: "bg-[#EC9122]",
+    bgClassName: "bg-[#EC9122]/10",
+    ctaHoverClassName: "hover:bg-[#EC9122]",
     detail: {
       highlights: [
-        {
-          id: "seo-timeline",
-          icon: Clock,
-          text: "3-month warranty on automation builds",
-        },
+        { id: "ai-automation-workflow", text: "Start with one workflow" },
+        { id: "ai-automation-live", text: "Live in 2 to 4 weeks" },
       ],
-      title: "Take the manual work off your team.",
+      title: "Less admin. Fewer mistakes.",
       subtitle:
-        "Two hundred reports used to take three days at Biome4Pets. They now take one. We connect the tools you already use and build the agents and workflows that do the repetitive parts.",
+        "We automate the repetitive work your team does every week, from leads and invoices to reports, and connect the tools you already use. We start with one workflow, so you see results before spending more.",
       features: [
-        "AI agents",
-        "System integration",
         "Workflow automation",
-        "Reporting pipelines",
+        "AI agents and assistants",
+        "System integrations",
+        "Custom software",
       ],
       pricing: [
         {
-          id: "seo-starter",
-          label: "Focused automation",
-          price: "From £1,500",
+          id: "ai-automation-first",
+          label: "First automation from",
+          price: "£1,500",
+        },
+        {
+          id: "ai-automation-apps",
+          label: "Custom apps from",
+          price: "£5,000",
+        },
+        {
+          id: "ai-automation-support",
+          label: "Ongoing support from",
+          price: "£300",
+          suffix: "a month",
         },
       ],
       cta: { label: "Explore AI & Automation", href: "/contact" },
     },
     featured: {
-      image: "/images/home/ivy-work-img.jpg",
-      imageAlt: "AI & Automation project",
+      image: "/images/home/smokey-carter-service-img.png",
+      imageAlt: "Smokey Carter project",
       width: 440,
       height: 536,
-      label: "Featured work",
-      title: "Ivy & Duke",
-      categories: ["Ecommerce", "Automation"],
-      href: "/work/seo-project",
+      label: "Featured project",
+      title: "Smokey Carter",
+      categories: ["Woocommerce"],
+      href: "/work/smokey-carter",
     },
   },
 ];
 
-export const expertiseCards = [
+export const whoWeHelpCards = [
   {
     id: "sme-founders",
-    icon: Rocket,
-    title: "SME Founders",
-    description:
-      "Grow your business with a website that converts visitors into loyal customers.",
+    icon: "/images/home/sme-founders-icon.svg",
+    iconWidth: 59,
+    iconHeight: 59,
+    title: (
+      <>
+        SME <br /> Founders
+      </>
+    ),
+    description: "A website that brings in enquiries, not just compliments.",
     hoverClassName: "hover:bg-orange active:bg-orange",
   },
   {
     id: "ecommerce-brands",
-    icon: TrendingUp,
-    title: "Ecommerce brands",
-    description:
-      "Scale sales with high-performance online stores built on Shopify or Woo.",
+    icon: "/images/home/ecommerce-brands-icon.svg",
+    iconWidth: 53,
+    iconHeight: 60,
+    title: (
+      <>
+        Ecommerce <br /> brands
+      </>
+    ),
+    description: "Shopify and WooCommerce stores built around the checkout.",
     hoverClassName: "hover:bg-dark-pink active:bg-dark-pink",
   },
   {
     id: "non-profit-charity",
-    icon: ShoppingBag,
-    title: "Non-profit & Charity",
-    description:
-      "Connect with your community through accessible, impactful digital experiences.",
+    icon: "/images/home/non-profits-icon.svg",
+    iconWidth: 59,
+    iconHeight: 51,
+    title: (
+      <>
+        Non-profit <br /> and charity
+      </>
+    ),
+    description: "Accessible sites and campaigns that help you raise more.",
     hoverClassName: "hover:bg-blue active:bg-blue",
   },
   {
     id: "b2b-services",
-    icon: Building2,
-    title: "B2B Services",
-    description:
-      "Generate qualified leads and build trust with a strategic web presence.",
+    icon: "/images/home/b2b-services-icon.svg",
+    iconWidth: 48,
+    iconHeight: 54,
+    title: (
+      <>
+        B2B <br /> services
+      </>
+    ),
+    description: "Sites that turn expertise into qualified leads.",
     hoverClassName: "hover:bg-orange active:bg-orange",
-  },
-  {
-    id: "agencies",
-    icon: Building2,
-    title: "Agencies",
-    description:
-      "White-label development and design fulfillment you can trust.",
-    hoverClassName: "hover:bg-dark-pink active:bg-dark-pink",
-  },
-  {
-    id: "startups-saas",
-    icon: Building2,
-    title: "Startups & SaaS",
-    description:
-      "Modern tech stacks (React, Headless) for rapid growth and scalability.",
-    hoverClassName: "hover:bg-blue active:bg-blue",
   },
 ];
 
-export const guarantees = [
+export const howWeWorkItems = [
   {
-    id: "fixed-scope",
-    title: "Fixed scope and price before we start",
+    id: "fixed-price",
+    title: "Fixed price before we start",
     description:
-      "No open-ended hourly billing. If the scope changes, we test you first.",
-  },
-  {
-    id: "post-launch-support",
-    title: "3 months post-launch support",
-    description: "We stay around to make sure everything runs smoothly.",
+      "No open-ended hourly billing. If the scope changes, we tell you first.",
   },
   {
     id: "ownership",
-    title: "You own the code, files and accounts",
-    description: "No lock-ins. It's all yours, always.",
+    title: "You own everything",
+    description: "Code, files and accounts. No lock-in.",
+  },
+  {
+    id: "honest-fit",
+    title: "We'll tell you if it's not a fit",
+    description: "Even if that means pointing you somewhere else.",
+  },
+  {
+    id: "guarantee",
+    title: "3-month guarantee",
+    description:
+      "Anything not right is fixed free. Then monthly plans if you want them.",
   },
 ];
 
-export const guaranteeCaseStudy = {
-  image: "/images/home/unicef-thumbnail-img.jpg",
+export const howWeWorkCaseStudy = {
+  image: "/images/home/unicef-how-we-work-img.jpg",
   imageAlt: "Unicef fundraising campaign",
-  logo: "/images/home/unicef-logo.png",
+  logo: "/images/home/unicef-how-we-work-logo.png",
   logoAlt: "Unicef",
   logoWidth: 123,
   logoHeight: 29,
   title: "£478k",
   subtitle: "raised at one event",
-  ctaLabel: "View case study",
+  ctaLabel: "View Case Study",
   href: "/work/unicef",
 };
 
@@ -588,6 +738,45 @@ export const workProjects = [
   },
 ];
 
+export const homeWorkProjects = [
+  {
+    id: "peter-jones-foundation",
+    image: "/images/home/peter-jones-foundation-work.png",
+    imageAlt: "Peter Jones Foundation Tycoon website on a laptop",
+    tag: "WordPress",
+    title: "Website redesign for the Tycoon enterprise programme",
+    ctaLabel: "Case study",
+    href: "/work/peter-jones-foundation",
+  },
+  {
+    id: "casabotanica",
+    image: "/images/home/casabotanica-work-img.png",
+    imageAlt: "Casa Botanica villa website on a laptop",
+    tag: "WordPress",
+    title: "Boutique villa website with a custom booking system",
+    ctaLabel: "Case study",
+    href: "/work/casabotanica",
+  },
+  {
+    id: "sunbox",
+    image: "/images/home/sunbox-work-img.png",
+    imageAlt: "Campervan Converters in Sussex website on a laptop",
+    tag: "WordPress",
+    title: "Campervan conversion website, with lead tracking into HubSpot",
+    ctaLabel: "Case study",
+    href: "/work/sunbox",
+  },
+  {
+    id: "smokey-carter",
+    image: "/images/home/smokey-carter-work-img.png",
+    imageAlt: "Smokey Carter BBQ store website on a monitor",
+    tag: "WordPress",
+    title: "Complete Website Redesign for BBQ Rubs and Sauces Store",
+    ctaLabel: "Case study",
+    href: "/work/smokey-carter",
+  },
+];
+
 export const consultationBenefits = [
   {
     id: "duration",
@@ -618,11 +807,11 @@ export const consultationBenefits = [
 export const testimonials = [
   {
     id: "loop",
-    avatar: "/images/home/loop-client-avatar.png",
-    logo: "/images/home/loop-client-logo.png",
+    avatar: "/images/home/loop-testimonials-avatar.png",
+    logo: "/images/home/loop-testimonials-logo.png",
     logoAlt: "Loop",
-    logoWidth: 47,
-    logoHeight: 23,
+    logoWidth: 192,
+    logoHeight: 93,
     quote:
       "CreativePixels did an incredible job helping us to create branding material from scratch. They were extremely flexible, and exceeded our expectations.",
     name: "Alex",
@@ -631,11 +820,11 @@ export const testimonials = [
   },
   {
     id: "ayoa",
-    avatar: "/images/home/ayoa-client-avatar.png",
-    logo: "/images/home/ayoa-client-logo.png",
+    avatar: "/images/home/ayoa-testimonials-avatar.png",
+    logo: "/images/home/ayoa-testimonials-logo.png",
     logoAlt: "Ayoa",
-    logoWidth: 68,
-    logoHeight: 20,
+    logoWidth: 276,
+    logoHeight: 83,
     quote:
       "I would highly recommend CreativePixels, they were excellent throughout the process of designing and developing our new website.",
     name: "James Brian",
@@ -643,25 +832,12 @@ export const testimonials = [
     rating: 5,
   },
   {
-    id: "alert-forces",
-    avatar: "/images/home/loop-client-avatar.png",
-    logo: "/images/home/loop-client-logo.png",
-    logoAlt: "Alert Force",
-    logoWidth: 47,
-    logoHeight: 23,
-    quote:
-      "CreativePixels are a real professional and an absolute pleasure to work with.",
-    name: "Brendan Torazzi",
-    role: "Alert Force, Founder",
-    rating: 5,
-  },
-  {
     id: "alert-force",
-    avatar: "/images/home/loop-client-avatar.png",
-    logo: "/images/home/loop-client-logo.png",
+    avatar: "/images/home/alertforce-testimonials-avatar.png",
+    logo: "/images/home/loop-testimonials-logo.png",
     logoAlt: "Alert Force",
-    logoWidth: 47,
-    logoHeight: 23,
+    logoWidth: 192,
+    logoHeight: 93,
     quote:
       "CreativePixels are a real professional and an absolute pleasure to work with.",
     name: "Brendan Torazzi",
@@ -769,28 +945,32 @@ export const faqs = [
 
 export const socialLinks = [
   {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://facebook.com",
+    icon: "/icons/fb-icon.svg",
+    hoverClassName: "hover:bg-[#1877F2]",
+  },
+  {
     id: "instagram",
     label: "Instagram",
     href: "https://instagram.com",
     icon: "/icons/ig-icon.svg",
+    hoverClassName: "hover:bg-[#E1306C]",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     href: "https://linkedin.com",
     icon: "/icons/linkedin-icon.svg",
+    hoverClassName: "hover:bg-[#0A66C2]",
   },
   {
     id: "x",
-    label: "X",
+    label: "Twitter",
     href: "https://x.com",
     icon: "/icons/x-icon.svg",
-  },
-  {
-    id: "facebook",
-    label: "Facebook",
-    href: "https://facebook.com",
-    icon: "/icons/fb-icon.svg",
+    hoverClassName: "hover:bg-[#1DA1F2]",
   },
 ];
 
@@ -799,24 +979,24 @@ export const ourBrands = [
     id: "creative-hosting",
     src: "/images/common/creative-hosting-logo.png",
     alt: "Creative Hosting",
-    width: 54,
-    height: 25,
+    width: 71,
+    height: 33,
     href: "https://example.com",
   },
   {
     id: "wp-fixed",
     src: "/images/common/wp-fixed-logo.png",
     alt: "WP Fixed",
-    width: 60,
-    height: 25,
+    width: 87,
+    height: 36,
     href: "https://example.com",
   },
   {
     id: "monthly-designs",
     src: "/images/common/monthly-designs-logo.png",
     alt: "Monthly Designs",
-    width: 88,
-    height: 15,
+    width: 122,
+    height: 21,
     href: "https://example.com",
   },
 ];

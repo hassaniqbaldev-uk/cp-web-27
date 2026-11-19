@@ -1,112 +1,183 @@
-import { ourBrands, socialLinks } from "@/config/common";
-import { MoveRight } from "lucide-react";
+import { contactLinks, ourBrands, socialLinks } from "@/config/common";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import FooterNav from "./FooterNav";
+import Button from "../ui/Button";
+import ContactForm from "../ui/ContactForm";
 import { Container } from "../ui/Container";
+import SectionHeading from "../ui/SectionHeading";
 
 const Footer = () => {
   return (
-    <footer className="bg-black">
-      <Container>
-        <span className="block h-px w-full bg-white/50" />
+    <footer className="relative overflow-hidden bg-black">
+      <Image
+        src="/images/common/gradient-bg-footer.png"
+        alt=""
+        fill
+        className="pointer-events-none z-0 object-cover object-top"
+      />
 
-        <div className="mt-[80px] flex justify-between gap-[45px]">
-          <div className="flex w-[330px] flex-col items-start">
-            <Link href="/">
-              <Image
-                src="/images/common/cp-logo-with-text.svg"
-                alt=""
-                width={171}
-                height={65}
-                className="h-auto"
-              />
-            </Link>
-
-            <Link
-              href="/contact"
-              className="gradient-border mt-[45px] flex w-full items-center gap-[20px] rounded-[20px] bg-white/20 px-[30px] py-[20px] pr-[25px] backdrop-blur-[10px] [--gradient-border-image:linear-gradient(148.35deg,rgba(255,255,255,0)_11.97%,rgba(255,255,255,0.5)_39.82%,rgba(255,255,255,0)_59.85%)] [--gradient-border-width:1.24px]"
-            >
-              <Image
-                src="/images/home/hassan-avatar-img-2.png"
-                alt=""
-                width={65}
-                height={65}
-                className="size-[65px] shrink-0 rounded-full object-cover"
-              />
-
-              <span className="flex flex-col items-start">
-                <span className="text-[22px] font-extrabold tracking-[-0.02em] text-white">
-                  Book a 15 Min Call
-                </span>
-
-                <span className="flex gap-[10px] text-[16px] tracking-[-0.02em] text-white">
-                  with Hassan
-                  <MoveRight
-                    size={14}
-                    strokeWidth={2}
-                    className="relative top-[7px] shrink-0"
-                  />
-                </span>
+      <Container className="relative z-10 pt-[120px] pb-[150px]">
+        <SectionHeading
+          className="text-center"
+          title={
+            <>
+              <span className="mr-[-0.06em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.06em] text-transparent">
+                Got something
               </span>
-            </Link>
+              <br />
+              you need to build, fix or grow?
+            </>
+          }
+          titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
+          subtitle="Tell us what you're trying to achieve. We'll tell you the best way forward, even if it's not with us."
+          subtitleClassName="mt-[20px] text-[16px] tracking-[-0.02em] text-white"
+        />
 
-            <ul className="mt-[30px] flex items-center gap-[10px]">
-              {socialLinks.map(({ id, href, icon }) => (
+        <div className="mt-[45px] flex items-stretch justify-center gap-[30px]">
+          <div className="w-[740px] rounded-[20px] bg-white p-[45px]">
+            <ContactForm />
+          </div>
+
+          <div className="gradient-border flex w-[430px] flex-col items-start rounded-[20px] bg-white/20 p-[45px] backdrop-blur-[10px] [--gradient-border-image:linear-gradient(148.35deg,rgba(255,255,255,0)_11.97%,rgba(255,255,255,0.5)_39.82%,rgba(255,255,255,0)_59.85%)] [--gradient-border-width:1.24px]">
+            <div className="flex items-center">
+              <Image
+                src="/images/home/hassan-contact-avatar.png"
+                alt="Hassan, founder of Creative Pixels"
+                width={384}
+                height={384}
+                className="relative z-10 size-[130px] shrink-0 rounded-full object-cover"
+              />
+
+              <span className="-ml-[20px] flex size-[130px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)]">
+                <Image
+                  src="/images/home/calender-icon.svg"
+                  alt=""
+                  width={62}
+                  height={70}
+                />
+              </span>
+            </div>
+
+            <p className="mt-[30px] text-[18px] tracking-[-0.02em] text-white">
+              Prefer to talk?
+            </p>
+
+            <p className="mt-[10px] text-[35px] leading-[40px] font-bold tracking-[-0.06em] text-white">
+              Book a 15-min call with Hassan.
+            </p>
+
+            <Button
+              href="/contact"
+              className="mt-[30px] w-full rounded-[60px] bg-white px-[20px] py-[15px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase"
+            >
+              Book a 15-min call
+            </Button>
+
+            <span className="my-[30px] block h-px w-full bg-white/30" />
+
+            <ul className="flex w-full flex-col gap-[20px]">
+              {contactLinks
+                .filter(({ id }) => id !== "schedule")
+                .map(({ id, icon: Icon, label, href }) => (
+                  <li key={id}>
+                    <Link
+                      href={href}
+                      className="flex items-center justify-between gap-[20px] text-white"
+                    >
+                      <span className="flex items-center gap-[15px]">
+                        <Icon size={22} strokeWidth={2} className="shrink-0" />
+
+                        <span className="text-[20px] tracking-[-0.02em]">
+                          {label}
+                        </span>
+                      </span>
+
+                      <ArrowUpRight
+                        size={26}
+                        strokeWidth={2.5}
+                        className="shrink-0"
+                      />
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+
+      <div className="relative z-10 mx-[15px] mb-[15px] rounded-[30px] bg-white/15 backdrop-blur-[20px]">
+        <Container className="relative pt-[110px] pb-[45px]">
+          <Link href="/" className="absolute top-[-50px] left-0">
+            <Image
+              src="/images/common/cp-3d-logo-footer.png"
+              alt="CreativePixels"
+              width={152}
+              height={165}
+              className="h-[165px] w-auto"
+            />
+          </Link>
+
+          <div className="flex items-end justify-between gap-[45px]">
+            <ul className="flex flex-col gap-[20px]">
+              {contactLinks.map(({ id, icon: Icon, label, href }) => (
                 <li key={id}>
                   <Link
                     href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group bg-grey/30 flex size-[47px] items-center justify-center rounded-full transition-colors duration-300 hover:bg-white"
+                    className="flex items-center gap-[15px] text-white"
                   >
-                    <span
-                      style={{
-                        maskImage: `url(${icon})`,
-                        WebkitMaskImage: `url(${icon})`,
-                      }}
-                      className="size-[16px] bg-white mask-contain mask-center mask-no-repeat transition-colors duration-300 group-hover:bg-black"
-                    />
+                    <Icon size={28} strokeWidth={2} className="shrink-0" />
+
+                    <span className="text-[35px] tracking-[-0.05em]">
+                      {label}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
+
+            <FooterNav />
           </div>
 
-          <FooterNav />
-        </div>
+          <ul className="mt-[100px] grid grid-cols-4">
+            {socialLinks.map(({ id, label, href, hoverClassName }) => (
+              <li key={id}>
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 ${hoverClassName}`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <span className="mt-[80px] block h-px w-full bg-white/50" />
-
-        <div className="mt-[45px] flex items-center justify-between gap-[45px] pb-[30px]">
-          <p className="flex items-center gap-[30px] text-[16px] tracking-[-0.02em] text-white">
-            2026 &copy; CP Agency Ltd.
-            <span className="text-white">|</span>
-            Trading as CreativePixels.
-          </p>
-
-          <div className="flex items-center gap-[20px]">
-            <p className="text-[16px] font-bold tracking-[-0.02em] text-white">
-              Our Brands:
+          <div className="mt-[40px] flex items-center justify-between gap-[45px]">
+            <p className="flex items-center gap-[20px] text-[16px] tracking-[-0.02em] text-white">
+              2026 &copy; CP Agency Ltd.
+              <span>|</span>
+              Trading as CreativePixels.
             </p>
 
-            <ul className="flex gap-[10px]">
-              {ourBrands.map(({ id, src, alt, width, height, href }) => (
-                <li key={id}>
-                  <Link
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-grey/30 flex h-full items-center rounded-full px-[20px] py-[10px]"
-                  >
+            <ul className="flex items-center">
+              {ourBrands.map(({ id, src, alt, width, height, href }, index) => (
+                <li key={id} className="flex items-center">
+                  {index > 0 && (
+                    <span className="mx-[20px] h-[35px] w-px bg-white/20" />
+                  )}
+
+                  <Link href={href} target="_blank" rel="noopener noreferrer">
                     <Image src={src} alt={alt} width={width} height={height} />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </footer>
   );
 };

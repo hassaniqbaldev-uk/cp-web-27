@@ -1,31 +1,29 @@
 import About from "@/components/sections/About";
-import BookCall from "@/components/sections/BookCall";
-import Consultation from "@/components/sections/Consultation";
-import Contact from "@/components/sections/Contact";
-import Expertise from "@/components/sections/Expertise";
+import Brands from "@/components/sections/Brands";
+import CaseStudy from "@/components/sections/CaseStudy";
 import Faqs from "@/components/sections/Faqs";
-import Guarantees from "@/components/sections/Guarantees";
 import Hero from "@/components/sections/Hero";
+import HowWeWork from "@/components/sections/HowWeWork";
 import Process from "@/components/sections/Process";
 import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
+import WhoWeHelp from "@/components/sections/WhoWeHelp";
 import Work from "@/components/sections/Work";
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <About />
+      <Brands />
       <Services />
-      <Expertise />
-      <Guarantees />
+      <CaseStudy />
+      <HowWeWork />
       <Process />
+      <WhoWeHelp />
+      <About />
       <Work />
-      <Consultation />
       <Testimonials />
-      <Contact />
       <Faqs />
-      <BookCall />
     </>
   );
 };

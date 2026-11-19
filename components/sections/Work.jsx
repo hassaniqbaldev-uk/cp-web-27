@@ -1,4 +1,4 @@
-import { workProjects } from "@/config/common";
+import { homeWorkProjects } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Button from "../ui/Button";
@@ -12,58 +12,56 @@ const Work = () => {
     <>
       <Section id="work" className="py-[120px]">
         <Container>
-          <div className="relative flex justify-center gap-[20px] text-center">
-            <CircularTextButton
-              href="/work"
-              image="/images/home/circular-text-projects.png"
-              imageWidth={431}
-              imageHeight={412}
-              className="size-[140px]"
-              ringClassName="h-auto w-full"
-            >
-              <ArrowUpRight
-                size={28}
-                strokeWidth={2.5}
-                className="text-black"
-              />
-            </CircularTextButton>
-
+          <div className="relative flex justify-center text-center">
             <SectionHeading
-              label="OUR WORK"
-              title="Digital done right"
-              labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-[85px] leading-[90px] mt-[10px] font-extrabold tracking-[-0.07em] text-black"
+              title="Work with a job to do"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
             />
+
+            <div className="absolute top-[-70px] right-[190px]">
+              <CircularTextButton
+                href="/work"
+                image="/images/home/circular-text-projects.png"
+                imageWidth={113}
+                imageHeight={113}
+                className="size-[112px]"
+                ringClassName="h-auto w-full"
+              >
+                <ArrowUpRight
+                  size={28}
+                  strokeWidth={2.5}
+                  className="text-black"
+                />
+              </CircularTextButton>
+            </div>
           </div>
 
           <ul className="mt-[80px] grid grid-cols-2 items-start gap-[30px]">
-            {workProjects.map(
-              ({ id, image, imageAlt, title, subtitle, ctaLabel, href }) => (
-                <li key={id} className="overflow-hidden even:mt-[30px]">
-                  <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[20px]">
+            {homeWorkProjects.map(
+              ({ id, image, imageAlt, tag, title, ctaLabel, href }) => (
+                <li key={id} className="overflow-hidden even:mt-[45px]">
+                  <div className="relative aspect-[585/383] w-full overflow-hidden rounded-[20px]">
                     <Image
                       src={image}
                       alt={imageAlt}
                       fill
-                      sizes="580px"
+                      sizes="585px"
                       className="object-cover"
                     />
+
+                    <span className="absolute bottom-[15px] left-[15px] rounded-[60px] bg-white/20 px-[15px] py-[6px] text-[12px] font-semibold tracking-[-0.02em] text-white uppercase backdrop-blur-[20px]">
+                      {tag}
+                    </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-[20px] pt-[20px]">
-                    <div>
-                      <h3 className="text-[35px] font-bold tracking-[-0.07em] text-black">
-                        {title}
-                      </h3>
-
-                      <p className="text-text-body text-[16px] font-medium tracking-[-0.02em]">
-                        {subtitle}
-                      </p>
-                    </div>
+                    <h3 className="max-w-[360px] text-[25px] leading-[31px] font-bold tracking-[-0.05em] text-black">
+                      {title}
+                    </h3>
 
                     <Button
                       href={href}
-                      className="bg-grey shrink-0 rounded-[60px] px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 hover:bg-black hover:text-white"
+                      className="shrink-0 rounded-[60px] bg-black px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-white uppercase"
                     >
                       {ctaLabel}
                     </Button>

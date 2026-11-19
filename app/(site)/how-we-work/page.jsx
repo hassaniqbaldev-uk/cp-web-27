@@ -11,7 +11,6 @@ const HowWeWork = () => {
       <HowWeWorkCards />
       <Faqs
         id="how-we-work-faqs"
-        label="Process questions"
         title={
           <>
             Before you ask.{" "}

@@ -30,7 +30,6 @@ const PartnerWithUs = () => {
       />
       <Faqs
         id="partner-faqs"
-        label="Agency questions"
         title={
           <>
             Working with us.{" "}

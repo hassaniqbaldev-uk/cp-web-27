@@ -21,7 +21,6 @@ const Consultation = () => {
           <div className="flex items-center justify-between gap-[45px]">
             <div className="flex w-[650px] flex-col items-start">
               <SectionHeading
-                label="Book your September slot"
                 title={
                   <>
                     <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
@@ -33,8 +32,7 @@ const Consultation = () => {
                   </>
                 }
                 subtitle="Tell us what you're trying to achieve and we'll help you figure out the best way forward."
-                labelClassName="text-[22px] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName="text-[85px] mt-[10px] mb-[30px] leading-[85px] font-extrabold tracking-[-0.07em] text-white"
+                titleClassName="text-[65px] mt-[10px] mb-[30px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
                 subtitleClassName="text-[18px] text-white max-w-[380px] leading-[28px] tracking-[-0.02em]"
               />
 

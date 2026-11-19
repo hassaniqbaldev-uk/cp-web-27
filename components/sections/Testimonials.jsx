@@ -1,12 +1,13 @@
 "use client";
 
 import { testimonials } from "@/config/common";
-import { Play, Star } from "lucide-react";
+import { Play, Quote, Star } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -24,22 +25,51 @@ const Testimonials = () => {
 
   return (
     <>
-      <Section id="testimonials" className="overflow-hidden py-[120px]">
-        <Container>
+      <Section
+        id="testimonials"
+        className="relative overflow-hidden py-[120px]"
+      >
+        <Image
+          src="/images/home/gradient-bg-testimonials.png"
+          alt=""
+          fill
+          className="pointer-events-none z-0 object-cover"
+        />
+
+        <Container className="relative z-10 flex flex-col items-center">
           <SectionHeading
-            label="Testimonials"
-            title={
-              <>
-                250+ Clients. <br />
-                <span className="text-text-body/50">Built on Great Work.</span>
-              </>
-            }
-            labelClassName="text-[22px] text-center font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-[85px] mt-[10px] text-center leading-[90px] font-extrabold tracking-[-0.07em] text-black"
+            title="What clients say"
+            titleClassName="text-[65px] text-center leading-[65px] font-extrabold tracking-[-0.06em] text-black"
           />
+
+          <div className="mt-[20px] flex items-center gap-[15px]">
+            <Image
+              src="/images/home/clutch-testimonials-logo.png"
+              alt="Clutch"
+              width={369}
+              height={111}
+              className="h-[25px] w-auto"
+            />
+
+            <span className="bg-text-body/30 h-[20px] w-px" />
+
+            <span className="flex">
+              {Array.from({ length: 5 }, (_, index) => (
+                <Star
+                  key={index}
+                  size={14}
+                  className="fill-[#EF4335] text-[#EF4335]"
+                />
+              ))}
+            </span>
+
+            <span className="text-[14px] font-medium tracking-[-0.02em] text-black underline underline-offset-[3px]">
+              4.9/5 from 120+ Clients
+            </span>
+          </div>
         </Container>
 
-        <div className="mt-[80px] ml-[max(0px,calc((100%-1200px)/2))] flex items-stretch gap-[30px]">
+        <div className="relative z-10 mt-[60px] ml-[max(0px,calc((100%-1200px)/2))] flex items-stretch gap-[30px]">
           <div className="relative w-[370px] shrink-0 overflow-hidden rounded-[20px]">
             <video
               ref={videoRef}
@@ -78,12 +108,11 @@ const Testimonials = () => {
             )}
           </div>
 
-          <div className="relative mr-[30px] min-w-0 flex-1">
+          <div className="relative min-w-0 flex-1">
             <div className="h-full">
               <Swiper
                 slidesPerView="auto"
-                spaceBetween={30}
-                loop
+                spaceBetween={15}
                 centeredSlides
                 breakpoints={{ 426: { centeredSlides: false } }}
                 className="h-full"
@@ -102,7 +131,7 @@ const Testimonials = () => {
                     rating,
                   }) => (
                     <SwiperSlide key={id} className="h-auto! w-[370px]!">
-                      <figure className="bg-grey/40 flex h-full flex-col rounded-[20px] p-[30px]">
+                      <figure className="flex h-full flex-col rounded-[20px] bg-white p-[30px]">
                         <div className="flex items-center justify-between gap-[20px]">
                           <Image
                             src={avatar}
@@ -123,15 +152,14 @@ const Testimonials = () => {
                           </span>
                         </div>
 
-                        <Image
-                          src="/icons/quote-icon.svg"
-                          alt=""
-                          width={36}
-                          height={27}
-                          className="mt-[30px]"
+                        <Quote
+                          size={30}
+                          strokeWidth={1.5}
+                          aria-hidden="true"
+                          className="fill-blue text-blue mt-[30px] shrink-0 rotate-180"
                         />
 
-                        <blockquote className="text-text-body mt-[20px] text-[16px] leading-[26px] tracking-[-0.02em]">
+                        <blockquote className="text-text-body mt-[20px] text-[22px] leading-[30px] tracking-[-0.02em]">
                           {quote}
                         </blockquote>
 
@@ -154,14 +182,14 @@ const Testimonials = () => {
                                   size={12}
                                   className={
                                     index < Math.round(rating)
-                                      ? "fill-orange text-orange"
+                                      ? "fill-[#FF3D2E] text-[#FF3D2E]"
                                       : "text-text-body/30"
                                   }
                                 />
                               ))}
                             </span>
 
-                            <p className="text-orange text-[14px] tracking-[-0.02em]">
+                            <p className="text-[14px] tracking-[-0.02em] text-[#FF3D2E]">
                               {rating.toFixed(1)} Rating
                             </p>
                           </div>
@@ -173,11 +201,39 @@ const Testimonials = () => {
               </Swiper>
             </div>
 
-            <span className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[60px] bg-linear-to-r from-white to-transparent" />
+            {/* <span className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[60px] bg-linear-to-r from-white to-transparent" />
 
-            <span className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[60px] bg-linear-to-l from-white to-transparent" />
+            <span className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[60px] bg-linear-to-l from-white to-transparent" /> */}
           </div>
         </div>
+
+        <Container className="relative z-10 mt-[50px]">
+          <div className="bg-blue relative flex items-center justify-between gap-[30px] rounded-[20px] px-[50px] py-[30px]">
+            <div className="flex items-center gap-[30px]">
+              <Image
+                src="/images/home/testimonials-banner-rocket.png"
+                alt=""
+                width={82}
+                height={122}
+                className="h-[122px] w-auto"
+              />
+
+              <p className="text-[35px] leading-[41px] font-extrabold tracking-[-0.07em] text-white">
+                Launched isn&apos;t finished. Care from £300 a month, <br />
+                Grow from £750 a month. Rolling, no lock-in.
+              </p>
+            </div>
+
+            <div className="flex shrink-0">
+              <Button
+                href="/services"
+                className="rounded-[60px] bg-white px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase"
+              >
+                See the plans
+              </Button>
+            </div>
+          </div>
+        </Container>
       </Section>
     </>
   );

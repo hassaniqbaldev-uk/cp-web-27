@@ -14,15 +14,13 @@ const Contact = () => {
           <div className="flex items-center justify-between gap-[45px]">
             <div className="w-[482px]">
               <SectionHeading
-                label="Contact details"
                 title={
                   <>
                     What can we <span className="text-orange">help with?</span>
                   </>
                 }
                 subtitle="Got questions or ready to start your design project? Let's bring your ideas to life!"
-                labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-[85px] mt-[10px] leading-[80px] font-extrabold tracking-[-0.07em] text-black"
+                titleClassName="text-[65px] mt-[10px] leading-[80px] font-extrabold tracking-[-0.06em] text-black"
                 subtitleClassName="text-[18px] text-text-body mt-[20px] max-w-[450px] leading-[28px] tracking-[-0.02em]"
               />
 

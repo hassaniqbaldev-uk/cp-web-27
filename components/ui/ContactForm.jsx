@@ -1,5 +1,6 @@
 import { contactTopics } from "@/config/common";
 import { ArrowUpRight, Calendar, ChevronDown, Clock, Plus } from "lucide-react";
+import Link from "next/link";
 
 const assurances = [
   {
@@ -17,47 +18,38 @@ const assurances = [
 const ContactForm = ({ showAssurances = false }) => {
   return (
     <form className="flex flex-col gap-[30px]">
-      <fieldset>
-        <legend className="text-[14px] font-semibold tracking-[-0.02em] text-black uppercase">
-          What do you need help with? (required)
-        </legend>
+      <div className="relative">
+        <label
+          htmlFor="contact-topic"
+          className="absolute -top-[8px] left-[14px] z-10 bg-white px-[6px] text-[14px] font-bold tracking-[-0.02em] text-black uppercase"
+        >
+          What do you need help with?
+        </label>
 
-        <div className="mt-[20px] grid grid-cols-4 gap-[20px]">
-          {contactTopics.map(
-            ({
-              id,
-              icon: Icon,
-              label,
-              value,
-              iconClassName,
-              selectedClassName,
-            }) => (
-              <label
-                key={id}
-                className={`flex cursor-pointer flex-col items-center justify-center gap-[10px] rounded-[10px] border border-black/15 px-[20px] py-[20px] text-center ${selectedClassName}`}
-              >
-                <input
-                  type="radio"
-                  name="topic"
-                  value={value}
-                  required
-                  className="sr-only"
-                />
+        <select
+          id="contact-topic"
+          name="topic"
+          required
+          defaultValue=""
+          className="invalid:text-text-body/60 w-full cursor-pointer appearance-none rounded-[10px] border border-black/15 bg-white py-[18px] pr-[60px] pl-[20px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
+        >
+          <option value="" disabled>
+            Web &amp; Ecommerce / Brand &amp; Experience ...
+          </option>
 
-                <Icon
-                  size={20}
-                  strokeWidth={2}
-                  className={`shrink-0 ${iconClassName}`}
-                />
+          {contactTopics.map(({ id, label, value }) => (
+            <option key={id} value={value} className="text-black">
+              {label}
+            </option>
+          ))}
+        </select>
 
-                <span className="text-[14px] font-semibold tracking-[-0.02em] text-black">
-                  {label}
-                </span>
-              </label>
-            ),
-          )}
-        </div>
-      </fieldset>
+        <ChevronDown
+          size={20}
+          strokeWidth={2}
+          className="pointer-events-none absolute top-1/2 right-[20px] -translate-y-1/2 text-black"
+        />
+      </div>
 
       <div className="grid grid-cols-2 gap-[20px]">
         <div className="relative">
@@ -109,10 +101,10 @@ const ContactForm = ({ showAssurances = false }) => {
         <textarea
           id="contact-project"
           name="project"
-          rows={5}
+          rows={1}
           required
           placeholder="A few details about what you're looking to do..."
-          className="placeholder:text-text-body/60 w-full resize-none rounded-[10px] border border-black/15 p-[20px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
+          className="placeholder:text-text-body/60 block w-full resize-none rounded-[10px] border border-black/15 px-[20px] py-[18px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
         />
       </div>
 
@@ -174,6 +166,24 @@ const ContactForm = ({ showAssurances = false }) => {
         Send enquiry
         <ArrowUpRight size={18} strokeWidth={2.5} />
       </button>
+
+      {!showAssurances && (
+        <div className="-mt-[15px] flex items-center gap-[15px] text-[14px] tracking-[-0.02em]">
+          <span className="text-text-body flex items-center gap-[8px]">
+            <Clock size={16} strokeWidth={2} className="text-orange shrink-0" />
+            We reply within one working day.
+          </span>
+
+          <span className="bg-text-body/30 h-[16px] w-px shrink-0" />
+
+          <Link
+            href="/privacy-policy"
+            className="text-text-body underline underline-offset-[3px]"
+          >
+            Privacy policy
+          </Link>
+        </div>
+      )}
 
       {showAssurances && (
         <ul className="grid grid-cols-2 gap-[30px]">

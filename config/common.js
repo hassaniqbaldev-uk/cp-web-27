@@ -19,6 +19,14 @@ import {
   UserRoundCheck,
   Workflow,
 } from "lucide-react";
+import {
+  HiOutlineCloud,
+  HiOutlineCog6Tooth,
+  HiOutlineDocumentChartBar,
+  HiOutlineIdentification,
+  HiOutlineShoppingCart,
+} from "react-icons/hi2";
+import { LuPlug } from "react-icons/lu";
 
 export const heroPopovers = [
   {
@@ -961,6 +969,274 @@ export const faqs = [
     question: "Do you offer ongoing support?",
     answer:
       "Yes. Hosting, maintenance, SEO and optimisation continue after launch for as long as you need them.",
+  },
+];
+
+export const customAppPricingPlans = [
+  {
+    id: "discovery-sprint",
+    name: "Discovery sprint",
+    price: "£750",
+    timeline: "1 to 2 weeks.",
+    youGet: "Workflow map, clickable prototype, fixed quote for phase one.",
+    bestFor: "Not sure what to build yet.",
+    ctaLabel: "Book a discovery sprint",
+    ctaHref: "/contact",
+  },
+  {
+    id: "first-release",
+    name: "First release",
+    badge: "Most Popular",
+    price: "£5,000",
+    timeline: "4 to 10 weeks.",
+    youGet:
+      "A working web app with logins, core integrations and team training.",
+    bestFor: "A clear process to replace.",
+    ctaLabel: "Get a first-phase estimate",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "growing-platform",
+    name: "Growing platform",
+    price: "£750",
+    suffix: "a month",
+    timeline: "Ongoing.",
+    youGet: "New modules, more integrations, reporting and priority support.",
+    bestFor: "Software already in use and growing.",
+    ctaLabel: "Talk about a roadmap",
+    ctaHref: "/contact",
+  },
+];
+
+export const customAppTechStack = [
+  {
+    id: "react",
+    label: "React",
+    logo: "/images/services/react-logo-custom-app-tech-stack.png",
+    logoWidth: 106,
+    logoHeight: 36,
+  },
+  {
+    id: "nextjs",
+    label: "Next.js",
+    logo: "/images/services/next-logo-custom-app-tech-stack.png",
+    logoWidth: 103,
+    logoHeight: 24,
+  },
+  {
+    id: "laravel",
+    label: "Laravel",
+    logo: "/images/services/laravel-logo-custom-app-tech-stack.png",
+    logoWidth: 122,
+    logoHeight: 36,
+  },
+  {
+    id: "graphql",
+    label: "GraphQL",
+    logo: "/images/services/graphql-logo-custom-app-tech-stack.png",
+    logoWidth: 125,
+    logoHeight: 36,
+  },
+  {
+    id: "postgresql",
+    label: "PostgreSQL",
+    logo: "/images/services/postgresql-logo-custom-app-tech-stack.png",
+    logoWidth: 124,
+    logoHeight: 20,
+  },
+  {
+    id: "mysql",
+    label: "MySQL",
+    logo: "/images/services/mysql-logo-custom-app-tech-stack.png",
+    logoWidth: 108,
+    logoHeight: 57,
+  },
+  {
+    id: "stripe",
+    label: "Stripe",
+    logo: "/images/services/stripe-logo-custom-app-tech-stack.png",
+    logoWidth: 77,
+    logoHeight: 32,
+  },
+  {
+    id: "vercel",
+    label: "Vercel",
+    logo: "/images/services/vercel-logo-custom-app-tech-stack.png",
+    logoWidth: 98,
+    logoHeight: 24,
+  },
+];
+
+export const customAppScopingNeeds = [
+  {
+    id: "current-process",
+    text: "How the work happens today, roughly step by step.",
+  },
+  {
+    id: "users",
+    text: "Who uses it and what each person needs to see.",
+  },
+  {
+    id: "integrations",
+    text: "The tools it needs to connect to.",
+  },
+  {
+    id: "definition-of-done",
+    text: "What “done” looks like for the first release.",
+  },
+];
+
+export const customAppBuildSteps = [
+  {
+    id: "discovery",
+    week: "Week 1",
+    title: "Discovery",
+    description:
+      "We map how the work happens today, who does it and where time is lost.",
+    pillClassName: "bg-blue",
+  },
+  {
+    id: "ux-prototype",
+    week: "Week 1 to 2",
+    title: "UX & prototype",
+    description:
+      "You click through the key screens before any code is written.",
+    pillClassName: "bg-orange",
+  },
+  {
+    id: "architecture",
+    week: "Week 2",
+    title: "Architecture",
+    description:
+      "We choose the right stack, data model and integrations for the first release.",
+    pillClassName: "bg-dark-pink",
+  },
+  {
+    id: "build-test",
+    week: "Weeks 6",
+    title: "Build & test",
+    description:
+      "We build in short rounds you can review, then launch and train your team.",
+    pillClassName: "bg-blue",
+  },
+];
+
+export const customAppCaseStudy = {
+  image: "/images/services/peter-jones-custom-app-casestudy.png",
+  imageWidth: 1123,
+  imageHeight: 766,
+  imageAlt: "Peter Jones Foundation Tycoon dashboard on a laptop",
+  tag: "WordPress",
+  title: "Website redesign for the Tycoon enterprise programme",
+  ctaLabel: "See the full project",
+  href: "/work/peter-jones-foundation",
+};
+
+export const customAppSolutions = [
+  {
+    id: "customer-portals",
+    icon: HiOutlineIdentification,
+    iconBgClassName: "bg-dark-pink",
+    title: "Customer portals",
+    description:
+      "Secure logins where your customers see orders, documents, bookings and reports.",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+  {
+    id: "internal-tools",
+    icon: HiOutlineCog6Tooth,
+    iconBgClassName: "bg-blue",
+    title: "Internal tools",
+    description: "[Description TBC]",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+  {
+    id: "dashboards-reporting",
+    icon: HiOutlineDocumentChartBar,
+    iconBgClassName: "bg-orange",
+    title: "Dashboards & reporting",
+    description: "[Description TBC]",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+  {
+    id: "saas-products",
+    icon: HiOutlineCloud,
+    iconBgClassName: "bg-dark-pink",
+    title: "SaaS & digital products",
+    description: "[Description TBC]",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+  {
+    id: "marketplaces",
+    icon: HiOutlineShoppingCart,
+    iconBgClassName: "bg-blue",
+    title: "Marketplaces & platforms",
+    description: "[Description TBC]",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+  {
+    id: "apis-integrations",
+    icon: LuPlug,
+    iconBgClassName: "bg-orange",
+    title: "APIs & integrations",
+    description: "[Description TBC]",
+    image: null,
+    imageWidth: 0,
+    imageHeight: 0,
+  },
+];
+
+export const customAppFaqs = [
+  {
+    id: "cost",
+    question: "How much does a custom web app cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "existing",
+    question: "Can you improve an existing application?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "mobile",
+    question: "Do you build mobile apps?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "code-ownership",
+    question: "Who owns the code?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ai-automation",
+    question: "Can you integrate AI or automation?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "first-release",
+    question: "How long does a first release take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "data-security",
+    question: "Is my data safe?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "after-launch",
+    question: "What happens after launch?",
+    answer: "[Answer TBC]",
   },
 ];
 

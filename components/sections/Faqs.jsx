@@ -33,7 +33,7 @@ const Faqs = ({
             <div className="w-[525px] shrink-0">
               <SectionHeading
                 title={title}
-                titleClassName="text-[65px] max-w-[395px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
+                titleClassName="text-[65px] max-w-[410px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
               />
 
               <div className="bg-blue mt-[35px] flex items-center gap-[30px] rounded-[20px] p-[20px]">

@@ -3,6 +3,7 @@ import BookCall from "@/components/sections/BookCall";
 import Faqs from "@/components/sections/Faqs";
 import HowWeWorkCards from "@/components/sections/HowWeWorkCards";
 import HowWeWorkHero from "@/components/sections/HowWeWorkHero";
+import Footer from "@/components/layout/Footer";
 
 const HowWeWork = () => {
   return (
@@ -21,6 +22,7 @@ const HowWeWork = () => {
       />
 
       <BookCall id="how-we-work-book-call" />
+      <Footer />
     </>
   );
 };

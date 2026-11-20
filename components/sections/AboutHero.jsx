@@ -2,7 +2,9 @@
 
 import { aboutStats } from "@/config/common";
 import CountUp from "../ui/CountUp";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
 import Section from "../ui/Section";
@@ -24,17 +26,17 @@ const AboutHero = () => {
             <div className="flex w-[510px] flex-col items-start">
               <SectionHeading
                 as="h1"
-                label="About Creative Pixels"
                 title={
                   <>
                     <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
-                      Strategy first.
+                      Led from Manchester.
                     </span>{" "}
-                    Senior people involved.
+                    Built by our own team.
                   </>
                 }
-                labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-                titleClassName="text-[85px] leading-[90px] font-extrabold tracking-[-0.07em] text-black"
+                titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.07em] text-black"
+                subtitle="A UK agency with a team of [20+] designers and developers, and senior people on every project."
+                subtitleClassName="text-text-body mt-[20px] text-[22px] leading-[28px] tracking-[-0.02em]"
               />
 
               <div className="flex">
@@ -42,9 +44,21 @@ const AboutHero = () => {
                   href="/contact"
                   className="mt-[30px] rounded-full bg-black px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-white uppercase"
                 >
-                  Tell us what you need
+                  Book a 15-min call
                 </Button>
               </div>
+
+              <Link
+                href="#team"
+                className="group mt-[30px] inline-flex items-center gap-[8px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase"
+              >
+                Meet the team
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={2.5}
+                  className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45"
+                />
+              </Link>
             </div>
 
             <div className="w-[305px] rounded-[20px] bg-white px-[30px] pt-[30px] pb-[40px]">

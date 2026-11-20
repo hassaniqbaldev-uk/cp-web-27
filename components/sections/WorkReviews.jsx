@@ -1,7 +1,8 @@
-import { testimonials, workProjects } from "@/config/common";
+import { workReviewProject, workReviewTestimonial } from "@/config/common";
 
 import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
+import { ImQuotesLeft } from "react-icons/im";
 import Button from "../ui/Button";
 import CircularTextButton from "../ui/CircularTextButton";
 import { Container } from "../ui/Container";
@@ -15,8 +16,8 @@ const defaultTitle = (
   </>
 );
 
-const defaultProject = workProjects[0];
-const defaultReview = testimonials[0];
+const defaultProject = workReviewProject;
+const defaultReview = workReviewTestimonial;
 
 const WorkReviews = ({
   label = "Work + reviews",
@@ -32,7 +33,7 @@ const WorkReviews = ({
     <>
       <Section id={id} className={className}>
         <Container>
-          <div className="flex items-center justify-between gap-[45px]">
+          <div className="flex items-end justify-between gap-[45px]">
             <SectionHeading
               label={label}
               title={title}
@@ -44,9 +45,9 @@ const WorkReviews = ({
               <CircularTextButton
                 href={exploreHref}
                 image="/images/home/circular-text-projects.png"
-                imageWidth={431}
-                imageHeight={412}
-                className="size-[140px] shrink-0"
+                imageWidth={113}
+                imageHeight={113}
+                className="size-[113px] shrink-0"
                 ringClassName="h-auto w-full"
               >
                 <ArrowUpRight
@@ -111,12 +112,10 @@ const WorkReviews = ({
                   </span>
                 </div>
 
-                <Image
-                  src="/icons/quote-icon.svg"
-                  alt=""
-                  width={37}
-                  height={28}
-                  className="mt-[30px]"
+                <ImQuotesLeft
+                  size={30}
+                  aria-hidden="true"
+                  className="text-blue mt-[30px] shrink-0"
                 />
 
                 <blockquote className="mt-[20px] text-[22px] font-medium tracking-[-0.02em] text-black">

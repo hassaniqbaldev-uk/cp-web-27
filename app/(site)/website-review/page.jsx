@@ -1,6 +1,7 @@
 import BookCall from "@/components/sections/BookCall";
 import WebsiteReviewHero from "@/components/sections/WebsiteReviewHero";
 import WebsiteReviewProcess from "@/components/sections/WebsiteReviewProcess";
+import Footer from "@/components/layout/Footer";
 
 const WebsiteReview = () => {
   return (
@@ -8,6 +9,7 @@ const WebsiteReview = () => {
       <WebsiteReviewHero />
       <WebsiteReviewProcess />
       <BookCall id="website-review-book-call" />
+      <Footer />
     </>
   );
 };

@@ -9,6 +9,7 @@ import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import WhoWeHelp from "@/components/sections/WhoWeHelp";
 import Work from "@/components/sections/Work";
+import Footer from "@/components/layout/Footer";
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <Work />
       <Testimonials />
       <Faqs />
+      <Footer />
     </>
   );
 };

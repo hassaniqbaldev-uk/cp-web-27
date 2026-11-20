@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import SectionHeading from "@/components/ui/SectionHeading";
 import ParticleLogo from "@/components/ui/ParticleLogo";
 import {
   Popover,
@@ -60,17 +61,20 @@ const Hero = () => {
                 ))}
               </ul>
 
-              <h1 className="my-[30px] text-[130px] leading-[110px] font-bold tracking-[-0.07em] text-white">
-                <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_74.04%)] bg-clip-text text-transparent">
-                  Growth
-                </span>{" "}
-                Focused<span className="text-dark-pink">.</span>
-              </h1>
-
-              <p className="mb-[45px] text-[18px] leading-[28px] font-normal tracking-[-0.02em] text-white">
-                We combine strategy, design and technology to help ambitious
-                businesses attract, engage and convert more customers.
-              </p>
+              <SectionHeading
+                as="h1"
+                title={
+                  <>
+                    <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_74.04%)] bg-clip-text text-transparent">
+                      Growth
+                    </span>{" "}
+                    Focused<span className="text-dark-pink">.</span>
+                  </>
+                }
+                titleClassName="my-[30px] text-[130px] leading-[110px] font-bold tracking-[-0.07em] text-white"
+                subtitle="We combine strategy, design and technology to help ambitious businesses attract, engage and convert more customers."
+                subtitleClassName="mb-[45px] text-[18px] leading-[28px] font-normal tracking-[-0.02em] text-white"
+              />
 
               <div className="flex">
                 <Button

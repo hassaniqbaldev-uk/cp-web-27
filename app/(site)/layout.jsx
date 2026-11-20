@@ -1,5 +1,4 @@
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 export default function SiteLayout({ children }) {
   return (
@@ -7,8 +6,6 @@ export default function SiteLayout({ children }) {
       <Header />
 
       <main>{children}</main>
-
-      <Footer />
     </>
   );
 }

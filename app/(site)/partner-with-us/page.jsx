@@ -7,6 +7,7 @@ import PartnerHandover from "@/components/sections/PartnerHandover";
 import WorkReviews from "@/components/sections/WorkReviews";
 import PartnerHero from "@/components/sections/PartnerHero";
 import PartnerWorkflow from "@/components/sections/PartnerWorkflow";
+import Footer from "@/components/layout/Footer";
 
 const PartnerWithUs = () => {
   return (
@@ -55,6 +56,7 @@ const PartnerWithUs = () => {
         subtitle="Tell us the job, the deadline and where you need support. A rough requirement is enough. Yes or no on fit within 48 hours."
         ctaLabel="Tell us about the idea"
       />
+      <Footer />
     </>
   );
 };

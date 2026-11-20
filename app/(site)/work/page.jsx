@@ -5,6 +5,7 @@ import WorkGrid from "@/components/sections/WorkGrid";
 import WorkReviews from "@/components/sections/WorkReviews";
 import WorkHero from "@/components/sections/WorkHero";
 import WorkFeatured from "@/components/sections/WorkFeatured";
+import Footer from "@/components/layout/Footer";
 
 const Work = () => {
   return (
@@ -34,6 +35,7 @@ const Work = () => {
         }
         subtitle="Tell us about the brand, where it needs to show up and what it needs to say. We will tell you which of the three you actually need."
       />
+      <Footer />
     </>
   );
 };

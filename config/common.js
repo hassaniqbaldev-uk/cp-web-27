@@ -8,7 +8,6 @@ import {
   Code2,
   Compass,
   FileCheck,
-  Layers,
   ClipboardList,
   LifeBuoy,
   Mail,
@@ -18,9 +17,7 @@ import {
   Phone,
   TrendingUp,
   UserRoundCheck,
-  Users,
   Workflow,
-  Wrench,
 } from "lucide-react";
 
 export const heroPopovers = [
@@ -738,6 +735,30 @@ export const workProjects = [
   },
 ];
 
+export const workReviewProject = {
+  id: "casa-botanica",
+  image: "/images/common/casabotanica-work-reviews-img.png",
+  imageAlt: "Casa Botanica website homepage",
+  title: "Casa Botanica",
+  subtitle: "Luxury safari website redesigned.",
+  ctaLabel: "Visit live site",
+  href: "https://example.com",
+};
+
+export const workReviewTestimonial = {
+  id: "loop",
+  avatar: "/images/home/loop-testimonials-avatar.png",
+  logo: "/images/home/loop-testimonials-logo.png",
+  logoAlt: "Loop",
+  logoWidth: 192,
+  logoHeight: 93,
+  quote:
+    "CreativePixels did an incredible job helping us to create branding material from scratch. They were extremely flexible, and exceeded our expectations.",
+  name: "Alex",
+  role: "Loop, Founder",
+  rating: 5,
+};
+
 export const homeWorkProjects = [
   {
     id: "peter-jones-foundation",
@@ -1005,17 +1026,17 @@ export const aboutStats = [
   {
     id: "years",
     value: "12+",
-    label: "Years building digital products",
+    label: "years building digital products",
   },
   {
-    id: "projects",
-    value: "250",
-    label: "Projects Launched",
+    id: "team",
+    value: "+20",
+    label: "people on the team",
   },
   {
-    id: "continents",
-    value: "03",
-    label: "Continents served",
+    id: "clients",
+    value: "85+",
+    label: "Clients in the UK, US and beyond",
   },
   {
     id: "returning-clients",
@@ -1026,36 +1047,48 @@ export const aboutStats = [
 
 export const journeySteps = [
   {
-    id: "first-site",
+    id: "started-building",
     step: "01",
-    title: "First site at 13",
-    description: "A hobby that turned into a habit, then into a craft.",
-    borderClassName: "border-orange",
-    textClassName: "text-orange",
-  },
-  {
-    id: "freelance",
-    step: "02",
-    title: "Freelance years",
-    description: "Client work that taught us what actually ships and lasts.",
-    borderClassName: "border-blue",
-    textClassName: "text-blue",
-  },
-  {
-    id: "agency",
-    step: "03",
-    title: "CreativePixels founded",
-    description: "Strategy, design and build brought under one roof.",
+    title: "Started building",
+    description: "Websites for whoever would let me, learning by shipping.",
     borderClassName: "border-dark-pink",
     textClassName: "text-dark-pink",
   },
   {
-    id: "team",
+    id: "cp-established",
+    step: "02",
+    title: "CP established",
+    description:
+      "December 2013. A name, a first client list, a habit of staying after launch.",
+    borderClassName: "border-blue",
+    textClassName: "text-blue",
+  },
+  {
+    id: "specialist-team",
+    step: "03",
+    title: "A specialist team",
+    description:
+      "Design, development and growth people who each do one thing well.",
+    borderClassName: "border-orange",
+    textClassName: "text-orange",
+  },
+  {
+    id: "international-work",
     step: "04",
-    title: "A senior team",
-    description: "People who stay involved from first call through launch.",
-    borderClassName: "border-[#6FDC8C]",
-    textClassName: "text-[#6FDC8C]",
+    title: "International work",
+    description:
+      "Clients in the US, Panama and East Africa without an office in any of them.",
+    borderClassName: "border-dark-pink",
+    textClassName: "text-dark-pink",
+  },
+  {
+    id: "today",
+    step: "05",
+    title: "Today",
+    description:
+      "Higher-value digital products, automation, and the same care about what happens after launch.",
+    borderClassName: "border-blue",
+    textClassName: "text-blue",
   },
 ];
 
@@ -1278,7 +1311,9 @@ export const teamHandoffs = [
 export const behaviours = [
   {
     id: "senior-people",
-    icon: Users,
+    icon: "/images/about/senior-people-icon.svg",
+    iconWidth: 56,
+    iconHeight: 56,
     title: "Senior people stay involved",
     description:
       "Important decisions are made directly, without being passed through multiple layers of account managers or unnecessary communication.",
@@ -1287,7 +1322,9 @@ export const behaviours = [
   },
   {
     id: "design-development",
-    icon: Layers,
+    icon: "/images/about/design-meets-icon.svg",
+    iconWidth: 53,
+    iconHeight: 55,
     title: "Design Meets Development",
     description:
       "Technical constraints and commercial goals are considered while the experience is being designed, not discovered at the end.",
@@ -1296,7 +1333,9 @@ export const behaviours = [
   },
   {
     id: "tools",
-    icon: Wrench,
+    icon: "/images/about/tools-fit-icon.svg",
+    iconWidth: 56,
+    iconHeight: 55,
     title: "Tools fit the problem.",
     description:
       "WordPress, Shopify, Webflow, React, Next.js, Laravel and automation platforms are options - not the identity of the agency.",
@@ -1305,7 +1344,9 @@ export const behaviours = [
   },
   {
     id: "after-launch",
-    icon: LifeBuoy,
+    icon: "/images/about/we-stay-icon.svg",
+    iconWidth: 50,
+    iconHeight: 50,
     title: "We stay after launch",
     description:
       "Support, development, CRO, SEO, paid media and automation can continue where the business needs an ongoing digital partner.",

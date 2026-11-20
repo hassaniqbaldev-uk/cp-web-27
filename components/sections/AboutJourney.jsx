@@ -1,4 +1,5 @@
 import { journeySteps } from "@/config/common";
+import Image from "next/image";
 import { Fragment } from "react";
 import VerticalDragMarquee from "../ui/VerticalDragMarquee";
 import Starfield from "../ui/Starfield";
@@ -13,6 +14,13 @@ const AboutJourney = () => {
         id="journey"
         className="relative flex h-[560px] items-center overflow-hidden bg-black"
       >
+        <Image
+          src="/images/about/gradient-bg-about-journey.png"
+          alt=""
+          fill
+          className="pointer-events-none z-0 object-cover"
+        />
+
         <div className="absolute top-0 left-1/2 h-full w-full max-w-[1440px] -translate-x-1/2">
           <Starfield className="absolute bottom-[-50px] left-0 z-0 h-[160px] w-[600px] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
@@ -53,10 +61,6 @@ const AboutJourney = () => {
               ),
             )}
           </VerticalDragMarquee>
-
-          <span className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[120px] bg-linear-to-b from-black to-transparent" />
-
-          <span className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[120px] bg-linear-to-t from-black to-transparent" />
         </div>
 
         <Container className="relative z-10">
@@ -70,11 +74,11 @@ const AboutJourney = () => {
                   </span>
                 }
                 labelClassName="text-[22px] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName=" text-[110px] leading-[120px] font-bold tracking-[-0.07em]"
+                titleClassName=" text-[90px] leading-[100px] font-bold tracking-[-0.07em]"
               />
             </div>
 
-            <p className="w-[380px] text-end text-[110px] leading-[120px] font-bold tracking-[-0.07em] text-white">
+            <p className="w-[380px] text-end text-[90px] leading-[100px] font-bold tracking-[-0.07em] text-white">
               Kept Building
             </p>
           </div>

@@ -10,11 +10,11 @@ const AboutReach = () => {
       <Section id="reach" className="py-[120px]">
         <Container>
           <SectionHeading
-            label="International work, UK accountability"
+            label="INTERNATIONAL WORK, UK ACCOUNTABILITY"
             title={
               <>
                 <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
-                  Roots in Manchester.
+                  Led from Manchester.{" "}
                 </span>{" "}
                 <Image
                   src="/images/about/bee.png"
@@ -24,13 +24,13 @@ const AboutReach = () => {
                   className="inline-block align-middle"
                 />
                 <br />
-                Clients in three time zones.
+                Built by our own team.
               </>
             }
-            subtitle="CreativePixels is UK-based with roots in Manchester and works with businesses across the UK, US and internationally. Remote delivery is normal for us, but projects still have clear ownership, regular communication and named people responsible for the work."
+            subtitle="CreativePixels is a UK company, led by Hassan from Manchester. Our design and development team are our own employees, based in Karachi, Pakistan, and our clients are in the UK, the US and further afield. You get one UK point of contact, named people on your project, and working hours that overlap with the UK and US."
             labelClassName="text-[22px] text-center font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-[85px] mt-[10px] text-center leading-[80px] font-extrabold tracking-[-0.07em] text-black"
-            subtitleClassName="text-[16px] text-text-body mt-[20px] mx-auto max-w-[1000px] text-center tracking-[-0.02em]"
+            titleClassName="text-[75px] mt-[10px] text-center leading-[80px] font-extrabold tracking-[-0.07em] text-black"
+            subtitleClassName="text-[16px] text-text-body mt-[20px] mx-auto max-w-[960px] text-center tracking-[-0.02em]"
           />
 
           <div className="relative mt-[65px] h-[600px] w-full">

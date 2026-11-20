@@ -1,7 +1,8 @@
 "use client";
 
 import { testimonials } from "@/config/common";
-import { Play, Quote, Star } from "lucide-react";
+import { Play, Star } from "lucide-react";
+import { ImQuotesLeft } from "react-icons/im";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -152,11 +153,10 @@ const Testimonials = () => {
                           </span>
                         </div>
 
-                        <Quote
+                        <ImQuotesLeft
                           size={30}
-                          strokeWidth={1.5}
                           aria-hidden="true"
-                          className="fill-blue text-blue mt-[30px] shrink-0 rotate-180"
+                          className="text-blue mt-[30px] shrink-0"
                         />
 
                         <blockquote className="text-text-body mt-[20px] text-[22px] leading-[30px] tracking-[-0.02em]">

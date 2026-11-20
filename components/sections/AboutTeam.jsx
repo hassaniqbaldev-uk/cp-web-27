@@ -18,8 +18,7 @@ const AboutTeam = () => {
         <Container>
           <div className="flex items-end justify-between gap-[45px]">
             <SectionHeading
-              className="max-w-[650px]"
-              label="The team"
+              className="max-w-[490px]"
               title={
                 <>
                   Specialists,{" "}
@@ -28,34 +27,32 @@ const AboutTeam = () => {
                   </span>
                 </>
               }
-              labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-[85px] leading-[90px]  mt-[10px] font-extrabold tracking-[-0.07em] text-black"
+              titleClassName="text-[65px] leading-[67px] font-extrabold tracking-[-0.07em] text-black"
             />
 
-            <p className="text-text-body w-[483px] text-[22px] tracking-[-0.02em]">
+            <p className="text-text-body w-[490px] text-[22px] tracking-[-0.02em]">
               CreativePixels brings together project leadership, UX and visual
-              design, WordPress and ecommerce development, custom application
-              engineering and growth expertise. The person leading the
-              conversation stays close to the work, while specialists own the
-              parts they are best at.
+              design, WordPress and ecommerce development, custom software and
+              growth. You talk to the person leading your project, and
+              specialists own the parts they’re best at.
             </p>
           </div>
 
-          <div className="mt-[80px] flex items-start justify-between gap-[45px]">
+          <div className="mt-[50px] flex items-start justify-between gap-[45px]">
             <div className="w-[580px]">
-              <div className="bg-grey/40 w-[580px] rounded-[20px] px-[30px] pt-[30px] pb-[35px]">
+              <div className="bg-grey/40 w-[580px] rounded-[20px] p-[30px]">
                 <div className="flex justify-between gap-[20px]">
                   <Image
                     src={selected.image}
                     alt={selected.name}
                     width={202}
-                    height={223}
-                    className="h-[220px] w-[200px] rounded-[15px] object-cover"
+                    height={224}
+                    className="h-[224px] w-[202px] rounded-[15px] object-cover"
                   />
 
-                  <div className="flex w-[290px] flex-col justify-between">
+                  <div className="flex w-[290px] flex-col justify-between gap-[15px]">
                     <div>
-                      <p className="border-blue text-blue inline-flex rounded-[60px] border px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em]">
+                      <p className="border-blue text-blue inline-flex rounded-[50px] border px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em]">
                         {selected.role}
                       </p>
 
@@ -69,7 +66,7 @@ const AboutTeam = () => {
                         {selected.years}
                       </span>
 
-                      <span className="bg-text-body/30 h-[40px] w-px shrink-0" />
+                      <span className="bg-text-body/30 h-[42px] w-px shrink-0" />
 
                       <span className="text-text-body text-[16px] tracking-[-0.02em]">
                         Years of Experience
@@ -114,7 +111,7 @@ const AboutTeam = () => {
           <div className="px-[18px]">
             <div className="bg-blue/10 mt-[80px] rounded-[20px] px-[50px] py-[45px]">
               <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase">
-                How the teams work together
+                How a project moves through the team
               </p>
 
               <ul className="mt-[30px] flex items-start justify-between">

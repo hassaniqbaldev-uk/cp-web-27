@@ -20,11 +20,26 @@ import {
   Workflow,
 } from "lucide-react";
 import {
+  HiOutlineBookOpen,
+  HiOutlineBriefcase,
+  HiOutlineCalendarDays,
+  HiOutlineCheckCircle,
   HiOutlineCloud,
   HiOutlineCog6Tooth,
+  HiOutlineComputerDesktop,
+  HiOutlineCurrencyPound,
   HiOutlineDocumentChartBar,
+  HiOutlineDocumentDuplicate,
+  HiOutlineEnvelopeOpen,
+  HiOutlineFolder,
   HiOutlineIdentification,
+  HiOutlineMapPin,
+  HiOutlineNewspaper,
+  HiOutlinePrinter,
   HiOutlineShoppingCart,
+  HiOutlineSignal,
+  HiOutlineWrenchScrewdriver,
+  HiOutlineXCircle,
 } from "react-icons/hi2";
 import { LuPlug } from "react-icons/lu";
 
@@ -972,6 +987,382 @@ export const faqs = [
   },
 ];
 
+export const customAppHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/smokey-carter-icon-custom-app-hero.png",
+    iconAlt: "Smokey Carter",
+    width: 45,
+    height: 52,
+    iconClassName: "w-[45px] h-[52px]",
+    value: "From £5,000",
+    description: "First release in 4 to 10 weeks",
+  },
+  {
+    id: "code",
+    icon: "/images/services/code-icon-custom-app-hero.png",
+    iconAlt: "",
+    width: 51,
+    height: 50,
+    iconClassName: "w-[51px] h-[50px]",
+    value: "You own the code",
+    description: "Staged payments, no lock-in",
+  },
+  {
+    id: "discovery",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "w-[54px] h-[54px]",
+    value: "Discovery first",
+    description: "£750 Sprint, Build-Credited",
+  },
+];
+
+export const customAppHeroHighlights = [
+  { id: "years", icon: HiOutlineCalendarDays, text: "12+ years in business" },
+  { id: "own-work", icon: HiOutlineBriefcase, text: "You own the work" },
+  {
+    id: "fixed-price",
+    icon: HiOutlineCurrencyPound,
+    text: "Fixed price before we start",
+  },
+  {
+    id: "locations",
+    icon: HiOutlineMapPin,
+    text: "Working with businesses in the UK, US and Australia",
+  },
+];
+
+export const brandingHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/golf-icon-branding-hero.png",
+    iconAlt: "Golf client logo",
+    width: 147,
+    height: 173,
+    iconClassName: "w-auto h-[52px]",
+    value: "From £1,000",
+    description: "Brand refresh in 2 to 3 weeks",
+  },
+  {
+    id: "ownership",
+    icon: "/images/services/loop-icon-branding-hero.png",
+    iconAlt: "Loop client logo",
+    width: 214,
+    height: 103,
+    iconClassName: "w-[64px] h-auto",
+    value: "Full Ownership",
+    description: "Logo, guidelines, templates",
+  },
+  {
+    id: "approval",
+    icon: "/images/services/h-icon-branding-hero.png",
+    iconAlt: "Client monogram logo",
+    width: 216,
+    height: 220,
+    iconClassName: "w-[54px] h-auto",
+    value: "Direction Approval",
+    description: "Before we build the full system",
+  },
+];
+
+export const brandingNeeds = [
+  {
+    id: "refresh",
+    title: "A refresh fits when:",
+    description:
+      "people already recognise your brand, but it looks dated or inconsistent across channels.",
+  },
+  {
+    id: "rebrand",
+    title: "A rebrand fits when:",
+    description:
+      "the business has changed, you’re moving upmarket, or the brand no longer matches who you sell to.",
+  },
+  {
+    id: "new-brand",
+    title: "A new brand fits when:",
+    description: "you’re launching, or you’ve been getting by with a DIY logo.",
+  },
+];
+
+export const brandingProcess = [
+  {
+    id: "positioning",
+    icon: HiOutlineMapPin,
+    title: "Positioning",
+    description:
+      "We agree who you’re for, what makes you different and how you should sound.",
+    className: "top-[140px] left-[-10px] z-10",
+  },
+  {
+    id: "direction",
+    icon: HiOutlineSignal,
+    title: "Direction",
+    description:
+      "You see one or two clear directions and approve one before we go further.",
+    className: "top-[320px] left-[245px] z-20",
+  },
+  {
+    id: "system",
+    icon: HiOutlineWrenchScrewdriver,
+    title: "The system",
+    description:
+      "Logo, colour, type, imagery, tone of voice and guidelines, built to work together.",
+    className: "top-[320px] left-[580px] z-30",
+  },
+  {
+    id: "rollout",
+    icon: HiOutlineBookOpen,
+    title: "Rollout",
+    description:
+      "We apply it to your website, socials and key documents so it’s consistent from day one.",
+    className: "top-[100px] right-[-15px] z-20",
+  },
+];
+
+export const brandingCaseStudies = [
+  {
+    id: "loop",
+    image: "/images/services/loop-branding-case-study.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Loop Asset Management brand identity",
+    accent: "#62DCC3",
+    title: "What we did and where it was rolled out.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+    quote: {
+      name: "John Smith",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See the full project",
+    href: "/work/loop",
+  },
+  {
+    id: "project-2",
+    image: "/images/services/project-2-branding-case-study.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Brand identity project",
+    accent: "#62DCC3",
+    title: "What we did and where it was rolled out.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+    quote: {
+      name: "John Smith",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See the full project",
+    href: "/work",
+  },
+  {
+    id: "project-3",
+    image: "/images/services/project-3-branding-case-study.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Brand identity project",
+    accent: "#62DCC3",
+    title: "What we did and where it was rolled out.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+    quote: {
+      name: "John Smith",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See the full project",
+    href: "/work",
+  },
+  {
+    id: "project-4",
+    image: "/images/services/project-4-branding-case-study.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Brand identity project",
+    accent: "#62DCC3",
+    title: "What we did and where it was rolled out.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+    quote: {
+      name: "John Smith",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See the full project",
+    href: "/work",
+  },
+];
+
+export const brandingIdentityItems = [
+  {
+    id: "logo-and-mark",
+    type: "image",
+    title: "Logo and mark",
+    description:
+      "A primary logo, a simpler mark and versions for small spaces like favicons and social icons.",
+    image: "/images/services/logo-mark-branding-identity.png",
+    imageWidth: 400,
+    imageHeight: 400,
+    imageAlt: "Brand mark in orange",
+  },
+  {
+    id: "typography",
+    type: "typography",
+    title: "Typography",
+    description:
+      "One or two typefaces with clear rules for headings, body and buttons.",
+  },
+  {
+    id: "colour-palette",
+    type: "palette",
+    title: "Colour Palette",
+    description:
+      "A palette with accessible pairings, ready for screen and print.",
+    colours: [
+      { id: "white", hex: "FFFFFF", className: "bg-white text-black" },
+      { id: "black", hex: "000000", className: "bg-black text-white" },
+      { id: "orange", hex: "ED572E", className: "bg-[#ED572E] text-white" },
+    ],
+  },
+  {
+    id: "imagery",
+    type: "image",
+    title: "Imagery",
+    description:
+      "Photo and illustration direction so every image looks like it belongs.",
+    image: "/images/services/imagery-branding-identity.png",
+    imageWidth: 400,
+    imageHeight: 400,
+    imageAlt: "3D brand mark rendered in the brand colour",
+  },
+  {
+    id: "layout",
+    type: "image",
+    title: "Layout",
+    description:
+      "Grids and spacing rules so every page and document is built the same way.",
+    image: "/images/services/layout-branding-identity.png",
+    imageWidth: 400,
+    imageHeight: 400,
+    imageAlt: "Logo construction grid with spacing measurements",
+  },
+];
+
+export const brandingRollout = [
+  {
+    id: "guidelines",
+    icon: HiOutlineNewspaper,
+    title: "Guidelines",
+    description:
+      "A PDF & a web page: logo use, type, colour, imagery, tone, dos and don’ts.",
+    className: "top-0 left-0",
+  },
+  {
+    id: "website-product",
+    icon: HiOutlineComputerDesktop,
+    title: "Website and product",
+    description:
+      "The identity applied to your site, store or app, built by the same team.",
+    className: "top-[213px] left-[45px]",
+  },
+  {
+    id: "documents-decks",
+    icon: HiOutlineDocumentDuplicate,
+    title: "Documents and decks",
+    description:
+      "Proposal, letterhead and presentation templates the team will use.",
+    className: "top-[427px] left-[280px]",
+  },
+  {
+    id: "files",
+    icon: HiOutlineFolder,
+    title: "Files",
+    description:
+      "SVG, PNG and PDF logos, font files or licences, colour swatches, templates.",
+    className: "top-0 right-0",
+  },
+  {
+    id: "social-email",
+    icon: HiOutlineEnvelopeOpen,
+    title: "Social and email",
+    description: "Profile assets, post templates and an email signature.",
+    className: "top-[213px] right-[50px]",
+  },
+  {
+    id: "print-signage",
+    icon: HiOutlinePrinter,
+    title: "Print and signage",
+    description:
+      "Business cards, brochures, packaging and signage artwork where you need it.",
+    className: "top-[427px] right-[284px]",
+  },
+];
+
+export const brandingSocialPosts = [
+  {
+    id: "before",
+    label: "Before",
+    avatar: "/images/services/driveuk-avatar-branding-social.png",
+    name: "DriveUk",
+    handle: "Drive UK social",
+    image: "/images/services/driveuk-before-branding-social.png",
+    imageWidth: 610,
+    imageHeight: 610,
+    imageAlt: "Drive UK pass post before the redesign",
+  },
+  {
+    id: "after",
+    label: "After",
+    avatar: "/images/services/driveuk-avatar-branding-social.png",
+    name: "DriveUk",
+    handle: "Drive UK social",
+    image: "/images/services/driveuk-after-branding-social.png",
+    imageWidth: 610,
+    imageHeight: 610,
+    imageAlt: "Drive UK pass post after the redesign, on-brand template",
+  },
+];
+
+export const brandingPricingPlans = [
+  {
+    id: "brand-refresh",
+    name: "Brand refresh",
+    prefix: "From",
+    price: "£1,000",
+    timeline: "2 to 3 weeks.",
+    youGet: "Refined logo, colour and type, short guidelines.",
+    bestFor: "A recognisable brand that looks dated.",
+    ctaLabel: "Book a discovery sprint",
+    ctaHref: "/contact",
+  },
+  {
+    id: "full-brand-identity",
+    name: "Full brand identity",
+    prefix: "From",
+    price: "£2,500",
+    timeline: "4 to 6 weeks.",
+    youGet:
+      "Strategy session, logo suite, colour, type, imagery, tone of voice, full guidelines.",
+    bestFor: "A rebrand or a new business.",
+    ctaLabel: "Get a first-phase estimate",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "identity-rollout",
+    name: "Identity + rollout",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "6 to 10 weeks.",
+    youGet:
+      "Everything in Full, plus website updates, social templates, documents and decks.",
+    bestFor: "Software already in use and growing.",
+    ctaLabel: "Talk about a roadmap",
+    ctaHref: "/contact",
+  },
+];
+
 export const customAppPricingPlans = [
   {
     id: "discovery-sprint",
@@ -1068,6 +1459,60 @@ export const customAppTechStack = [
   },
 ];
 
+export const customAppFit = [
+  {
+    id: "good-fit",
+    title: "Good fit if:",
+    icon: HiOutlineCheckCircle,
+    iconClassName: "text-blue",
+    points: [
+      {
+        id: "copies-data",
+        text: "Your team copies data between 3 or more tools every day.",
+      },
+      {
+        id: "plugin-limits",
+        text: "You’ve hit the limits of a plugin or SaaS and keep paying for workarounds.",
+      },
+      {
+        id: "customer-login",
+        text: "Customers keep asking for a login to see orders, bookings or reports.",
+      },
+      {
+        id: "spreadsheet",
+        text: "A process that makes you money only lives in a spreadsheet or someone’s head.",
+      },
+    ],
+    image: "/images/services/integrations-custom-app-fit.png",
+    imageWidth: 495,
+    imageHeight: 302,
+    imageAlt:
+      "Your team's account connected to Slack, Salesforce, HubSpot, Gmail, Excel and Notion",
+  },
+  {
+    id: "not-fit",
+    title: "Not a fit if:",
+    icon: HiOutlineXCircle,
+    iconClassName: "text-dark-pink",
+    points: [
+      {
+        id: "off-the-shelf",
+        text: "An off-the-shelf tool at £50 a month already does the job. We’ll tell you which one.",
+      },
+      {
+        id: "everything-at-once",
+        text: "You need everything built at once with no first phase. We start small on purpose.",
+      },
+    ],
+    cta: { label: "Book a 15-min scoping call", href: "/contact" },
+    image: "/images/services/dashboard-custom-app-fit.png",
+    imageWidth: 495,
+    imageHeight: 304,
+    imageAlt:
+      "Custom customer portal with bookings, reports, subscriptions and login areas",
+  },
+];
+
 export const customAppScopingNeeds = [
   {
     id: "current-process",
@@ -1122,16 +1567,129 @@ export const customAppBuildSteps = [
   },
 ];
 
-export const customAppCaseStudy = {
-  image: "/images/services/peter-jones-custom-app-casestudy.png",
-  imageWidth: 1123,
-  imageHeight: 766,
-  imageAlt: "Peter Jones Foundation Tycoon dashboard on a laptop",
-  tag: "WordPress",
-  title: "Website redesign for the Tycoon enterprise programme",
-  ctaLabel: "See the full project",
-  href: "/work/peter-jones-foundation",
-};
+export const customAppCaseStudies = [
+  {
+    id: "tycoon",
+    image: "/images/services/tycoon-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Tycoon enterprise programme website on a laptop",
+    tags: ["WordPress"],
+    title: "Website redesign for the Tycoon enterprise programme",
+    ctaLabel: "See the full project",
+    href: "/work/peter-jones-foundation",
+  },
+  {
+    id: "casabotanica",
+    image: "/images/services/casabotanica-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Casa Botanica villa website on a laptop",
+    tags: ["WordPress", "Custom booking"],
+    title: "Boutique villa website with a custom booking system",
+    ctaLabel: "See the full project",
+    href: "/work/casabotanica",
+  },
+  {
+    id: "ivy-duke",
+    image: "/images/services/ivy-duke-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Ivy & Duke dog bed shop website on a laptop",
+    tags: ["WooCommerce"],
+    title: "Dog bed shop. Revenue +15% in the first week after our CRO changes",
+    ctaLabel: "See the full project",
+    href: "/work/ivy-duke",
+  },
+  {
+    id: "trend-furnishings",
+    image: "/images/services/trend-furnishing-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Trend Furnishings curtain shop website on a laptop",
+    tags: ["WooCommerce"],
+    title: "Curtain shop with made-to-measure pricing",
+    ctaLabel: "See the full project",
+    href: "/work/trend-furnishings",
+  },
+  {
+    id: "fultons",
+    image: "/images/services/fultons-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Fultons jewellery shop website on a laptop",
+    tags: ["WooCommerce"],
+    title: "Website Redesign for a Jewellery Shop in Keswick",
+    ctaLabel: "See the full project",
+    href: "/work/fultons",
+  },
+  {
+    id: "lola-blake",
+    image: "/images/services/lola-blake-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Lola Blake nightwear store website on a laptop",
+    tags: ["WooCommerce"],
+    title: "Nightwear Store Speed Optimisation & Conversion Rate",
+    ctaLabel: "See the full project",
+    href: "/work/lola-blake",
+  },
+  {
+    id: "smokey-carter",
+    image: "/images/services/smokey-carter-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Smokey Carter BBQ rubs and sauces website on a monitor",
+    tags: ["WooCommerce"],
+    title: "Complete Website Redesign for BBQ Rubs and Sauces Store",
+    ctaLabel: "See the full project",
+    href: "/work/smokey-carter",
+  },
+  {
+    id: "sunbox",
+    image: "/images/services/sunbox-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Sunbox Campers campervan conversion website on a laptop",
+    tags: ["WordPress"],
+    title: "Campervan conversion website, with lead tracking into HubSpot",
+    ctaLabel: "See the full project",
+    href: "/work/sunbox",
+  },
+  {
+    id: "biome",
+    image: "/images/services/biome-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Pet microbiome testing portal on a laptop",
+    tags: ["Laravel", "Custom software"],
+    title: "Custom Pet Microbiome Testing and Reporting Portal",
+    ctaLabel: "See the full project",
+    href: "/work/biome",
+  },
+  {
+    id: "drive-uk",
+    image: "/images/services/driveuk-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Drive UK Services website on a laptop",
+    tags: ["WordPress", "SEO"],
+    title: "Complete Website Redesign for Drive UK Services",
+    ctaLabel: "See the full project",
+    href: "/work/drive-uk",
+  },
+  {
+    id: "ndifo",
+    image: "/images/services/ndifo-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Ndifo Safari Experiences website on a laptop",
+    tags: ["Shopify"],
+    title: "Complete Website Redesign for Ndifo Safari Experiences",
+    ctaLabel: "See the full project",
+    href: "/work/ndifo",
+  },
+];
 
 export const customAppSolutions = [
   {
@@ -1194,6 +1752,44 @@ export const customAppSolutions = [
     image: null,
     imageWidth: 0,
     imageHeight: 0,
+  },
+];
+
+export const brandingFaqs = [
+  {
+    id: "cost",
+    question: "How much does branding cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "files",
+    question: "Do we own the files?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "website",
+    question: "Can you roll the brand onto our website?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "existing-logo",
+    question: "What if we already have a logo we like?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a rebrand take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "directions",
+    question: "How many directions do we see?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "after",
+    question: "What happens after the brand is done?",
+    answer: "[Answer TBC]",
   },
 ];
 

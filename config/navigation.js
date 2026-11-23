@@ -6,6 +6,10 @@ export const mainNavigation = [
       { label: "Branding", href: "/services/branding" },
       { label: "Web Design", href: "/services/web-design" },
       { label: "Development", href: "/services/development" },
+      {
+        label: "Custom App Development",
+        href: "/services/custom-app-development",
+      },
       { label: "SEO", href: "/services/seo" },
     ],
   },
@@ -63,6 +67,11 @@ export const footerNavigation = [
       { label: "Brand & Experience", href: "/services/brand-experience" },
       { label: "Growth & Performance", href: "/services/growth-performance" },
       { label: "AI & Automation", href: "/services/ai-automation" },
+      { label: "Branding", href: "/services/branding" },
+      {
+        label: "Custom App Development",
+        href: "/services/custom-app-development",
+      },
     ],
   },
   {

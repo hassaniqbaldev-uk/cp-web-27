@@ -32,7 +32,7 @@ const Hero = () => {
     <>
       <Section className="relative flex min-h-screen items-center overflow-hidden bg-black">
         <Image
-          src="/images/home/gradient-bg-hero.png"
+          src="/images/common/gradient-bg-hero.png"
           alt=""
           fill
           priority

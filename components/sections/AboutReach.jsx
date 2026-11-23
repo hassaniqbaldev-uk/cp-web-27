@@ -29,7 +29,7 @@ const AboutReach = () => {
             }
             subtitle="CreativePixels is a UK company, led by Hassan from Manchester. Our design and development team are our own employees, based in Karachi, Pakistan, and our clients are in the UK, the US and further afield. You get one UK point of contact, named people on your project, and working hours that overlap with the UK and US."
             labelClassName="text-[22px] text-center font-medium tracking-[-0.02em] text-black uppercase"
-            titleClassName="text-[75px] mt-[10px] text-center leading-[80px] font-extrabold tracking-[-0.07em] text-black"
+            titleClassName="text-[65px] mt-[10px] text-center leading-[65px] font-extrabold tracking-[-0.07em] text-black"
             subtitleClassName="text-[16px] text-text-body mt-[20px] mx-auto max-w-[960px] text-center tracking-[-0.02em]"
           />
 

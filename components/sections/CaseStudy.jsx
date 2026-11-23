@@ -30,7 +30,7 @@ const CaseStudy = () => {
                   in a week
                 </>
               }
-              titleClassName="text-[55px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
               subtitle="A family-run maker of handmade dog beds. 4 in 5 visitors shopped on a phone, but phones converted at about a third of the desktop rate."
               subtitleClassName="mt-[24px] max-w-[560px] text-[22px] leading-[28px] font-normal tracking-[-0.02em] text-white"
             />

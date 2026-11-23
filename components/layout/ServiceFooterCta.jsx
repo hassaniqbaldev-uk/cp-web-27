@@ -22,7 +22,7 @@ const ServiceFooterCta = () => {
                 </>
               }
               subtitle="Describe how it works today. We'll tell you if custom software is the right answer and what the smallest useful first phase looks like."
-              titleClassName="text-[75px] leading-[75px] font-extrabold tracking-[-0.06em] text-white"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
               subtitleClassName="text-[18px] text-grey mt-[20px] leading-[28px] tracking-[-0.02em]"
             />
 

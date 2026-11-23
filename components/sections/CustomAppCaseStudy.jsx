@@ -1,6 +1,13 @@
-import { customAppCaseStudy } from "@/config/common";
+"use client";
+
+import { customAppCaseStudies } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import Button from "../ui/Button";
 import CircularTextButton from "../ui/CircularTextButton";
 import { Container } from "../ui/Container";
@@ -8,20 +15,12 @@ import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
 const CustomAppCaseStudy = () => {
-  const {
-    image,
-    imageWidth,
-    imageHeight,
-    imageAlt,
-    tag,
-    title,
-    ctaLabel,
-    href,
-  } = customAppCaseStudy;
-
   return (
     <>
-      <Section id="custom-app-case-study" className="py-[120px]">
+      <Section
+        id="custom-app-case-study"
+        className="overflow-hidden pt-[120px] pb-[80px]"
+      >
         <Container>
           <div className="relative flex justify-center text-center">
             <SectionHeading
@@ -29,7 +28,7 @@ const CustomAppCaseStudy = () => {
               titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
             />
 
-            <div className="absolute top-[-70px] right-[320px]">
+            <div className="absolute top-[-70px] right-[300px]">
               <CircularTextButton
                 href="/work"
                 image="/images/home/circular-text-projects.png"
@@ -46,40 +45,79 @@ const CustomAppCaseStudy = () => {
               </CircularTextButton>
             </div>
           </div>
-
-          <div className="mt-[80px] flex items-center gap-[45px] rounded-[20px] bg-white p-[45px] shadow-[0px_20px_80px_0px_rgba(0,0,0,0.08)]">
-            <div className="bg-grey/60 relative h-[380px] w-[560px] shrink-0 overflow-hidden rounded-[20px]">
-              {image && (
-                <Image
-                  src={image}
-                  alt={imageAlt}
-                  width={imageWidth}
-                  height={imageHeight}
-                  className="h-full w-full object-cover"
-                />
-              )}
-            </div>
-
-            <div className="flex flex-col items-start">
-              <span className="bg-blue/10 text-blue rounded-full px-[25px] py-[12px] text-[16px] font-semibold tracking-[-0.02em] uppercase">
-                {tag}
-              </span>
-
-              <h3 className="mt-[30px] text-[45px] leading-[50px] font-bold tracking-[-0.05em] text-black">
-                {title}
-              </h3>
-
-              <div className="flex">
-                <Button
-                  href={href}
-                  className="mt-[30px] rounded-full bg-black px-[20px] py-[12px] text-[16px] font-extrabold tracking-[-0.02em] text-white uppercase"
-                >
-                  {ctaLabel}
-                </Button>
-              </div>
-            </div>
-          </div>
         </Container>
+
+        {/* Full-bleed slider: each slide spans the full width (one at a time),
+            with the card centred at Container width. overflow-visible keeps the
+            shadow uncut; the Section's overflow-hidden stops horizontal scroll. */}
+        <Swiper
+          modules={[Pagination]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          style={{
+            "--swiper-pagination-color": "#000000",
+            "--swiper-pagination-bullet-inactive-color": "#000000",
+            "--swiper-pagination-bullet-inactive-opacity": "0.2",
+            "--swiper-pagination-bottom": "40px",
+          }}
+          className="overflow-visible! pt-[60px]! pb-[100px]!"
+        >
+          {customAppCaseStudies.map(
+            ({
+              id,
+              image,
+              imageWidth,
+              imageHeight,
+              imageAlt,
+              tags,
+              title,
+              ctaLabel,
+              href,
+            }) => (
+              <SwiperSlide key={id} className="h-auto! px-[20px]">
+                <div className="mx-auto flex h-full max-w-[1200px] items-center gap-[60px] rounded-[20px] bg-white p-[45px] shadow-[16px_16px_150px_0px_#00000017]">
+                  <div className="bg-grey/60 relative h-[380px] w-[560px] shrink-0 overflow-hidden rounded-[20px]">
+                    {image && (
+                      <Image
+                        src={image}
+                        alt={imageAlt}
+                        width={imageWidth}
+                        height={imageHeight}
+                        className="h-full w-full object-cover"
+                      />
+                    )}
+                  </div>
+
+                  <div className="flex w-[470px] flex-col items-start">
+                    <ul className="flex flex-wrap items-center gap-[10px]">
+                      {tags.map((tag) => (
+                        <li
+                          key={tag}
+                          className="bg-blue/10 text-blue rounded-full px-[25px] py-[12px] text-[18px] font-semibold tracking-[-0.02em] uppercase"
+                        >
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <h3 className="mt-[25px] text-[45px] leading-[55px] font-bold tracking-[-0.07em] text-black">
+                      {title}
+                    </h3>
+
+                    <div className="flex">
+                      <Button
+                        href={href}
+                        className="mt-[40px] rounded-full bg-black px-[20px] py-[12px] text-[16px] font-extrabold tracking-[-0.02em] text-white uppercase"
+                      >
+                        {ctaLabel}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ),
+          )}
+        </Swiper>
       </Section>
     </>
   );

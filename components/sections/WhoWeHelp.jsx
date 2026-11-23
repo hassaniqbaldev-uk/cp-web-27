@@ -17,19 +17,11 @@ const WhoWeHelp = () => {
     <>
       <Section className="relative overflow-hidden bg-black pt-[120px]">
         <Image
-          src="/images/home/gradient-bg-who-we-help-left.png"
+          src="/images/home/gradient-bg-who-we-help.png"
           alt=""
-          width={704}
-          height={1446}
-          className="pointer-events-none absolute top-0 left-0 z-0 h-full w-auto"
-        />
-
-        <Image
-          src="/images/home/gradient-bg-who-we-help-right.png"
-          alt=""
-          width={545}
-          height={1446}
-          className="pointer-events-none absolute top-0 right-0 z-0 h-full w-auto"
+          width={1441}
+          height={1343}
+          className="pointer-events-none absolute top-0 left-0 z-0 h-full w-full"
         />
 
         <Starfield className="absolute top-0 left-[-50px] z-0 h-full w-[260px] mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
@@ -98,16 +90,16 @@ const WhoWeHelp = () => {
           </Swiper>
         </div>
 
-        <div className="relative z-10 mx-auto mt-[90px] w-full max-w-[1440px]">
+        <div className="relative z-10 mx-auto mt-[90px] w-full max-w-[1920px]">
           <Image
             src="/images/home/smokey-carter-who-we-help-img.png"
             alt="Smokey Carter website on a laptop"
-            width={1440}
+            width={1920}
             height={722}
             className="h-auto w-full"
           />
 
-          <div className="absolute top-[80px] right-[240px]">
+          <div className="absolute top-[80px] right-[450px]">
             <CircularTextButton
               href="/work"
               image="/images/home/circular-text-projects-light.png"

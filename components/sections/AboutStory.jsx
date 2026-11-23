@@ -75,7 +75,7 @@ const AboutStory = () => {
                   </>
                 }
                 subtitle="I started building websites at 13. That early obsession eventually became CreativePixels, and the same idea still drives the agency now: understand the problem, make the work useful, and care about what happens after launch."
-                titleClassName="text-[75px] leading-[80px] font-extrabold tracking-[-0.07em] text-black"
+                titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.07em] text-black"
                 subtitleClassName="text-[22px] text-text-body mt-[20px] tracking-[-0.02em]"
               />
 

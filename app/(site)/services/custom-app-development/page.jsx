@@ -1,18 +1,24 @@
-import { customAppFaqs } from "@/config/common";
+import { customAppFaqs, customAppPricingPlans } from "@/config/common";
 import ServiceFooterCta from "@/components/layout/ServiceFooterCta";
 import Footer from "@/components/layout/Footer";
 import CustomAppBuildSteps from "@/components/sections/CustomAppBuildSteps";
 import CustomAppCaseStudy from "@/components/sections/CustomAppCaseStudy";
 import CustomAppCostCalculator from "@/components/sections/CustomAppCostCalculator";
-import CustomAppPricing from "@/components/sections/CustomAppPricing";
+import CustomAppFit from "@/components/sections/CustomAppFit";
+import CustomAppHero from "@/components/sections/CustomAppHero";
 import CustomAppSolutions from "@/components/sections/CustomAppSolutions";
 import CustomAppScoping from "@/components/sections/CustomAppScoping";
 import CustomAppTechStack from "@/components/sections/CustomAppTechStack";
 import Faqs from "@/components/sections/Faqs";
+import ServicePricing from "@/components/sections/ServicePricing";
 
 const CustomAppDevelopment = () => {
   return (
     <>
+      <CustomAppHero />
+
+      <CustomAppFit />
+
       <CustomAppSolutions />
 
       <CustomAppCaseStudy />
@@ -25,7 +31,20 @@ const CustomAppDevelopment = () => {
 
       <CustomAppCostCalculator />
 
-      <CustomAppPricing />
+      <ServicePricing
+        id="custom-app-pricing"
+        title={
+          <>
+            How much does custom <br />
+            <span className="mr-[-0.06em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.06em] text-transparent">
+              software cost?
+            </span>
+          </>
+        }
+        subtitle="Custom software projects from £5,000. Staged payments. You own the code."
+        plans={customAppPricingPlans}
+        note="UK software agencies typically charge £25,000 to £50,000 for a first release. Ours start from £5,000."
+      />
 
       <Faqs
         id="custom-app-faqs"

@@ -12,7 +12,7 @@ const SETTLE_STEPS = 600;
 const PUSH_REACH = 20;
 
 // Push strength per pixel of cursor movement, relative to the ball mass.
-const PUSH_STRENGTH = 0.0006;
+const PUSH_STRENGTH = 0.0004;
 
 // Caps the cursor speed so a fast flick does not fling balls off-screen.
 const MAX_CURSOR_SPEED = 40;

@@ -74,7 +74,7 @@ const AboutJourney = () => {
                   </span>
                 }
                 labelClassName="text-[22px] font-medium tracking-[-0.02em] text-white uppercase"
-                titleClassName=" text-[90px] leading-[100px] font-bold tracking-[-0.07em]"
+                titleClassName="text-[90px] leading-[100px] font-bold tracking-[-0.07em]"
               />
             </div>
 

@@ -1,4 +1,3 @@
-import { customAppPricingPlans } from "@/config/common";
 import {
   HiOutlineClock,
   HiOutlineDocumentText,
@@ -15,32 +14,28 @@ const planDetails = [
   { key: "bestFor", label: "Best for", icon: HiOutlineUserGroup },
 ];
 
-const CustomAppPricing = () => {
+// Shared 3-plan pricing section for service pages. Each page passes its own
+// id, heading, subtitle, plans (from config/common.js) and closing note.
+const ServicePricing = ({ id, title, subtitle, plans, note }) => {
   return (
     <>
-      <Section id="custom-app-pricing" className="bg-grey/40 py-[120px]">
+      <Section id={id} className="bg-grey/40 py-[120px]">
         <Container>
           <SectionHeading
             className="text-center"
-            title={
-              <>
-                How much does custom <br />
-                <span className="mr-[-0.06em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.06em] text-transparent">
-                  software cost?
-                </span>
-              </>
-            }
+            title={title}
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
-            subtitle="Custom software projects from £5,000. Staged payments. You own the code."
-            subtitleClassName="text-text-body mt-[20px] text-[18px] leading-[28px] tracking-[-0.02em]"
+            subtitle={subtitle}
+            subtitleClassName="text-text-body mt-[20px] text-[22px] leading-[28px] tracking-[-0.02em]"
           />
 
-          <ul className="mt-[45px] grid grid-cols-3 gap-[30px]">
-            {customAppPricingPlans.map((plan) => {
+          <ul className="mt-[60px] grid grid-cols-3 gap-[30px]">
+            {plans.map((plan) => {
               const {
-                id,
+                id: planId,
                 name,
                 badge,
+                prefix,
                 price,
                 suffix,
                 ctaLabel,
@@ -50,38 +45,46 @@ const CustomAppPricing = () => {
 
               return (
                 <li
-                  key={id}
+                  key={planId}
                   className={`flex flex-col rounded-[20px] p-[15px] ${
                     featured ? "bg-black" : "bg-white"
                   }`}
                 >
                   <div
-                    className={`flex h-[260px] flex-col justify-between rounded-[15px] p-[30px] ${
+                    className={`flex h-[250px] flex-col justify-between rounded-[15px] p-[30px] ${
                       featured
                         ? "bg-[linear-gradient(135deg,#FFFFFF_45%,var(--color-blue)_100%)]"
                         : "bg-grey/60"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-[10px]">
-                      <h3 className="text-[25px] font-bold tracking-[-0.04em] text-black">
+                      <h3 className="text-[25px] leading-[27px] font-bold tracking-[-0.07em] text-black">
                         {name}
                       </h3>
 
                       {badge && (
-                        <span className="bg-blue rounded-full px-[15px] py-[6px] text-[12px] font-bold tracking-[-0.02em] text-white">
+                        <span className="bg-blue rounded-full px-[15px] py-[5px] text-[16px] leading-[27px] font-bold tracking-[-0.07em] text-white">
                           {badge}
                         </span>
                       )}
                     </div>
 
-                    <p className="text-[65px] leading-none font-extrabold tracking-[-0.06em] text-black">
-                      {price}
-                      {suffix && (
-                        <span className="ml-[5px] text-[16px] font-medium tracking-[-0.02em]">
-                          {suffix}
+                    <div>
+                      {prefix && (
+                        <span className="block text-[16px] leading-[20px] tracking-[-0.02em] text-black">
+                          {prefix}
                         </span>
                       )}
-                    </p>
+
+                      <p className="text-[65px] leading-[70px] font-extrabold tracking-[-0.06em] text-black">
+                        {price}
+                        {suffix && (
+                          <span className="ml-[5px] text-[16px] font-medium tracking-[-0.02em]">
+                            {suffix}
+                          </span>
+                        )}
+                      </p>
+                    </div>
                   </div>
 
                   <dl className="mt-[30px] flex flex-col gap-[20px] px-[15px]">
@@ -125,14 +128,15 @@ const CustomAppPricing = () => {
             })}
           </ul>
 
-          <p className="text-text-body mt-[45px] text-center text-[18px] leading-[28px] tracking-[-0.02em]">
-            UK software agencies typically charge £25,000 to £50,000 for a first
-            release. Ours start from £5,000.
-          </p>
+          {note && (
+            <p className="text-text-body mt-[60px] text-center text-[22px] leading-[28px] tracking-[-0.02em]">
+              {note}
+            </p>
+          )}
         </Container>
       </Section>
     </>
   );
 };
 
-export default CustomAppPricing;
+export default ServicePricing;

@@ -29,7 +29,7 @@ const AboutBehaviours = () => {
                 Behaviours, <span className="text-white/50">not values.</span>
               </>
             }
-            titleClassName="text-[65px] leading-[67px] text-center font-extrabold tracking-[-0.07em] text-white"
+            titleClassName="text-[65px] leading-[65px] text-center font-extrabold tracking-[-0.07em] text-white"
           />
 
           <ul className="mt-[65px] grid grid-cols-2 items-start gap-[30px]">

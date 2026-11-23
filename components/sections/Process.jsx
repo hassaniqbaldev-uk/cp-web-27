@@ -113,7 +113,7 @@ const Process = () => {
               subtitle={
                 "We've refined our delivery process over 10 years to minimize risk and maximize speed to market."
               }
-              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[80px]"
+              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px]"
               subtitleClassName="text-[18px] max-w-[400px] text-text-body mt-[20px] leading-[28px] tracking-[-0.02em]"
             />
 

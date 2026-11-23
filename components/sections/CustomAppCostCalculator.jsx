@@ -54,7 +54,7 @@ const CustomAppCostCalculator = () => {
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
           />
 
-          <div className="mx-auto mt-[45px] flex w-[1010px] items-stretch justify-between gap-[45px] rounded-[20px] bg-white p-[45px] shadow-[0px_20px_80px_0px_rgba(0,0,0,0.08)]">
+          <div className="mx-auto mt-[60px] flex items-stretch justify-between gap-[45px] rounded-[20px] bg-white p-[45px] shadow-[16px_16px_124px_0px_#0000001C]">
             <div className="flex flex-1 flex-col justify-center gap-[30px]">
               {calculatorFields.map(({ id, label, min, max }) => {
                 const value = values[id];

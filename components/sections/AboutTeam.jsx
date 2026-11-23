@@ -27,7 +27,7 @@ const AboutTeam = () => {
                   </span>
                 </>
               }
-              titleClassName="text-[65px] leading-[67px] font-extrabold tracking-[-0.07em] text-black"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.07em] text-black"
             />
 
             <p className="text-text-body w-[490px] text-[22px] tracking-[-0.02em]">

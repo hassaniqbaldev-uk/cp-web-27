@@ -35,8 +35,8 @@ const CustomAppSolutions = () => {
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
           />
 
-          <div className="mt-[45px] flex items-stretch gap-[45px]">
-            <ul className="flex w-[540px] shrink-0 flex-col gap-[15px]">
+          <div className="mt-[70px] flex items-stretch justify-between gap-[45px]">
+            <ul className="flex w-[554px] shrink-0 flex-col gap-[15px]">
               {customAppSolutions.map(
                 ({ id, icon: Icon, iconBgClassName, title, description }) => {
                   const isActive = id === activeId;
@@ -48,16 +48,16 @@ const CustomAppSolutions = () => {
                         aria-expanded={isActive}
                         aria-controls={`${id}-panel`}
                         onClick={() => setActiveId(id)}
-                        className="flex w-full cursor-pointer items-start gap-[20px] rounded-[15px] bg-white p-[20px] text-left"
+                        className="flex w-full cursor-pointer items-start gap-[20px] rounded-[20px] bg-white p-[20px] text-left"
                       >
                         <span
-                          className={`flex size-[50px] shrink-0 items-center justify-center rounded-full text-white ${iconBgClassName}`}
+                          className={`flex size-[56px] shrink-0 items-center justify-center rounded-full text-white ${iconBgClassName}`}
                         >
-                          <Icon size={22} />
+                          <Icon size={30} />
                         </span>
 
                         <span className="flex min-h-[50px] flex-1 flex-col justify-center">
-                          <span className="text-[20px] font-bold tracking-[-0.04em] text-black">
+                          <span className="text-[25px] font-bold tracking-[-0.07em] text-black">
                             {title}
                           </span>
 
@@ -70,7 +70,7 @@ const CustomAppSolutions = () => {
                             }`}
                           >
                             <span className="overflow-hidden">
-                              <span className="text-text-body block pt-[5px] text-[16px] leading-[22px] tracking-[-0.02em]">
+                              <span className="text-text-body block pt-[5px] text-[18px] leading-[22px] tracking-[-0.02em]">
                                 {description}
                               </span>
                             </span>
@@ -79,7 +79,7 @@ const CustomAppSolutions = () => {
                       </button>
 
                       <span
-                        className={`absolute top-1/2 -right-[10px] size-[20px] -translate-y-1/2 bg-white transition-opacity duration-500 [clip-path:polygon(0_0,100%_50%,0_100%)] ${
+                        className={`absolute top-1/2 -right-[20px] size-[27px] -translate-y-1/2 bg-white transition-opacity duration-500 [clip-path:polygon(0_0,100%_50%,0_100%)] ${
                           isActive ? "opacity-100" : "opacity-0"
                         }`}
                       />
@@ -89,7 +89,7 @@ const CustomAppSolutions = () => {
               )}
             </ul>
 
-            <div className="bg-grey relative flex-1 overflow-hidden rounded-[20px]">
+            <div className="bg-grey relative w-[600px] overflow-hidden rounded-[20px]">
               {customAppSolutions.map(
                 ({ id, title, image, imageWidth, imageHeight }) =>
                   image && (

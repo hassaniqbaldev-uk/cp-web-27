@@ -47,7 +47,7 @@ const CustomAppScoping = () => {
             <div className="flex">
               <Button
                 href="/contact"
-                className="mt-[40px] rounded-full bg-black px-[20px] py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-white uppercase"
+                className="mt-[40px] rounded-full bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase"
               >
                 Plan my first release
               </Button>

@@ -1,10 +1,10 @@
 import { ArrowUpRight, ChevronDown, Plus } from "lucide-react";
 import Link from "next/link";
 
-const labelClassName =
+export const labelClassName =
   "absolute -top-[8px] left-[14px] bg-white px-[6px] text-[14px] font-bold tracking-[-0.02em] text-black uppercase";
 
-const fieldClassName =
+export const fieldClassName =
   "placeholder:text-text-body/60 w-full rounded-[10px] border border-black/15 px-[20px] py-[18px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none";
 
 const optionalFields = [

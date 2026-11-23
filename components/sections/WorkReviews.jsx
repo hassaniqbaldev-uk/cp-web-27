@@ -38,7 +38,7 @@ const WorkReviews = ({
               label={label}
               title={title}
               labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-[85px] mt-[10px] leading-[90px] font-extrabold tracking-[-0.07em] text-black"
+              titleClassName="text-[65px] mt-[10px] leading-[65px] font-extrabold tracking-[-0.07em] text-black"
             />
 
             <div className="shrink-0">

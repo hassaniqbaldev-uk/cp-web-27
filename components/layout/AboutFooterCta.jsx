@@ -26,7 +26,7 @@ const AboutFooterCta = () => {
                 </>
               }
               subtitle="Scoping, payments, reviews, launch and what happens after. Written down, so there are no surprises."
-              titleClassName="text-[75px] leading-[75px] font-extrabold tracking-[-0.06em] text-white"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
               subtitleClassName="text-[22px] text-grey mt-[20px] leading-[28px] tracking-[-0.02em]"
             />
 

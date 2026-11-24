@@ -24,6 +24,7 @@ import {
   HiOutlineBriefcase,
   HiOutlineCalendarDays,
   HiOutlineCheckCircle,
+  HiOutlineClock,
   HiOutlineCloud,
   HiOutlineCog6Tooth,
   HiOutlineComputerDesktop,
@@ -39,15 +40,21 @@ import {
   HiOutlinePrinter,
   HiOutlineShoppingCart,
   HiOutlineSignal,
+  HiOutlineUserGroup,
   HiOutlineWrenchScrewdriver,
   HiOutlineXCircle,
 } from "react-icons/hi2";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
   LuBot,
+  LuCircleUserRound,
+  LuFileText,
+  LuFolderCode,
   LuMeh,
   LuNavigation,
   LuPlug,
+  LuSearchCheck,
+  LuSiren,
   LuToggleLeft,
   LuTriangleAlert,
 } from "react-icons/lu";
@@ -1949,6 +1956,225 @@ export const aiPricingPlans = [
   },
 ];
 
+export const growthHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "£300 a month",
+    description: "Rolling, stop with notice",
+  },
+  {
+    id: "other-sites",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Other-Built Sites",
+    description: "We take them on too",
+  },
+  {
+    id: "rate",
+    icon: "/images/services/smokey-carter-icon-custom-app-hero.png",
+    iconAlt: "Smokey Carter",
+    width: 45,
+    height: 52,
+    iconClassName: "w-[45px] h-[52px]",
+    value: "£75 an hour",
+    description: "Clear agency rate on every plan",
+  },
+];
+
+export const growthNeeds = [
+  {
+    id: "care",
+    icon: TbShare,
+    title: "Care fits when:",
+    description: "[Copy TBC]",
+    cta: { label: "Start with Care", href: "#growth-pricing" },
+    image: "/images/services/care-growth-needs.png",
+    imageAlt: "Care plan website",
+  },
+  {
+    id: "grow",
+    icon: TbShare,
+    title: "Grow fits when:",
+    description:
+      "You want it to get better every month: conversion fixes, new sections, content changes.",
+    cta: { label: "Start with Grow", href: "#growth-pricing" },
+    image: "/images/services/grow-growth-needs.png",
+    imageAlt: "Grow plan website",
+  },
+  {
+    id: "scale",
+    icon: TbShare,
+    title: "Scale fits when:",
+    description: "[Copy TBC]",
+    cta: { label: "Start with Scale", href: "#growth-pricing" },
+    image: "/images/services/scale-growth-needs.png",
+    imageAlt: "Scale plan website",
+  },
+];
+
+export const growthMonth = [
+  {
+    id: "review",
+    label: "Week 1",
+    title: "Review",
+    description:
+      "Last month’s numbers against where you started. What moved, what didn’t, what we learned.",
+  },
+  {
+    id: "plan",
+    label: "Week 1",
+    title: "Plan",
+    description:
+      "The month’s priorities agreed with you: fixes, updates and one or two improvements.",
+  },
+  {
+    id: "ship",
+    label: "Weeks 2–3",
+    title: "Ship",
+    description:
+      "Prioritised items built and checked on a staging link before they go live.",
+  },
+  {
+    id: "report",
+    label: "Week 4",
+    title: "Report",
+    description:
+      "A one-page report in plain English: what we did, what changed, what’s next.",
+  },
+];
+
+export const growthChecks = [
+  {
+    id: "left",
+    className: "",
+    items: [
+      {
+        id: "technical",
+        icon: LuSearchCheck,
+        iconClassName: "bg-dark-pink",
+        title: "Technical health check",
+      },
+      {
+        id: "seo",
+        icon: LuFolderCode,
+        iconClassName: "bg-orange",
+        title: "SEO Performance",
+      },
+    ],
+  },
+  {
+    id: "right",
+    className: "mt-[280px] ml-[467px]",
+    items: [
+      {
+        id: "ux",
+        icon: LuCircleUserRound,
+        iconClassName: "bg-blue",
+        title: "UX & Conversion",
+      },
+      {
+        id: "content",
+        icon: LuFileText,
+        iconClassName: "bg-text-body",
+        title: "Content & Competitors",
+      },
+    ],
+  },
+];
+
+export const growthTimeline = [
+  {
+    id: "month-1",
+    label: "Month 1",
+    text: "Health check, updates and the urgent fixes.",
+  },
+  {
+    id: "month-3",
+    label: "Month 3",
+    text: "Speed improvements and tracking set up properly.",
+  },
+  {
+    id: "month-6",
+    label: "Month 6",
+    text: "A new section or landing page.",
+  },
+  {
+    id: "month-9",
+    label: "Month 9",
+    text: "Conversion changes on the key pages.",
+  },
+  {
+    id: "month-12",
+    label: "Month 12",
+    text: "Result, e.g. “Enquiries up X% on the same traffic.”",
+  },
+];
+
+export const growthPricingDetails = [
+  { key: "hours", label: "Hours", icon: HiOutlineClock },
+  { key: "covered", label: "What’s covered", icon: HiOutlineDocumentText },
+  { key: "extras", label: "Extras", icon: HiOutlineUserGroup },
+  { key: "response", label: "Urgent response", icon: LuSiren },
+];
+
+export const growthPricingPlans = [
+  {
+    id: "care",
+    name: "Care",
+    prefix: "From",
+    price: "£300",
+    suffix: "/ Month",
+    hours: "Up to 4",
+    covered:
+      "Updates, security, backups, uptime and performance monitoring, small fixes.",
+    extras: "Monthly report · Priority fixes · Staging reviews.",
+    response: "Next working day.",
+    ctaLabel: "Start with Care",
+    ctaHref: "/contact",
+  },
+  {
+    id: "grow",
+    name: "Grow",
+    prefix: "From",
+    price: "£750",
+    suffix: "/ Month",
+    hours: "Up to 10",
+    covered:
+      "Everything in Care, plus conversion improvements, new sections and content changes.",
+    extras:
+      "CRO changes shipped monthly · Analytics review · Quarterly roadmap.",
+    response: "Same working day.",
+    ctaLabel: "Start with Grow",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    prefix: "From",
+    price: "£1,500",
+    suffix: "/ Month",
+    hours: "From 20",
+    covered:
+      "A standing development and growth allocation for stores and products that change every month.",
+    extras:
+      "Named developer · SEO or paid included by scope · Weekly check-ins.",
+    response: "Within 4 hours",
+    ctaLabel: "Start with Scale",
+    ctaHref: "/contact",
+  },
+];
+
+export const growthFormServices = ["Care plan", "Grow plan", "Scale plan"];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -2842,6 +3068,54 @@ export const aiFaqs = [
   {
     id: "fees",
     question: "Do we need to pay for n8n, Make or Zapier?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const growthFaqs = [
+  {
+    id: "other-sites",
+    question: "Can you support a site you didn’t build?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "minimum-term",
+    question: "Is there a minimum term?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "support-vs-project",
+    question: "What counts as support versus a project?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "monitoring",
+    question: "Do you monitor uptime and security?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "urgent",
+    question: "How fast do you respond to urgent issues?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "rollover",
+    question: "Do unused hours roll over?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "hosting",
+    question: "Is hosting included?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "platforms",
+    question: "What platforms do you support?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "switching",
+    question: "Can we switch plans?",
     answer: "[Answer TBC]",
   },
 ];

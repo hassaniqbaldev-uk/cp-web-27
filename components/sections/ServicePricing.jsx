@@ -8,7 +8,7 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-const planDetails = [
+const defaultDetails = [
   { key: "timeline", label: "Timeline", icon: HiOutlineClock },
   { key: "youGet", label: "You get", icon: HiOutlineDocumentText },
   { key: "bestFor", label: "Best for", icon: HiOutlineUserGroup },
@@ -16,7 +16,14 @@ const planDetails = [
 
 // Shared 3-plan pricing section for service pages. Each page passes its own
 // id, heading, subtitle, plans (from config/common.js) and closing note.
-const ServicePricing = ({ id, title, subtitle, plans, note }) => {
+const ServicePricing = ({
+  id,
+  title,
+  subtitle,
+  plans,
+  note,
+  details = defaultDetails,
+}) => {
   return (
     <>
       <Section id={id} className="bg-grey/40 py-[120px]">
@@ -88,17 +95,20 @@ const ServicePricing = ({ id, title, subtitle, plans, note }) => {
                   </div>
 
                   <dl className="mt-[30px] flex flex-col gap-[20px] px-[15px]">
-                    {planDetails.map(({ key, label, icon: Icon }) => (
+                    {details.map(({ key, label, icon: Icon }) => (
                       <div
                         key={key}
                         className="grid grid-cols-[130px_1fr] items-start gap-[15px]"
                       >
                         <dt
-                          className={`flex items-center gap-[10px] text-[16px] font-bold tracking-[-0.02em] ${
+                          className={`flex items-start gap-[10px] text-[16px] font-bold tracking-[-0.02em] ${
                             featured ? "text-white" : "text-black"
                           }`}
                         >
-                          <Icon size={20} className="text-blue shrink-0" />
+                          <Icon
+                            size={20}
+                            className="text-blue mt-[2px] shrink-0"
+                          />
                           {label}
                         </dt>
 

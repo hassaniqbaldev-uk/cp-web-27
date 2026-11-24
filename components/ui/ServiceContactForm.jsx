@@ -17,6 +17,7 @@ const ServiceContactForm = ({
   needLabel = "What do you need (a sentence is fine)",
   needPlaceholder = "Optional, e.g. traffic but no enquiries, slow on mobile, checkout drop-off",
   submitLabel = "Send my details",
+  services,
 }) => {
   return (
     <form className="flex flex-col gap-[30px]">
@@ -68,49 +69,78 @@ const ServiceContactForm = ({
         />
       </div>
 
-      <details className="group rounded-[10px] border border-black/15">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px]">
-          <span className="flex items-center gap-[20px]">
-            <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-black/20">
-              <Plus size={18} strokeWidth={2} className="text-black" />
-            </span>
+      {services ? (
+        <div className="relative">
+          <label htmlFor="service-select" className={labelClassName}>
+            Select services
+          </label>
 
-            <span>
-              <span className="block text-[18px] font-bold tracking-[-0.02em] text-black">
-                Add optional details
-              </span>
+          <select
+            id="service-select"
+            name="service"
+            defaultValue=""
+            className={`has-[option[value='']:checked]:text-text-body/60 cursor-pointer appearance-none pr-[50px] ${fieldClassName}`}
+          >
+            <option value="">What do you need?</option>
 
-              <span className="text-text-body block text-[14px] tracking-[-0.02em]">
-                Website, budget, timeline (optional)
-              </span>
-            </span>
-          </span>
+            {services.map((service) => (
+              <option key={service} value={service} className="text-black">
+                {service}
+              </option>
+            ))}
+          </select>
 
           <ChevronDown
             size={20}
             strokeWidth={2}
-            className="shrink-0 text-black transition-transform duration-300 group-open:rotate-180"
+            className="pointer-events-none absolute top-1/2 right-[20px] -translate-y-1/2 text-black"
           />
-        </summary>
-
-        <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px]">
-          {optionalFields.map(({ id, label, placeholder }) => (
-            <div key={id} className="relative">
-              <label htmlFor={`service-${id}`} className={labelClassName}>
-                {label}
-              </label>
-
-              <input
-                id={`service-${id}`}
-                name={id}
-                type="text"
-                placeholder={placeholder}
-                className="placeholder:text-text-body/60 w-full rounded-[10px] border border-black/15 px-[20px] py-[14px] text-[16px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
-              />
-            </div>
-          ))}
         </div>
-      </details>
+      ) : (
+        <details className="group rounded-[10px] border border-black/15">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px]">
+            <span className="flex items-center gap-[20px]">
+              <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-black/20">
+                <Plus size={18} strokeWidth={2} className="text-black" />
+              </span>
+
+              <span>
+                <span className="block text-[18px] font-bold tracking-[-0.02em] text-black">
+                  Add optional details
+                </span>
+
+                <span className="text-text-body block text-[14px] tracking-[-0.02em]">
+                  Website, budget, timeline (optional)
+                </span>
+              </span>
+            </span>
+
+            <ChevronDown
+              size={20}
+              strokeWidth={2}
+              className="shrink-0 text-black transition-transform duration-300 group-open:rotate-180"
+            />
+          </summary>
+
+          <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px]">
+            {optionalFields.map(({ id, label, placeholder }) => (
+              <div key={id} className="relative">
+                <label htmlFor={`service-${id}`} className={labelClassName}>
+                  {label}
+                </label>
+
+                <input
+                  id={`service-${id}`}
+                  name={id}
+                  type="text"
+                  placeholder={placeholder}
+                  className="placeholder:text-text-body/60 w-full rounded-[10px] border border-black/15 px-[20px] py-[14px] text-[16px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
+                />
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
 
       <button
         type="submit"

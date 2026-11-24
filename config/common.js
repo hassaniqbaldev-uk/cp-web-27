@@ -30,6 +30,7 @@ import {
   HiOutlineCurrencyPound,
   HiOutlineDocumentChartBar,
   HiOutlineDocumentDuplicate,
+  HiOutlineDocumentText,
   HiOutlineEnvelopeOpen,
   HiOutlineFolder,
   HiOutlineIdentification,
@@ -1439,6 +1440,221 @@ export const uiUxPricingPlans = [
   },
 ];
 
+export const seoHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "£500 a month",
+    description: "Rolling monthly, no lock-in",
+  },
+  {
+    id: "rankings",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Rankings kept",
+    description: "Through redesigns and migrations",
+  },
+  {
+    id: "enquiries",
+    icon: "/images/services/smokey-carter-icon-custom-app-hero.png",
+    iconAlt: "Smokey Carter",
+    width: 45,
+    height: 52,
+    iconClassName: "w-[45px] h-[52px]",
+    value: "Enquiry-Focused",
+    description: "Not just rankings",
+  },
+];
+
+export const seoHeroPopovers = [
+  {
+    id: "aeo",
+    title: "AEO",
+    href: "/contact",
+    image: "/images/services/aeo-popover-seo-hero.png",
+    className: "top-[55px] left-[28px]",
+    orientation: "bottom",
+  },
+  {
+    id: "geo",
+    title: "GEO",
+    href: "/contact",
+    image: "/images/services/geo-popover-seo-hero.png",
+    className: "top-[198px] left-[559px]",
+    orientation: "bottom",
+  },
+  {
+    id: "seo",
+    title: "SEO",
+    href: "/contact",
+    image: "/images/services/seo-popover-seo-hero.png",
+    className: "top-[458px] left-[552px]",
+    orientation: "top",
+  },
+];
+
+export const seoHeroCards = [
+  {
+    id: "monthly",
+    title: "Monthly SEO from",
+    price: "£300.",
+    description: "Measured against a baseline we agree at the start",
+    className: "top-[-28px] left-[455px]",
+  },
+  {
+    id: "audit",
+    title: "SEO audit from",
+    price: "£500.",
+    description: "Measured against a baseline we agree at the start",
+    className: "top-[356px] left-0",
+  },
+];
+
+export const seoNeeds = [
+  {
+    id: "audit",
+    title: "An SEO audit fits:",
+    description:
+      "You’re getting little from search and want to know why, with a plan you can act on.",
+    cta: { label: "Get an SEO audit", href: "/contact" },
+  },
+  {
+    id: "monthly",
+    title: "Monthly SEO fits:",
+    description:
+      "You know search can bring you work and want steady growth you can measure.",
+    cta: { label: "Start monthly SEO", href: "/contact" },
+  },
+  {
+    id: "migration",
+    title: "Migration SEO fits:",
+    description:
+      "You’re getting little from search and want to know why, with a plan you can act on.",
+    cta: { label: "Safe migration", href: "/contact" },
+  },
+];
+
+export const seoMonthly = [
+  {
+    id: "keyword-map",
+    icon: HiOutlineDocumentText,
+    title: "Keyword and page map",
+    description:
+      "Every search mapped to one page, so pages stop competing with each other.",
+  },
+  {
+    id: "tech-audit",
+    icon: HiOutlineDocumentText,
+    title: "Tech audit with priorities",
+    description:
+      "What people search, how much, and which searches actually turn into enquiries or sales.",
+  },
+  {
+    id: "performance",
+    icon: HiOutlineDocumentText,
+    title: "Monthly performance",
+    description:
+      "What we did, what moved, and the enquiries it brought in. One page, plain English.",
+  },
+];
+
+export const seoProcess = [
+  {
+    id: "demand",
+    icon: HiOutlineMapPin,
+    title: "Demand",
+    description:
+      "What people search for, how much, and which searches actually turn into work.",
+    label: "Month 1",
+    className: "",
+  },
+  {
+    id: "architecture",
+    icon: HiOutlineMapPin,
+    title: "Architecture",
+    description:
+      "One page per search, with the site structure and internal links to match.",
+    label: "Month 1",
+    className: "mt-[185px] -ml-[95px]",
+  },
+  {
+    id: "content",
+    icon: HiOutlineMapPin,
+    title: "Content",
+    description:
+      "New and improved pages written to answer each search properly.",
+    label: "Month 2 onwards",
+    className: "mt-[185px] -ml-[20px]",
+  },
+  {
+    id: "measurement",
+    icon: HiOutlineMapPin,
+    title: "Measurement",
+    description:
+      "Enquiries and sales from search, tracked against the baseline.",
+    label: "Every month",
+    className: "-ml-[71px]",
+  },
+];
+
+export const seoFormServices = [
+  "SEO audit",
+  "Local SEO",
+  "Growth SEO",
+  "Ecommerce SEO",
+  "Migration SEO",
+];
+
+export const seoPricingPlans = [
+  {
+    id: "local-seo",
+    name: "Local SEO",
+    prefix: "From",
+    price: "£500",
+    suffix: "/ Month",
+    timeline: "Rolling monthly",
+    youGet:
+      "Google Business Profile, local pages, citations, reviews plan, monthly report",
+    bestFor: "One location, a handful of services",
+    ctaLabel: "Start local SEO",
+    ctaHref: "/contact",
+  },
+  {
+    id: "growth-seo",
+    name: "Growth SEO",
+    prefix: "From",
+    price: "£750",
+    suffix: "/ Month",
+    timeline: "Rolling monthly",
+    youGet:
+      "Page map, technical fixes, new and improved pages each month, AI search, monthly report",
+    bestFor: "Service businesses competing nationally",
+    ctaLabel: "Get my SEO plan",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "ecommerce-seo",
+    name: "Ecommerce SEO",
+    prefix: "From",
+    price: "£1,000",
+    suffix: "/ Month",
+    timeline: "Rolling monthly",
+    youGet:
+      "Category and product page SEO, technical and feed fixes, content, monthly report",
+    bestFor: "Shopify and WooCommerce stores",
+    ctaLabel: "Grow my store",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -2241,6 +2457,49 @@ export const uiUxFaqs = [
   {
     id: "mobile",
     question: "Do you design mobile apps?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const seoFaqs = [
+  {
+    id: "timeline",
+    question: "How long does SEO take to work?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "guarantee",
+    question: "Do you guarantee rankings?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "website-build",
+    question: "Is SEO included in a website build?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "rebuild",
+    question: "Can you protect rankings during a rebuild?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ai-search",
+    question: "What about AI search?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "local",
+    question: "Do you do local SEO?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "content",
+    question: "Do you write the content?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "cancel",
+    question: "Can we cancel?",
     answer: "[Answer TBC]",
   },
 ];

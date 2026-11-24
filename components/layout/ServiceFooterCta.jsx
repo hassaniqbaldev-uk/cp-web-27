@@ -17,6 +17,7 @@ const ServiceFooterCta = ({
   subtitle = "Describe how it works today. We'll tell you if custom software is the right answer and what the smallest useful first phase looks like.",
   quote = "We manage bookings in a spreadsheet and copy them into Xero by hand",
   submitLabel,
+  services,
 }) => {
   return (
     <Section
@@ -39,7 +40,7 @@ const ServiceFooterCta = ({
           </div>
 
           <div className="w-[600px] rounded-[20px] bg-white p-[45px]">
-            <ServiceContactForm submitLabel={submitLabel} />
+            <ServiceContactForm submitLabel={submitLabel} services={services} />
           </div>
         </div>
       </Container>

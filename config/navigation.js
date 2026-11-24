@@ -10,6 +10,7 @@ export const mainNavigation = [
       },
       { label: "UI/UX Design", href: "/services/ui-ux-design" },
       { label: "SEO", href: "/services/seo" },
+      { label: "AI & Automation", href: "/services/ai-automation" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",
@@ -73,6 +74,7 @@ export const footerNavigation = [
       },
       { label: "UI/UX Design", href: "/services/ui-ux-design" },
       { label: "SEO", href: "/services/seo" },
+      { label: "AI & Automation", href: "/services/ai-automation" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

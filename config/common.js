@@ -51,7 +51,13 @@ import {
   LuTriangleAlert,
 } from "react-icons/lu";
 import { RiShieldUserLine } from "react-icons/ri";
-import { TbCircleSquare, TbMessageCircleStar } from "react-icons/tb";
+import {
+  TbCircleSquare,
+  TbMessageCircleStar,
+  TbRobot,
+  TbRouteSquare2,
+  TbShare,
+} from "react-icons/tb";
 
 export const heroPopovers = [
   {
@@ -1652,6 +1658,94 @@ export const seoPricingPlans = [
     bestFor: "Shopify and WooCommerce stores",
     ctaLabel: "Grow my store",
     ctaHref: "/contact",
+  },
+];
+
+export const aiHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "From £1,500",
+    description: "First workflow live in 2 to 4 weeks",
+  },
+  {
+    id: "review",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Human review",
+    description: "Wherever judgement matters",
+  },
+  {
+    id: "ownership",
+    icon: "/images/services/smokey-carter-icon-custom-app-hero.png",
+    iconAlt: "Smokey Carter",
+    width: 45,
+    height: 52,
+    iconClassName: "w-[45px] h-[52px]",
+    value: "Data Ownership",
+    description: "In your accounts, documented",
+  },
+];
+
+export const aiHeroTools = [
+  {
+    id: "deepseek",
+    image: "/images/services/deepseek-icon-ai-hero.png",
+    imageAlt: "DeepSeek",
+    size: 118,
+    className: "top-[37px] left-[14px] w-[118px]",
+    glowClassName: "bg-[#3078FF]",
+  },
+  {
+    id: "claude",
+    image: "/images/services/claude-icon-ai-hero.png",
+    imageAlt: "Claude",
+    size: 118,
+    className: "top-[20px] left-[408px] w-[118px]",
+    glowClassName: "bg-[#D89777]",
+  },
+  {
+    id: "chatgpt",
+    image: "/images/services/chatgpt-icon-ai-hero.png",
+    imageAlt: "ChatGPT",
+    size: 140,
+    className: "top-[299px] left-[391px] w-[140px]",
+    glowClassName: "bg-[#5C897E]",
+  },
+];
+
+export const aiNeeds = [
+  {
+    id: "workflow",
+    icon: TbRouteSquare2,
+    title: "A workflow fits when:",
+    description:
+      "Your team repeats the same steps between tools every day: copying, chasing, re‑typing.",
+    cta: { label: "Automate one workflow", href: "/contact" },
+  },
+  {
+    id: "agent",
+    icon: TbRobot,
+    title: "An AI agent fits when:",
+    description:
+      "The work needs reading or writing: sorting enquiries, drafting replies, answering questions from your documents.",
+    cta: { label: "Add an AI agent", href: "/contact" },
+    featured: true,
+  },
+  {
+    id: "systems",
+    icon: TbShare,
+    title: "Connected systems fit when:",
+    description:
+      "Your team repeats the same steps across tools daily: copying, chasing, re‑typing.",
+    cta: { label: "Connect my systems", href: "/contact" },
   },
 ];
 

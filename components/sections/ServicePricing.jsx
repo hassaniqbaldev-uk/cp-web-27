@@ -76,10 +76,10 @@ const ServicePricing = ({ id, title, subtitle, plans, note }) => {
                         </span>
                       )}
 
-                      <p className="text-[65px] leading-[70px] font-extrabold tracking-[-0.06em] text-black">
+                      <p className="text-[65px] leading-[70px] font-extrabold tracking-[-0.06em] whitespace-nowrap text-black">
                         {price}
                         {suffix && (
-                          <span className="ml-[5px] inline-block text-[16px] leading-[20px] font-medium tracking-[-0.02em] whitespace-pre-line">
+                          <span className="ml-[5px] inline-block text-[16px] leading-[20px] font-medium tracking-[-0.02em] whitespace-pre">
                             {suffix}
                           </span>
                         )}

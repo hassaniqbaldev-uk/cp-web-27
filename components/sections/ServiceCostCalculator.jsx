@@ -30,18 +30,24 @@ const formatCurrency = (value) =>
     maximumFractionDigits: 0,
   }).format(value);
 
-const CustomAppCostCalculator = () => {
+// Shared manual-process calculator. With a `note` the total updates live and
+// the note replaces the button; without one, the button updates the total.
+const ServiceCostCalculator = ({ id, hoursLabel, note }) => {
   const [values, setValues] = useState(() =>
     Object.fromEntries(
       calculatorFields.map(({ id, initial }) => [id, initial]),
     ),
   );
 
-  const [yearlyCost, setYearlyCost] = useState(() => getYearlyCost(values));
+  const [calculatedCost, setCalculatedCost] = useState(() =>
+    getYearlyCost(values),
+  );
+
+  const yearlyCost = note ? getYearlyCost(values) : calculatedCost;
 
   return (
     <>
-      <Section id="custom-app-cost-calculator" className="py-[120px]">
+      <Section id={id} className="py-[120px]">
         <Container>
           <SectionHeading
             className="text-center"
@@ -56,18 +62,18 @@ const CustomAppCostCalculator = () => {
 
           <div className="mx-auto mt-[60px] flex items-stretch justify-between gap-[45px] rounded-[20px] bg-white p-[45px] shadow-[16px_16px_124px_0px_#0000001C]">
             <div className="flex flex-1 flex-col justify-center gap-[30px]">
-              {calculatorFields.map(({ id, label, min, max }) => {
-                const value = values[id];
+              {calculatorFields.map(({ id: fieldId, label, min, max }) => {
+                const value = values[fieldId];
                 const progress = ((value - min) / (max - min)) * 100;
 
                 return (
-                  <div key={id}>
+                  <div key={fieldId}>
                     <div className="flex items-center justify-between gap-[20px]">
                       <label
-                        htmlFor={`calculator-${id}`}
+                        htmlFor={`calculator-${fieldId}`}
                         className="text-[18px] font-bold tracking-[-0.04em] text-black"
                       >
-                        {label}
+                        {fieldId === "hours" && hoursLabel ? hoursLabel : label}
                       </label>
 
                       <span className="bg-grey/60 flex h-[40px] min-w-[60px] items-center justify-center rounded-full px-[15px] text-[14px] tracking-[-0.02em] text-black">
@@ -76,7 +82,7 @@ const CustomAppCostCalculator = () => {
                     </div>
 
                     <input
-                      id={`calculator-${id}`}
+                      id={`calculator-${fieldId}`}
                       type="range"
                       min={min}
                       max={max}
@@ -84,7 +90,7 @@ const CustomAppCostCalculator = () => {
                       onChange={(event) =>
                         setValues((current) => ({
                           ...current,
-                          [id]: Number(event.target.value),
+                          [fieldId]: Number(event.target.value),
                         }))
                       }
                       style={{
@@ -115,20 +121,26 @@ const CustomAppCostCalculator = () => {
 
               <span className="my-[30px] block h-px w-full bg-white/40" />
 
-              <div className="flex">
-                <button
-                  type="button"
-                  onClick={() => setYearlyCost(getYearlyCost(values))}
-                  className="group hover:bg-dark-pink! active:bg-dark-pink! inline-flex cursor-pointer items-center justify-center gap-[10px] rounded-full bg-white px-[20px] py-[12px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 ease-out hover:text-white! active:text-white!"
-                >
-                  Calculate manual costs
-                  <ArrowUpRight
-                    size={18}
-                    strokeWidth={2.5}
-                    className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45 group-active:rotate-45"
-                  />
-                </button>
-              </div>
+              {note ? (
+                <p className="text-[18px] leading-[26px] font-bold tracking-[-0.04em] text-white">
+                  {note}
+                </p>
+              ) : (
+                <div className="flex">
+                  <button
+                    type="button"
+                    onClick={() => setCalculatedCost(getYearlyCost(values))}
+                    className="group hover:bg-dark-pink! active:bg-dark-pink! inline-flex cursor-pointer items-center justify-center gap-[10px] rounded-full bg-white px-[20px] py-[12px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 ease-out hover:text-white! active:text-white!"
+                  >
+                    Calculate manual costs
+                    <ArrowUpRight
+                      size={18}
+                      strokeWidth={2.5}
+                      className="shrink-0 transition-[rotate] duration-300 ease-out group-hover:rotate-45 group-active:rotate-45"
+                    />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </Container>
@@ -137,4 +149,4 @@ const CustomAppCostCalculator = () => {
   );
 };
 
-export default CustomAppCostCalculator;
+export default ServiceCostCalculator;

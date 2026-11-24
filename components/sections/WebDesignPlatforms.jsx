@@ -21,9 +21,9 @@ const WebDesignPlatforms = () => {
         <Image
           src="/images/services/gradient-bg-web-design-platforms.png"
           alt=""
-          fill
-          sizes="100vw"
-          className="pointer-events-none z-0 object-cover object-bottom"
+          width={1920}
+          height={663}
+          className="pointer-events-none absolute bottom-0 left-1/2 z-0 -translate-x-1/2"
         />
 
         <Container className="relative z-10">

@@ -44,6 +44,7 @@ import {
 } from "react-icons/hi2";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
+  LuBot,
   LuMeh,
   LuNavigation,
   LuPlug,
@@ -52,11 +53,16 @@ import {
 } from "react-icons/lu";
 import { RiShieldUserLine } from "react-icons/ri";
 import {
+  TbArrowAutofitHeight,
   TbCircleSquare,
   TbMessageCircleStar,
+  TbProgressCheck,
   TbRobot,
   TbRouteSquare2,
+  TbSend,
   TbShare,
+  TbStack2,
+  TbUser,
 } from "react-icons/tb";
 
 export const heroPopovers = [
@@ -1749,6 +1755,200 @@ export const aiNeeds = [
   },
 ];
 
+export const aiAutomate = [
+  {
+    id: "workflow",
+    title: "Workflow automation",
+    description:
+      "Triggers, transforms and deliveries across your tools, using n8n, Make, Zapier or custom code.",
+  },
+  {
+    id: "crm",
+    title: "CRM and API integrations",
+    description:
+      "Orders, leads, invoices and records moving between systems without anyone re‑typing them.",
+  },
+  {
+    id: "agents",
+    title: "AI\nagents",
+    description:
+      "Triage, drafting, classification and answering, with a human review step wherever it matters.",
+  },
+  {
+    id: "knowledge",
+    title: "Document and knowledge",
+    description:
+      "Systems that answer from your own documents, and reports generated from your data.",
+  },
+];
+
+export const aiResult = {
+  tabs: [
+    {
+      id: "before",
+      label: "Before",
+      steps: [
+        { id: "data", icon: TbStack2, title: "[Copy TBC]", text: "[Copy TBC]" },
+        {
+          id: "generate",
+          icon: TbArrowAutofitHeight,
+          title: "[Copy TBC]",
+          text: "[Copy TBC]",
+        },
+        { id: "review", icon: TbUser, title: "[Copy TBC]", text: "[Copy TBC]" },
+        {
+          id: "reports",
+          icon: TbSend,
+          title: "[Copy TBC]",
+          text: "[Copy TBC]",
+        },
+      ],
+    },
+    {
+      id: "after",
+      label: "After",
+      steps: [
+        { id: "data", icon: TbStack2, title: "Lab data in", text: "Trigger" },
+        {
+          id: "generate",
+          icon: TbArrowAutofitHeight,
+          title: "Auto generate",
+          text: "Automated",
+        },
+        {
+          id: "review",
+          icon: TbUser,
+          title: "Human review",
+          text: "Human check",
+        },
+        {
+          id: "reports",
+          icon: TbSend,
+          title: "Reports out",
+          text: "Delivered",
+        },
+      ],
+    },
+  ],
+  stat: {
+    value: "14 hrs / week saved",
+    description: "Reports in 1 day, not 3",
+  },
+  quote: {
+    text: "We went from waiting days for reports to having reviewed reports ready in a single day.",
+    author: "Alex Carter, Operations Lead, VitaLab",
+  },
+  cta: { label: "Tell us what’s not being found", href: "/contact" },
+};
+
+export const aiSafetyTools = [
+  {
+    id: "slack",
+    icon: "/images/services/slack-icon-ai-safety.png",
+    iconAlt: "Slack",
+  },
+  {
+    id: "google-drive",
+    icon: "/images/services/google-drive-icon-ai-safety.png",
+    iconAlt: "Google Drive",
+  },
+  {
+    id: "notion",
+    icon: "/images/services/notion-icon-ai-safety.png",
+    iconAlt: "Notion",
+  },
+];
+
+export const aiSafetySteps = [
+  {
+    id: "agent",
+    icon: LuBot,
+    iconClassName: "bg-blue/15 text-blue",
+    title: "Agent",
+    text: "Suggests",
+    className: "",
+  },
+  {
+    id: "human",
+    icon: TbUser,
+    iconClassName: "bg-dark-pink/15 text-dark-pink",
+    title: "Human",
+    text: "Reviews",
+    className: "ml-[133px]",
+  },
+  {
+    id: "action",
+    icon: TbProgressCheck,
+    iconClassName: "bg-orange/15 text-orange",
+    title: "Action",
+    text: "Approved",
+    className: "ml-[267px]",
+  },
+];
+
+export const aiSafetyTiles = [
+  {
+    id: "claude",
+    image: "/images/services/claude-tile-ai-safety.png",
+    imageAlt: "Claude",
+  },
+  {
+    id: "chatgpt",
+    image: "/images/services/chatgpt-tile-ai-safety.png",
+    imageAlt: "ChatGPT",
+  },
+];
+
+export const aiFormServices = [
+  "Workflow automation",
+  "CRM and API integrations",
+  "AI agents",
+  "Document and knowledge",
+  "Automation programme",
+];
+
+export const aiPricingPlans = [
+  {
+    id: "first-workflow",
+    name: "First workflow",
+    prefix: "From",
+    price: "£1,500",
+    suffix: "/ Month",
+    timeline: "2 to 4 weeks",
+    youGet:
+      "One process mapped and automated across your tools, tested and documented",
+    bestFor: "One painful, repetitive job",
+    ctaLabel: "Scope my first workflow",
+    ctaHref: "/contact",
+  },
+  {
+    id: "ai-agent",
+    name: "AI agent or document automation",
+    prefix: "From",
+    price: "£3,000",
+    suffix: "/ Month",
+    timeline: "4 to 6 weeks",
+    youGet:
+      "An agent or RAG system built on your documents, with human review built in",
+    bestFor: "Triage, drafting, answering from your knowledge",
+    ctaLabel: "Plan an AI agent",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "automation-programme",
+    name: "Automation programme",
+    prefix: "From",
+    price: "£5,000",
+    suffix: "all one-off",
+    timeline: "Phased over 2 to 3 months",
+    youGet: "3 to 5 workflows across a team, plus integrations and reporting",
+    bestFor: "A team running on manual work",
+    ctaLabel: "Plan a programme",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -2594,6 +2794,54 @@ export const seoFaqs = [
   {
     id: "cancel",
     question: "Can we cancel?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const aiFaqs = [
+  {
+    id: "what",
+    question: "What can actually be automated?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "existing-tools",
+    question: "Does it work with our existing CRM and tools?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "security",
+    question: "What about security and data?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "terms",
+    question: "Agents, RAG, what do the words mean?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "first-project",
+    question: "How big is a first project?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "support",
+    question: "Do you support it afterwards?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "tools",
+    question: "Which tools do you work with?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "breaks",
+    question: "What happens if an automation breaks?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "fees",
+    question: "Do we need to pay for n8n, Make or Zapier?",
     answer: "[Answer TBC]",
   },
 ];

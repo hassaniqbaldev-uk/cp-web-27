@@ -6,16 +6,33 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-const CaseStudy = () => {
+// Home page Ivy & Duke case study. Other pages can swap the background, the
+// image on the right and the stats (icon: an image path or an icon component).
+const CaseStudy = ({
+  className = "relative overflow-hidden bg-black pt-[80px] pb-[120px]",
+  background = (
+    <Image
+      src="/images/home/gradient-bg-casestudy.png"
+      alt=""
+      fill
+      priority
+      className="pointer-events-none absolute top-0 left-0 z-0 h-[587px] w-full object-cover"
+    />
+  ),
+  stats = caseStudyStats,
+  media = (
+    <Image
+      src="/images/home/ivy-duke-casestudy-img.png"
+      alt="Ivy & Duke website on a laptop"
+      width={585}
+      height={451}
+      className="h-auto w-[585px] shrink-0"
+    />
+  ),
+}) => {
   return (
-    <Section className="relative overflow-hidden bg-black pt-[80px] pb-[120px]">
-      <Image
-        src="/images/home/gradient-bg-casestudy.png"
-        alt=""
-        fill
-        priority
-        className="pointer-events-none absolute top-0 left-0 z-0 h-[587px] w-full object-cover"
-      />
+    <Section className={className}>
+      {background}
 
       <Container className="relative z-10">
         <div className="flex items-center justify-between gap-[17px]">
@@ -52,13 +69,7 @@ const CaseStudy = () => {
             </div>
           </div>
 
-          <Image
-            src="/images/home/ivy-duke-casestudy-img.png"
-            alt="Ivy & Duke website on a laptop"
-            width={585}
-            height={451}
-            className="h-auto w-[585px] shrink-0"
-          />
+          {media}
         </div>
 
         <ul className="my-[50px] flex items-stretch">
@@ -103,15 +114,16 @@ const CaseStudy = () => {
         </ul>
 
         <ul className="flex items-center justify-between gap-[40px]">
-          {caseStudyStats.map(
+          {stats.map(
             (
               {
                 id,
-                icon,
+                icon: Icon,
                 iconAlt,
                 width,
                 height,
                 iconBgClassName,
+                iconClassName,
                 value,
                 description,
               },
@@ -122,13 +134,17 @@ const CaseStudy = () => {
                   <span
                     className={`flex size-[60px] shrink-0 items-center justify-center rounded-full ${iconBgClassName}`}
                   >
-                    <Image
-                      src={icon}
-                      alt={iconAlt}
-                      width={width}
-                      height={height}
-                      className="shrink-0 object-contain"
-                    />
+                    {typeof Icon === "string" ? (
+                      <Image
+                        src={Icon}
+                        alt={iconAlt}
+                        width={width}
+                        height={height}
+                        className="shrink-0 object-contain"
+                      />
+                    ) : (
+                      <Icon size={30} className={`shrink-0 ${iconClassName}`} />
+                    )}
                   </span>
 
                   <div className="flex flex-col">
@@ -142,7 +158,7 @@ const CaseStudy = () => {
                   </div>
                 </div>
 
-                {index < caseStudyStats.length - 1 && (
+                {index < stats.length - 1 && (
                   <span className="ml-auto h-[60px] w-px shrink-0 bg-white/30" />
                 )}
               </li>

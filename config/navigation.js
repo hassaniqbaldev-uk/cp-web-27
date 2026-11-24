@@ -12,6 +12,7 @@ export const mainNavigation = [
       { label: "SEO", href: "/services/seo" },
       { label: "AI & Automation", href: "/services/ai-automation" },
       { label: "Growth & Support", href: "/services/growth-support" },
+      { label: "CRO", href: "/services/cro" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",
@@ -77,6 +78,7 @@ export const footerNavigation = [
       { label: "SEO", href: "/services/seo" },
       { label: "AI & Automation", href: "/services/ai-automation" },
       { label: "Growth & Support", href: "/services/growth-support" },
+      { label: "CRO", href: "/services/cro" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

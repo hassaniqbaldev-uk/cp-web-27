@@ -72,8 +72,7 @@ const UiUxDesign = () => {
                 A journey <br />
                 people keep{" "}
                 <span className="block w-fit bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
-                  dropping out <br />
-                  of?
+                  dropping out of?
                 </span>
               </>
             }

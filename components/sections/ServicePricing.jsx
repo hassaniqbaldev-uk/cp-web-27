@@ -14,7 +14,7 @@ const defaultDetails = [
   { key: "bestFor", label: "Best for", icon: HiOutlineUserGroup },
 ];
 
-// Shared 3-plan pricing section for service pages. Each page passes its own
+// Shared pricing section (2 or 3 plans) for service pages. Each page passes its own
 // id, heading, subtitle, plans (from config/common.js) and closing note.
 const ServicePricing = ({
   id,
@@ -36,7 +36,11 @@ const ServicePricing = ({
             subtitleClassName="text-text-body mt-[20px] text-[22px] leading-[28px] tracking-[-0.02em]"
           />
 
-          <ul className="mt-[60px] grid grid-cols-3 gap-[30px]">
+          <ul
+            className={`mt-[60px] grid gap-[30px] ${
+              plans.length === 2 ? "grid-cols-2" : "grid-cols-3"
+            }`}
+          >
             {plans.map((plan) => {
               const {
                 id: planId,

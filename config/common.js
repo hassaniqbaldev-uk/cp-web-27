@@ -20,6 +20,9 @@ import {
   Workflow,
 } from "lucide-react";
 import {
+  HiChartBar,
+  HiChatBubbleOvalLeftEllipsis,
+  HiCircleStack,
   HiOutlineBookOpen,
   HiOutlineBriefcase,
   HiOutlineCalendarDays,
@@ -43,7 +46,12 @@ import {
   HiOutlineUserGroup,
   HiOutlineWrenchScrewdriver,
   HiOutlineXCircle,
+  HiShoppingBag,
+  HiShoppingCart,
+  HiUsers,
+  HiWindow,
 } from "react-icons/hi2";
+import { FcGoogle } from "react-icons/fc";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
   LuBot,
@@ -58,7 +66,7 @@ import {
   LuToggleLeft,
   LuTriangleAlert,
 } from "react-icons/lu";
-import { RiShieldUserLine } from "react-icons/ri";
+import { RiFileEditFill, RiShieldUserLine } from "react-icons/ri";
 import {
   TbArrowAutofitHeight,
   TbCircleSquare,
@@ -67,6 +75,7 @@ import {
   TbRobot,
   TbRouteSquare2,
   TbSend,
+  TbSettings,
   TbShare,
   TbStack2,
   TbUser,
@@ -2175,6 +2184,217 @@ export const growthPricingPlans = [
 
 export const growthFormServices = ["Care plan", "Grow plan", "Scale plan"];
 
+export const croHeroStats = [
+  {
+    id: "ivy-duke",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "Ivy & Duke",
+    description: "Revenue +15% in the first\nfull week after launch",
+  },
+  {
+    id: "implement",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "We implement",
+    description: "We put the recommendations\ninto action.",
+  },
+  {
+    id: "price",
+    icon: "/images/services/smokey-carter-icon-custom-app-hero.png",
+    iconAlt: "Smokey Carter",
+    width: 45,
+    height: 52,
+    iconClassName: "w-[45px] h-[52px]",
+    value: "From £750",
+    description: "Fixed-price CRO review",
+  },
+];
+
+export const croHeroCards = [
+  {
+    id: "conversions",
+    icon: HiChartBar,
+    title: "Higher\nConversions",
+    value: "+46%",
+    valueClassName: "text-dark-pink",
+    className: "top-[-16px] left-0",
+  },
+  {
+    id: "sales",
+    icon: HiShoppingCart,
+    title: "More sales\nand traffic",
+    value: "+32%",
+    valueClassName: "text-orange",
+    className: "top-[303px] left-[39px]",
+  },
+  {
+    id: "drop-off",
+    icon: HiUsers,
+    title: "Lower\nDrop off",
+    value: "−28%",
+    valueClassName: "text-blue",
+    className: "top-[270px] left-[413px]",
+  },
+];
+
+export const croNeeds = [
+  {
+    id: "review",
+    icon: TbSettings,
+    title: "A CRO review\nfits when:",
+    description:
+      "you have traffic but not enough sales or enquiries, and want to know where they’re lost.",
+    className: "",
+  },
+  {
+    id: "ongoing",
+    icon: TbSettings,
+    title: "Ongoing CRO\nfits when:",
+    description:
+      "your traffic is steady and you want gains every month, measured against a baseline.",
+    className: "mt-[40px]",
+  },
+  {
+    id: "checkout",
+    icon: TbSettings,
+    title: "A checkout fix\nfits when:",
+    description:
+      "people reach the basket or checkout and leave, or payments fail.",
+    className: "mt-[70px]",
+  },
+];
+
+export const croProcess = [
+  {
+    id: "find",
+    title: "Find",
+    description:
+      "Recordings, analytics, forms and the page on a phone show where people drop off.",
+  },
+  {
+    id: "prioritise",
+    title: "Prioritise",
+    description: "Each fix is ranked by likely impact, confidence and effort.",
+  },
+  {
+    id: "change",
+    title: "Change",
+    description:
+      "We make the changes: layout, messaging, forms, checkout, speed.",
+  },
+  {
+    id: "measure",
+    title: "Measure",
+    description:
+      "Results are read against a baseline agreed before anything changed.",
+  },
+];
+
+export const croFixes = [
+  {
+    id: "messaging",
+    icon: HiChatBubbleOvalLeftEllipsis,
+    iconClassName: "text-orange",
+    title: "Messaging\nand hierarchy",
+    description:
+      "More refined propositions, a clearer and more structured page flow, and stronger, more compelling calls.",
+    className: "bg-[#FCEFDE]",
+  },
+  {
+    id: "forms",
+    icon: RiFileEditFill,
+    iconClassName: "text-dark-pink",
+    title: "Forms and\nlead journeys",
+    description:
+      "Lower effort, clearer fields, better qualification and stronger post-submit flow.",
+    className: "bg-[#FCE1EF]",
+  },
+  {
+    id: "ecommerce",
+    icon: HiShoppingBag,
+    iconClassName: "text-blue",
+    title: "Ecommerce\njourneys",
+    description:
+      "Product, basket and checkout changes that reduce problems without relying on discounts.",
+    className: "bg-[#E0EBFF]",
+  },
+  {
+    id: "landing-pages",
+    icon: HiWindow,
+    iconClassName: "text-[#2FAE6A]",
+    title: "Landing\npages",
+    description:
+      "Better the page saying what the ad promised between ads/search & the destination experience.",
+    className: "bg-[#E1F3E8]",
+  },
+];
+
+export const croCaseStudyStats = [
+  {
+    id: "google-reviews",
+    icon: FcGoogle,
+    iconBgClassName: "bg-white/20",
+    iconClassName: "",
+    value: "0 → 146",
+    description: "Google review stars",
+  },
+  {
+    id: "homepage-size",
+    icon: HiCircleStack,
+    iconBgClassName: "bg-orange/30",
+    iconClassName: "text-orange",
+    value: "9.4 MB → 0.7 MB",
+    description: "Homepage",
+  },
+  {
+    id: "add-ons",
+    icon: HiShoppingCart,
+    iconBgClassName: "bg-blue/30",
+    iconClassName: "text-blue",
+    value: "8.3%",
+    description: "of orders now include an add-on",
+  },
+];
+
+export const croFormServices = ["CRO review", "Ongoing CRO", "Checkout fix"];
+
+export const croPricingPlans = [
+  {
+    id: "cro-review",
+    name: "CRO review",
+    prefix: "From",
+    price: "£750",
+    suffix: "fixed",
+    timeline: "1 to 2 weeks.",
+    youGet:
+      "Analytics and recordings review, mobile walk-through, prioritised fix list, a clear report.",
+    bestFor: "A second look at a site, checkout or landing page.",
+    ctaLabel: "Get a CRO review",
+    ctaHref: "/contact",
+  },
+  {
+    id: "ongoing-cro",
+    name: "Ongoing CRO",
+    prefix: "From",
+    price: "£750",
+    suffix: "a month, rolling",
+    timeline: "Monthly cycles, first measured read at 4 weeks.",
+    youGet:
+      "Monthly fixes and tests, tracking set up properly, a monthly read against the baseline.",
+    bestFor: "Stores and lead-gen sites with steady traffic.",
+    ctaLabel: "Start ongoing CRO",
+    ctaHref: "/contact",
+    featured: true,
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -3116,6 +3336,44 @@ export const growthFaqs = [
   {
     id: "switching",
     question: "Can we switch plans?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const croFaqs = [
+  {
+    id: "ab-testing",
+    question: "Do we need A/B testing?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "implement",
+    question: "Can you implement the recommendations?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ecommerce",
+    question: "Do you work on ecommerce conversion?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "speed",
+    question: "How quickly will conversion improve?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "review",
+    question: "What do we get from a CRO review?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "traffic",
+    question: "Do we need lots of traffic?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "developer",
+    question: "Will you work with our developer or theme?",
     answer: "[Answer TBC]",
   },
 ];

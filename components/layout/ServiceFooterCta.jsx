@@ -26,7 +26,7 @@ const ServiceFooterCta = ({
     >
       <Container>
         <div className="flex items-center justify-between gap-[45px]">
-          <div className="flex w-[453px] flex-col items-start">
+          <div className="flex w-[480px] flex-col items-start">
             <SectionHeading
               title={title}
               subtitle={subtitle}

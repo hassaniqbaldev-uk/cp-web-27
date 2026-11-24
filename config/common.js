@@ -42,7 +42,15 @@ import {
   HiOutlineXCircle,
 } from "react-icons/hi2";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
-import { LuPlug } from "react-icons/lu";
+import {
+  LuMeh,
+  LuNavigation,
+  LuPlug,
+  LuToggleLeft,
+  LuTriangleAlert,
+} from "react-icons/lu";
+import { RiShieldUserLine } from "react-icons/ri";
+import { TbCircleSquare, TbMessageCircleStar } from "react-icons/tb";
 
 export const heroPopovers = [
   {
@@ -1242,6 +1250,195 @@ export const webDesignPricingPlans = [
   },
 ];
 
+export const uiUxHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "From £1,500",
+    description: "UX redesigns in 3 to 4 weeks",
+  },
+  {
+    id: "wireframes",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Wireframes first",
+    description: "Approved before visual design",
+  },
+  {
+    id: "delivery",
+    icon: "/images/services/ndifo-icon-ui-ux-hero.png",
+    iconAlt: "Ndifo Safari",
+    width: 264,
+    height: 160,
+    iconClassName: "w-[66px] h-auto",
+    value: "One-Team Delivery",
+    description: "No handover gaps",
+  },
+];
+
+export const uiUxHeroTools = [
+  {
+    id: "figma",
+    icon: "/images/services/figma-icon-ui-ux-hero.png",
+    iconAlt: "Figma",
+  },
+  {
+    id: "illustrator",
+    icon: "/images/services/illustrator-icon-ui-ux-hero.png",
+    iconAlt: "Adobe Illustrator",
+  },
+  {
+    id: "photoshop",
+    icon: "/images/services/photoshop-icon-ui-ux-hero.png",
+    iconAlt: "Adobe Photoshop",
+  },
+  {
+    id: "affinity",
+    icon: "/images/services/affinity-icon-ui-ux-hero.png",
+    iconAlt: "Affinity",
+  },
+  {
+    id: "canva",
+    icon: "/images/services/canva-icon-ui-ux-hero.png",
+    iconAlt: "Canva",
+  },
+];
+
+export const uiUxNeeds = [
+  {
+    id: "audit",
+    title: "A UX audit fits when:",
+    description:
+      "Your site or store gets traffic, but people drop out at a step and you don’t know why.",
+    cta: { label: "Get a UX audit", href: "/contact" },
+  },
+  {
+    id: "redesign",
+    title: "A UX redesign fits when:",
+    description:
+      "You know which journey is broken (checkout, booking, sign-up) and want it designed properly.",
+    cta: { label: "A UX redesign", href: "/contact" },
+  },
+  {
+    id: "product",
+    title: "Product UX fits when:",
+    description: "You’re building or improving an app, portal or SaaS product.",
+    cta: { label: "About product", href: "/contact" },
+  },
+];
+
+export const uiUxFlowIssues = [
+  { id: "value-prop", icon: LuMeh, title: "Unclear\nvalue prop" },
+  { id: "cta", icon: LuToggleLeft, title: "Weak\nCTA" },
+  { id: "navigation", icon: LuNavigation, title: "Navigation\nconfusion" },
+  { id: "dropoff", icon: LuTriangleAlert, title: "High\ndropoff" },
+];
+
+export const uiUxIncluded = [
+  {
+    id: "journeys",
+    title: "User journeys and IA",
+    description:
+      "How people arrive, what they need to decide, and the shortest route to do it.",
+  },
+  {
+    id: "wireframes",
+    title: "Wireframes and prototypes",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "interface",
+    title: "Interface systems",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "interaction",
+    title: "Interaction and states",
+    description: "[Answer TBC]",
+  },
+];
+
+export const uiUxProcess = [
+  {
+    id: "review",
+    icon: TbMessageCircleStar,
+    label: "Week 1",
+    title: "Review",
+    description:
+      "Analytics, heatmaps and session recordings show where people drop out.",
+  },
+  {
+    id: "map",
+    icon: HiOutlineMapPin,
+    label: "Week 1",
+    title: "Map",
+    description: "We map the current journey and agree the new one with you.",
+  },
+  {
+    id: "wireframe",
+    icon: RiShieldUserLine,
+    label: "Week 2",
+    title: "Wireframe",
+    description: "The new flow in grey boxes, approved before visual design.",
+  },
+  {
+    id: "design",
+    icon: TbCircleSquare,
+    label: "Weeks 3 to 4",
+    title: "Design & hand over",
+    description:
+      "Final UI with every state, built by our developers or handed to yours.",
+  },
+];
+
+export const uiUxPricingPlans = [
+  {
+    id: "ux-audit",
+    name: "UX audit",
+    prefix: "From",
+    price: "£500",
+    suffix: "credited against\na redesign.",
+    timeline: "1 week.",
+    youGet:
+      "Review of one key journey, video walkthrough, prioritised fix list.",
+    bestFor: "A site or store losing people at one step.",
+    ctaLabel: "Get a UX audit",
+    ctaHref: "/contact",
+  },
+  {
+    id: "ux-redesign",
+    name: "UX redesign",
+    prefix: "From",
+    price: "£1,500",
+    timeline: "3 to 4 weeks.",
+    youGet:
+      "Journey map, wireframes, UI for the key flows, developer-ready Figma files.",
+    bestFor: "Fixing checkout, booking or sign-up flows.",
+    ctaLabel: "Plan my UX",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "product-ux",
+    name: "Product UX",
+    prefix: "From",
+    price: "£3,000",
+    timeline: "6 to 10 weeks.",
+    youGet:
+      "Research, user flows, wireframes, full UI, design system, prototype.",
+    bestFor: "Apps, portals and SaaS products.",
+    ctaLabel: "Talk about my product",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -2006,6 +2203,44 @@ export const webDesignFaqs = [
   {
     id: "ownership",
     question: "Who owns the website?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const uiUxFaqs = [
+  {
+    id: "difference",
+    question: "What is the difference between UX and UI?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "developers",
+    question: "Can you work with our developers?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "existing",
+    question: "Can you redesign an existing product?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "testing",
+    question: "Do you test with real users?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "audit",
+    question: "What do we get from a UX audit?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a UX project take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "mobile",
+    question: "Do you design mobile apps?",
     answer: "[Answer TBC]",
   },
 ];

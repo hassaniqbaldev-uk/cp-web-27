@@ -54,7 +54,7 @@ const BrandingCaseStudy = () => {
           </div>
         </Container>
 
-        {/* Same full-bleed, one-at-a-time slider as CustomAppCaseStudy. Bullets
+        {/* Same full-bleed, one-at-a-time slider as ServiceCaseStudies. Bullets
             are outlined circles with the active one filled. */}
         <Swiper
           modules={[Pagination]}

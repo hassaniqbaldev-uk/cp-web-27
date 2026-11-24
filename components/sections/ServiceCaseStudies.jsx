@@ -1,6 +1,5 @@
 "use client";
 
-import { customAppCaseStudies } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { Pagination } from "swiper/modules";
@@ -14,36 +13,57 @@ import { Container } from "../ui/Container";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
-const CustomAppCaseStudy = () => {
+// Shared case study slider for service pages. Each page passes its own id,
+// heading and projects; background, projects link and dot style are optional.
+const ServiceCaseStudies = ({
+  id,
+  title,
+  items,
+  background,
+  showProjectsLink = false,
+  outlinedDots = false,
+}) => {
   return (
     <>
       <Section
-        id="custom-app-case-study"
-        className="overflow-hidden pt-[120px] pb-[80px]"
+        id={id}
+        className="relative overflow-hidden pt-[120px] pb-[80px]"
       >
-        <Container>
+        {background && (
+          <Image
+            src={background}
+            alt=""
+            fill
+            sizes="100vw"
+            className="pointer-events-none z-0 object-cover"
+          />
+        )}
+
+        <Container className="relative z-10">
           <div className="relative flex justify-center text-center">
             <SectionHeading
-              title="Case Studies"
+              title={title}
               titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
             />
 
-            <div className="absolute top-[-70px] right-[300px]">
-              <CircularTextButton
-                href="/work"
-                image="/images/home/circular-text-projects.png"
-                imageWidth={113}
-                imageHeight={113}
-                className="size-[112px]"
-                ringClassName="h-auto w-full"
-              >
-                <ArrowUpRight
-                  size={28}
-                  strokeWidth={2.5}
-                  className="text-black"
-                />
-              </CircularTextButton>
-            </div>
+            {showProjectsLink && (
+              <div className="absolute top-[-70px] right-[300px]">
+                <CircularTextButton
+                  href="/work"
+                  image="/images/home/circular-text-projects.png"
+                  imageWidth={113}
+                  imageHeight={113}
+                  className="size-[112px]"
+                  ringClassName="h-auto w-full"
+                >
+                  <ArrowUpRight
+                    size={28}
+                    strokeWidth={2.5}
+                    className="text-black"
+                  />
+                </CircularTextButton>
+              </div>
+            )}
           </div>
         </Container>
 
@@ -56,15 +76,27 @@ const CustomAppCaseStudy = () => {
           pagination={{ clickable: true }}
           style={{
             "--swiper-pagination-color": "#000000",
-            "--swiper-pagination-bullet-inactive-color": "#000000",
-            "--swiper-pagination-bullet-inactive-opacity": "0.2",
+            "--swiper-pagination-bullet-inactive-color": outlinedDots
+              ? "transparent"
+              : "#000000",
+            "--swiper-pagination-bullet-inactive-opacity": outlinedDots
+              ? "1"
+              : "0.2",
+            ...(outlinedDots && {
+              "--swiper-pagination-bullet-size": "10px",
+              "--swiper-pagination-bullet-horizontal-gap": "3px",
+            }),
             "--swiper-pagination-bottom": "40px",
           }}
-          className="overflow-visible! pt-[60px]! pb-[100px]!"
+          className={`overflow-visible! pt-[60px]! pb-[100px]! ${
+            outlinedDots
+              ? "[&_.swiper-pagination-bullet]:border [&_.swiper-pagination-bullet]:border-black"
+              : ""
+          }`}
         >
-          {customAppCaseStudies.map(
+          {items.map(
             ({
-              id,
+              id: projectId,
               image,
               imageWidth,
               imageHeight,
@@ -74,7 +106,7 @@ const CustomAppCaseStudy = () => {
               ctaLabel,
               href,
             }) => (
-              <SwiperSlide key={id} className="h-auto! px-[20px]">
+              <SwiperSlide key={projectId} className="h-auto! px-[20px]">
                 <div className="mx-auto flex h-full max-w-[1200px] items-center gap-[60px] rounded-[20px] bg-white p-[45px] shadow-[16px_16px_150px_0px_#00000017]">
                   <div className="bg-grey/60 relative h-[380px] w-[560px] shrink-0 overflow-hidden rounded-[20px]">
                     {image && (
@@ -123,4 +155,4 @@ const CustomAppCaseStudy = () => {
   );
 };
 
-export default CustomAppCaseStudy;
+export default ServiceCaseStudies;

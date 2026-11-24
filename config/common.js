@@ -41,6 +41,7 @@ import {
   HiOutlineWrenchScrewdriver,
   HiOutlineXCircle,
 } from "react-icons/hi2";
+import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import { LuPlug } from "react-icons/lu";
 
 export const heroPopovers = [
@@ -1035,6 +1036,212 @@ export const customAppHeroHighlights = [
   },
 ];
 
+export const webDesignHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/t-icon-web-design-hero.png",
+    iconAlt: "",
+    width: 210,
+    height: 205,
+    iconClassName: "w-[52px] h-auto",
+    value: "From £1,500",
+    description: "Websites live in 3 to 4 weeks",
+  },
+  {
+    id: "ownership",
+    icon: "/images/services/casabotanica-icon-web-design-hero.png",
+    iconAlt: "Casa Botanica",
+    width: 260,
+    height: 152,
+    iconClassName: "w-[65px] h-auto",
+    value: "You own the site",
+    description: "Domain, content and code",
+  },
+  {
+    id: "guarantee",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "3-month guarantee",
+    description: "Anything not right is fixed free",
+  },
+];
+
+export const webDesignNeeds = [
+  {
+    id: "redesign",
+    title: "A redesign fits when:",
+    description:
+      "The message is unclear, enquiries go missing, or the platform gets in the way of your team.",
+    cta: { label: "Plan a redesign", href: "/contact" },
+    image: "/images/services/redesign-web-design-needs.png",
+    imageWidth: 758,
+    imageHeight: 638,
+    imageAlt: "Safari tour website redesign",
+    className: "bg-[#F4E6D9]",
+  },
+  {
+    id: "new-site",
+    title: "A new site fits when:",
+    description:
+      "You’re launching a new business, or you’ve outgrown your existing website platform.",
+    cta: { label: "Plan a new site", href: "/contact" },
+    image: "/images/services/new-site-web-design-needs.png",
+    imageWidth: 758,
+    imageHeight: 638,
+    imageAlt: "Casa Botanica villa website",
+    className: "bg-[#D2DBDB]",
+  },
+  {
+    id: "online-store",
+    title: "An online store fits when:",
+    description:
+      "You’re selling online and need a properly built, scalable e-commerce store.",
+    cta: { label: "Plan my store", href: "/contact" },
+    image: "/images/services/online-store-web-design-needs.png",
+    imageWidth: 758,
+    imageHeight: 638,
+    imageAlt: "Ivy & Duke dog bed shop website",
+    className: "bg-[#F2F4E6]",
+  },
+];
+
+export const webDesignIncluded = [
+  {
+    id: "strategy",
+    title: "Strategy and structure",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "ux",
+    title: "UX and content hierarchy",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "design",
+    title: "Custom design",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "development",
+    title: "Development and CMS",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "seo",
+    title: "SEO and performance foundations",
+    description: "[Answer TBC]",
+  },
+  {
+    id: "integrations",
+    title: "Integrations and accessibility",
+    description: "[Answer TBC]",
+  },
+];
+
+export const webDesignProcess = [
+  {
+    id: "understand",
+    icon: HiOutlineMapPin,
+    label: "Week 1",
+    title: "Understand",
+    description:
+      "We review your current site, goals & what customers need to find.",
+  },
+  {
+    id: "shape",
+    icon: HiOutlineSignal,
+    label: "Week 1 to 2",
+    title: "Shape",
+    description: "Page structure and wireframes, agreed before any design.",
+  },
+  {
+    id: "design-build",
+    icon: HiOutlineWrenchScrewdriver,
+    label: "Weeks 2 to 6",
+    title: "Design & build",
+    description:
+      "Full design, then a working site you can review as it’s built.",
+  },
+  {
+    id: "launch",
+    icon: HiOutlineBookOpen,
+    label: "Week 6 to 8",
+    title: "Launch",
+    description: "Content moved, redirects set, team trained, site live.",
+  },
+];
+
+export const webDesignPlatforms = [
+  {
+    id: "wordpress",
+    name: "WordPress",
+    icon: FaWordpress,
+    description:
+      "Flexible and widely used, great for content-led sites and teams who edit often. We build with Elementor where your team wants to drag and drop.",
+    bestFor: ["Marketing sites.", "Blogs and resources.", "WooCommerce."],
+    cta: { label: "Is WordPress right for us?", href: "/contact" },
+  },
+  {
+    id: "shopify",
+    name: "Shopify",
+    icon: FaShopify,
+    description: "[Copy TBC]",
+    bestFor: ["[Copy TBC]"],
+    cta: { label: "Is Shopify right for us?", href: "/contact" },
+  },
+  {
+    id: "webflow",
+    name: "Webflow",
+    icon: FaWebflow,
+    description: "[Copy TBC]",
+    bestFor: ["[Copy TBC]"],
+    cta: { label: "Is Webflow right for us?", href: "/contact" },
+  },
+];
+
+export const webDesignPricingPlans = [
+  {
+    id: "focused-website",
+    name: "Focused website",
+    prefix: "From",
+    price: "£1,500",
+    timeline: "3 to 4 weeks.",
+    youGet:
+      "Up to 5 pages, mobile-first design, contact forms, SEO setup, training.",
+    bestFor: "Small businesses and new launches.",
+    ctaLabel: "Get started",
+    ctaHref: "/contact",
+  },
+  {
+    id: "business-website",
+    name: "Business website",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "6 to 8 weeks.",
+    youGet:
+      "Custom design, full content structure, blog or case studies, integrations, migration with redirects.",
+    bestFor: "Redesigns of growing business sites.",
+    ctaLabel: "Get a website quote",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "online-store",
+    name: "Online store",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "8 to 12 weeks.",
+    youGet:
+      "Shopify or WooCommerce, product setup, payments, shipping, email flows.",
+    bestFor: "Brands selling online.",
+    ctaLabel: "Plan my store",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -1752,6 +1959,54 @@ export const customAppSolutions = [
     image: null,
     imageWidth: 0,
     imageHeight: 0,
+  },
+];
+
+export const webDesignFaqs = [
+  {
+    id: "cost",
+    question: "How much does a professional website cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "outside-manchester",
+    question: "Do you work with businesses outside Manchester?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "redesign",
+    question: "Can you redesign our existing website?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "seo",
+    question: "Is SEO included in a website build?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "updates",
+    question: "Can we update the website ourselves?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "after-launch",
+    question: "What happens after launch?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "rankings",
+    question: "Will we lose our Google rankings?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a website take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ownership",
+    question: "Who owns the website?",
+    answer: "[Answer TBC]",
   },
 ];
 

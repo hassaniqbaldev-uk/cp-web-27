@@ -1,8 +1,11 @@
-import { customAppFaqs, customAppPricingPlans } from "@/config/common";
+import {
+  customAppCaseStudies,
+  customAppFaqs,
+  customAppPricingPlans,
+} from "@/config/common";
 import ServiceFooterCta from "@/components/layout/ServiceFooterCta";
 import Footer from "@/components/layout/Footer";
 import CustomAppBuildSteps from "@/components/sections/CustomAppBuildSteps";
-import CustomAppCaseStudy from "@/components/sections/CustomAppCaseStudy";
 import CustomAppCostCalculator from "@/components/sections/CustomAppCostCalculator";
 import CustomAppFit from "@/components/sections/CustomAppFit";
 import CustomAppHero from "@/components/sections/CustomAppHero";
@@ -10,6 +13,7 @@ import CustomAppSolutions from "@/components/sections/CustomAppSolutions";
 import CustomAppScoping from "@/components/sections/CustomAppScoping";
 import CustomAppTechStack from "@/components/sections/CustomAppTechStack";
 import Faqs from "@/components/sections/Faqs";
+import ServiceCaseStudies from "@/components/sections/ServiceCaseStudies";
 import ServicePricing from "@/components/sections/ServicePricing";
 
 const CustomAppDevelopment = () => {
@@ -21,7 +25,12 @@ const CustomAppDevelopment = () => {
 
       <CustomAppSolutions />
 
-      <CustomAppCaseStudy />
+      <ServiceCaseStudies
+        id="custom-app-case-study"
+        title="Case Studies"
+        items={customAppCaseStudies}
+        showProjectsLink
+      />
 
       <CustomAppBuildSteps />
 

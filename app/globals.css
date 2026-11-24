@@ -22,6 +22,14 @@
 
   --animate-spin-slow: spin-slow 16s linear infinite;
 
+  --animate-scroll-y: scroll-y 40s linear 1s infinite;
+
+  @keyframes scroll-y {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
   @keyframes spin-slow {
     to {
       transform: rotate(360deg);

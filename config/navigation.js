@@ -5,6 +5,10 @@ export const mainNavigation = [
     children: [
       { label: "Branding", href: "/services/branding" },
       {
+        label: "Website Design & Development",
+        href: "/services/website-design-development",
+      },
+      {
         label: "Custom App Development",
         href: "/services/custom-app-development",
       },
@@ -61,6 +65,10 @@ export const footerNavigation = [
     title: "Services",
     links: [
       { label: "Branding", href: "/services/branding" },
+      {
+        label: "Website Design & Development",
+        href: "/services/website-design-development",
+      },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

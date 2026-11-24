@@ -57,7 +57,23 @@ const Branding = () => {
         items={brandingFaqs}
       />
 
-      <Footer cta={<ServiceFooterCta />} />
+      <Footer
+        cta={
+          <ServiceFooterCta
+            title={
+              <>
+                Tell us about <br />
+                <span className="bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
+                  your brand.
+                </span>
+              </>
+            }
+            subtitle="Tell us where your brand shows up today and what’s not working. We’ll tell you if it needs a refresh, a rebrand or something new, and what it would cost."
+            quote="our logo is dated and nothing matches across the site and socials"
+            submitLabel="Send my brand details"
+          />
+        }
+      />
     </>
   );
 };

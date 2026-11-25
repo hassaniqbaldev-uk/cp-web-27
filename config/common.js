@@ -3516,6 +3516,196 @@ export const googleAdsPricingPlans = [
 
 export const googleAdsFormServices = ["Starter", "Growth", "Scale"];
 
+export const metaAdsHeroStats = [
+  {
+    id: "creative",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "Creative Included",
+    description: "In every plan",
+  },
+  {
+    id: "pages",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "In-House Pages",
+    description: "By the same team",
+  },
+  {
+    id: "reply",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Human Reply",
+    description: "Within one working day",
+  },
+];
+
+export const metaAdsProcess = [
+  {
+    id: "offer",
+    title: "One specific offer:",
+    description:
+      "Something a stranger would genuinely want: a free review, a sample, a practical guide or a first session. A real reason to act, not a generic “get in touch”.",
+  },
+  {
+    id: "creative",
+    title: "Creative that names problem:",
+    description:
+      "We open with the problem your customer has, before we mention what you sell. Static and video ads that feel familiar to them, with founder-led video where it builds trust.",
+  },
+  {
+    id: "page",
+    title: "A page that continues the ad:",
+    description:
+      "Same headline and offer as the ad, so people know they’re in the right place. A short form, three fields at most, on a page built for the campaign instead of your homepage.",
+  },
+  {
+    id: "follow-up",
+    title: "Follow-up that happens:",
+    description:
+      "An instant confirmation email, then a real person replies within one working day. A short email sequence keeps the lead warm until they’re ready to talk.",
+  },
+];
+
+export const metaAdsFit = [
+  {
+    id: "worth-it",
+    title: "Usually worth it",
+    points: [
+      "Ecommerce brands with a visual product and a margin that supports paid acquisition.",
+      "Local services with a clear first offer: lessons, consultations, clinics.",
+      "Lead generation with a specific deliverable, like a review or a guide.",
+      "Remarketing to people who visited the site or store.",
+    ],
+    featured: true,
+  },
+  {
+    id: "not",
+    title: "Usually not",
+    points: [
+      "High-value B2B with a long cycle and no first offer: LinkedIn or search usually does better.",
+      "A store with a checkout that leaks: fix that first, then buy traffic.",
+      "“Brand awareness” with nothing to measure.",
+    ],
+    note: "We will tell you which it is before you spend.",
+  },
+];
+
+export const metaAdsResults = [
+  {
+    id: "sunbox",
+    image: "/images/services/sunbox-meta-ads-results.png",
+    imageAlt: "Sunbox Campers website pages",
+    title: "Sunbox Campers",
+    description:
+      "Campervan conversions with search ads and enquiries tracked in HubSpot.",
+    stats: [
+      {
+        id: "conversion",
+        icon: LuChartNoAxesCombined,
+        value: "37",
+        label: "Conversion",
+      },
+      {
+        id: "enquiries",
+        icon: LuCircleUserRound,
+        value: "142",
+        label: "Enquiries",
+      },
+      {
+        id: "result",
+        icon: HiOutlineCalendarDays,
+        value: "30 Days",
+        label: "Result after",
+      },
+    ],
+  },
+  {
+    id: "casabotanica",
+    image: "/images/services/casabotanica-meta-ads-results.png",
+    imageAlt: "Casa Botanica Panama website pages",
+    title: "Casa Botanica Panama",
+    description:
+      "Casa Botanica Panama Google Ads with bookings tracked end to end.",
+    stats: [
+      {
+        id: "conversion",
+        icon: HiOutlineCalendarDays,
+        value: "28",
+        label: "Conversion",
+      },
+      {
+        id: "enquiries",
+        icon: LuCircleUserRound,
+        value: "96",
+        label: "Enquiries",
+      },
+      {
+        id: "result",
+        icon: HiOutlineCalendarDays,
+        value: "30 Days",
+        label: "Result after",
+      },
+    ],
+  },
+];
+
+export const metaAdsPricingDetails = shopifyPricingDetails;
+
+export const metaAdsPricingPlans = [
+  {
+    id: "starter",
+    name: "Starter",
+    prefix: "From",
+    price: "£500",
+    suffix: "a month",
+    timeline: "3 to 4 weeks.",
+    bestFor: "Local services with one offer.",
+    includes:
+      "One campaign · Ad copy and static creative · Pixel and conversion tracking · Monthly report.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    prefix: "From",
+    price: "£750",
+    suffix: "a month",
+    timeline: "6 to 8 weeks.",
+    bestFor: "Online stores and growing businesses.",
+    includes:
+      "Everything in Starter · Short video direction · Remarketing · Creative tested weekly · Monthly call.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    prefix: "From",
+    price: "£1,000",
+    suffix: "a month",
+    timeline: "8 to 12 weeks.",
+    bestFor: "Several offers, products or locations.",
+    includes:
+      "Everything in Growth · Several campaigns · Landing page testing · Fortnightly check-ins.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+];
+
+export const metaAdsFormServices = ["Starter", "Growth", "Scale"];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -4727,6 +4917,54 @@ export const googleAdsFaqs = [
   {
     id: "meta",
     question: "Do you run Meta (Facebook and Instagram) ads?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "report",
+    question: "What’s in the monthly report?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const metaAdsFaqs = [
+  {
+    id: "b2b",
+    question: "Do Meta ads work for B2B?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "creative",
+    question: "Do you make the creative?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "tracking",
+    question: "What about tracking after iOS changes?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "budget",
+    question: "How much should we spend?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "results",
+    question: "How long before I see results?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ownership",
+    question: "Do I own the ad account and the creative?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "contract",
+    question: "Is there a contract or minimum term?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "google-ads",
+    question: "Do you run Google Ads too?",
     answer: "[Answer TBC]",
   },
   {

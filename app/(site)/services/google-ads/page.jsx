@@ -3,6 +3,7 @@ import {
   googleAdsFormServices,
   googleAdsPricingDetails,
   googleAdsPricingPlans,
+  googleAdsResults,
 } from "@/config/common";
 import ServiceFooterCta from "@/components/layout/ServiceFooterCta";
 import Footer from "@/components/layout/Footer";
@@ -12,8 +13,8 @@ import GoogleAdsClick from "@/components/sections/GoogleAdsClick";
 import GoogleAdsFit from "@/components/sections/GoogleAdsFit";
 import GoogleAdsHero from "@/components/sections/GoogleAdsHero";
 import GoogleAdsProcess from "@/components/sections/GoogleAdsProcess";
-import GoogleAdsResults from "@/components/sections/GoogleAdsResults";
 import ServicePricing from "@/components/sections/ServicePricing";
+import ServiceResults from "@/components/sections/ServiceResults";
 
 const GoogleAds = () => {
   return (
@@ -26,7 +27,20 @@ const GoogleAds = () => {
 
       <GoogleAdsProcess />
 
-      <GoogleAdsResults />
+      <ServiceResults
+        id="google-ads-results"
+        title={
+          <>
+            <span className="mr-[-0.06em] bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.06em] text-transparent">
+              Google Ads
+            </span>{" "}
+            results
+          </>
+        }
+        subtitle="What you get every month: spend, enquiries, cost per enquiry, and what we’re changing next."
+        items={googleAdsResults}
+        cta={{ label: "View all results", href: "/work" }}
+      />
 
       <GoogleAdsCheck />
 

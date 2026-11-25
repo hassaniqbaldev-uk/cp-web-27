@@ -53,7 +53,7 @@ import {
   HiLink,
 } from "react-icons/hi2";
 import { FcGoogle } from "react-icons/fc";
-import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
+import { FaMeta, FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
   LuBook,
   LuBot,
@@ -66,18 +66,25 @@ import {
   LuLocateFixed,
   LuMailOpen,
   LuMeh,
+  LuMessageSquareText,
   LuMonitor,
   LuMonitorPlay,
   LuNavigation,
   LuNotebookText,
+  LuPanelBottom,
+  LuPanelsTopLeft,
   LuPlug,
+  LuRoute,
   LuScrollText,
   LuSearchCheck,
   LuShieldCheck,
   LuSiren,
+  LuSquarePlay,
+  LuStar,
   LuTarget,
   LuToggleLeft,
   LuTriangleAlert,
+  LuZap,
 } from "react-icons/lu";
 import { SiWoo } from "react-icons/si";
 import {
@@ -91,6 +98,7 @@ import {
   TbCircleSquare,
   TbLayoutDashboardFilled,
   TbMessageCircleStar,
+  TbMessageStar,
   TbProgressCheck,
   TbRobot,
   TbRouteSquare2,
@@ -4178,6 +4186,255 @@ export const webflowPricingPlans = [
 
 export const webflowFormServices = webflowPricingPlans.map(({ name }) => name);
 
+export const paidMediaHeroStats = [
+  {
+    id: "team",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "One team",
+    description: "Ads and landing pages together",
+  },
+  {
+    id: "channels",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Google and Meta",
+    description: "From £500 a month per channel",
+  },
+  {
+    id: "leads",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Leads, not clicks",
+    description: "What we report on",
+  },
+];
+
+export const paidMediaChannels = [
+  {
+    id: "google",
+    logos: ["google"],
+    title: "Google ads",
+    description:
+      "For people already searching for what you sell. Best for services with clear demand and online stores with search volume.",
+    cta: { label: "See Google Ads", href: "/services/google-ads" },
+  },
+  {
+    id: "meta",
+    logos: ["meta"],
+    title: "Meta ads",
+    description:
+      "For people who aren’t searching yet. Best for visual products and services with a clear first offer.",
+    cta: { label: "See Meta Ads", href: "/services/meta-ads" },
+  },
+  {
+    id: "both",
+    logos: ["google", "meta"],
+    title: "Both ads",
+    description:
+      "Google catches demand, Meta creates it, and remarketing on both brings back people who visited. Best once one channel is working.",
+    cta: { label: "See the bundle price", href: "#paid-media-pricing" },
+  },
+];
+
+export const paidMediaWaste = [
+  {
+    id: "search",
+    icons: ["google", "searchConsole"],
+    title: "Google Search",
+    description:
+      "High-intent queries, exact the page saying what the ad promised, landing pages built for the ad group.",
+  },
+  {
+    id: "social",
+    icons: ["meta", "instagram"],
+    title: "Meta and Instagram",
+    description:
+      "Recognition-led creative and a specific, low-problems offer such as a website review.",
+  },
+  {
+    id: "linkedin",
+    icons: ["linkedin", "folder"],
+    title: "LinkedIn",
+    description:
+      "B2B situations, founder video, one case study, a short brief form.",
+  },
+  {
+    id: "landing-pages",
+    icons: ["page", "googleAds"],
+    title: "Landing pages",
+    description:
+      "Designed with the campaign, using the same components as the site.",
+  },
+  {
+    id: "beyond",
+    icons: ["campaign", "analytics"],
+    title: "Beyond the click",
+    description: "GA4, conversion APIs and lead quality fed back into bidding.",
+  },
+  {
+    id: "budget",
+    icons: ["chart", "budget"],
+    title: "Results-led budget",
+    description:
+      "Spend moves towards the ad groups and audiences that produce qualified leads, not cheap clicks.",
+  },
+];
+
+export const paidMediaPages = [
+  {
+    id: "search",
+    tag: "Google search - high intent",
+    tagClassName: "bg-blue/15 text-blue",
+    title: "Exact the page saying what the\nad promised",
+    description:
+      "Reduced header, service-led H1 with price and trust, immediate proof, what is included, investment, short FAQ, short form. Call optional.",
+    cta: { label: "See the PPC mode", href: "/services/google-ads" },
+    ad: {
+      icon: FcGoogle,
+      title: "Your Ad",
+      text: "Get professional\nlandscaping designs\nfor your home.",
+      intent: "High Intent",
+      intentClassName: "text-blue",
+    },
+    features: [
+      {
+        id: "page",
+        icon: LuPanelsTopLeft,
+        className: "text-blue",
+        name: "Relevant\nLanding Page",
+      },
+      {
+        id: "messaging",
+        icon: LuMessageSquareText,
+        className: "text-dark-pink",
+        name: "Winning\nMessaging",
+      },
+      {
+        id: "proof",
+        icon: LuStar,
+        className: "text-orange",
+        name: "Social Proof",
+      },
+      {
+        id: "cta",
+        icon: LuPanelBottom,
+        className: "text-dark-pink",
+        name: "Clear CTA",
+      },
+    ],
+  },
+  {
+    id: "social",
+    tag: "Meta - lower intent",
+    tagClassName: "bg-orange/20 text-orange",
+    title: "Start With Their Problem, Not\nYour Product",
+    description:
+      "Recognition-led headline, a short founder video, a specific review offer with a sample deliverable, three-step route and an ultra-short form.",
+    cta: { label: "See the Meta mode", href: "/services/meta-ads" },
+    ad: {
+      icon: FaMeta,
+      iconClassName: "text-[#0081FB]",
+      title: "Social Ad",
+      text: "Get inspired with\ncreative landscape\nideas for your home.",
+      intent: "Lower Intent",
+      intentClassName: "text-orange",
+    },
+    features: [
+      {
+        id: "video",
+        icon: LuSquarePlay,
+        className: "text-blue",
+        name: "Video First",
+        text: "Build trust",
+      },
+      {
+        id: "review",
+        icon: TbMessageStar,
+        className: "text-dark-pink",
+        name: "Sample Review",
+        text: "Show results",
+      },
+      {
+        id: "route",
+        icon: LuRoute,
+        className: "text-orange",
+        name: "3-Step Route",
+        text: "Keep it simple",
+      },
+      {
+        id: "form",
+        icon: LuZap,
+        className: "text-dark-pink",
+        name: "Short Form",
+        text: "Capture interest",
+      },
+    ],
+  },
+];
+
+export const paidMediaPricingDetails = [
+  { key: "timeline", label: "Timeline", icon: HiOutlineClock },
+  { key: "bestFor", label: "Best for", icon: HiOutlineDocumentText },
+  { key: "includes", label: "Includes", icon: HiOutlineUserGroup },
+];
+
+export const paidMediaPricingPlans = [
+  {
+    id: "google",
+    name: "Google Ads",
+    prefix: "From",
+    price: "£500",
+    suffix: "a month",
+    timeline: "3 to 6 weeks",
+    bestFor: "People already searching",
+    includes:
+      "Search campaign · Keywords and negatives · Conversion tracking · Monthly report",
+    ctaLabel: "See Google Ads",
+    ctaHref: "/services/google-ads",
+  },
+  {
+    id: "meta",
+    name: "Meta ads",
+    prefix: "From",
+    price: "£500",
+    suffix: "a month",
+    timeline: "6 to 8 weeks",
+    bestFor: "People not searching yet",
+    includes:
+      "Ad copy and static creative · Pixel and conversion tracking · Monthly report",
+    ctaLabel: "See Meta Ads",
+    ctaHref: "/services/meta-ads",
+    featured: true,
+  },
+  {
+    id: "both",
+    name: "Google + Meta",
+    prefix: "From",
+    price: "£900",
+    suffix: "a month",
+    timeline: "8 to 12 weeks",
+    bestFor: "Catching and creating demand, with remarketing on both",
+    includes:
+      "Everything in both · One combined monthly report · Budget moved between channels based on results",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+];
+
+export const paidMediaFormServices = paidMediaPricingPlans.map(
+  ({ name }) => name,
+);
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -5543,6 +5800,44 @@ export const webflowFaqs = [
   {
     id: "support",
     question: "Do you offer support after launch?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const paidMediaFaqs = [
+  {
+    id: "channel",
+    question: "Should we start with Google or Meta?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "budget",
+    question: "What budget do we need?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "landing-pages",
+    question: "Do you build the landing pages?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "lead-quality",
+    question: "How do you measure lead quality?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "creative",
+    question: "Do you handle the creative?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ownership",
+    question: "Do I own the ad accounts?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "linkedin",
+    question: "Do you run LinkedIn ads?",
     answer: "[Answer TBC]",
   },
 ];

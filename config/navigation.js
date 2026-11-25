@@ -21,6 +21,7 @@ export const mainNavigation = [
       { label: "Meta Ads", href: "/services/meta-ads" },
       { label: "Print & Events", href: "/services/print-events" },
       { label: "Webflow", href: "/services/webflow" },
+      { label: "Paid Media", href: "/services/paid-media" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

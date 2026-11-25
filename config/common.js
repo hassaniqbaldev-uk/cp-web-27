@@ -58,14 +58,21 @@ import {
   LuBot,
   LuChartNoAxesCombined,
   LuCircleUserRound,
+  LuCoins,
   LuFileText,
+  LuFiles,
   LuFolderCode,
+  LuLocateFixed,
+  LuMailOpen,
   LuMeh,
+  LuMonitor,
   LuMonitorPlay,
   LuNavigation,
+  LuNotebookText,
   LuPlug,
   LuScrollText,
   LuSearchCheck,
+  LuShieldCheck,
   LuSiren,
   LuTarget,
   LuToggleLeft,
@@ -79,6 +86,7 @@ import {
 } from "react-icons/ri";
 import {
   TbArrowAutofitHeight,
+  TbChartBarPopular,
   TbCircleSquare,
   TbLayoutDashboardFilled,
   TbMessageCircleStar,
@@ -3280,6 +3288,234 @@ export const shopifyFormServices = [
   "Migration to Shopify",
 ];
 
+export const googleAdsHeroStats = [
+  {
+    id: "pages",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "In-House Pages",
+    description: "By the same team",
+  },
+  {
+    id: "tracking",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Tracking in week one",
+    description: "Conversions set up properly",
+  },
+  {
+    id: "reporting",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Clear Reporting",
+    description: "Every month",
+  },
+];
+
+export const googleAdsFit = [
+  {
+    id: "good-fit",
+    title: "Good fit:",
+    description:
+      "People already search for what you sell, you can handle more enquiries, and you have at least [£500 to £1,000] a month for ad spend on top of our fee.",
+    cta: { label: "Get audit", href: "/contact" },
+  },
+  {
+    id: "also-a-fit",
+    title: "Also a fit:",
+    description:
+      "You’re already running ads, but you’re struggling to understand which campaigns are actually generating quality enquiries and bringing real potential customers.",
+    cta: { label: "Get audit", href: "/contact" },
+  },
+  {
+    id: "not-a-fit",
+    title: "Not a fit:",
+    description:
+      "Nobody searches for your product yet, or the budget is under [£500] a month. We’ll suggest SEO or Meta ads instead.",
+    cta: { label: "Get audit", href: "/contact" },
+  },
+];
+
+export const googleAdsProcess = [
+  {
+    id: "keywords",
+    icon: LuNotebookText,
+    title: "Keywords\nwith intent",
+    description:
+      "Searches that mean someone wants to buy or enquire, grouped tightly so each ad group has one clear message.",
+  },
+  {
+    id: "ads",
+    icon: LuMonitor,
+    title: "Ads that state\nthe offer",
+    description:
+      "Price, proof and the next step in the ad itself, so the click is already half qualified.",
+  },
+  {
+    id: "landing-page",
+    icon: LuFiles,
+    title: "A landing page\nper ad group",
+    description:
+      "Built with the campaign, using the same components as the site. Reduced header, one primary action, short form.",
+  },
+  {
+    id: "tracking",
+    icon: LuMailOpen,
+    title: "Tracking past\nthe click",
+    description:
+      "Conversion events tagged with budget, fit and timing where the form captures them, fed back into bidding.",
+  },
+];
+
+export const googleAdsResults = [
+  {
+    id: "sunbox",
+    image: "/images/services/sunbox-google-ads-results.png",
+    imageAlt: "Sunbox Campers website pages",
+    title: "Sunbox Campers",
+    description:
+      "Campervan conversions with search ads and enquiries tracked in HubSpot.",
+    stats: [
+      {
+        id: "conversion",
+        icon: LuChartNoAxesCombined,
+        value: "37",
+        label: "Conversion",
+      },
+      {
+        id: "enquiries",
+        icon: LuCircleUserRound,
+        value: "142",
+        label: "Enquiries",
+      },
+      {
+        id: "result",
+        icon: HiOutlineCalendarDays,
+        value: "30 Days",
+        label: "Result after",
+      },
+    ],
+  },
+  {
+    id: "casabotanica",
+    image: "/images/services/casabotanica-google-ads-results.png",
+    imageAlt: "Casa Botanica Panama website pages",
+    title: "Casa Botanica Panama",
+    description:
+      "Casa Botanica Panama Google Ads with bookings tracked end to end.",
+    stats: [
+      {
+        id: "conversion",
+        icon: HiOutlineCalendarDays,
+        value: "28",
+        label: "Conversion",
+      },
+      {
+        id: "enquiries",
+        icon: LuCircleUserRound,
+        value: "96",
+        label: "Enquiries",
+      },
+      {
+        id: "result",
+        icon: HiOutlineCalendarDays,
+        value: "30 Days",
+        label: "Result after",
+      },
+    ],
+  },
+];
+
+export const googleAdsChecks = [
+  {
+    id: "traffic",
+    icon: LuLocateFixed,
+    iconClassName: "bg-dark-pink",
+    title: "More relevant\ntraffic",
+  },
+  {
+    id: "cpc",
+    icon: LuCoins,
+    iconClassName: "bg-orange",
+    title: "Lower CPC",
+  },
+  {
+    id: "conversions",
+    icon: TbChartBarPopular,
+    iconClassName: "bg-blue",
+    title: "Better\nconversions",
+  },
+  {
+    id: "roi",
+    icon: LuShieldCheck,
+    iconClassName: "bg-[#3A3A36]",
+    title: "Higher ROI",
+  },
+];
+
+export const googleAdsPricingDetails = [
+  { key: "adSpend", label: "Ad spend", icon: HiOutlineClock },
+  { key: "bestFor", label: "For", icon: HiOutlineDocumentText },
+  { key: "includes", label: "Includes", icon: HiOutlineUserGroup },
+];
+
+export const googleAdsPricingPlans = [
+  {
+    id: "starter",
+    name: "Starter",
+    prefix: "From",
+    price: "£500",
+    suffix: "a month",
+    priceNote: "ad spend up to £2,000 a month",
+    adSpend: "Up to [£2,000] a month.",
+    bestFor: "Local and niche services.",
+    includes:
+      "Search campaign · Keyword and negative keyword lists · Conversion tracking · Monthly report.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    prefix: "From",
+    price: "£750",
+    suffix: "a month",
+    priceNote: "(up to £5,000)",
+    adSpend: "Up to [£5,000] a month.",
+    bestFor: "Growing businesses and online stores.",
+    includes:
+      "Everything in Starter · Shopping or Performance Max · Remarketing · Monthly call.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    prefix: "From",
+    price: "£1,000",
+    suffix: "a month",
+    priceNote: "(£5,000+)",
+    adSpend: "[£5,000+] a month.",
+    bestFor: "Bigger budgets, several campaigns.",
+    includes:
+      "Everything in Growth · Several campaigns and locations · Landing page testing · Fortnightly check-ins.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+];
+
+export const googleAdsFormServices = ["Starter", "Growth", "Scale"];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -4448,6 +4684,54 @@ export const shopifyFaqs = [
   {
     id: "support",
     question: "Do you offer ongoing support?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const googleAdsFaqs = [
+  {
+    id: "budget",
+    question: "What budget do we need for Google Ads?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "results",
+    question: "How long before I see results?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "landing-pages",
+    question: "Do you build the landing pages?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "measure",
+    question: "How do you measure results?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ownership",
+    question: "Do I own the ad account?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "contract",
+    question: "Is there a contract or minimum term?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "take-over",
+    question: "Can you take over an existing account?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "meta",
+    question: "Do you run Meta (Facebook and Instagram) ads?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "report",
+    question: "What’s in the monthly report?",
     answer: "[Answer TBC]",
   },
 ];

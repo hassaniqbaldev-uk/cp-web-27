@@ -17,6 +17,7 @@ export const mainNavigation = [
       { label: "WordPress", href: "/services/wordpress" },
       { label: "WooCommerce", href: "/services/woocommerce" },
       { label: "Shopify", href: "/services/shopify" },
+      { label: "Google Ads", href: "/services/google-ads" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

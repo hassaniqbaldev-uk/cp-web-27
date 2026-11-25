@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   HiOutlineClock,
   HiOutlineDocumentText,
@@ -23,11 +24,27 @@ const ServicePricing = ({
   plans,
   note,
   details = defaultDetails,
+  background,
 }) => {
   return (
     <>
-      <Section id={id} className="bg-grey/40 py-[120px]">
-        <Container>
+      <Section
+        id={id}
+        className={`py-[120px] ${
+          background ? "relative overflow-hidden" : "bg-grey/40"
+        }`}
+      >
+        {background && (
+          <Image
+            src={background}
+            alt=""
+            fill
+            sizes="100vw"
+            className="pointer-events-none z-0 object-cover"
+          />
+        )}
+
+        <Container className={background ? "relative z-10" : ""}>
           <SectionHeading
             className="text-center"
             title={title}
@@ -49,6 +66,7 @@ const ServicePricing = ({
                 prefix,
                 price,
                 suffix,
+                priceNote,
                 ctaLabel,
                 ctaHref,
                 featured,
@@ -95,6 +113,12 @@ const ServicePricing = ({
                           </span>
                         )}
                       </p>
+
+                      {priceNote && (
+                        <span className="mt-[8px] block text-[16px] leading-[20px] tracking-[-0.02em] text-black">
+                          {priceNote}
+                        </span>
+                      )}
                     </div>
                   </div>
 

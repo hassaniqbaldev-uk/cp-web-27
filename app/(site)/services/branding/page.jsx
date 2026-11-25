@@ -1,8 +1,12 @@
-import { brandingFaqs, brandingPricingPlans } from "@/config/common";
+import {
+  brandingCaseStudies,
+  brandingFaqs,
+  brandingPricingPlans,
+} from "@/config/common";
 import ServiceFooterCta from "@/components/layout/ServiceFooterCta";
 import Footer from "@/components/layout/Footer";
 import BrandingBrandCheck from "@/components/sections/BrandingBrandCheck";
-import BrandingCaseStudy from "@/components/sections/BrandingCaseStudy";
+import ServiceProjects from "@/components/sections/ServiceProjects";
 import BrandingHero from "@/components/sections/BrandingHero";
 import BrandingIdentity from "@/components/sections/BrandingIdentity";
 import BrandingNeeds from "@/components/sections/BrandingNeeds";
@@ -21,7 +25,17 @@ const Branding = () => {
 
       <BrandingProcess />
 
-      <BrandingCaseStudy />
+      <ServiceProjects
+        id="branding-case-study"
+        title={
+          <>
+            Brand identity <br />
+            <span className="text-black/50">projects, shown in use</span>
+          </>
+        }
+        items={brandingCaseStudies}
+        showProjectsLink
+      />
 
       <BrandingBrandCheck />
 

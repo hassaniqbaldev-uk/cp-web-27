@@ -3057,6 +3057,229 @@ export const woocommercePricingPlans = [
   },
 ];
 
+export const shopifyHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "From £3,500",
+    description: "Shopify stores built for your range",
+  },
+  {
+    id: "running-costs",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Running costs",
+    description: "Every app named and costed",
+  },
+  {
+    id: "ownership",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "You own it",
+    description: "Store and theme code are\nyours",
+  },
+];
+
+export const shopifyBuild = [
+  {
+    id: "theme",
+    icon: RiSuitcaseLine,
+    title: "Custom\ntheme design:",
+    description:
+      "Designed for the range, not adapted from a marketplace theme with the logo swapped.",
+  },
+  {
+    id: "integrations",
+    icon: RiSuitcaseLine,
+    title: "Integrations:",
+    description:
+      "Stock, fulfilment, accounting, email and marketplaces connected properly.",
+  },
+  {
+    id: "checkout",
+    icon: RiSuitcaseLine,
+    title: "Checkout and\npayments:",
+    description:
+      "Shopify Payments, Shop Pay, express payments and discount logic, tested on real phones.",
+  },
+];
+
+export const shopifyBuildPoints = [
+  "Online Store 2.0 sections your team can edit.",
+  "Klaviyo email flows.",
+  "Product data and filters.",
+  "Apps only where needed.",
+];
+
+export const shopifyProjects = [
+  {
+    id: "superfeet",
+    image: "/images/services/superfeet-shopify-projects.png",
+    imageWidth: 1120,
+    imageHeight: 1026,
+    imageAlt: "Superfeet online store pages",
+    accent: "#FFB81C",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See all our ecommerce work",
+    href: "/work",
+  },
+  {
+    id: "project-2",
+    image: "/images/services/project-2-shopify-projects.png",
+    imageWidth: 1120,
+    imageHeight: 1026,
+    imageAlt: "Shopify store project",
+    accent: "#FFB81C",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See all our ecommerce work",
+    href: "/work",
+  },
+  {
+    id: "project-3",
+    image: "/images/services/project-3-shopify-projects.png",
+    imageWidth: 1120,
+    imageHeight: 1026,
+    imageAlt: "Shopify store project",
+    accent: "#FFB81C",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See all our ecommerce work",
+    href: "/work",
+  },
+  {
+    id: "project-4",
+    image: "/images/services/project-4-shopify-projects.png",
+    imageWidth: 1120,
+    imageHeight: 1026,
+    imageAlt: "Shopify store project",
+    accent: "#FFB81C",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "See all our ecommerce work",
+    href: "/work",
+  },
+];
+
+export const shopifyPricingDetails = [
+  { key: "timeline", label: "Timeline", icon: HiOutlineClock },
+  { key: "bestFor", label: "For", icon: HiOutlineDocumentText },
+  { key: "includes", label: "Includes", icon: HiOutlineUserGroup },
+];
+
+export const shopifyPricingPlans = [
+  {
+    id: "starter",
+    name: "Starter store",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "3 to 4 weeks.",
+    bestFor: "New brands and smaller ranges.",
+    includes:
+      "Premium theme set up and styled to your brand · Key pages · Products loaded · Payments and shipping · SEO basics.",
+    ctaLabel: "Get started",
+    ctaHref: "/contact",
+  },
+  {
+    id: "growth",
+    name: "Growth store",
+    prefix: "From",
+    price: "£6,000",
+    timeline: "6 to 8 weeks.",
+    bestFor: "Growing brands with a bigger range or custom needs.",
+    includes:
+      "Custom theme designed for your range · Filters and product data · Integrations · Klaviyo flows · Speed work.",
+    ctaLabel: "Tell us what you need",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "migration",
+    name: "Migration to Shopify",
+    prefix: "From",
+    price: "£2,500",
+    timeline: "8 to 12 weeks.",
+    bestFor: "Stores moving from WooCommerce, Magento or Squarespace.",
+    includes:
+      "Products, customers, orders, redirects and SEO moved · Theme rebuilt or restyled · Rankings checked after launch.",
+    ctaLabel: "Plan my migration",
+    ctaHref: "/contact",
+  },
+];
+
+export const shopifyFormServices = [
+  "Starter store",
+  "Growth store",
+  "Migration to Shopify",
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -4172,6 +4395,59 @@ export const woocommerceFaqs = [
   {
     id: "hosting",
     question: "What hosting do you recommend?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const shopifyFaqs = [
+  {
+    id: "theme",
+    question: "Custom theme or a marketplace theme?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "running-cost",
+    question: "How much does Shopify cost to run each month?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a Shopify build take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "migrate",
+    question: "Can you migrate from WooCommerce or Magento?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "rankings",
+    question: "Will I lose my Google rankings when I move to Shopify?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "apps",
+    question: "Which apps do you use?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "team",
+    question: "Can my team update the store without a developer?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "checkout",
+    question: "Can you customise Shopify checkout and payments?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "plus",
+    question: "Do you work with Shopify Plus?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "support",
+    question: "Do you offer ongoing support?",
     answer: "[Answer TBC]",
   },
 ];

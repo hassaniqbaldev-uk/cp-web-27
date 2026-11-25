@@ -54,8 +54,13 @@ const WoocommerceFit = () => {
                   {showNote && (
                     <p className="mt-[40px] w-full rounded-full bg-white/35 px-[20px] py-[12px] text-[14px] leading-[21px] tracking-[-0.02em] whitespace-nowrap">
                       We build both. See{" "}
-                      <span className="text-[#34D17B]">Shopify</span> or the
-                      comparison on the{" "}
+                      <Link
+                        href="/services/shopify"
+                        className="text-[#34D17B] hover:underline"
+                      >
+                        Shopify
+                      </Link>{" "}
+                      or the comparison on the{" "}
                       <Link
                         href="/services/ecommerce#ecommerce-platforms"
                         className="text-orange hover:underline"

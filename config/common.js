@@ -66,10 +66,12 @@ import {
   LuToggleLeft,
   LuTriangleAlert,
 } from "react-icons/lu";
+import { SiWoo } from "react-icons/si";
 import { RiFileEditFill, RiShieldUserLine } from "react-icons/ri";
 import {
   TbArrowAutofitHeight,
   TbCircleSquare,
+  TbLayoutDashboardFilled,
   TbMessageCircleStar,
   TbProgressCheck,
   TbRobot,
@@ -2395,6 +2397,310 @@ export const croPricingPlans = [
   },
 ];
 
+export const ecommerceHeroStats = [
+  {
+    id: "ivy-duke",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "Ivy & Duke",
+    description: "Revenue +15% in the first\nweek after our changes",
+  },
+  {
+    id: "trend",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Trend Furnishings",
+    description:
+      "Made-to-measure curtains, priced\nlive as customers enter their sizes",
+  },
+  {
+    id: "shopify",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Shopify",
+    description: "We build both and\nhelp you choose",
+  },
+];
+
+export const ecommerceNeeds = [
+  {
+    id: "rebuild",
+    icon: TbShare,
+    title: "A rebuild fits when:",
+    description:
+      "Your store works but loses sales: slow, hard to use on a phone, or clumsy to manage.",
+    cta: { label: "Plan a rebuild", href: "/contact" },
+  },
+  {
+    id: "migration",
+    icon: TbShare,
+    title: "A migration fits when:",
+    description:
+      "You’re outgrowing your platform, or an old build is holding you back.",
+    cta: { label: "Plan a migration", href: "/contact" },
+  },
+];
+
+export const ecommercePlatformRows = [
+  { id: "best", label: "Best for" },
+  { id: "checkout", label: "Checkout" },
+  { id: "logic", label: "Custom product logic" },
+  { id: "costs", label: "Running Costs" },
+  { id: "recommend", label: "We recommend it when" },
+];
+
+export const ecommercePlatforms = [
+  {
+    id: "shopify",
+    name: "Shopify",
+    icon: FaShopify,
+    iconClassName: "text-[#95BF47]",
+    headerClassName: "bg-[linear-gradient(#95BF47_130px,transparent_130px)]",
+    buttonClassName: "bg-[#95BF47]",
+    values: {
+      best: "Brands that want hosting, payments and checkout handled, and a large app ecosystem.",
+      checkout:
+        "Locked but excellent. Shop Pay, Apple Pay and Google Pay out of the box.",
+      logic: "Apps or custom code; some limits on variants.",
+      costs: "Monthly plan plus apps and transaction fees.",
+      recommend:
+        "Speed to market and reliability matter more than deep customisation.",
+    },
+    cta: { label: "Explore Shopify", href: "/contact" },
+  },
+  {
+    id: "woocommerce",
+    name: "WooCommerce",
+    icon: SiWoo,
+    iconClassName: "text-[#9B5C8F]",
+    headerClassName: "bg-[linear-gradient(#9B5C8F_130px,transparent_130px)]",
+    buttonClassName: "bg-[#9B5C8F]",
+    values: {
+      best: "Content-heavy stores, unusual product logic, or a business already invested in WordPress.",
+      checkout:
+        "Fully customisable. Express payments via Stripe and PayPal need setting up properly.",
+      logic: "Anything, including measured-to-order pricing and configurators.",
+      costs: "Hosting, plugins and maintenance. No platform fee.",
+      recommend:
+        "The product or content model does not fit a standard catalogue.",
+    },
+    cta: { label: "Explore WooCommerce", href: "/contact" },
+  },
+];
+
+// Each option adds points to a platform; the highest total is suggested.
+export const platformQuizSteps = [
+  {
+    id: "products",
+    question: "How many products do you sell?",
+    optionsClassName: "flex-col",
+    options: [
+      {
+        id: "under-50",
+        label: "Under 50",
+        className: "flex-none",
+        points: { shopify: 1 },
+      },
+      { id: "50-500", label: "50 to 500", className: "flex-none" },
+      {
+        id: "500-plus",
+        label: "500 to 1000+",
+        className: "flex-none",
+        points: { woocommerce: 1 },
+      },
+    ],
+  },
+  {
+    id: "custom",
+    question: "Do your products need\ncustom options or pricing?",
+    optionsClassName: "flex-col",
+    options: [
+      {
+        id: "yes",
+        label: "Yes",
+        className: "flex-none uppercase",
+        points: { woocommerce: 2 },
+      },
+      {
+        id: "no",
+        label: "No",
+        className: "flex-none uppercase",
+        points: { shopify: 1 },
+      },
+    ],
+  },
+  {
+    id: "content",
+    question: "How much content do you\npublish (blog, guides)?",
+    optionsClassName: "",
+    options: [
+      {
+        id: "a-lot",
+        label: "A lot",
+        className: "uppercase",
+        points: { woocommerce: 2 },
+      },
+      { id: "some", label: "Some", className: "uppercase" },
+      {
+        id: "very-little",
+        label: "Very little",
+        className: "uppercase",
+        points: { shopify: 1 },
+      },
+    ],
+  },
+  {
+    id: "hosting",
+    question: "Do you want to manage hosting\nand updates yourself?",
+    optionsClassName: "flex-col",
+    options: [
+      {
+        id: "happy-to",
+        label: "Happy to",
+        className: "flex-none uppercase",
+        points: { woocommerce: 1 },
+      },
+      {
+        id: "rather-not",
+        label: "Rather not",
+        className: "flex-none uppercase",
+        points: { shopify: 2 },
+      },
+    ],
+  },
+];
+
+export const platformQuizResults = [
+  {
+    id: "shopify",
+    icon: FaShopify,
+    iconClassName: "text-[#95BF47]",
+    title: "We’d suggest Shopify because:",
+    text: "It’s easy to set up and manage, great for product-focused stores, handles hosting, updates and security, and scales well as your business grows.",
+    cta: { label: "Talk it through with us", href: "/contact" },
+  },
+  {
+    id: "woocommerce",
+    icon: SiWoo,
+    iconClassName: "text-[#9B5C8F]",
+    title: "We’d suggest WooCommerce because:",
+    text: "It’s fully customisable, handles unusual product logic and pricing, suits content-heavy stores, and has no platform fee.",
+    cta: { label: "Talk it through with us", href: "/contact" },
+  },
+];
+
+export const ecommerceIncluded = [
+  {
+    id: "discovery",
+    icon: TbLayoutDashboardFilled,
+    title: "Product discovery",
+    description:
+      "Collections, filters, search & merchandising that help people find the right product fast.",
+  },
+  {
+    id: "product-pages",
+    icon: TbLayoutDashboardFilled,
+    title: "Product pages that convert",
+    description:
+      "Images, options, sizing, delivery and returns where the buyer needs them, on a phone first.",
+  },
+  {
+    id: "checkout",
+    icon: TbLayoutDashboardFilled,
+    title: "Basket and checkout",
+    description:
+      "Express payments, fewer fields, clear delivery costs, and every step tested on real phones.",
+  },
+];
+
+export const ecommerceFeaturedWork = {
+  image: "/images/home/casa-work-img.jpg",
+  imageAlt: "The Casa Botanica Panama homepage on a laptop",
+  tags: ["Featured", "Web", "Wordpress", "Migration"],
+  title: "Casa Botanica Panama",
+  description:
+    "A luxury villa brand moved off Squarespace and rebuilt around the stay, the photography and one clear route to book.",
+  facts: [
+    { label: "Role", value: "Design, build, migration" },
+    { label: "Platform", value: "WordPress" },
+  ],
+  cta: { label: "View case study", href: "/work/casabotanica" },
+};
+
+export const ecommerceWork = [
+  {
+    id: "ndifo",
+    image: "/images/services/ndifo-custom-app-casestudy.png",
+    imageAlt: "The Ndifo Safari website on a laptop",
+    title: "Ndifo Safari",
+    subtitle: "Luxury safari website redesigned.",
+    cta: { label: "Visit live site", href: "/work" },
+  },
+  {
+    id: "fultons",
+    image: "/images/services/fultons-custom-app-casestudy.png",
+    imageAlt: "The Fultons Jewellery website on a laptop",
+    title: "Fultons Jewellery",
+    subtitle: "Luxury safari website redesigned.",
+    cta: { label: "Visit live site", href: "/work" },
+  },
+];
+
+export const ecommerceFormServices = [
+  "Launch store",
+  "Growth store",
+  "Store migration",
+];
+
+export const ecommercePricingPlans = [
+  {
+    id: "launch-store",
+    name: "Launch store",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "4 to 6 weeks.",
+    youGet:
+      "Shopify or WooCommerce, up to [X] products, payments, shipping, core emails, training.",
+    bestFor: "New brands and small catalogues.",
+    ctaLabel: "Plan my store",
+    ctaHref: "/contact",
+  },
+  {
+    id: "growth-store",
+    name: "Growth store",
+    prefix: "From",
+    price: "£6,000",
+    timeline: "8 to 12 weeks.",
+    youGet:
+      "Custom design, product filters and discovery, custom product logic, integrations, email flows.",
+    bestFor: "Growing stores that need more than a theme.",
+    ctaLabel: "Plan a growth",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "store-migration",
+    name: "Store migration",
+    prefix: "From",
+    price: "£2,500",
+    timeline: "6 to 10 weeks.",
+    youGet:
+      "Products, customers, orders and URLs moved, redirects set, rankings protected, then a redesign if needed.",
+    bestFor: "Stores leaving another platform or an old build.",
+    ctaLabel: "Plan a migration",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -3374,6 +3680,49 @@ export const croFaqs = [
   {
     id: "developer",
     question: "Will you work with our developer or theme?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const ecommerceFaqs = [
+  {
+    id: "cost",
+    question: "How much does an ecommerce website cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "platform",
+    question: "Shopify or WooCommerce?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "migrate",
+    question: "Can you migrate our existing store?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "integrations",
+    question: "What integrations do you handle?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "conversion",
+    question: "Do you improve conversion after launch?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a store take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "rankings",
+    question: "Will we lose our Google rankings in a migration?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "products",
+    question: "Can you add our products for us?",
     answer: "[Answer TBC]",
   },
 ];

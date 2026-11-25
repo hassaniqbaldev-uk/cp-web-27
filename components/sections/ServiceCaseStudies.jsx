@@ -14,7 +14,8 @@ import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
 // Shared case study slider for service pages. Each page passes its own id,
-// heading and projects; background, projects link and dot style are optional.
+// heading and projects; background, projects link, dot style and className are
+// optional.
 const ServiceCaseStudies = ({
   id,
   title,
@@ -22,12 +23,13 @@ const ServiceCaseStudies = ({
   background,
   showProjectsLink = false,
   outlinedDots = false,
+  className = "",
 }) => {
   return (
     <>
       <Section
         id={id}
-        className="relative overflow-hidden pt-[120px] pb-[80px]"
+        className={`relative overflow-hidden pt-[120px] pb-[80px] ${className}`}
       >
         {background && (
           <Image

@@ -55,19 +55,26 @@ import { FcGoogle } from "react-icons/fc";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
   LuBot,
+  LuChartNoAxesCombined,
   LuCircleUserRound,
   LuFileText,
   LuFolderCode,
   LuMeh,
+  LuMonitorPlay,
   LuNavigation,
   LuPlug,
+  LuScrollText,
   LuSearchCheck,
   LuSiren,
   LuToggleLeft,
   LuTriangleAlert,
 } from "react-icons/lu";
 import { SiWoo } from "react-icons/si";
-import { RiFileEditFill, RiShieldUserLine } from "react-icons/ri";
+import {
+  RiFileEditFill,
+  RiShieldUserLine,
+  RiSuitcaseLine,
+} from "react-icons/ri";
 import {
   TbArrowAutofitHeight,
   TbCircleSquare,
@@ -80,6 +87,7 @@ import {
   TbSettings,
   TbShare,
   TbStack2,
+  TbTargetArrow,
   TbUser,
 } from "react-icons/tb";
 
@@ -2701,6 +2709,194 @@ export const ecommercePricingPlans = [
   },
 ];
 
+export const wordpressHeroStats = [
+  {
+    id: "no-templates",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "No Templates",
+    description: "Custom design every time",
+  },
+  {
+    id: "easy-edit",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Easy to edit",
+    description: "Elementor or block editor",
+  },
+  {
+    id: "support",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "3 months support",
+    description: "Included with every build",
+  },
+];
+
+export const wordpressFit = [
+  {
+    id: "good-fit",
+    icon: RiSuitcaseLine,
+    title: "Good fit:",
+    points: [
+      "Content-led marketing sites.",
+      "Complex page and content structures.",
+      "WooCommerce.",
+      "Teams that need familiar editing.",
+      "Businesses that value a large ecosystem.",
+    ],
+    cta: { label: "Discuss your Wordpress site", href: "/contact" },
+    featured: true,
+  },
+  {
+    id: "another-route",
+    icon: RiSuitcaseLine,
+    title: "Consider another route",
+    points: [
+      "A highly bespoke application workflow may belong in a custom app.",
+      "A simple design-led marketing site may be better served by Webflow.",
+    ],
+    note: "We recommend the route that creates the least long-term problems.",
+    cta: {
+      label: "See custom software",
+      href: "/services/custom-app-development",
+    },
+  },
+];
+
+export const wordpressServices = [
+  {
+    id: "design-build",
+    icon: LuScrollText,
+    iconClassName: "text-dark-pink",
+    title: "Custom design\nand build",
+    description:
+      "Original designs built around your content and how your team edits it. No pre-made themes.",
+    className: "bg-dark-pink/10",
+  },
+  {
+    id: "woocommerce",
+    icon: TbTargetArrow,
+    iconClassName: "text-orange",
+    title: "WooCommerce\nstore",
+    description:
+      "Stores with checkout, payments and product setup. See Ecommerce for store pricing.",
+    className: "bg-orange/10",
+  },
+  {
+    id: "functionality",
+    icon: LuChartNoAxesCombined,
+    iconClassName: "text-dark-pink",
+    title: "Custom\nfunctionality",
+    description:
+      "Plugins, custom post types and integrations when off-the-shelf plugins don’t fit.",
+    className: "bg-dark-pink/10",
+  },
+  {
+    id: "learndash",
+    icon: LuMonitorPlay,
+    iconClassName: "text-blue",
+    title: "LearnDash and\nmembership",
+    description:
+      "Courses, member areas and gated content, with payments built in.",
+    className: "bg-blue/10",
+  },
+];
+
+export const wordpressProcess = [
+  {
+    id: "plan",
+    title: "Plan the content\nstructure",
+    description: "Pages, content types and how everything links together.",
+    className: "col-start-1 row-start-1 justify-end gap-[41px] pr-[176px]",
+    cardClassName: "w-[225px]",
+    numberClassName: "mt-[49px]",
+  },
+  {
+    id: "build",
+    title: "Build the editing\nexperience",
+    description:
+      "Templates and blocks your team can use without breaking the design.",
+    className: "col-start-1 row-start-2 justify-end gap-[60px] pr-[73px]",
+    cardClassName: "w-[267px]",
+    numberClassName: "mt-[6px]",
+  },
+  {
+    id: "test",
+    title: "Test performance\nand integrations",
+    description:
+      "Speed, forms, tracking and every integration checked before launch.",
+    className:
+      "col-start-2 row-start-2 flex-row-reverse justify-end gap-[60px] pl-[73px]",
+    cardClassName: "w-[262px]",
+    numberClassName: "mt-[6px]",
+  },
+  {
+    id: "hand-over",
+    title: "Hand over,\nguarantee, support",
+    description: "Training, then 3 months of support included after delivery.",
+    className:
+      "col-start-2 row-start-1 flex-row-reverse justify-end gap-[41px] pl-[176px]",
+    cardClassName: "w-[249px]",
+    numberClassName: "mt-[49px]",
+  },
+];
+
+export const wordpressFormServices = [
+  "Focused Wordpress site",
+  "Custom Wordpress build",
+  "Membership / learning site",
+];
+
+export const wordpressPricingPlans = [
+  {
+    id: "focused",
+    name: "Focused Wordpress site",
+    prefix: "From",
+    price: "£1,500",
+    timeline: "3 to 4 weeks.",
+    youGet:
+      "Custom design, up to [X] pages, Elementor or block editor, SEO setup, training.",
+    bestFor: "Small business sites.",
+    ctaLabel: "Get started",
+    ctaHref: "/contact",
+  },
+  {
+    id: "custom",
+    name: "Custom Wordpress build",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "6 to 8 weeks.",
+    youGet:
+      "Full custom design, content structure, custom post types, integrations, migration with redirects.",
+    bestFor: "Growing businesses with lots of content.",
+    ctaLabel: "Tell us what you need",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "membership",
+    name: "Membership / learning site",
+    prefix: "From",
+    price: "£4,000",
+    timeline: "8 to 12 weeks.",
+    youGet:
+      "LearnDash or membership setup, payments, member areas, course structure.",
+    bestFor: "Course creators, clubs, member organisations.",
+    ctaLabel: "Plan my membership site",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -3357,6 +3553,13 @@ export const customAppCaseStudies = [
   },
 ];
 
+export const wordpressCaseStudies = [
+  "sunbox",
+  "casabotanica",
+  "tycoon",
+  "drive-uk",
+].map((projectId) => customAppCaseStudies.find(({ id }) => id === projectId));
+
 export const customAppSolutions = [
   {
     id: "customer-portals",
@@ -3723,6 +3926,49 @@ export const ecommerceFaqs = [
   {
     id: "products",
     question: "Can you add our products for us?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const wordpressFaqs = [
+  {
+    id: "themes",
+    question: "Do you use pre-made WordPress themes?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "elementor",
+    question: "Do you work with Elementor?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "migrate",
+    question: "Can you migrate our existing store?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "maintenance",
+    question: "Do you provide WordPress maintenance?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ai",
+    question: "Can you integrate AI or automation?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "speed",
+    question: "Will our WordPress site be fast?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "take-over",
+    question: "Can you take over our existing WordPress site?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "plugins",
+    question: "Do you build custom plugins?",
     answer: "[Answer TBC]",
   },
 ];

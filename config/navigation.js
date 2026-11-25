@@ -14,6 +14,7 @@ export const mainNavigation = [
       { label: "Growth & Support", href: "/services/growth-support" },
       { label: "CRO", href: "/services/cro" },
       { label: "Ecommerce", href: "/services/ecommerce" },
+      { label: "WordPress", href: "/services/wordpress" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",
@@ -70,21 +71,13 @@ export const footerNavigation = [
     id: "services",
     title: "Services",
     links: [
-      { label: "Branding", href: "/services/branding" },
       {
-        label: "Website Design & Development",
+        label: "Web & Ecommerce",
         href: "/services/website-design-development",
       },
-      { label: "UI/UX Design", href: "/services/ui-ux-design" },
-      { label: "SEO", href: "/services/seo" },
+      { label: "Brand & Experience", href: "/services/branding" },
+      { label: "Growth & Performance", href: "/services/growth-support" },
       { label: "AI & Automation", href: "/services/ai-automation" },
-      { label: "Growth & Support", href: "/services/growth-support" },
-      { label: "CRO", href: "/services/cro" },
-      { label: "Ecommerce", href: "/services/ecommerce" },
-      {
-        label: "Custom App Development",
-        href: "/services/custom-app-development",
-      },
     ],
   },
   {

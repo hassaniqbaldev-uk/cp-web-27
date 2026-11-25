@@ -51,14 +51,25 @@ const Footer = ({ cta = <HomeFooterCta /> }) => {
           </div>
 
           <ul className="mt-[100px] grid grid-cols-4">
-            {socialLinks.map(({ id, label, href, hoverClassName }) => (
+            {socialLinks.map(({ id, icon, label, href, hoverClassName }) => (
               <li key={id}>
                 <Link
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 ${hoverClassName}`}
+                  className={`group flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 ${hoverClassName}`}
                 >
+                  {/* The icon takes no space until hover, so the label stays centred. */}
+                  <span className="flex w-0 overflow-hidden opacity-0 transition-[width,opacity] duration-300 ease-out group-hover:w-[43px] group-hover:opacity-100 group-focus-visible:w-[43px] group-focus-visible:opacity-100">
+                    <Image
+                      src={icon}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="size-[28px] shrink-0"
+                    />
+                  </span>
+
                   {label}
                 </Link>
               </li>

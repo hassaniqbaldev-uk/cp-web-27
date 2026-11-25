@@ -50,6 +50,7 @@ import {
   HiShoppingCart,
   HiUsers,
   HiWindow,
+  HiLink,
 } from "react-icons/hi2";
 import { FcGoogle } from "react-icons/fc";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
@@ -66,6 +67,7 @@ import {
   LuScrollText,
   LuSearchCheck,
   LuSiren,
+  LuTarget,
   LuToggleLeft,
   LuTriangleAlert,
 } from "react-icons/lu";
@@ -2897,6 +2899,164 @@ export const wordpressPricingPlans = [
   },
 ];
 
+export const woocommerceHeroStats = [
+  {
+    id: "trend-furnishings",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "Trend Furnishings",
+    description:
+      "Made-to-measure curtains, priced\nlive as customers enter their sizes",
+  },
+  {
+    id: "ivy-duke",
+    icon: "/images/services/leaf-icon-ui-ux-hero.png",
+    iconAlt: "",
+    width: 232,
+    height: 232,
+    iconClassName: "w-[58px] h-auto",
+    value: "Ivy & Duke",
+    description: "Revenue +15% in the first week\nafter our changes",
+  },
+  {
+    id: "price",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "From £3,500",
+    description: "Stores built around your\nproducts",
+  },
+];
+
+export const woocommerceFit = [
+  {
+    id: "good-fit",
+    icon: RiSuitcaseLine,
+    title: "Good fit",
+    points: [
+      "Products need configurators, custom sizes or unusual variants.",
+      "Trade accounts, memberships or content and commerce on one site.",
+      "The business already runs on WordPress.",
+      "You want no platform fee and full control of the checkout.",
+    ],
+  },
+  {
+    id: "another-route",
+    icon: RiSuitcaseLine,
+    title: "Consider another route",
+    points: [
+      "A standard catalogue where speed to market matters.",
+      "You want hosting, payments and checkout handled for you.",
+      "The team prefers a locked-down admin.",
+    ],
+    dark: true,
+    showNote: true,
+  },
+];
+
+export const woocommerceChecks = [
+  {
+    id: "store-url",
+    icon: HiLink,
+    iconClassName: "bg-blue",
+    title: "Enter Your\nstore URL",
+  },
+  {
+    id: "hardest-product",
+    icon: LuTarget,
+    iconClassName: "bg-dark-pink",
+    title: "Hardest\nproduct to sell",
+  },
+];
+
+export const woocommerceIncluded = [
+  {
+    id: "product-logic",
+    icon: LuTarget,
+    iconClassName: "bg-dark-pink",
+    title: "Product logic (first)",
+    description:
+      "Variable products, configurators, made-to-measure pricing, add-ons and trade price tiers.",
+  },
+  {
+    id: "theme",
+    icon: LuTarget,
+    iconClassName: "bg-orange",
+    title: "Custom theme",
+    description:
+      "Designed for the range, built lean so it stays fast under a large catalogue.",
+  },
+  {
+    id: "checkout",
+    icon: LuTarget,
+    iconClassName: "bg-blue",
+    title: "Checkout and payments",
+    description:
+      "Stripe, PayPal, Apple Pay and Google Pay set up properly, fewer fields, tested on phones.",
+  },
+  {
+    id: "performance",
+    icon: LuTarget,
+    iconClassName: "bg-dark-pink",
+    title: "Performance and security",
+    description:
+      "Caching, image handling, updates and backups, so the store stays quick and safe.",
+  },
+];
+
+export const woocommerceFormServices = [
+  "WooCommerce store",
+  "Custom product store",
+  "Migration to WooCommerce",
+];
+
+export const woocommercePricingDetails = [
+  { key: "timeline", label: "Timeline", icon: HiOutlineClock },
+  { key: "youGet", label: "You get", icon: HiOutlineDocumentText },
+];
+
+export const woocommercePricingPlans = [
+  {
+    id: "store",
+    name: "WooCommerce store",
+    prefix: "From",
+    price: "£3,500",
+    timeline: "6 to 8 weeks.",
+    youGet:
+      "Custom theme, products set up, payments, shipping, core emails, training.",
+    ctaLabel: "Talk through your store",
+    ctaHref: "/contact",
+  },
+  {
+    id: "custom-product",
+    name: "Custom product store",
+    prefix: "From",
+    price: "£6,000",
+    timeline: "8 to 12 weeks.",
+    youGet:
+      "Everything in the store tier, plus made-to-measure pricing, configurators, add-ons or trade accounts.",
+    ctaLabel: "Show hardest product",
+    ctaHref: "#woocommerce-check",
+    featured: true,
+  },
+  {
+    id: "migration",
+    name: "Migration to\nWooCommerce",
+    prefix: "From",
+    price: "£2,500",
+    timeline: "6 to 10 weeks.",
+    youGet:
+      "Products, customers, orders and URLs moved from Shopify, Magento or Squarespace, redirects set.",
+    ctaLabel: "Plan my migration",
+    ctaHref: "/contact",
+  },
+];
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -3969,6 +4129,49 @@ export const wordpressFaqs = [
   {
     id: "plugins",
     question: "Do you build custom plugins?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const woocommerceFaqs = [
+  {
+    id: "cost",
+    question: "Is WooCommerce cheaper than Shopify?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "made-to-measure",
+    question: "Can you handle made-to-measure pricing?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "migrate",
+    question: "Can you migrate from Shopify?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "support",
+    question: "Do you support the store afterwards?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "features",
+    question: "Can you build custom WooCommerce features?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "configurators",
+    question: "Do you build product configurators?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "trade",
+    question: "Can WooCommerce handle trade and retail pricing?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "hosting",
+    question: "What hosting do you recommend?",
     answer: "[Answer TBC]",
   },
 ];

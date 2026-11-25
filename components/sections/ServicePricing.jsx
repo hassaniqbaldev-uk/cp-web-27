@@ -69,7 +69,7 @@ const ServicePricing = ({
                     }`}
                   >
                     <div className="flex items-center justify-between gap-[10px]">
-                      <h3 className="text-[25px] leading-[27px] font-bold tracking-[-0.07em] text-black">
+                      <h3 className="text-[25px] leading-[27px] font-bold tracking-[-0.07em] whitespace-pre-line text-black">
                         {name}
                       </h3>
 

@@ -15,6 +15,7 @@ export const mainNavigation = [
       { label: "CRO", href: "/services/cro" },
       { label: "Ecommerce", href: "/services/ecommerce" },
       { label: "WordPress", href: "/services/wordpress" },
+      { label: "WooCommerce", href: "/services/woocommerce" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

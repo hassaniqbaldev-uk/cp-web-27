@@ -55,6 +55,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaShopify, FaWebflow, FaWordpress } from "react-icons/fa6";
 import {
+  LuBook,
   LuBot,
   LuChartNoAxesCombined,
   LuCircleUserRound,
@@ -3706,6 +3707,248 @@ export const metaAdsPricingPlans = [
 
 export const metaAdsFormServices = ["Starter", "Growth", "Scale"];
 
+export const printEventsHeroStats = [
+  {
+    id: "revisions",
+    icon: "/images/services/pin-icon-print-events-hero.png",
+    iconAlt: "",
+    width: 78,
+    height: 106,
+    iconClassName: "w-[39px] h-auto",
+    value: "Two round",
+    description: "Two Revision Rounds Included",
+  },
+  {
+    id: "files",
+    icon: "/images/services/drop-icon-print-events-hero.png",
+    iconAlt: "",
+    width: 82,
+    height: 112,
+    iconClassName: "w-[41px] h-auto",
+    value: "Print-ready files",
+    description: "Checked before press",
+  },
+  {
+    id: "printer",
+    icon: "/images/services/horse-icon-print-events-hero.png",
+    iconAlt: "",
+    width: 124,
+    height: 120,
+    iconClassName: "w-[62px] h-auto",
+    value: "Printer Liaison",
+    description: "So you don’t have to",
+  },
+];
+
+export const printEventsItems = [
+  {
+    id: "flyers",
+    icon: LuBook,
+    iconClassName: "bg-dark-pink",
+    title: "Flyers, leaflets\n& postcards",
+    description:
+      "A5, A4, DL and folded formats for handouts, mailers and counter displays.",
+  },
+  {
+    id: "brochures",
+    icon: LuBook,
+    iconClassName: "bg-orange",
+    title: "Brochures and\ncatalogues",
+    description:
+      "Service brochures, product catalogues and price lists, print and PDF versions.",
+  },
+  {
+    id: "business",
+    icon: LuBook,
+    iconClassName: "bg-blue",
+    title: "Business cards\nand stationery",
+    description: "Cards, letterheads, compliment slips, folders.",
+  },
+  {
+    id: "graphics",
+    icon: LuBook,
+    iconClassName: "bg-dark-pink",
+    title: "Signage and vehicles",
+    description:
+      "Shop fronts, window graphics, wayfinding, van livery artwork.",
+  },
+  {
+    id: "exhibition",
+    icon: LuBook,
+    iconClassName: "bg-orange",
+    title: "Exhibition and\nevent material",
+    description:
+      "Roller banners, backdrops, shell schemes, table cloths, lanyards, name badges.",
+  },
+];
+
+export const printEventsWork = [
+  {
+    id: "davis-hughes",
+    image: "/images/services/davis-hughes-print-events-work.png",
+    imageAlt: "Davis Hughes parking flyer held in two hands",
+    tag: "Flyer design",
+    title: "Davis Hughes Flyer",
+    growth: "+15%",
+    period: "Revenue growth in one week",
+    cta: { label: "Case study", href: "/work" },
+  },
+  {
+    id: "upheat",
+    image: "/images/services/upheat-print-events-work.png",
+    imageAlt: "Upheat plumbing and heating flyer held in two hands",
+    tag: "Flyer design",
+    title: "Upheat Plumbing Flyer",
+    growth: "+22%",
+    period: "Revenue growth in three weeks",
+    cta: { label: "Case study", href: "/work" },
+  },
+  {
+    id: "virtue",
+    image: "/images/services/virtue-print-events-work.png",
+    imageAlt: "Virtue live webinar flyer held in two hands",
+    tag: "Flyer design",
+    title: "Virtue Property",
+    growth: "+22%",
+    period: "Revenue growth in three weeks",
+    cta: { label: "Case study", href: "/work" },
+  },
+  {
+    id: "get-grade-5",
+    image: "/images/services/get-grade-5-print-events-work.png",
+    imageAlt: "Get Grade 5 Theory flyer held in two hands",
+    tag: "Flyer design",
+    title: "Get grade 5 theory",
+    growth: "+15%",
+    period: "Revenue growth in one week",
+    cta: { label: "Case study", href: "/work" },
+  },
+];
+
+export const printEventsProcess = [
+  {
+    id: "brief",
+    title: "Brief and sizes",
+    description:
+      "What it is for, who reads it, the format and the printer’s spec if you have one.",
+    image: "/images/services/brief-print-events-process.png",
+    imageAlt: "PDF, JPG and AI files feeding a project brief",
+    width: 381,
+    height: 190,
+    className: "w-[481px]",
+  },
+  {
+    id: "design",
+    title: "Design to your guidelines",
+    description:
+      "Same type, colour and tone as the website. Two rounds of changes included.",
+    image: "/images/services/design-print-events-process.png",
+    imageAlt: "Brand design in an editor with CMYK colour values",
+    width: 586,
+    height: 190,
+    className: "flex-1",
+  },
+  {
+    id: "proof",
+    title: "Proof and print set-up",
+    description:
+      "We check all print specifications, including bleed, crop marks, CMYK or spot colours, and image resolution, to ensure everything is print-ready.",
+    image: "/images/services/proof-print-events-process.png",
+    imageAlt: "Artwork passing a preflight check before the printer",
+    width: 586,
+    height: 170,
+    className: "flex-1",
+    imageFirst: true,
+  },
+  {
+    id: "liaison",
+    title: "Printer liaison",
+    description:
+      "We can supply files to your printer or recommend one, and deal with any questions they have.",
+    image: "/images/services/liaison-print-events-process.png",
+    imageAlt: "Print-ready files and the finished flyer",
+    width: 381,
+    height: 151,
+    className: "w-[481px]",
+    imageFirst: true,
+  },
+];
+
+export const printEventsStand = [
+  {
+    id: "backdrops",
+    title: "Backdrops and shell schemes",
+    description: "Artwork to the organiser’s spec, checked before print.",
+  },
+  {
+    id: "banners",
+    title: "Roller banners",
+    description: "Readable from three metres, one message each.",
+  },
+  {
+    id: "literature",
+    title: "Literature",
+    description: "A single brochure or flyer that says what the website says.",
+  },
+  {
+    id: "badges",
+    title: "Badges and lanyards",
+    description: "Team names, roles, consistent with the stand.",
+  },
+  {
+    id: "giveaways",
+    title: "Giveaways",
+    description: "Only the useful ones, branded properly.",
+  },
+  {
+    id: "follow-up",
+    title: "Follow-up",
+    description: "A landing page and email that continue the conversation.",
+  },
+];
+
+export const printEventsPricing = [
+  {
+    id: "business-cards",
+    piece: "Business cards",
+    price: "£150",
+    suffix: "[proposed]",
+    notes: "Front and back, print-ready.",
+  },
+  {
+    id: "flyer",
+    piece: "Flyer, leaflet or postcard",
+    price: "£250",
+    notes: "Single or double-sided, A5, A4 or DL.",
+  },
+  {
+    id: "brochure",
+    piece: "Brochure or catalogue",
+    price: "£500",
+    suffix: "[proposed]",
+    notes: "Up to 8 pages; longer quoted by page count.",
+  },
+  {
+    id: "exhibition",
+    piece: "Exhibition set",
+    price: "£1,000",
+    suffix: "[proposed]",
+    notes:
+      "Backdrop, roller banner and one piece of literature. Typically 1 to 2 weeks.",
+  },
+  {
+    id: "monthly",
+    piece: "Monthly design",
+    price: "£300",
+    suffix: "a month",
+    notes: "Regular print and social graphics, through Growth & Support.",
+  },
+];
+
+export const printEventsFormServices = printEventsPricing.map(
+  ({ piece }) => piece,
+);
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -4970,6 +5213,59 @@ export const metaAdsFaqs = [
   {
     id: "report",
     question: "What’s in the monthly report?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const printEventsFaqs = [
+  {
+    id: "print",
+    question: "Do you print as well as design?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "cost",
+    question: "How much does a flyer or brochure cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "existing-brand",
+    question: "Can you work from our existing brand?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "turnaround",
+    question: "How quickly can you turn a flyer around?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "start",
+    question: "What do you need from me to start?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "organiser-spec",
+    question: "Can you design to the exhibition organiser’s spec?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "packaging",
+    question: "Do you design packaging?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "printer-files",
+    question: "Can you supply files ready for the printer?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "source-files",
+    question: "Do I get the source files?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "paper-sizes",
+    question: "Can you design for US or Australian paper sizes?",
     answer: "[Answer TBC]",
   },
 ];

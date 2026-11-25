@@ -19,6 +19,7 @@ export const mainNavigation = [
       { label: "Shopify", href: "/services/shopify" },
       { label: "Google Ads", href: "/services/google-ads" },
       { label: "Meta Ads", href: "/services/meta-ads" },
+      { label: "Print & Events", href: "/services/print-events" },
       {
         label: "Custom App Development",
         href: "/services/custom-app-development",

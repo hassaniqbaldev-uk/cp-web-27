@@ -20,21 +20,39 @@ const pointIcons = { problem: HiExclamationTriangle, built: HiLightBulb };
 
 // Shared project slider (points + client quote) for service pages. Each page
 // passes its own id, heading and projects; a project's points default to one
-// light bulb row made from its title and description.
+// light bulb row made from its title and description. Subtitle and background
+// are optional.
 const ServiceProjects = ({
   id,
   title,
+  subtitle,
   items,
+  background,
   showProjectsLink = false,
   large = false,
 }) => {
   return (
     <>
-      <Section id={id} className="overflow-hidden pt-[120px] pb-[80px]">
-        <Container>
+      <Section
+        id={id}
+        className="relative overflow-hidden pt-[120px] pb-[80px]"
+      >
+        {background && (
+          <Image
+            src={background}
+            alt=""
+            fill
+            sizes="100vw"
+            className="pointer-events-none z-0 object-cover"
+          />
+        )}
+
+        <Container className="relative z-10">
           <div className="relative flex justify-center text-center">
             <SectionHeading
               title={title}
+              subtitle={subtitle}
+              subtitleClassName="text-text-body mt-[20px] text-[22px] leading-[28px] tracking-[-0.02em]"
               titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black"
             />
 

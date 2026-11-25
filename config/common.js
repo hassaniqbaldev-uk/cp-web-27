@@ -3949,6 +3949,235 @@ export const printEventsFormServices = printEventsPricing.map(
   ({ piece }) => piece,
 );
 
+export const webflowHeroStats = [
+  {
+    id: "price",
+    icon: "/images/services/ivy-duke-icon-web-design-hero.png",
+    iconAlt: "Ivy & Duke",
+    width: 272,
+    height: 133,
+    iconClassName: "w-[68px] h-auto",
+    value: "From £1,500",
+    description: "Starter sites in 3 to 6 weeks",
+  },
+  {
+    id: "editing",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Your team edits",
+    description: "Visual editor, no developer",
+  },
+  {
+    id: "training",
+    icon: "/images/services/lola-blake-icon-custom-app-hero.png",
+    iconAlt: "Lola Blake",
+    width: 54,
+    height: 54,
+    iconClassName: "size-[54px]",
+    value: "Training at handover",
+    description: "So you’re confident from day one",
+  },
+];
+
+export const webflowFit = [
+  {
+    id: "good-fit",
+    title: "Good fit",
+    points: [
+      { text: "Design-led marketing sites and landing pages." },
+      { text: "Teams who want to edit visually without a developer." },
+      { text: "Startups and SaaS marketing sites that change often." },
+      { text: "Sites that need fast, managed hosting out of the box." },
+    ],
+    image: "/images/services/good-fit-webflow-fit.png",
+    imageAlt: "Webflow site on a laptop and phone",
+    className:
+      "bg-dark-pink text-white before:shadow-[0px_4px_74px_0px_#EC359340]",
+    iconClassName: "text-white",
+  },
+  {
+    id: "another-route",
+    title: "Consider another route",
+    points: [
+      {
+        text: "Large stores or complex product logic:",
+        link: { label: "Ecommerce", href: "/services/ecommerce" },
+      },
+      {
+        text: "Membership, LearnDash or heavy plugins:",
+        link: { label: "WordPress", href: "/services/wordpress" },
+      },
+      {
+        text: "Portals and applications:",
+        link: {
+          label: "Custom apps",
+          href: "/services/custom-app-development",
+        },
+      },
+    ],
+    image: "/images/services/another-route-webflow-fit.png",
+    imageAlt: "Shopify store and WordPress editor on a laptop and phone",
+    className:
+      "bg-white text-black before:shadow-[16px_16px_150px_0px_#00000017]",
+    iconClassName: "text-blue",
+  },
+];
+
+export const webflowProjects = [
+  {
+    id: "tycoon",
+    image: "/images/services/tycoon-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Tycoon enterprise programme website on a laptop",
+    accent: "#48B57A",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "Read the UX case study",
+    href: "/work/peter-jones-foundation",
+  },
+  {
+    id: "casabotanica",
+    image: "/images/services/casabotanica-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Casa Botanica villa website on a laptop",
+    accent: "#48B57A",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "Read the UX case study",
+    href: "/work/casabotanica",
+  },
+  {
+    id: "sunbox",
+    image: "/images/services/sunbox-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Sunbox Campers campervan conversion website on a laptop",
+    accent: "#48B57A",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "Read the UX case study",
+    href: "/work/sunbox",
+  },
+  {
+    id: "drive-uk",
+    image: "/images/services/driveuk-custom-app-casestudy.png",
+    imageWidth: 1121,
+    imageHeight: 766,
+    imageAlt: "Drive UK Services website on a laptop",
+    accent: "#48B57A",
+    points: [
+      {
+        icon: "problem",
+        title: "The problem:",
+        description: "[one line, ideally in the client’s words]",
+      },
+      {
+        icon: "built",
+        title: "What we built:",
+        description: "[one line, ideally in the client’s words]",
+      },
+    ],
+    quote: {
+      name: "Peter jones",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
+    },
+    ctaLabel: "Read the UX case study",
+    href: "/work/drive-uk",
+  },
+];
+
+export const webflowPricingDetails = shopifyPricingDetails;
+
+export const webflowPricingPlans = [
+  {
+    id: "starter",
+    name: "Starter site",
+    prefix: "From",
+    price: "£1,500",
+    suffix: "(5+ pages)",
+    timeline: "3 to 6 weeks.",
+    bestFor: "Small marketing sites and landing pages.",
+    includes:
+      "Custom design · Up to [5] pages · Contact form · SEO basics · Training.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+  },
+  {
+    id: "business",
+    name: "Business site",
+    prefix: "From",
+    price: "£2,500",
+    timeline: "6 to 8 weeks.",
+    bestFor: "Growing teams with a blog, case studies or several page types.",
+    includes:
+      "Everything in Starter · CMS collections · Integrations · More pages · Interactions.",
+    ctaLabel: "Book a 15-min call",
+    ctaHref: "/contact",
+    featured: true,
+  },
+  {
+    id: "migration",
+    name: "Migration to Webflow",
+    prefix: "From",
+    price: "£1,500",
+    timeline: "6 to 8 weeks.",
+    bestFor: "Sites moving from WordPress or Squarespace.",
+    includes:
+      "Like-for-like move of up to 15 pages and the blog · Redirects · Rankings checked after launch. A redesign during the move is priced as Business.",
+    ctaLabel: "Get a migration quote",
+    ctaHref: "/contact",
+  },
+];
+
+export const webflowFormServices = webflowPricingPlans.map(({ name }) => name);
+
 export const brandingHeroStats = [
   {
     id: "price",
@@ -5266,6 +5495,54 @@ export const printEventsFaqs = [
   {
     id: "paper-sizes",
     question: "Can you design for US or Australian paper sizes?",
+    answer: "[Answer TBC]",
+  },
+];
+
+export const webflowFaqs = [
+  {
+    id: "wordpress",
+    question: "Webflow or WordPress?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "migrate",
+    question: "Can you migrate from WordPress or Squarespace?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "ownership",
+    question: "Who owns the site?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "hosting",
+    question: "What does Webflow hosting cost?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "timeline",
+    question: "How long does a Webflow site take?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "team",
+    question: "Can my team add pages without breaking the design?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "seo",
+    question: "Is Webflow good for SEO?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "crm",
+    question: "Can Webflow connect to my CRM and email?",
+    answer: "[Answer TBC]",
+  },
+  {
+    id: "support",
+    question: "Do you offer support after launch?",
     answer: "[Answer TBC]",
   },
 ];

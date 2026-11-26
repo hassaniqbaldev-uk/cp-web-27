@@ -1,13 +1,9 @@
-"use client";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
 import { whoWeHelpCards } from "@/config/common";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import CircularTextButton from "../ui/CircularTextButton";
 import { Container } from "../ui/Container";
+import DragMarquee from "../ui/DragMarquee";
 import Starfield from "../ui/Starfield";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
@@ -42,53 +38,48 @@ const WhoWeHelp = () => {
           />
         </Container>
 
-        <div className="relative z-10 mt-[60px] ml-[max(0px,calc((100%-1200px)/2))]">
-          <Swiper
-            slidesPerView="auto"
-            spaceBetween={10}
-            slidesOffsetAfter={0}
-            centeredSlides
-            breakpoints={{
-              426: { centeredSlides: false, slidesOffsetAfter: 30 },
-            }}
-          >
-            {whoWeHelpCards.map(
-              ({
-                id,
-                icon,
-                iconWidth,
-                iconHeight,
-                title,
-                description,
-                hoverClassName,
-              }) => (
-                <SwiperSlide key={id} className="w-[380px]!">
-                  <div
-                    className={`bg-text-body flex h-[380px] w-full flex-col justify-between rounded-[20px] p-[45px] transition duration-300 ${hoverClassName}`}
-                  >
-                    <Image
-                      src={icon}
-                      alt=""
-                      width={iconWidth}
-                      height={iconHeight}
-                      className="shrink-0"
-                    />
+        <DragMarquee
+          pauseOnHover
+          className="relative z-10 mt-[60px]"
+          trackClassName="flex w-max items-stretch"
+          slideClassName="shrink-0 pr-[10px]"
+        >
+          {whoWeHelpCards.map(
+            ({
+              id,
+              icon,
+              iconWidth,
+              iconHeight,
+              title,
+              description,
+              hoverClassName,
+            }) => (
+              <div
+                key={id}
+                className={`bg-text-body flex h-[380px] w-[380px] flex-col justify-between rounded-[20px] p-[45px] transition duration-300 ${hoverClassName}`}
+              >
+                <Image
+                  src={icon}
+                  alt=""
+                  width={iconWidth}
+                  height={iconHeight}
+                  draggable={false}
+                  className="shrink-0"
+                />
 
-                    <div className="flex flex-col items-start">
-                      <h3 className="text-[35px] font-bold tracking-[-0.07em] text-white">
-                        {title}
-                      </h3>
+                <div className="flex flex-col items-start">
+                  <h3 className="text-[35px] font-bold tracking-[-0.07em] text-white">
+                    {title}
+                  </h3>
 
-                      <p className="mt-[20px] text-[18px] leading-[26px] tracking-[-0.02em] text-white">
-                        {description}
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ),
-            )}
-          </Swiper>
-        </div>
+                  <p className="mt-[20px] text-[18px] leading-[26px] tracking-[-0.02em] text-white">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            ),
+          )}
+        </DragMarquee>
 
         <div className="relative z-10 mx-auto mt-[90px] w-full max-w-[1920px]">
           <Image

@@ -5,11 +5,9 @@ import { Play, Star } from "lucide-react";
 import { ImQuotesLeft } from "react-icons/im";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
 import Button from "../ui/Button";
 import { Container } from "../ui/Container";
+import DragMarquee from "../ui/DragMarquee";
 import Section from "../ui/Section";
 import SectionHeading from "../ui/SectionHeading";
 
@@ -110,100 +108,95 @@ const Testimonials = () => {
           </div>
 
           <div className="relative min-w-0 flex-1">
-            <div className="h-full">
-              <Swiper
-                slidesPerView="auto"
-                spaceBetween={15}
-                centeredSlides
-                breakpoints={{ 426: { centeredSlides: false } }}
-                className="h-full"
-              >
-                {testimonials.map(
-                  ({
-                    id,
-                    avatar,
-                    logo,
-                    logoAlt,
-                    logoWidth,
-                    logoHeight,
-                    quote,
-                    name,
-                    role,
-                    rating,
-                  }) => (
-                    <SwiperSlide key={id} className="h-auto! w-[370px]!">
-                      <figure className="flex h-full flex-col rounded-[20px] bg-white p-[30px]">
-                        <div className="flex items-center justify-between gap-[20px]">
-                          <Image
-                            src={avatar}
-                            alt=""
-                            width={66}
-                            height={66}
-                            className="size-[66px] shrink-0 rounded-full object-cover"
-                          />
+            <DragMarquee
+              pauseOnHover
+              className="h-full mask-[linear-gradient(to_right,transparent_0%,#000_8%,#000_92%,transparent_100%)]"
+              trackClassName="flex h-full w-max items-stretch"
+              slideClassName="flex shrink-0 pr-[15px]"
+            >
+              {testimonials.map(
+                ({
+                  id,
+                  avatar,
+                  logo,
+                  logoAlt,
+                  logoWidth,
+                  logoHeight,
+                  quote,
+                  name,
+                  role,
+                  rating,
+                }) => (
+                  <figure
+                    key={id}
+                    className="flex w-[370px] flex-col rounded-[20px] bg-white p-[30px]"
+                  >
+                    <div className="flex items-center justify-between gap-[20px]">
+                      <Image
+                        src={avatar}
+                        alt=""
+                        draggable={false}
+                        width={66}
+                        height={66}
+                        className="size-[66px] shrink-0 rounded-full object-cover"
+                      />
 
-                          <span className="flex shrink-0 items-center rounded-[30px] border border-[#E9EBEF] bg-white px-[20px] py-[10px]">
-                            <Image
-                              src={logo}
-                              alt={logoAlt}
-                              width={logoWidth}
-                              height={logoHeight}
-                              className="h-[20px] w-auto"
-                            />
-                          </span>
-                        </div>
-
-                        <ImQuotesLeft
-                          size={30}
-                          aria-hidden="true"
-                          className="text-blue mt-[30px] shrink-0"
+                      <span className="flex shrink-0 items-center rounded-[30px] border border-[#E9EBEF] bg-white px-[20px] py-[10px]">
+                        <Image
+                          src={logo}
+                          alt={logoAlt}
+                          width={logoWidth}
+                          height={logoHeight}
+                          className="h-[20px] w-auto"
                         />
+                      </span>
+                    </div>
 
-                        <blockquote className="text-text-body mt-[20px] text-[22px] leading-[30px] tracking-[-0.02em]">
-                          {quote}
-                        </blockquote>
+                    <ImQuotesLeft
+                      size={30}
+                      aria-hidden="true"
+                      className="text-blue mt-[30px] shrink-0"
+                    />
 
-                        <figcaption className="mt-auto flex items-end justify-between gap-[20px] pt-[30px]">
-                          <div className="border-text-body/30 border-l pl-[12px]">
-                            <p className="text-[16px] font-bold tracking-[-0.02em] text-black">
-                              {name}
-                            </p>
+                    <blockquote className="text-text-body mt-[20px] text-[22px] leading-[30px] tracking-[-0.02em]">
+                      {quote}
+                    </blockquote>
 
-                            <p className="text-text-body text-[14px] tracking-[-0.02em]">
-                              {role}
-                            </p>
-                          </div>
+                    <figcaption className="mt-auto flex items-end justify-between gap-[20px] pt-[30px]">
+                      <div className="border-text-body/30 border-l pl-[12px]">
+                        <p className="text-[16px] font-bold tracking-[-0.02em] text-black">
+                          {name}
+                        </p>
 
-                          <div className="flex flex-col items-end">
-                            <span className="flex">
-                              {Array.from({ length: 5 }, (_, index) => (
-                                <Star
-                                  key={index}
-                                  size={12}
-                                  className={
-                                    index < Math.round(rating)
-                                      ? "fill-[#FF3D2E] text-[#FF3D2E]"
-                                      : "text-text-body/30"
-                                  }
-                                />
-                              ))}
-                            </span>
+                        <p className="text-text-body text-[14px] tracking-[-0.02em]">
+                          {role}
+                        </p>
+                      </div>
 
-                            <p className="text-[14px] tracking-[-0.02em] text-[#FF3D2E]">
-                              {rating.toFixed(1)} Rating
-                            </p>
-                          </div>
-                        </figcaption>
-                      </figure>
-                    </SwiperSlide>
-                  ),
-                )}
-              </Swiper>
-            </div>
+                      <div className="flex flex-col items-end">
+                        <span className="flex">
+                          {Array.from({ length: 5 }, (_, index) => (
+                            <Star
+                              key={index}
+                              size={12}
+                              className={
+                                index < Math.round(rating)
+                                  ? "fill-[#FF3D2E] text-[#FF3D2E]"
+                                  : "text-text-body/30"
+                              }
+                            />
+                          ))}
+                        </span>
 
-            {/* <span className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[60px] bg-linear-to-r from-white to-transparent" />
-
-            <span className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[60px] bg-linear-to-l from-white to-transparent" /> */}
+                        <p className="text-[14px] tracking-[-0.02em] text-[#FF3D2E]">
+                          {rating.toFixed(1)} Rating
+                        </p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                ),
+              )}
+            </DragMarquee>
           </div>
         </div>
 

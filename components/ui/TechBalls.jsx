@@ -8,15 +8,6 @@ const WALL = 400;
 
 const SETTLE_STEPS = 600;
 
-// How far outside a ball the cursor still pushes it.
-const PUSH_REACH = 20;
-
-// Push strength per pixel of cursor movement, relative to the ball mass.
-const PUSH_STRENGTH = 0.0004;
-
-// Caps the cursor speed so a fast flick does not fling balls off-screen.
-const MAX_CURSOR_SPEED = 40;
-
 // Wide enough to stay under every ball whatever the window width.
 const FLOOR_WIDTH = 20000;
 
@@ -85,63 +76,6 @@ const TechBalls = ({
 
     Composite.add(engine.world, [...walls, ...balls]);
 
-    const cursor = { x: 0, y: 0, dx: 0, dy: 0, active: false };
-
-    const onPointerMove = (event) => {
-      const bounds = container.getBoundingClientRect();
-      const x = event.clientX - bounds.left;
-      const y = event.clientY - bounds.top;
-
-      if (cursor.active) {
-        cursor.dx += x - cursor.x;
-        cursor.dy += y - cursor.y;
-      }
-
-      cursor.x = x;
-      cursor.y = y;
-      cursor.active = true;
-    };
-
-    const onPointerLeave = () => {
-      cursor.active = false;
-      cursor.dx = 0;
-      cursor.dy = 0;
-    };
-
-    container.addEventListener("pointermove", onPointerMove, { passive: true });
-    container.addEventListener("pointerleave", onPointerLeave);
-
-    // Pushes any ball under the cursor away from it, scaled by how fast the
-    // cursor moved since the last physics step.
-    const push = () => {
-      const speed = Math.min(
-        Math.hypot(cursor.dx, cursor.dy),
-        MAX_CURSOR_SPEED,
-      );
-
-      cursor.dx = 0;
-      cursor.dy = 0;
-
-      if (!cursor.active || speed === 0) return;
-
-      balls.forEach((ball) => {
-        const offsetX = ball.position.x - cursor.x;
-        const offsetY = ball.position.y - cursor.y;
-        const distance = Math.hypot(offsetX, offsetY) || 1;
-
-        if (distance > radius + PUSH_REACH) return;
-
-        const force = speed * PUSH_STRENGTH * ball.mass;
-
-        Body.applyForce(ball, ball.position, {
-          x: (offsetX / distance) * force,
-          y: (offsetY / distance) * force,
-        });
-      });
-    };
-
-    Events.on(engine, "beforeUpdate", push);
-
     // Keeps the floor and right wall on the section edges when it resizes.
     const onResize = () => {
       width = container.clientWidth;
@@ -200,10 +134,7 @@ const TechBalls = ({
     return () => {
       observer.disconnect();
       Runner.stop(runner);
-      Events.off(engine, "beforeUpdate", push);
       Events.off(engine, "afterUpdate", sync);
-      container.removeEventListener("pointermove", onPointerMove);
-      container.removeEventListener("pointerleave", onPointerLeave);
       window.removeEventListener("resize", onResize);
       Composite.clear(engine.world, false);
       Engine.clear(engine);

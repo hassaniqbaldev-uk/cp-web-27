@@ -47,7 +47,7 @@ const CaseStudy = ({
                   in a week
                 </>
               }
-              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white max-sm:text-[36px] max-sm:leading-[38px]"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white max-sm:text-[32px] max-sm:leading-[34px]"
               subtitle="A family-run maker of handmade dog beds. 4 in 5 visitors shopped on a phone, but phones converted at about a third of the desktop rate."
               subtitleClassName="mt-[24px] max-w-[560px] text-[22px] leading-[28px] font-normal tracking-[-0.02em] text-white max-sm:mt-[16px] max-sm:text-[18px] max-sm:leading-[26px]"
             />

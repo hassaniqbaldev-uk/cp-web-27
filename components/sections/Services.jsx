@@ -250,7 +250,7 @@ const Services = () => {
                   One joined-up team.
                 </>
               }
-              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px] max-sm:text-[36px] max-sm:leading-[38px]"
+              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px] max-sm:text-[34px] max-sm:leading-[36px]"
             />
 
             <div className="flex">

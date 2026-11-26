@@ -27,18 +27,18 @@ const WorkReviews = ({
   exploreHref = "/work",
   reviewsHref = "/testimonials",
   id = "work-reviews",
-  className = "py-[120px] bg-grey/40",
+  className = "py-[120px] bg-grey/40 max-sm:py-[80px]",
 }) => {
   return (
     <>
       <Section id={id} className={className}>
-        <Container>
-          <div className="flex items-end justify-between gap-[45px]">
+        <Container className="max-sm:px-[20px]">
+          <div className="flex items-end justify-between gap-[45px] max-sm:flex-col max-sm:items-center max-sm:gap-[24px] max-sm:text-center">
             <SectionHeading
               label={label}
               title={title}
-              labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase"
-              titleClassName="text-[65px] mt-[10px] leading-[65px] font-extrabold tracking-[-0.07em] text-black"
+              labelClassName="text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:text-[14px]"
+              titleClassName="text-[65px] mt-[10px] leading-[65px] font-extrabold tracking-[-0.07em] text-black max-sm:text-[36px] max-sm:leading-[38px]"
             />
 
             <div className="shrink-0">
@@ -47,7 +47,7 @@ const WorkReviews = ({
                 image="/images/home/circular-text-projects.png"
                 imageWidth={113}
                 imageHeight={113}
-                className="size-[113px] shrink-0"
+                className="size-[113px] shrink-0 max-sm:size-[90px]"
                 ringClassName="h-auto w-full"
               >
                 <ArrowUpRight
@@ -59,20 +59,21 @@ const WorkReviews = ({
             </div>
           </div>
 
-          <div className="mt-[65px] flex gap-[30px]">
-            <div className="w-[790px] rounded-[20px] bg-white p-[30px]">
-              <div className="relative h-[424px] w-full overflow-hidden rounded-[20px]">
+          <div className="mt-[65px] flex gap-[30px] max-sm:mt-[30px] max-sm:flex-col max-sm:gap-[16px]">
+            <div className="w-[790px] rounded-[20px] bg-white p-[30px] max-sm:w-full max-sm:p-[16px]">
+              <div className="relative h-[424px] w-full overflow-hidden rounded-[20px] max-sm:aspect-[1462/850] max-sm:h-auto max-sm:rounded-[14px]">
                 <Image
                   src={project.image}
                   alt={project.imageAlt}
                   fill
+                  sizes="(max-width: 479px) 100vw, 790px"
                   className="object-cover"
                 />
               </div>
 
-              <div className="flex items-center justify-between gap-[20px] pt-[20px]">
+              <div className="flex items-center justify-between gap-[20px] pt-[20px] max-sm:flex-col max-sm:items-start max-sm:gap-[14px] max-sm:pt-[16px]">
                 <div>
-                  <h3 className="text-[35px] font-bold tracking-[-0.07em] text-black">
+                  <h3 className="text-[35px] font-bold tracking-[-0.07em] text-black max-sm:text-[26px] max-sm:leading-[30px]">
                     {project.title}
                   </h3>
 
@@ -90,8 +91,8 @@ const WorkReviews = ({
               </div>
             </div>
 
-            <div className="flex w-[370px] shrink-0 flex-col items-stretch">
-              <figure className="h-full rounded-[20px] bg-white p-[30px]">
+            <div className="flex w-[370px] shrink-0 flex-col items-stretch max-sm:w-full">
+              <figure className="h-full rounded-[20px] bg-white p-[30px] max-sm:p-[24px]">
                 <div className="flex items-center justify-between gap-[20px]">
                   <Image
                     src={review.avatar}
@@ -115,14 +116,14 @@ const WorkReviews = ({
                 <ImQuotesLeft
                   size={30}
                   aria-hidden="true"
-                  className="text-blue mt-[30px] shrink-0"
+                  className="text-blue mt-[30px] shrink-0 max-sm:mt-[20px] max-sm:size-[24px]"
                 />
 
-                <blockquote className="mt-[20px] text-[22px] font-medium tracking-[-0.02em] text-black">
+                <blockquote className="mt-[20px] text-[22px] font-medium tracking-[-0.02em] text-black max-sm:mt-[14px] max-sm:text-[18px] max-sm:leading-[26px]">
                   {review.quote}
                 </blockquote>
 
-                <figcaption className="mt-[30px] flex items-end justify-between gap-[20px]">
+                <figcaption className="mt-[30px] flex items-end justify-between gap-[20px] max-sm:mt-[20px] max-sm:gap-[12px]">
                   <div className="border-text-body/30 border-l pl-[12px]">
                     <p className="text-[16px] font-bold tracking-[-0.02em] text-black">
                       {review.name}
@@ -157,7 +158,7 @@ const WorkReviews = ({
 
               <Button
                 href={reviewsHref}
-                className="border-text-body/30 mt-[30px] justify-center rounded-full border py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase"
+                className="border-text-body/30 mt-[30px] justify-center rounded-full border py-[10px] text-[16px] font-extrabold tracking-[-0.02em] text-black uppercase max-sm:mt-[16px] max-sm:py-[12px]"
               >
                 View all reviews
               </Button>

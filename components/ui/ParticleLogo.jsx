@@ -476,6 +476,10 @@ export default function ParticleLogo({
     window.addEventListener("pointermove", handlePointerMove, {
       passive: true,
     });
+    // A finger counts from the moment it lands, like a mouse arriving.
+    window.addEventListener("pointerdown", handlePointerMove, {
+      passive: true,
+    });
     window.addEventListener("pointerup", handlePointerUp);
     window.addEventListener("pointercancel", leave);
     window.addEventListener("blur", leave);
@@ -564,6 +568,7 @@ export default function ParticleLogo({
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
       window.removeEventListener("pointercancel", leave);
       window.removeEventListener("blur", leave);
@@ -576,8 +581,11 @@ export default function ParticleLogo({
   }, [svg, svgSrc, gradientFrom, gradientTo, intro]);
 
   return (
+    // data-lenis-prevent: a finger dragging here moves the particles, so Lenis
+    // must not turn it into a page scroll (which would reset the effect).
     <div
       ref={hostRef}
+      data-lenis-prevent
       className={`relative touch-none select-none ${className}`}
     >
       <noscript>

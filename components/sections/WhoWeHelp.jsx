@@ -87,10 +87,18 @@ const WhoWeHelp = () => {
             alt="Smokey Carter website on a laptop"
             width={1920}
             height={722}
-            className="h-auto w-full"
+            className="h-auto w-full max-sm:hidden"
           />
 
-          <div className="absolute top-[80px] right-[450px] max-sm:top-[8%] max-sm:right-[18%]">
+          <Image
+            src="/images/home/smokey-carter-who-we-help-img-mobile.png"
+            alt="Smokey Carter website on a laptop"
+            width={780}
+            height={553}
+            className="hidden h-auto w-full max-sm:block"
+          />
+
+          <div className="absolute top-[80px] right-[450px] max-sm:top-[-24px] max-sm:right-[20px]">
             <CircularTextButton
               href="/work"
               image="/images/home/circular-text-projects-light.png"

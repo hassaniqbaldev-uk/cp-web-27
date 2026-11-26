@@ -52,7 +52,7 @@ const Work = () => {
           <div className="relative flex justify-center text-center max-sm:flex-col max-sm:items-center max-sm:gap-[24px]">
             <SectionHeading
               title="Work with a job to do"
-              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black max-sm:text-[36px] max-sm:leading-[38px]"
+              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black max-sm:text-[34px] max-sm:leading-[36px]"
             />
 
             <div className="absolute top-[-70px] right-[190px] max-sm:static">

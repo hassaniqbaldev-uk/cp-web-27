@@ -29,11 +29,13 @@ const Providers = ({ children }) => {
     return () => gsap.ticker.remove(update);
   }, []);
 
+  // syncTouch off: phones and tablets scroll natively; Lenis only smooths the
+  // mouse wheel on desktop.
   return (
     <ReactLenis
       root
       ref={lenisRef}
-      options={{ lerp: 0.1, duration: 1, syncTouch: true, autoRaf: false }}
+      options={{ lerp: 0.1, duration: 1, syncTouch: false, autoRaf: false }}
     >
       <ScrollTriggerSync />
 

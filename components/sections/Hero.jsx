@@ -7,7 +7,36 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ParticleLogo from "@/components/ui/ParticleLogo";
 import HeroPopover from "@/components/ui/HeroPopover";
 import { heroBadges, heroPopovers, heroStats } from "@/config/common";
+import DragMarquee from "@/components/ui/DragMarquee";
 import Image from "next/image";
+
+// Desktop shows these in a row; phones scroll them in a drag marquee.
+const stats = heroStats.map(
+  ({ id, icon, iconAlt, iconClassName, value, description, width, height }) => (
+    <div key={id} className="flex items-center gap-[30px] max-sm:gap-[20px]">
+      <span className="flex size-[100px] shrink-0 items-center justify-center rounded-full bg-white/25 max-sm:size-[80px]">
+        <Image
+          src={icon}
+          width={width}
+          height={height}
+          alt={iconAlt}
+          draggable={false}
+          className={`shrink-0 object-contain ${iconClassName}`}
+        />
+      </span>
+
+      <div className="flex flex-col">
+        <span className="text-[35px] font-bold tracking-[-0.07em] text-white max-sm:text-[30px]">
+          {value}
+        </span>
+
+        <p className="mt-[10px] max-w-[230px] text-[18px] leading-[24px] tracking-[-0.02em] text-white max-sm:mt-[4px] max-sm:text-[16px] max-sm:leading-[22px]">
+          {description}
+        </p>
+      </div>
+    </div>
+  ),
+);
 
 const Hero = () => {
   return (
@@ -21,23 +50,26 @@ const Hero = () => {
           className="pointer-events-none z-0 object-cover"
         />
 
-        <Container className="relative z-10 pt-[150px] pb-[64px]">
-          <div className="flex items-end justify-between gap-[45px]">
-            <div className="flex w-[550px] flex-col items-start pb-[20px]">
-              <ul className="flex items-center gap-[20px]">
+        <Container className="relative z-10 pt-[150px] pb-[64px] max-sm:px-[20px] max-sm:pt-[130px] max-sm:pb-[60px]">
+          <div className="flex items-end justify-between gap-[45px] max-sm:flex-col max-sm:items-center max-sm:gap-[50px]">
+            <div className="flex w-[550px] flex-col items-start pb-[20px] max-sm:w-full max-sm:items-center max-sm:pb-0 max-sm:text-center">
+              <ul className="flex items-center gap-[20px] max-sm:gap-[12px]">
                 {heroBadges.map(({ id, src, alt, width, height }, index) => (
-                  <li key={id} className="flex items-center gap-[20px]">
+                  <li
+                    key={id}
+                    className="flex items-center gap-[20px] max-sm:gap-[12px]"
+                  >
                     <Image
                       src={src}
                       alt={alt}
                       width={width}
                       height={height}
                       priority
-                      className="h-[35px] w-auto"
+                      className="h-[35px] w-auto max-sm:h-[24px]"
                     />
 
                     {index < heroBadges.length - 1 && (
-                      <span className="bg-text-body h-[35px] w-px" />
+                      <span className="bg-text-body h-[35px] w-px max-sm:h-[24px]" />
                     )}
                   </li>
                 ))}
@@ -53,15 +85,15 @@ const Hero = () => {
                     Focused<span className="text-dark-pink">.</span>
                   </>
                 }
-                titleClassName="my-[30px] text-[130px] leading-[110px] font-bold tracking-[-0.07em] text-white"
+                titleClassName="my-[30px] text-[130px] leading-[110px] font-bold tracking-[-0.07em] text-white max-sm:my-[24px] max-sm:text-[78px] max-sm:leading-[70px]"
                 subtitle="We combine strategy, design and technology to help ambitious businesses attract, engage and convert more customers."
-                subtitleClassName="mb-[45px] text-[18px] leading-[28px] font-normal tracking-[-0.02em] text-white"
+                subtitleClassName="mb-[45px] text-[18px] leading-[28px] font-normal tracking-[-0.02em] text-white max-sm:mb-[30px] max-sm:text-[16px] max-sm:leading-[24px]"
               />
 
               <div className="flex">
                 <Button
                   href="/contact"
-                  className="rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase"
+                  className="rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase max-sm:px-[24px] max-sm:py-[12px] max-sm:text-[16px]"
                 >
                   Book a 15-min call
                 </Button>
@@ -82,7 +114,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative max-sm:w-full">
               {heroPopovers.map(
                 ({
                   id,
@@ -108,47 +140,25 @@ const Hero = () => {
 
               <ParticleLogo
                 svgSrc="/images/common/cp-logo-particle.svg"
-                className="aspect-[439/460] w-[min(560px,calc(100vw-96px),calc((100svh-96px)*439/460))]"
+                className="aspect-[439/460] w-[min(560px,calc(100vw-96px),calc((100svh-96px)*439/460))] max-sm:w-full"
               />
             </div>
           </div>
 
-          <ul className="mt-[100px] flex items-center justify-between gap-[40px]">
-            {heroStats.map(
-              ({
-                id,
-                icon,
-                iconAlt,
-                iconClassName,
-                value,
-                description,
-                width,
-                height,
-              }) => (
-                <li key={id} className="flex items-center gap-[30px]">
-                  <span className="flex size-[100px] shrink-0 items-center justify-center rounded-full bg-white/25">
-                    <Image
-                      src={icon}
-                      width={width}
-                      height={height}
-                      alt={iconAlt}
-                      className={`shrink-0 object-contain ${iconClassName}`}
-                    />
-                  </span>
-
-                  <div className="flex flex-col">
-                    <span className="text-[35px] font-bold tracking-[-0.07em] text-white">
-                      {value}
-                    </span>
-
-                    <p className="mt-[10px] max-w-[230px] text-[18px] leading-[24px] tracking-[-0.02em] text-white">
-                      {description}
-                    </p>
-                  </div>
-                </li>
-              ),
-            )}
+          <ul className="mt-[100px] flex items-center justify-between gap-[40px] max-sm:hidden">
+            {stats.map((stat) => (
+              <li key={stat.key}>{stat}</li>
+            ))}
           </ul>
+
+          <DragMarquee
+            pauseOnHover
+            className="-mx-[20px] mt-[60px] hidden max-sm:block"
+            trackClassName="flex w-max items-center"
+            slideClassName="shrink-0 pr-[40px]"
+          >
+            {stats}
+          </DragMarquee>
         </Container>
       </Section>
     </>

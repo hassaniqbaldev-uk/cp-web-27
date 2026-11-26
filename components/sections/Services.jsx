@@ -31,20 +31,20 @@ const disciplineItems = serviceDisciplines.map(
   }) => ({
     id,
     title: (
-      <span key={id} className="flex items-center gap-[20px]">
+      <span key={id} className="flex items-center gap-[20px] max-sm:gap-[12px]">
         <Image
           src={triggerIcon}
           alt=""
           width={45}
           height={45}
-          className="size-[45px] shrink-0"
+          className="size-[45px] shrink-0 max-sm:size-[32px]"
         />
 
-        <span className="text-[45px] font-bold tracking-[-0.07em] text-black">
+        <span className="text-[45px] font-bold tracking-[-0.07em] text-black max-sm:text-[24px] max-sm:leading-[28px]">
           {title}
         </span>
 
-        <span className="flex max-w-[600px] items-center gap-[20px] overflow-hidden opacity-100 transition-all duration-500 ease-out group-data-panel-open/accordion-trigger:ml-[-20px] group-data-panel-open/accordion-trigger:max-w-0 group-data-panel-open/accordion-trigger:opacity-0">
+        <span className="flex max-w-[600px] items-center gap-[20px] overflow-hidden opacity-100 transition-all duration-500 ease-out group-data-panel-open/accordion-trigger:ml-[-20px] group-data-panel-open/accordion-trigger:max-w-0 group-data-panel-open/accordion-trigger:opacity-0 max-sm:hidden">
           <span className="bg-grey h-[30px] w-px shrink-0" />
 
           <span className="text-text-body inline-flex shrink-0 items-center text-[14px] font-normal tracking-[-0.02em] whitespace-nowrap">
@@ -63,15 +63,18 @@ const disciplineItems = serviceDisciplines.map(
     content: (
       <div
         key={id}
-        className={`${bgClassName} flex items-center justify-between gap-[45px] rounded-[20px] p-[45px]`}
+        className={`${bgClassName} flex items-center justify-between gap-[45px] rounded-[20px] p-[45px] max-sm:flex-col max-sm:items-stretch max-sm:gap-[30px] max-sm:p-[20px]`}
       >
-        <div className="w-[625px]">
-          <ul className="flex items-center gap-[20px]">
+        <div className="w-[625px] max-sm:w-full">
+          <ul className="flex items-center gap-[20px] max-sm:flex-wrap max-sm:gap-x-[16px] max-sm:gap-y-[8px]">
             {detail.highlights.map(({ id: highlightId, text }, index) => {
               const HighlightIcon = index === 1 ? ShieldCheck : CreditCard;
 
               return (
-                <li key={highlightId} className="flex items-center gap-[20px]">
+                <li
+                  key={highlightId}
+                  className="flex items-center gap-[20px] max-sm:gap-[16px]"
+                >
                   <span className="flex items-center gap-[10px]">
                     <HighlightIcon
                       size={18}
@@ -79,42 +82,42 @@ const disciplineItems = serviceDisciplines.map(
                       className={`shrink-0 ${iconClassName}`}
                     />
 
-                    <span className="text-text-body text-[16px] font-medium tracking-[-0.02em]">
+                    <span className="text-text-body text-[16px] font-medium tracking-[-0.02em] max-sm:text-[14px]">
                       {text}
                     </span>
                   </span>
 
                   {index < detail.highlights.length - 1 && (
-                    <span className="h-[16px] w-px shrink-0 bg-black/30" />
+                    <span className="h-[16px] w-px shrink-0 bg-black/30 max-sm:hidden" />
                   )}
                 </li>
               );
             })}
           </ul>
 
-          <h4 className="mt-[20px] text-[35px] font-medium tracking-[-0.06em] text-black">
+          <h4 className="mt-[20px] text-[35px] font-medium tracking-[-0.06em] text-black max-sm:mt-[16px] max-sm:text-[26px] max-sm:leading-[30px]">
             {detail.title}
           </h4>
 
-          <p className="text-text-body mt-[10px] text-[18px] leading-[28px] tracking-[-0.02em]">
+          <p className="text-text-body mt-[10px] text-[18px] leading-[28px] tracking-[-0.02em] max-sm:text-[16px] max-sm:leading-[24px]">
             {detail.subtitle}
           </p>
 
-          <ul className="mt-[20px] grid grid-cols-2 gap-[10px]">
+          <ul className="mt-[20px] grid grid-cols-2 gap-[10px] max-sm:grid-cols-1">
             {detail.features.map((feature) => (
               <li key={feature} className="flex items-center gap-[10px]">
                 <span className={`size-[8px] shrink-0 ${dotClassName}`} />
 
-                <span className="text-text-body text-[18px] font-medium tracking-[-0.02em]">
+                <span className="text-text-body text-[18px] font-medium tracking-[-0.02em] max-sm:text-[16px]">
                   {feature}
                 </span>
               </li>
             ))}
           </ul>
 
-          <span className="my-[30px] block h-px w-full bg-black/20" />
+          <span className="my-[30px] block h-px w-full bg-black/20 max-sm:my-[24px]" />
 
-          <ul className="flex gap-[45px]">
+          <ul className="flex gap-[45px] max-sm:grid max-sm:grid-cols-2 max-sm:gap-x-[20px] max-sm:gap-y-[16px]">
             {detail.pricing.map(
               ({ id: priceId, label, price, suffix }, index) => (
                 <li key={priceId} className="flex items-center gap-[45px]">
@@ -134,7 +137,7 @@ const disciplineItems = serviceDisciplines.map(
                   </span>
 
                   {index < detail.pricing.length - 1 && (
-                    <span className="h-[40px] w-px shrink-0 bg-black/20" />
+                    <span className="h-[40px] w-px shrink-0 bg-black/20 max-sm:hidden" />
                   )}
                 </li>
               ),
@@ -143,7 +146,7 @@ const disciplineItems = serviceDisciplines.map(
 
           <Link
             href={detail.cta.href}
-            className={`group mt-[45px] inline-flex items-center justify-center gap-[10px] rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 ease-out hover:text-white ${ctaHoverClassName}`}
+            className={`group mt-[45px] inline-flex items-center justify-center gap-[10px] rounded-[60px] bg-white px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-black uppercase transition-colors duration-300 ease-out hover:text-white max-sm:mt-[30px] max-sm:w-full max-sm:py-[12px] max-sm:text-[15px] ${ctaHoverClassName}`}
           >
             {detail.cta.label}
 
@@ -155,7 +158,7 @@ const disciplineItems = serviceDisciplines.map(
           </Link>
         </div>
 
-        <div className="relative h-[536px] w-[440px] overflow-hidden rounded-[20px]">
+        <div className="relative h-[536px] w-[440px] overflow-hidden rounded-[20px] max-sm:h-[400px] max-sm:w-full">
           <Image
             src={featured.image}
             alt={featured.imageAlt}
@@ -178,7 +181,7 @@ const disciplineItems = serviceDisciplines.map(
                   {featured.title}
                 </h4>
 
-                <span className="text-[14px] font-semibold tracking-[-0.02em] text-white">
+                <span className="text-[14px] font-semibold tracking-[-0.02em] text-white max-sm:whitespace-nowrap">
                   {featured.categories.slice(0, 2).map((category, index) => (
                     <Fragment key={category}>
                       {index > 0 && <span className="px-[10px]">&middot;</span>}
@@ -234,9 +237,9 @@ const Services = () => {
   }, []);
   return (
     <>
-      <Section className="py-[120px]">
-        <Container>
-          <div className="flex items-end justify-between gap-[20px]">
+      <Section className="py-[120px] max-sm:py-[80px]">
+        <Container className="max-sm:px-[20px]">
+          <div className="flex items-end justify-between gap-[20px] max-sm:flex-col max-sm:items-center max-sm:gap-[24px] max-sm:text-center">
             <SectionHeading
               title={
                 <>
@@ -247,13 +250,13 @@ const Services = () => {
                   One joined-up team.
                 </>
               }
-              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px]"
+              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px] max-sm:text-[36px] max-sm:leading-[38px]"
             />
 
             <div className="flex">
               <Button
                 href="/services"
-                className="min-w-max rounded-[60px] bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase"
+                className="min-w-max rounded-[60px] bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase max-sm:text-[16px]"
               >
                 See all services
               </Button>
@@ -267,7 +270,7 @@ const Services = () => {
               hasInteracted.current = true;
               setOpenItems(value);
             }}
-            className="mt-[45px]"
+            className="mt-[45px] max-sm:mt-[30px]"
           >
             {disciplineItems.map(({ id, title, content }) => (
               <AccordionItem
@@ -276,13 +279,13 @@ const Services = () => {
                 className="border-b border-black/30"
               >
                 <AccordionTrigger
-                  className="py-[30px]"
-                  indicatorClassName="size-[50px] rounded-full border border-black text-black"
+                  className="py-[30px] max-sm:gap-[12px] max-sm:py-[20px]"
+                  indicatorClassName="size-[50px] rounded-full border border-black text-black max-sm:size-[36px] max-sm:[&_svg]:size-[18px]"
                 >
                   {title}
                 </AccordionTrigger>
 
-                <AccordionContent className="pb-[30px]">
+                <AccordionContent className="pb-[30px] max-sm:pb-[20px]">
                   {content}
                 </AccordionContent>
               </AccordionItem>

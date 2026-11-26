@@ -17,29 +17,36 @@ const Footer = ({ cta = <HomeFooterCta /> }) => {
 
       {cta}
 
-      <div className="relative z-10 mx-[15px] mb-[15px] rounded-[30px] bg-white/15 backdrop-blur-[20px]">
-        <Container className="relative pt-[110px] pb-[45px]">
-          <Link href="/" className="absolute top-[-50px] left-0">
+      <div className="relative z-10 mx-[15px] mb-[15px] rounded-[30px] bg-white/15 backdrop-blur-[20px] max-sm:mx-[10px] max-sm:mb-[10px] max-sm:rounded-[20px]">
+        <Container className="relative pt-[110px] pb-[45px] max-sm:px-[20px] max-sm:pt-[80px] max-sm:pb-[30px]">
+          <Link
+            href="/"
+            className="absolute top-[-50px] left-0 max-sm:top-[-40px] max-sm:left-[20px]"
+          >
             <Image
               src="/images/common/cp-3d-logo-footer.png"
               alt="CreativePixels"
               width={152}
               height={165}
-              className="h-[165px] w-auto"
+              className="h-[165px] w-auto max-sm:h-[105px]"
             />
           </Link>
 
-          <div className="flex items-end justify-between gap-[45px]">
-            <ul className="flex flex-col gap-[20px]">
+          <div className="flex items-end justify-between gap-[45px] max-sm:flex-col max-sm:items-start max-sm:gap-[40px]">
+            <ul className="flex flex-col gap-[20px] max-sm:gap-[14px]">
               {contactLinks.map(({ id, icon: Icon, label, href }) => (
                 <li key={id}>
                   <Link
                     href={href}
                     className="flex items-center gap-[15px] text-white"
                   >
-                    <Icon size={28} strokeWidth={2} className="shrink-0" />
+                    <Icon
+                      size={28}
+                      strokeWidth={2}
+                      className="shrink-0 max-sm:size-[22px]"
+                    />
 
-                    <span className="text-[35px] tracking-[-0.05em]">
+                    <span className="text-[35px] tracking-[-0.05em] max-sm:text-[24px]">
                       {label}
                     </span>
                   </Link>
@@ -50,14 +57,14 @@ const Footer = ({ cta = <HomeFooterCta /> }) => {
             <FooterNav />
           </div>
 
-          <ul className="mt-[100px] grid grid-cols-4">
+          <ul className="mt-[100px] grid grid-cols-4 max-sm:mt-[50px] max-sm:grid-cols-2 max-sm:gap-[10px]">
             {socialLinks.map(({ id, icon, label, href, hoverClassName }) => (
               <li key={id}>
                 <Link
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 ${hoverClassName}`}
+                  className={`group flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 max-sm:h-[60px] max-sm:text-[20px] ${hoverClassName}`}
                 >
                   {/* The icon takes no space until hover, so the label stays centred. */}
                   <span className="flex w-0 overflow-hidden opacity-0 transition-[width,opacity] duration-300 ease-out group-hover:w-[43px] group-hover:opacity-100 group-focus-visible:w-[43px] group-focus-visible:opacity-100">
@@ -76,8 +83,8 @@ const Footer = ({ cta = <HomeFooterCta /> }) => {
             ))}
           </ul>
 
-          <div className="mt-[40px] flex items-center justify-between gap-[45px]">
-            <p className="flex items-center gap-[20px] text-[16px] tracking-[-0.02em] text-white">
+          <div className="mt-[40px] flex items-center justify-between gap-[45px] max-sm:mt-[30px] max-sm:flex-col max-sm:items-start max-sm:gap-[24px]">
+            <p className="flex items-center gap-[20px] text-[16px] tracking-[-0.02em] text-white max-sm:gap-[10px] max-sm:text-[14px]">
               2026 &copy; CP Agency Ltd.
               <span>|</span>
               Trading as CreativePixels.

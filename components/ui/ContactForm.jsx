@@ -51,7 +51,7 @@ const ContactForm = ({ showAssurances = false }) => {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-[20px]">
+      <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1 max-sm:gap-[30px]">
         <div className="relative">
           <label
             htmlFor="contact-name"
@@ -104,19 +104,19 @@ const ContactForm = ({ showAssurances = false }) => {
           rows={1}
           required
           placeholder="A few details about what you're looking to do..."
-          className="placeholder:text-text-body/60 block w-full resize-none rounded-[10px] border border-black/15 px-[20px] py-[18px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none"
+          className="placeholder:text-text-body/60 block w-full resize-none rounded-[10px] border border-black/15 px-[20px] py-[18px] text-[18px] tracking-[-0.02em] text-black focus:border-black focus:outline-none max-sm:min-h-[130px] max-sm:pt-[30px]"
         />
       </div>
 
       <details className="group rounded-[10px] border border-black/15">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px]">
-          <span className="flex items-center gap-[20px]">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px] max-sm:gap-[12px] max-sm:p-[16px]">
+          <span className="flex items-center gap-[20px] max-sm:gap-[12px]">
             <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-black/20">
               <Plus size={18} strokeWidth={2} className="text-black" />
             </span>
 
             <span>
-              <span className="block text-[18px] font-bold tracking-[-0.02em] text-black">
+              <span className="block text-[18px] font-bold tracking-[-0.02em] text-black max-sm:text-[16px]">
                 Add optional details
               </span>
 
@@ -133,7 +133,7 @@ const ContactForm = ({ showAssurances = false }) => {
           />
         </summary>
 
-        <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px]">
+        <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px] max-sm:grid-cols-1 max-sm:gap-[30px] max-sm:px-[16px]">
           {[
             { id: "website", label: "Website", placeholder: "yoursite.com" },
             { id: "budget", label: "Budget", placeholder: "£10k – £25k" },
@@ -168,13 +168,17 @@ const ContactForm = ({ showAssurances = false }) => {
       </button>
 
       {!showAssurances && (
-        <div className="-mt-[15px] flex items-center gap-[15px] text-[14px] tracking-[-0.02em]">
-          <span className="text-text-body flex items-center gap-[8px]">
-            <Clock size={16} strokeWidth={2} className="text-orange shrink-0" />
+        <div className="-mt-[15px] flex items-center gap-[15px] text-[14px] tracking-[-0.02em] max-sm:gap-[6px] max-sm:text-[12px] max-sm:tracking-[-0.03em] max-sm:whitespace-nowrap">
+          <span className="text-text-body flex items-center gap-[8px] max-sm:gap-[4px]">
+            <Clock
+              size={16}
+              strokeWidth={2}
+              className="text-orange shrink-0 max-sm:size-[14px]"
+            />
             We reply within one working day.
           </span>
 
-          <span className="bg-text-body/30 h-[16px] w-px shrink-0" />
+          <span className="bg-text-body/30 h-[16px] w-px shrink-0 max-sm:h-[12px]" />
 
           <Link
             href="/privacy-policy"
@@ -186,7 +190,7 @@ const ContactForm = ({ showAssurances = false }) => {
       )}
 
       {showAssurances && (
-        <ul className="grid grid-cols-2 gap-[30px]">
+        <ul className="grid grid-cols-2 gap-[30px] max-sm:grid-cols-1 max-sm:gap-[16px]">
           {assurances.map(({ id, icon: Icon, text }) => (
             <li key={id} className="flex items-start gap-[10px]">
               <Icon

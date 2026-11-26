@@ -9,13 +9,13 @@ import Link from "next/link";
 
 const Brands = () => {
   return (
-    <Section className="relative overflow-hidden bg-white pt-[80px]">
+    <Section className="relative overflow-hidden bg-white pt-[80px] max-sm:pt-[60px]">
       <Container>
-        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase">
+        <p className="text-center text-[22px] font-medium tracking-[-0.02em] text-black uppercase max-sm:px-[20px] max-sm:text-[16px]">
           Brands that choose Creative Pixels
         </p>
 
-        <div className="relative mt-[50px]">
+        <div className="relative mt-[50px] max-sm:mt-[30px]">
           <DragMarquee
             pauseOnHover
             trackClassName="flex w-max items-center"
@@ -26,7 +26,7 @@ const Brands = () => {
                 key={id}
                 href={href}
                 draggable={false}
-                className="mx-[6px] flex h-[96px] w-[190px] items-center justify-center rounded-[110px] bg-[#EDEDED]"
+                className="mx-[6px] flex h-[96px] w-[190px] items-center justify-center rounded-[110px] bg-[#EDEDED] max-sm:mx-[5px] max-sm:h-[76px] max-sm:w-[150px]"
               >
                 <Image
                   src={src}
@@ -34,15 +34,15 @@ const Brands = () => {
                   width={width}
                   height={height}
                   draggable={false}
-                  className={`$ object-contain opacity-40`}
+                  className="object-contain opacity-40 max-sm:h-auto max-sm:max-w-[105px]"
                 />
               </Link>
             ))}
           </DragMarquee>
 
-          <span className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[120px] bg-linear-to-r from-white to-transparent" />
+          <span className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[120px] bg-linear-to-r from-white to-transparent max-sm:w-[50px]" />
 
-          <span className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[120px] bg-linear-to-l from-white to-transparent" />
+          <span className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[120px] bg-linear-to-l from-white to-transparent max-sm:w-[50px]" />
         </div>
       </Container>
     </Section>

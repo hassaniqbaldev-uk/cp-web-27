@@ -21,7 +21,7 @@ const Step = ({
   },
 }) => {
   return (
-    <li className="flex items-stretch gap-[20px]">
+    <li className="flex items-stretch gap-[20px] max-sm:gap-[14px]">
       <div className="flex w-[12px] shrink-0 flex-col items-center">
         <span className="bg-text-body/30 relative size-[12px] shrink-0 rounded-full">
           <span
@@ -38,14 +38,14 @@ const Step = ({
         </span>
       </div>
 
-      <div className="flex-1 rounded-[20px] bg-white p-[30px]">
+      <div className="flex-1 rounded-[20px] bg-white p-[30px] max-sm:p-[20px]">
         <p
-          className={`inline-flex w-fit rounded-full border px-[20px] py-[10px] text-[18px] font-medium tracking-[-0.02em] ${borderClassName} ${textClassName}`}
+          className={`inline-flex w-fit rounded-full border px-[20px] py-[10px] text-[18px] font-medium tracking-[-0.02em] max-sm:px-[16px] max-sm:py-[6px] max-sm:text-[14px] ${borderClassName} ${textClassName}`}
         >
           STEP {step}
         </p>
 
-        <h3 className="mt-[30px] text-[35px] font-bold tracking-[-0.07em] text-black">
+        <h3 className="mt-[30px] text-[35px] font-bold tracking-[-0.07em] text-black max-sm:mt-[16px] max-sm:text-[26px] max-sm:leading-[30px]">
           {title}
         </h3>
 
@@ -98,9 +98,9 @@ const Process = () => {
 
   return (
     <>
-      <Section className="pb-[120px]">
-        <Container className="bg-grey/40 flex justify-between gap-[40px] rounded-[20px] pt-[60px] pr-[60px] pl-[80px]">
-          <div className="flex w-[530px] flex-col items-start">
+      <Section className="pb-[120px] max-sm:pb-[80px]">
+        <Container className="bg-grey/40 flex justify-between gap-[40px] rounded-[20px] pt-[60px] pr-[60px] pl-[80px] max-sm:w-[calc(100%-40px)] max-sm:flex-col max-sm:gap-[30px] max-sm:px-[20px] max-sm:pt-[40px]">
+          <div className="flex w-[530px] flex-col items-start max-sm:w-full max-sm:items-center max-sm:text-center">
             <SectionHeading
               title={
                 <>
@@ -113,25 +113,25 @@ const Process = () => {
               subtitle={
                 "We've refined our delivery process over 10 years to minimize risk and maximize speed to market."
               }
-              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px]"
-              subtitleClassName="text-[18px] max-w-[400px] text-text-body mt-[20px] leading-[28px] tracking-[-0.02em]"
+              titleClassName="text-[65px] mt-[10px] font-extrabold tracking-[-0.06em] text-black leading-[65px] max-sm:mt-0 max-sm:text-[36px] max-sm:leading-[38px]"
+              subtitleClassName="text-[18px] max-w-[400px] text-text-body mt-[20px] leading-[28px] tracking-[-0.02em] max-sm:mt-[16px] max-sm:text-[16px] max-sm:leading-[24px]"
             />
 
             <div className="flex">
               <Button
                 href="/contact"
-                className="mt-[45px] rounded-[60px] bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase"
+                className="mt-[45px] rounded-[60px] bg-black px-[20px] py-[10px] text-[18px] font-extrabold tracking-[-0.02em] text-white uppercase max-sm:mt-[30px] max-sm:text-[16px]"
               >
                 Start your project
               </Button>
             </div>
           </div>
 
-          <div className="relative w-[480px]">
+          <div className="relative w-[480px] max-sm:w-full">
             <div
               ref={scrollRef}
               data-lenis-prevent
-              className="no-scrollbar h-[500px] overflow-y-auto pb-[30px]"
+              className="no-scrollbar h-[500px] overflow-y-auto pb-[30px] max-sm:h-[460px]"
             >
               <ol className="flex flex-col gap-[20px]">
                 {processSteps.map((processStep) => (
@@ -140,9 +140,9 @@ const Process = () => {
               </ol>
             </div>
 
-            <span className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[120px] bg-linear-to-b from-[#f4f4f4] to-transparent opacity-85" />
+            <span className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[120px] bg-linear-to-b from-[#f4f4f4] to-transparent opacity-85 max-sm:h-[80px]" />
 
-            <span className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[120px] bg-linear-to-t from-[#f4f4f4] to-transparent opacity-85" />
+            <span className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[120px] bg-linear-to-t from-[#f4f4f4] to-transparent opacity-85 max-sm:h-[80px]" />
           </div>
         </Container>
       </Section>

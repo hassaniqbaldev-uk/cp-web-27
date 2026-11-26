@@ -11,7 +11,7 @@ const CustomAppTechStack = () => {
     <>
       <Section
         id="custom-app-tech-stack"
-        className="relative overflow-hidden bg-black py-[120px]"
+        className="relative overflow-hidden bg-black py-[120px] max-sm:py-[80px]"
       >
         <Image
           src="/images/services/gradient-bg-custom-app-tech-stack.png"
@@ -22,7 +22,7 @@ const CustomAppTechStack = () => {
 
         <Starfield className="absolute bottom-[-50px] left-1/2 z-0 h-[204px] w-[760px] -translate-x-1/2 mask-[radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]" />
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 max-sm:px-[20px]">
           <SectionHeading
             className="text-center"
             title={
@@ -31,12 +31,13 @@ const CustomAppTechStack = () => {
                 <span className="text-white/50">connected to your tools</span>
               </>
             }
-            titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white"
+            titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white max-sm:text-[30px] max-sm:leading-[32px]"
           />
 
           <TechBalls
             items={customAppTechStack}
-            className="mt-[80px] h-[365px]"
+            phoneBallSize={96}
+            className="mt-[80px] h-[365px] max-sm:mt-[40px] max-sm:h-[300px]"
           />
         </Container>
       </Section>

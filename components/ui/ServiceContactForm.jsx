@@ -21,7 +21,7 @@ const ServiceContactForm = ({
 }) => {
   return (
     <form className="flex flex-col gap-[30px]">
-      <div className="grid grid-cols-2 gap-[20px]">
+      <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1 max-sm:gap-[30px]">
         <div className="relative">
           <label htmlFor="service-name" className={labelClassName}>
             Your name (required)
@@ -65,7 +65,7 @@ const ServiceContactForm = ({
           name="need"
           rows={3}
           placeholder={needPlaceholder}
-          className={`block resize-none ${fieldClassName}`}
+          className={`block resize-none ${fieldClassName} max-sm:min-h-[130px] max-sm:pt-[30px]`}
         />
       </div>
 
@@ -98,14 +98,14 @@ const ServiceContactForm = ({
         </div>
       ) : (
         <details className="group rounded-[10px] border border-black/15">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px]">
-            <span className="flex items-center gap-[20px]">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-[20px] p-[20px] max-sm:gap-[12px] max-sm:p-[16px]">
+            <span className="flex items-center gap-[20px] max-sm:gap-[12px]">
               <span className="flex size-[36px] shrink-0 items-center justify-center rounded-full border border-black/20">
                 <Plus size={18} strokeWidth={2} className="text-black" />
               </span>
 
               <span>
-                <span className="block text-[18px] font-bold tracking-[-0.02em] text-black">
+                <span className="block text-[18px] font-bold tracking-[-0.02em] text-black max-sm:text-[16px]">
                   Add optional details
                 </span>
 
@@ -122,7 +122,7 @@ const ServiceContactForm = ({
             />
           </summary>
 
-          <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px]">
+          <div className="grid grid-cols-3 gap-[20px] px-[20px] pt-[30px] pb-[20px] max-sm:grid-cols-1 max-sm:gap-[30px] max-sm:px-[16px]">
             {optionalFields.map(({ id, label, placeholder }) => (
               <div key={id} className="relative">
                 <label htmlFor={`service-${id}`} className={labelClassName}>

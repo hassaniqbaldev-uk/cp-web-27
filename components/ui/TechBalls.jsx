@@ -2,7 +2,7 @@
 
 import Matter from "matter-js";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const WALL = 400;
 
@@ -11,15 +11,35 @@ const SETTLE_STEPS = 600;
 // Wide enough to stay under every ball whatever the window width.
 const FLOOR_WIDTH = 20000;
 
+const PHONE_QUERY = "(max-width: 479.98px)";
+
 const TechBalls = ({
   items,
-  ballSize = 178,
+  ballSize: desktopBallSize = 178,
+  // Smaller balls on phones so they all fit the narrow box.
+  phoneBallSize,
   spawnWidth = Infinity,
   floorOffset = 0,
   className = "",
 }) => {
   const containerRef = useRef(null);
   const ballRefs = useRef([]);
+  const [isPhone, setIsPhone] = useState(false);
+
+  useEffect(() => {
+    if (!phoneBallSize) return;
+
+    const query = window.matchMedia(PHONE_QUERY);
+    const update = () => setIsPhone(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+
+    return () => query.removeEventListener("change", update);
+  }, [phoneBallSize]);
+
+  const ballSize = isPhone ? phoneBallSize : desktopBallSize;
+  const logoScale = ballSize / desktopBallSize;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -161,6 +181,11 @@ const TechBalls = ({
             width={logoWidth}
             height={logoHeight}
             draggable={false}
+            style={
+              logoScale === 1
+                ? undefined
+                : { width: logoWidth * logoScale, height: "auto" }
+            }
             className="pointer-events-none"
           />
         </li>

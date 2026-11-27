@@ -15,7 +15,7 @@ const urlFields = [
 const BrandCheckForm = () => {
   return (
     <form className="flex flex-col gap-[30px]">
-      <div className="grid grid-cols-2 gap-[20px]">
+      <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1 max-sm:gap-[30px]">
         <div className="relative">
           <label htmlFor="brand-check-name" className={labelClassName}>
             Your name (required)

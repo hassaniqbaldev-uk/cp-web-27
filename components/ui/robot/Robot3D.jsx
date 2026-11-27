@@ -12,8 +12,9 @@ const CENTRE_Y = -1.6;
 // Resting pose, turned like the original artwork.
 const POSE = { body: -0.34, head: -0.1, headTilt: 0.1, headRoll: 0.03 };
 
-// Three.js robot: floats, blinks and looks towards the cursor. three is loaded
-// on demand, so it stays out of the page's main bundle.
+// Three.js robot: floats, blinks and looks towards the cursor (or a finger on
+// touch screens). three is loaded on demand, so it stays out of the page's
+// main bundle.
 const Robot3D = ({ label, className = "" }) => {
   const containerRef = useRef(null);
 
@@ -91,6 +92,13 @@ const Robot3D = ({ label, className = "" }) => {
         );
       };
 
+      // Touch: look at the finger while it is down, then ease back to rest.
+      const onTouchEnd = (event) => {
+        if (event.pointerType === "mouse") return;
+        target.x = 0;
+        target.y = 0;
+      };
+
       const pose = (time) => {
         look.x += (target.x - look.x) * 0.06;
         look.y += (target.y - look.y) * 0.06;
@@ -152,6 +160,9 @@ const Robot3D = ({ label, className = "" }) => {
         window.addEventListener("pointermove", onPointerMove, {
           passive: true,
         });
+        container.addEventListener("pointerdown", onPointerMove);
+        container.addEventListener("pointerup", onTouchEnd);
+        container.addEventListener("pointercancel", onTouchEnd);
 
         // Only animate while the hero is on screen.
         viewObserver = new IntersectionObserver(([entry]) => {
@@ -166,6 +177,9 @@ const Robot3D = ({ label, className = "" }) => {
         resizeObserver.disconnect();
         viewObserver?.disconnect();
         window.removeEventListener("pointermove", onPointerMove);
+        container.removeEventListener("pointerdown", onPointerMove);
+        container.removeEventListener("pointerup", onTouchEnd);
+        container.removeEventListener("pointercancel", onTouchEnd);
         disposeScene(scene);
         environment.dispose();
         renderer.dispose();
@@ -189,7 +203,7 @@ const Robot3D = ({ label, className = "" }) => {
       ref={containerRef}
       role="img"
       aria-label={label}
-      className={`pointer-events-none ${className}`}
+      className={`pointer-events-none touch-pan-y select-none [-webkit-touch-callout:none] [@media(hover:none)]:pointer-events-auto ${className}`}
     />
   );
 };

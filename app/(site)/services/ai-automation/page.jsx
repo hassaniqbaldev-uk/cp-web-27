@@ -52,7 +52,7 @@ const AiAutomation = () => {
         id="ai-faqs"
         title={
           <>
-            AI and <br />
+            AI and <br className="max-sm:hidden" />
             automation <br />
             <span className="text-black/50">FAQs</span>
           </>
@@ -64,7 +64,7 @@ const AiAutomation = () => {
         cta={
           <ServiceFooterCta
             title={
-              <span className="block w-fit bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] whitespace-nowrap text-transparent">
+              <span className="block w-fit bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] whitespace-nowrap text-transparent max-sm:mx-auto">
                 <span className="text-white">
                   Describe <br />
                   the

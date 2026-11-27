@@ -1755,7 +1755,8 @@ export const aiHeroTools = [
     image: "/images/services/deepseek-icon-ai-hero.png",
     imageAlt: "DeepSeek",
     size: 118,
-    className: "top-[37px] left-[14px] w-[118px]",
+    className:
+      "top-[37px] left-[14px] w-[118px] max-sm:top-[7.6%] max-sm:left-[2.7%] max-sm:w-[22.3%]",
     glowClassName: "bg-[#3078FF]",
   },
   {
@@ -1763,7 +1764,8 @@ export const aiHeroTools = [
     image: "/images/services/claude-icon-ai-hero.png",
     imageAlt: "Claude",
     size: 118,
-    className: "top-[20px] left-[408px] w-[118px]",
+    className:
+      "top-[20px] left-[408px] w-[118px] max-sm:top-[4.1%] max-sm:left-[77.3%] max-sm:w-[22.3%]",
     glowClassName: "bg-[#D89777]",
   },
   {
@@ -1771,7 +1773,8 @@ export const aiHeroTools = [
     image: "/images/services/chatgpt-icon-ai-hero.png",
     imageAlt: "ChatGPT",
     size: 140,
-    className: "top-[299px] left-[391px] w-[140px]",
+    className:
+      "top-[299px] left-[391px] w-[140px] max-sm:top-[61.4%] max-sm:left-[74%] max-sm:w-[26.5%]",
     glowClassName: "bg-[#5C897E]",
   },
 ];

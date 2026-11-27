@@ -35,7 +35,7 @@ const GoogleAdsCheck = () => {
                   href="/contact"
                   className="mt-[62px] rounded-full bg-white px-[30px] py-[13px] text-[18px] font-extrabold tracking-[-0.02em] whitespace-nowrap text-black uppercase [&:active]:bg-black! [&:hover]:bg-black!"
                 >
-                  Show us the campaign and page
+                  Get a free ads review
                 </Button>
               </div>
             </div>
@@ -55,7 +55,7 @@ const GoogleAdsCheck = () => {
                 <div className="flex flex-1 flex-col gap-[11px] px-[14px] pt-[14px] pb-[16px]">
                   <div className="flex h-[37px] shrink-0 items-center gap-[13px] rounded-[12px] bg-[#F7F7F7] px-[11px] text-[14px] tracking-[-0.02em] text-black/60">
                     <FcGoogle size={21} className="shrink-0" />
-                    your service
+                    plumber near me
                     <HiMagnifyingGlass size={17} className="ml-auto shrink-0" />
                   </div>
 
@@ -65,14 +65,12 @@ const GoogleAdsCheck = () => {
                     </span>
 
                     <span className="mt-[10px] text-[16px] leading-[20px] font-bold tracking-[-0.03em] whitespace-nowrap text-black">
-                      Lorem ipsum dolor sit amet,
+                      Emergency Plumber Near You | Fixed Prices
                     </span>
 
                     <span className="text-text-body mt-[10px] text-[12px] leading-[18px] tracking-[-0.02em]">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Proin congue ex urna, vitae consectetur dui condimentum
-                      efficitur. Praesent suscipit tellus sit amet fermentum
-                      commodo.
+                      Local, qualified plumbers. Clear prices before we start
+                      and no hidden call-out fees. Book online in 60 seconds.
                     </span>
                   </div>
                 </div>

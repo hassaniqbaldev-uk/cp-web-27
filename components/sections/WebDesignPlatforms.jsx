@@ -38,7 +38,7 @@ const WebDesignPlatforms = () => {
               </>
             }
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white max-sm:text-[36px] max-sm:leading-[38px]"
-            subtitle="Enter your website and we’ll check its mobile speed in seconds. Want the full picture? We’ll record a free video audit of what’s costing you enquiries."
+            subtitle="We recommend the platform that suits your team, your content and your budget, not the one we happen to prefer."
             subtitleClassName="mx-auto mt-[25px] max-w-[760px] text-[22px] leading-[33px] tracking-[-0.02em] text-white max-sm:mt-[16px] max-sm:text-[16px] max-sm:leading-[24px]"
           />
 

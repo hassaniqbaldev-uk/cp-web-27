@@ -32,7 +32,7 @@ const SeoProcess = () => {
               </>
             }
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black max-sm:text-[36px] max-sm:leading-[38px]"
-            subtitle="Your brand needs to stand out where it matters. We build a consistent identity that connects with your audience across every touchpoint."
+            subtitle="Four steps, in this order. The first month sets the baseline, and the work builds from month two."
             subtitleClassName="text-text-body mx-auto mt-[25px] max-w-[480px] text-[22px] leading-[33px] tracking-[-0.02em] max-sm:mt-[16px] max-sm:text-[16px] max-sm:leading-[24px]"
           />
 

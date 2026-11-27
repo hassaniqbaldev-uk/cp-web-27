@@ -30,7 +30,7 @@ const Webflow = () => {
         id="webflow-projects"
         title={
           <>
-            Webflow Sites <span className="text-black/50">we’ve built</span>
+            Sites <span className="text-black/50">we’ve built</span>
           </>
         }
         subtitle="Designed by us. Built in the platform that fits."

@@ -32,12 +32,7 @@ const AiResult = () => {
         <Container className="relative z-10 max-sm:px-[20px]">
           <SectionHeading
             className="text-center"
-            title={
-              <>
-                How Casa Botanica went <br className="max-sm:hidden" />
-                from 3 days to 1 day
-              </>
-            }
+            title={<>One workflow, start to finish</>}
             titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-black max-sm:text-[28px] max-sm:leading-[30px] max-sm:text-balance"
           />
 

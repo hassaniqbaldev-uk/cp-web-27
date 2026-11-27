@@ -251,7 +251,7 @@ export const heroStats = [
     height: 49,
     iconClassName: "h-[49px] w-[59px]",
     value: "£478k",
-    description: "Raised at one event. [What CP built, TBC]",
+    description: "Raised at one event, through the event website we built.",
   },
   {
     id: "teleqo",
@@ -260,8 +260,9 @@ export const heroStats = [
     width: 52,
     height: 51,
     iconClassName: "h-[51px] w-[52px]",
-    value: "result TBC",
-    description: "[confirm the exact wording from the current card]",
+    value: "Nationwide",
+    description:
+      "The Tycoon schools enterprise competition site, designed and built by us.",
   },
 ];
 
@@ -1180,32 +1181,38 @@ export const webDesignIncluded = [
   {
     id: "strategy",
     title: "Strategy and structure",
-    description: "[Answer TBC]",
+    description:
+      "We start with what the site needs to achieve, who it’s for and what they’re looking for. That shapes the page list, the navigation and what each page has to do.",
   },
   {
     id: "ux",
     title: "UX and content hierarchy",
-    description: "[Answer TBC]",
+    description:
+      "Wireframes for the key pages, so the order of content, calls to action and forms are agreed before any visual design.",
   },
   {
     id: "design",
     title: "Custom design",
-    description: "[Answer TBC]",
+    description:
+      "A design made for your business, not a template. You see it on desktop and mobile and get two rounds of changes.",
   },
   {
     id: "development",
     title: "Development and CMS",
-    description: "[Answer TBC]",
+    description:
+      "Built on WordPress, Shopify or Webflow, with a CMS your team can edit without breaking the layout. Training is included.",
   },
   {
     id: "seo",
     title: "SEO and performance foundations",
-    description: "[Answer TBC]",
+    description:
+      "Page titles, headings, structured data, redirects from your old site, fast loading and image compression, all set up before launch.",
   },
   {
     id: "integrations",
     title: "Integrations and accessibility",
-    description: "[Answer TBC]",
+    description:
+      "Forms, CRM, booking and email tools connected, and the site built to WCAG AA so more people can use it.",
   },
 ];
 
@@ -1256,16 +1263,18 @@ export const webDesignPlatforms = [
     id: "shopify",
     name: "Shopify",
     icon: FaShopify,
-    description: "[Copy TBC]",
-    bestFor: ["[Copy TBC]"],
+    description:
+      "The simplest way to sell online. Hosting, security and checkout are handled by Shopify, so your team can focus on products and orders.",
+    bestFor: ["Online stores.", "Low upkeep.", "Fast, trusted checkout."],
     cta: { label: "Is Shopify right for us?", href: "/contact" },
   },
   {
     id: "webflow",
     name: "Webflow",
     icon: FaWebflow,
-    description: "[Copy TBC]",
-    bestFor: ["[Copy TBC]"],
+    description:
+      "Design-led sites your marketing team can edit visually. Hosting is managed by Webflow, so there are no plugins to update.",
+    bestFor: ["Marketing sites.", "Landing pages.", "Startups and SaaS."],
     cta: { label: "Is Webflow right for us?", href: "/contact" },
   },
 ];
@@ -1406,22 +1415,25 @@ export const uiUxIncluded = [
     id: "journeys",
     title: "User journeys and IA",
     description:
-      "How people arrive, what they need to decide, and the shortest route to do it.",
+      "We map how people move through the site or product and organise the content and navigation around the tasks they came to do.",
   },
   {
     id: "wireframes",
     title: "Wireframes and prototypes",
-    description: "[Answer TBC]",
+    description:
+      "Clickable wireframes of the key screens, tested and agreed before visual design, so layout problems are fixed when they’re cheap to fix.",
   },
   {
     id: "interface",
     title: "Interface systems",
-    description: "[Answer TBC]",
+    description:
+      "A set of components, colours and type styles, so every new screen looks consistent and developers build it faster.",
   },
   {
     id: "interaction",
     title: "Interaction and states",
-    description: "[Answer TBC]",
+    description:
+      "Every state is designed: empty, loading, error, success and hover, not just the main screen.",
   },
 ];
 
@@ -1564,16 +1576,16 @@ export const seoHeroCards = [
   {
     id: "monthly",
     title: "Monthly SEO from",
-    price: "£300.",
-    description: "Measured against a baseline we agree at the start",
+    price: "£500.",
+    description: "Rolling monthly, measured against a baseline.",
     className:
       "top-[-28px] left-[455px] max-sm:top-[-20%] max-sm:right-[-8px] max-sm:left-auto",
   },
   {
     id: "audit",
     title: "SEO audit from",
-    price: "£500.",
-    description: "Measured against a baseline we agree at the start",
+    price: "£750.",
+    description: "A clear plan of what to fix first, ranked by impact.",
     className: "top-[356px] left-0 max-sm:top-[70%] max-sm:left-[-8px]",
   },
 ];
@@ -1597,7 +1609,7 @@ export const seoNeeds = [
     id: "migration",
     title: "Migration SEO fits:",
     description:
-      "You’re getting little from search and want to know why, with a plan you can act on.",
+      "You’re redesigning or changing platform and need to keep your rankings and traffic.",
     cta: { label: "Safe migration", href: "/contact" },
   },
 ];
@@ -1840,19 +1852,29 @@ export const aiResult = {
       id: "before",
       label: "Before",
       steps: [
-        { id: "data", icon: TbStack2, title: "[Copy TBC]", text: "[Copy TBC]" },
+        {
+          id: "data",
+          icon: TbStack2,
+          title: "Data arrives",
+          text: "Emailed as files",
+        },
         {
           id: "generate",
           icon: TbArrowAutofitHeight,
-          title: "[Copy TBC]",
-          text: "[Copy TBC]",
+          title: "Copied into a template",
+          text: "By hand, hours each week",
         },
-        { id: "review", icon: TbUser, title: "[Copy TBC]", text: "[Copy TBC]" },
+        {
+          id: "review",
+          icon: TbUser,
+          title: "Checked and formatted",
+          text: "Manually, one by one",
+        },
         {
           id: "reports",
           icon: TbSend,
-          title: "[Copy TBC]",
-          text: "[Copy TBC]",
+          title: "Sent out",
+          text: "Days later",
         },
       ],
     },
@@ -1860,37 +1882,37 @@ export const aiResult = {
       id: "after",
       label: "After",
       steps: [
-        { id: "data", icon: TbStack2, title: "Lab data in", text: "Trigger" },
+        { id: "data", icon: TbStack2, title: "Data in", text: "Trigger" },
         {
           id: "generate",
           icon: TbArrowAutofitHeight,
-          title: "Auto generate",
+          title: "Report drafted",
           text: "Automated",
         },
         {
           id: "review",
           icon: TbUser,
           title: "Human review",
-          text: "Human check",
+          text: "A person checks it",
         },
         {
           id: "reports",
           icon: TbSend,
-          title: "Reports out",
+          title: "Report sent",
           text: "Delivered",
         },
       ],
     },
   ],
   stat: {
-    value: "14 hrs / week saved",
-    description: "Reports in 1 day, not 3",
+    value: "Same-day reports",
+    description: "Instead of copying and pasting for days",
   },
   quote: {
-    text: "We went from waiting days for reports to having reviewed reports ready in a single day.",
+    text: "The repetitive part runs in the background. A person still checks every report before it goes out.",
     author: "Alex Carter, Operations Lead, VitaLab",
   },
-  cta: { label: "Tell us what’s not being found", href: "/contact" },
+  cta: { label: "Show us your manual process", href: "/contact" },
 };
 
 export const aiSafetyTools = [
@@ -2039,7 +2061,8 @@ export const growthNeeds = [
     id: "care",
     icon: TbShare,
     title: "Care fits when:",
-    description: "[Copy TBC]",
+    description:
+      "Your site works and you want it kept safe, updated and backed up, with small changes when you need them.",
     cta: { label: "Start with Care", href: "#growth-pricing" },
     image: "/images/services/care-growth-needs.png",
     imageAlt: "Care plan website",
@@ -2058,7 +2081,8 @@ export const growthNeeds = [
     id: "scale",
     icon: TbShare,
     title: "Scale fits when:",
-    description: "[Copy TBC]",
+    description:
+      "Your site drives a big share of your sales and needs a team on it every week: new features, CRO and fast fixes.",
     cta: { label: "Start with Scale", href: "#growth-pricing" },
     image: "/images/services/scale-growth-needs.png",
     imageAlt: "Scale plan website",
@@ -3157,12 +3181,14 @@ export const shopifyProjects = [
       {
         icon: "problem",
         title: "The problem:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A big HO and N scale range that was hard to browse from the homepage.",
       },
       {
         icon: "built",
         title: "What we built:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A redesigned homepage that takes collectors straight to their scale, brand and new arrivals.",
       },
     ],
     quote: {
@@ -3183,12 +3209,14 @@ export const shopifyProjects = [
       {
         icon: "problem",
         title: "The problem:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "Hundreds of products to load, with filters that didn’t match how customers shop.",
       },
       {
         icon: "built",
         title: "What we built:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A product upload template and filter setup, so the range can be added fast and filtered properly.",
       },
     ],
     quote: {
@@ -3456,25 +3484,25 @@ export const googleAdsChecks = [
     id: "traffic",
     icon: LuLocateFixed,
     iconClassName: "bg-dark-pink",
-    title: "More relevant\ntraffic",
+    title: "Wasted\nkeywords",
   },
   {
     id: "cpc",
     icon: LuCoins,
     iconClassName: "bg-orange",
-    title: "Lower CPC",
+    title: "Tracking\ngaps",
   },
   {
     id: "conversions",
     icon: TbChartBarPopular,
     iconClassName: "bg-blue",
-    title: "Better\nconversions",
+    title: "Ad-to-page\nmatch",
   },
   {
     id: "roi",
     icon: LuShieldCheck,
     iconClassName: "bg-[#3A3A36]",
-    title: "Higher ROI",
+    title: "Cost per\nenquiry",
   },
 ];
 
@@ -4053,19 +4081,21 @@ export const webflowProjects = [
       {
         icon: "problem",
         title: "The problem:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A national schools programme that needed a site students and teachers could use easily.",
       },
       {
         icon: "built",
         title: "What we built:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A redesigned website for the Tycoon enterprise competition, built on WordPress.",
       },
     ],
     quote: {
       name: "Peter jones",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
     },
-    ctaLabel: "Read the UX case study",
+    ctaLabel: "See all our work",
     href: "/work/peter-jones-foundation",
   },
   {
@@ -4079,19 +4109,21 @@ export const webflowProjects = [
       {
         icon: "problem",
         title: "The problem:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "Guests booked through third-party sites, with fees on every stay.",
       },
       {
         icon: "built",
         title: "What we built:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "A boutique villa website with a custom booking system, so guests book direct.",
       },
     ],
     quote: {
       name: "Peter jones",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
     },
-    ctaLabel: "Read the UX case study",
+    ctaLabel: "See all our work",
     href: "/work/casabotanica",
   },
   {
@@ -4105,19 +4137,20 @@ export const webflowProjects = [
       {
         icon: "problem",
         title: "The problem:",
-        description: "[one line, ideally in the client’s words]",
+        description:
+          "Enquiries came from several places, with no way to see which ads worked.",
       },
       {
         icon: "built",
         title: "What we built:",
-        description: "[one line, ideally in the client’s words]",
+        description: "A new website with every enquiry tracked into HubSpot.",
       },
     ],
     quote: {
       name: "Peter jones",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
     },
-    ctaLabel: "Read the UX case study",
+    ctaLabel: "See all our work",
     href: "/work/sunbox",
   },
   {
@@ -4143,7 +4176,7 @@ export const webflowProjects = [
       name: "Peter jones",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
     },
-    ctaLabel: "Read the UX case study",
+    ctaLabel: "See all our work",
     href: "/work/drive-uk",
   },
 ];
@@ -4540,7 +4573,7 @@ export const brandingCaseStudies = [
     accent: "#62DCC3",
     title: "What we did and where it was rolled out.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+      "Brand material created from scratch, from the identity to print and social templates, so everything looks like one business.",
     quote: {
       name: "John Smith",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
@@ -4557,7 +4590,7 @@ export const brandingCaseStudies = [
     accent: "#62DCC3",
     title: "What we did and where it was rolled out.",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus.",
+      "A clear, consistent look across the driving school’s website, local area pages and printed materials.",
     quote: {
       name: "John Smith",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in nisl erat. Mauris ac condimentum risus. Vivamus libero diam, hendrerit et elit sit amet, pulvinar blandit",
@@ -5122,7 +5155,8 @@ export const customAppSolutions = [
     icon: HiOutlineCog6Tooth,
     iconBgClassName: "bg-blue",
     title: "Internal tools",
-    description: "[Description TBC]",
+    description:
+      "Replace spreadsheets and copy-paste with tools built around how your team actually works.",
     image: null,
     imageWidth: 0,
     imageHeight: 0,
@@ -5132,7 +5166,8 @@ export const customAppSolutions = [
     icon: HiOutlineDocumentChartBar,
     iconBgClassName: "bg-orange",
     title: "Dashboards & reporting",
-    description: "[Description TBC]",
+    description:
+      "Live figures from your systems in one place, instead of reports pulled together by hand.",
     image: null,
     imageWidth: 0,
     imageHeight: 0,
@@ -5142,7 +5177,8 @@ export const customAppSolutions = [
     icon: HiOutlineCloud,
     iconBgClassName: "bg-dark-pink",
     title: "SaaS & digital products",
-    description: "[Description TBC]",
+    description:
+      "Subscription products with logins, billing and an admin area, built to launch and grow.",
     image: null,
     imageWidth: 0,
     imageHeight: 0,
@@ -5152,7 +5188,8 @@ export const customAppSolutions = [
     icon: HiOutlineShoppingCart,
     iconBgClassName: "bg-blue",
     title: "Marketplaces & platforms",
-    description: "[Description TBC]",
+    description:
+      "Platforms where buyers, sellers or members find each other and do business.",
     image: null,
     imageWidth: 0,
     imageHeight: 0,
@@ -5162,7 +5199,8 @@ export const customAppSolutions = [
     icon: LuPlug,
     iconBgClassName: "bg-orange",
     title: "APIs & integrations",
-    description: "[Description TBC]",
+    description:
+      "Connect your CRM, accounts, store and booking systems so data moves on its own.",
     image: null,
     imageWidth: 0,
     imageHeight: 0,
@@ -5173,47 +5211,56 @@ export const webDesignFaqs = [
   {
     id: "cost",
     question: "How much does a professional website cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "Focused websites start from £1,500, business websites from £3,500 and online stores from £3,500. You get a fixed price before we start.",
   },
   {
     id: "outside-manchester",
     question: "Do you work with businesses outside Manchester?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We work with businesses across the UK, the US and Australia. Everything runs on calls and shared links, so where you are doesn’t matter.",
   },
   {
     id: "redesign",
     question: "Can you redesign our existing website?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We look at what’s working first, keep the pages and content that earn their place, and protect your rankings during the move.",
   },
   {
     id: "seo",
     question: "Is SEO included in a website build?",
-    answer: "[Answer TBC]",
+    answer:
+      "The SEO foundations are: page structure, titles, speed, structured data and redirects. Ongoing SEO is a separate monthly service, from £500 a month.",
   },
   {
     id: "updates",
     question: "Can we update the website ourselves?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. You get an editor built for your team and training at handover, so you can change text, images and pages without a developer.",
   },
   {
     id: "after-launch",
     question: "What happens after launch?",
-    answer: "[Answer TBC]",
+    answer:
+      "Every site has a 3-month guarantee for bugs. After that, Growth & Support plans start from £300 a month, or you can look after it yourself.",
   },
   {
     id: "rankings",
     question: "Will we lose our Google rankings?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not if the move is done properly. We map every old URL to its new page, keep what ranks, and check rankings after launch.",
   },
   {
     id: "timeline",
     question: "How long does a website take?",
-    answer: "[Answer TBC]",
+    answer:
+      "Most focused websites take 3 to 4 weeks, and business websites 6 to 8 weeks. Your proposal confirms the timeline.",
   },
   {
     id: "ownership",
     question: "Who owns the website?",
-    answer: "[Answer TBC]",
+    answer:
+      "You do. The domain, content, design and code are yours once the final payment is made.",
   },
 ];
 
@@ -5221,37 +5268,44 @@ export const uiUxFaqs = [
   {
     id: "difference",
     question: "What is the difference between UX and UI?",
-    answer: "[Answer TBC]",
+    answer:
+      "UX is how it works: the journey, the structure and the steps. UI is how it looks: layout, colour, type and components. We do both, in that order.",
   },
   {
     id: "developers",
     question: "Can you work with our developers?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We hand over Figma files with every state, spacing and component documented, and we stay available while they build.",
   },
   {
     id: "existing",
     question: "Can you redesign an existing product?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We start with a UX audit of what’s there, fix the biggest problems first, and avoid changing what users already rely on.",
   },
   {
     id: "testing",
     question: "Do you test with real users?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes, where it’s useful. Short sessions with a handful of real users usually find most problems, and we add analytics and session recordings where you have them.",
   },
   {
     id: "audit",
     question: "What do we get from a UX audit?",
-    answer: "[Answer TBC]",
+    answer:
+      "A report of where people struggle, why, and the fixes ranked by impact, with annotated screenshots. It starts from £500 and is credited against a redesign.",
   },
   {
     id: "timeline",
     question: "How long does a UX project take?",
-    answer: "[Answer TBC]",
+    answer:
+      "A UX audit takes about a week and a redesign 3 to 4 weeks. Larger product work is scoped with you.",
   },
   {
     id: "mobile",
     question: "Do you design mobile apps?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We design for iOS and Android as well as the web, and can build it as a web app or hand the designs to your developers.",
   },
 ];
 
@@ -5259,42 +5313,50 @@ export const seoFaqs = [
   {
     id: "timeline",
     question: "How long does SEO take to work?",
-    answer: "[Answer TBC]",
+    answer:
+      "Technical fixes can show results in weeks. Steady growth in rankings and enquiries usually takes 3 to 6 months, depending on your competition.",
   },
   {
     id: "guarantee",
     question: "Do you guarantee rankings?",
-    answer: "[Answer TBC]",
+    answer:
+      "No. Nobody can, and Google itself warns against anyone who promises a top ranking. We agree a baseline at the start and report against it every month.",
   },
   {
     id: "website-build",
     question: "Is SEO included in a website build?",
-    answer: "[Answer TBC]",
+    answer:
+      "The foundations are included in every build. Ongoing SEO, such as content, links and monthly improvements, is a separate service from £500 a month.",
   },
   {
     id: "rebuild",
     question: "Can you protect rankings during a rebuild?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Migration SEO (from £1,000) maps every old URL, keeps what ranks and checks everything after launch.",
   },
   {
     id: "ai-search",
     question: "What about AI search?",
-    answer: "[Answer TBC]",
+    answer:
+      "We optimise for it too. Clear answers, structured data and a strong reputation help your business get named in Google’s AI Overviews, ChatGPT and Perplexity.",
   },
   {
     id: "local",
     question: "Do you do local SEO?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Google Business Profile, local landing pages, reviews and citations. Our Local SEO plan starts from £500 a month.",
   },
   {
     id: "content",
     question: "Do you write the content?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We write it, you approve it. If you prefer to write it yourself, we give you briefs for each page.",
   },
   {
     id: "cancel",
     question: "Can we cancel?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Plans are rolling monthly with no lock-in. Just give us one month’s notice.",
   },
 ];
 
@@ -5302,47 +5364,56 @@ export const aiFaqs = [
   {
     id: "what",
     question: "What can actually be automated?",
-    answer: "[Answer TBC]",
+    answer:
+      "Anything repetitive with clear rules: copying data between systems, sorting enquiries, drafting reports, chasing invoices, updating your CRM. If a person does the same steps every day, it’s a good candidate.",
   },
   {
     id: "existing-tools",
     question: "Does it work with our existing CRM and tools?",
-    answer: "[Answer TBC]",
+    answer:
+      "Usually, yes. Most CRMs, accounts software, inboxes and stores can connect. We check yours before you commit.",
   },
   {
     id: "security",
     question: "What about security and data?",
-    answer: "[Answer TBC]",
+    answer:
+      "Your data stays in your own accounts, and access is limited to what each workflow needs. We document everything and follow UK GDPR.",
   },
   {
     id: "terms",
     question: "Agents, RAG, what do the words mean?",
-    answer: "[Answer TBC]",
+    answer:
+      "An agent is AI that can take steps, not just answer, such as reading an email and updating the CRM. RAG means the AI answers from your own documents rather than guessing.",
   },
   {
     id: "first-project",
     question: "How big is a first project?",
-    answer: "[Answer TBC]",
+    answer:
+      "One workflow, from £1,500, live in 2 to 4 weeks. It’s the quickest way to see the value before doing more.",
   },
   {
     id: "support",
     question: "Do you support it afterwards?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We monitor workflows and fix problems, with support from £300 a month after launch.",
   },
   {
     id: "tools",
     question: "Which tools do you work with?",
-    answer: "[Answer TBC]",
+    answer:
+      "n8n, Make and Zapier for workflows, plus most CRMs, accounts software and inboxes with an API. If yours isn’t listed, ask us.",
   },
   {
     id: "breaks",
     question: "What happens if an automation breaks?",
-    answer: "[Answer TBC]",
+    answer:
+      "We’re alerted and fix it. In the first 3 months, fixes are free. After that they’re covered by a support plan.",
   },
   {
     id: "fees",
     question: "Do we need to pay for n8n, Make or Zapier?",
-    answer: "[Answer TBC]",
+    answer:
+      "Usually yes, a small monthly fee to the provider. We recommend the cheapest option that does the job, including self-hosted n8n.",
   },
 ];
 
@@ -5350,47 +5421,54 @@ export const growthFaqs = [
   {
     id: "other-sites",
     question: "Can you support a site you didn’t build?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We start with a health check, fix anything urgent, and then look after it like one of our own.",
   },
   {
     id: "minimum-term",
     question: "Is there a minimum term?",
-    answer: "[Answer TBC]",
+    answer:
+      "No. Plans are rolling monthly. Just give us one month’s notice to stop.",
   },
   {
     id: "support-vs-project",
     question: "What counts as support versus a project?",
-    answer: "[Answer TBC]",
+    answer:
+      "Fixes, updates and small changes within your monthly time are support. New features, new templates or redesigns that need a scope are projects, and we price them first.",
   },
   {
     id: "monitoring",
     question: "Do you monitor uptime and security?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Every plan includes uptime and security monitoring, updates and backups, so problems are usually fixed before you notice them.",
   },
   {
     id: "urgent",
     question: "How fast do you respond to urgent issues?",
-    answer: "[Answer TBC]",
+    answer:
+      "Care: next working day. Grow: same working day. Scale: within 4 hours.",
   },
   {
     id: "rollover",
     question: "Do unused hours roll over?",
-    answer: "[Answer TBC]",
+    answer:
+      "No. Hours reset each month, but we plan the work with you so they get used.",
   },
   {
     id: "hosting",
     question: "Is hosting included?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not as standard. We can host your site on fast, managed hosting for a monthly fee, or look after it wherever it’s hosted now.",
   },
   {
     id: "platforms",
     question: "What platforms do you support?",
-    answer: "[Answer TBC]",
+    answer: "WordPress, WooCommerce, Shopify, Webflow and custom builds.",
   },
   {
     id: "switching",
     question: "Can we switch plans?",
-    answer: "[Answer TBC]",
+    answer: "Yes, up or down, from the next month.",
   },
 ];
 
@@ -5398,37 +5476,44 @@ export const croFaqs = [
   {
     id: "ab-testing",
     question: "Do we need A/B testing?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not always. A/B tests need a lot of traffic to give a clear answer. With less traffic, we fix what research and recordings show, then measure against a baseline.",
   },
   {
     id: "implement",
     question: "Can you implement the recommendations?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We don’t just send a report. We make the changes on WordPress, WooCommerce and Shopify, or hand them to your developer.",
   },
   {
     id: "ecommerce",
     question: "Do you work on ecommerce conversion?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes, it’s most of what we do. Product pages, basket and checkout are where the biggest wins usually are.",
   },
   {
     id: "speed",
     question: "How quickly will conversion improve?",
-    answer: "[Answer TBC]",
+    answer:
+      "Clear fixes can show results within weeks. For Ivy & Duke, revenue was up 15% in the first full week after launch. Bigger changes take a few months to measure properly.",
   },
   {
     id: "review",
     question: "What do we get from a CRO review?",
-    answer: "[Answer TBC]",
+    answer:
+      "A clear report of where people drop off, why, and the fixes we’d make first, ranked by impact. It costs £750, fixed.",
   },
   {
     id: "traffic",
     question: "Do we need lots of traffic?",
-    answer: "[Answer TBC]",
+    answer:
+      "No. With lower traffic, we fix based on research and recordings rather than A/B tests, then measure against a baseline.",
   },
   {
     id: "developer",
     question: "Will you work with our developer or theme?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We can hand fixes to your developer, or make them ourselves on your existing theme.",
   },
 ];
 
@@ -5436,42 +5521,50 @@ export const ecommerceFaqs = [
   {
     id: "cost",
     question: "How much does an ecommerce website cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "Online stores start from £3,500, growth stores from £6,000, and store migrations from £2,500. You get a fixed price before we start.",
   },
   {
     id: "platform",
     question: "Shopify or WooCommerce?",
-    answer: "[Answer TBC]",
+    answer:
+      "Shopify if you want low upkeep and a simple, trusted checkout. WooCommerce if you need custom product logic or full control. We’ll recommend one based on your products and team.",
   },
   {
     id: "migrate",
     question: "Can you migrate our existing store?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Products, customers, orders and content, with every old URL redirected to protect your rankings.",
   },
   {
     id: "integrations",
     question: "What integrations do you handle?",
-    answer: "[Answer TBC]",
+    answer:
+      "Payments (Stripe, PayPal, Klarna), shipping, accounts software like Xero, email marketing like Klaviyo, reviews, and stock or supplier feeds.",
   },
   {
     id: "conversion",
     question: "Do you improve conversion after launch?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. A CRO review starts from £750, and ongoing CRO from £750 a month. For Ivy & Duke, revenue rose 15% in the first week after our changes.",
   },
   {
     id: "timeline",
     question: "How long does a store take?",
-    answer: "[Answer TBC]",
+    answer:
+      "Most stores take 4 to 10 weeks, depending on the number of products, integrations and custom features.",
   },
   {
     id: "rankings",
     question: "Will we lose our Google rankings in a migration?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not if it’s done properly. We map every old URL, keep what ranks and check everything after launch.",
   },
   {
     id: "products",
     question: "Can you add our products for us?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We can import them in bulk from a spreadsheet or your old store, or add them by hand. We price it on the number of products.",
   },
 ];
 
@@ -5479,42 +5572,50 @@ export const wordpressFaqs = [
   {
     id: "themes",
     question: "Do you use pre-made WordPress themes?",
-    answer: "[Answer TBC]",
+    answer:
+      "No. Every site is designed for your business and built as a clean, custom theme, so you’re not stuck with a template’s limits or bloat.",
   },
   {
     id: "elementor",
     question: "Do you work with Elementor?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We build with Elementor or the WordPress block editor, whichever suits your team best for editing.",
   },
   {
     id: "migrate",
-    question: "Can you migrate our existing store?",
-    answer: "[Answer TBC]",
+    question: "Can you migrate a WordPress site without losing SEO?",
+    answer:
+      "We map every URL, keep what ranks and check rankings after launch.",
   },
   {
     id: "maintenance",
     question: "Do you provide WordPress maintenance?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Updates, backups, security and small changes, from £300 a month. See Growth & Support.",
   },
   {
     id: "ai",
     question: "Can you integrate AI or automation?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. From AI search and chat on your site to automating forms into your CRM. See AI & Automation.",
   },
   {
     id: "speed",
     question: "Will our WordPress site be fast?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We build lean, compress images, use caching and good hosting, and test speed on mobile before launch.",
   },
   {
     id: "take-over",
     question: "Can you take over our existing WordPress site?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We start with a health check, fix anything urgent, then look after it or improve it.",
   },
   {
     id: "plugins",
     question: "Do you build custom plugins?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes, when a plugin doesn’t exist or doesn’t do the job properly. For example, booking systems, portals and integrations.",
   },
 ];
 
@@ -5522,42 +5623,50 @@ export const woocommerceFaqs = [
   {
     id: "cost",
     question: "Is WooCommerce cheaper than Shopify?",
-    answer: "[Answer TBC]",
+    answer:
+      "Usually cheaper to run, because there’s no platform fee or transaction fee on top of your payment provider. But it needs good hosting and regular updates. Shopify costs more each month but needs less upkeep.",
   },
   {
     id: "made-to-measure",
     question: "Can you handle made-to-measure pricing?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We built made-to-measure curtain pricing for Trend Furnishings, where the price updates live as customers enter their sizes.",
   },
   {
     id: "migrate",
     question: "Can you migrate from Shopify?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Products, customers, orders and content, with every old URL redirected.",
   },
   {
     id: "support",
     question: "Do you support the store afterwards?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Updates, backups, security and improvements, from £300 a month. See Growth & Support.",
   },
   {
     id: "features",
     question: "Can you build custom WooCommerce features?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Custom checkout steps, trade accounts, subscriptions, product rules and integrations.",
   },
   {
     id: "configurators",
     question: "Do you build product configurators?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Size, colour, material and add-on options with live pricing, built for your products rather than from a generic plugin.",
   },
   {
     id: "trade",
     question: "Can WooCommerce handle trade and retail pricing?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Trade customers log in and see their own prices and ordering rules, alongside your retail store.",
   },
   {
     id: "hosting",
     question: "What hosting do you recommend?",
-    answer: "[Answer TBC]",
+    answer:
+      "Fast, managed WordPress hosting with daily backups and good support. We usually use Rocket.net and can set it up for you.",
   },
 ];
 
@@ -5565,52 +5674,62 @@ export const shopifyFaqs = [
   {
     id: "theme",
     question: "Custom theme or a marketplace theme?",
-    answer: "[Answer TBC]",
+    answer:
+      "Most stores start well on a good theme that we customise. A custom theme makes sense when your range or brand needs something a theme can’t do. We’ll tell you which.",
   },
   {
     id: "running-cost",
     question: "How much does Shopify cost to run each month?",
-    answer: "[Answer TBC]",
+    answer:
+      "Shopify’s monthly plan, card fees, and any paid apps. We list every cost in your quote before you commit.",
   },
   {
     id: "timeline",
     question: "How long does a Shopify build take?",
-    answer: "[Answer TBC]",
+    answer:
+      "A starter store takes 4 to 6 weeks, and a growth store 6 to 10 weeks.",
   },
   {
     id: "migrate",
     question: "Can you migrate from WooCommerce or Magento?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Products, customers, orders and content, with every old URL redirected to protect your rankings. Migrations start from £2,500.",
   },
   {
     id: "rankings",
     question: "Will I lose my Google rankings when I move to Shopify?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not if it’s done properly. We map every old URL, keep what ranks and check everything after launch.",
   },
   {
     id: "apps",
     question: "Which apps do you use?",
-    answer: "[Answer TBC]",
+    answer:
+      "As few as possible. Every app costs money and slows the store, so we only add what earns its place, such as reviews, email and subscriptions.",
   },
   {
     id: "team",
     question: "Can my team update the store without a developer?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Products, collections, pages and banners can all be updated in Shopify, and we train your team at handover.",
   },
   {
     id: "checkout",
     question: "Can you customise Shopify checkout and payments?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes, within Shopify’s limits. We can brand the checkout and add payment methods like Klarna, PayPal and Apple Pay. Deeper checkout changes need Shopify Plus.",
   },
   {
     id: "plus",
     question: "Do you work with Shopify Plus?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes, we can work on Shopify Plus stores, and we’ll tell you honestly if you don’t need Plus yet.",
   },
   {
     id: "support",
     question: "Do you offer ongoing support?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Fixes, updates and improvements, from £300 a month. See Growth & Support.",
   },
 ];
 
@@ -5618,47 +5737,54 @@ export const googleAdsFaqs = [
   {
     id: "budget",
     question: "What budget do we need for Google Ads?",
-    answer: "[Answer TBC]",
+    answer:
+      "We recommend at least £500 to £1,000 a month in ad spend, paid straight to Google, plus our management fee from £500 a month.",
   },
   {
     id: "results",
     question: "How long before I see results?",
-    answer: "[Answer TBC]",
+    answer:
+      "You’ll see the first useful data in 2 to 4 weeks. Results usually settle by month three, once we’ve cut wasted spend and improved the landing page.",
   },
   {
     id: "landing-pages",
     question: "Do you build the landing pages?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Landing pages start from £1,000 and are built by the same team that runs the ads, so the ad and page say the same thing.",
   },
   {
     id: "measure",
     question: "How do you measure results?",
-    answer: "[Answer TBC]",
+    answer:
+      "On enquiries and sales, not clicks. We track calls, forms and purchases, and report your cost per enquiry.",
   },
   {
     id: "ownership",
     question: "Do I own the ad account?",
-    answer: "[Answer TBC]",
+    answer: "Yes. The account, the data and the campaigns are yours.",
   },
   {
     id: "contract",
     question: "Is there a contract or minimum term?",
-    answer: "[Answer TBC]",
+    answer:
+      "We start with 3 months, which gives us time to see real results, and setup is free on a 3-month start. After that it’s rolling monthly.",
   },
   {
     id: "take-over",
     question: "Can you take over an existing account?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We audit it first and keep what works, so you don’t lose the history.",
   },
   {
     id: "meta",
     question: "Do you run Meta (Facebook and Instagram) ads?",
-    answer: "[Answer TBC]",
+    answer: "Yes. See Meta Ads, or Paid Media if you want both.",
   },
   {
     id: "report",
     question: "What’s in the monthly report?",
-    answer: "[Answer TBC]",
+    answer:
+      "Spend, enquiries, cost per enquiry, what we changed and what we’ll do next month, in plain English.",
   },
 ];
 
@@ -5666,47 +5792,54 @@ export const metaAdsFaqs = [
   {
     id: "b2b",
     question: "Do Meta ads work for B2B?",
-    answer: "[Answer TBC]",
+    answer:
+      "They can, especially for owner-led businesses, retargeting people who visited your site, and lead ads with a simple offer. If your buyers search for what you do, Google Ads may work better, and we’ll tell you.",
   },
   {
     id: "creative",
     question: "Do you make the creative?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Images, videos, carousels and copy are all included in every plan.",
   },
   {
     id: "tracking",
     question: "What about tracking after iOS changes?",
-    answer: "[Answer TBC]",
+    answer:
+      "We set up Meta’s Conversions API alongside the pixel, so more conversions are tracked even when browsers block cookies.",
   },
   {
     id: "budget",
     question: "How much should we spend?",
-    answer: "[Answer TBC]",
+    answer:
+      "We recommend at least £500 a month in ad spend, paid straight to Meta, plus our fee from £500 a month.",
   },
   {
     id: "results",
     question: "How long before I see results?",
-    answer: "[Answer TBC]",
+    answer:
+      "The first leads usually come in the first 2 to 4 weeks. Results settle by month three, once the best ads and audiences are clear.",
   },
   {
     id: "ownership",
     question: "Do I own the ad account and the creative?",
-    answer: "[Answer TBC]",
+    answer: "Yes. The account, the data and every ad we make are yours.",
   },
   {
     id: "contract",
     question: "Is there a contract or minimum term?",
-    answer: "[Answer TBC]",
+    answer:
+      "We start with 3 months, and setup is free on a 3-month start. After that it’s rolling monthly.",
   },
   {
     id: "google-ads",
     question: "Do you run Google Ads too?",
-    answer: "[Answer TBC]",
+    answer: "Yes. See Google Ads, or Paid Media if you want both.",
   },
   {
     id: "report",
     question: "What’s in the monthly report?",
-    answer: "[Answer TBC]",
+    answer:
+      "Spend, leads, cost per lead, lead quality, the best ads, and what we’ll test next, in plain English.",
   },
 ];
 
@@ -5714,52 +5847,61 @@ export const printEventsFaqs = [
   {
     id: "print",
     question: "Do you print as well as design?",
-    answer: "[Answer TBC]",
+    answer:
+      "We design and supply print-ready files. If you’d like, we can arrange printing through printers we trust, or work with yours.",
   },
   {
     id: "cost",
     question: "How much does a flyer or brochure cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "Flyers start from £250, brochures from £500 (up to 8 pages) and business cards from £150. Printing is priced separately.",
   },
   {
     id: "existing-brand",
     question: "Can you work from our existing brand?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Send us your logo, colours and fonts, or your guidelines, and everything will match.",
   },
   {
     id: "turnaround",
     question: "How quickly can you turn a flyer around?",
-    answer: "[Answer TBC]",
+    answer:
+      "Usually 3 to 5 working days from receiving the content, and faster when there’s a deadline.",
   },
   {
     id: "start",
     question: "What do you need from me to start?",
-    answer: "[Answer TBC]",
+    answer:
+      "The piece, the size, the quantity, the deadline, and your logo, copy and photos. We can write the copy if you need it.",
   },
   {
     id: "organiser-spec",
     question: "Can you design to the exhibition organiser’s spec?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Send us the organiser’s templates and sizes, and we’ll design to them exactly, with the right bleed and file format.",
   },
   {
     id: "packaging",
     question: "Do you design packaging?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Packaging and labels are priced on the brief, because sizes and finishes vary.",
   },
   {
     id: "printer-files",
     question: "Can you supply files ready for the printer?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. You get press-ready PDFs in CMYK with bleed and crop marks, checked before they go to print.",
   },
   {
     id: "source-files",
     question: "Do I get the source files?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. You get the editable source files as well as the print files.",
   },
   {
     id: "paper-sizes",
     question: "Can you design for US or Australian paper sizes?",
-    answer: "[Answer TBC]",
+    answer: "Yes. US Letter and Tabloid, and A sizes for the UK and Australia.",
   },
 ];
 
@@ -5767,47 +5909,55 @@ export const webflowFaqs = [
   {
     id: "wordpress",
     question: "Webflow or WordPress?",
-    answer: "[Answer TBC]",
+    answer:
+      "Webflow if your marketing team wants to edit visually, with managed hosting and no plugins. WordPress if you need memberships, heavy plugins or complex features.",
   },
   {
     id: "migrate",
     question: "Can you migrate from WordPress or Squarespace?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. A like-for-like move of up to 15 pages and the blog starts from £1,500, with redirects and rankings checked after launch.",
   },
   {
     id: "ownership",
     question: "Who owns the site?",
-    answer: "[Answer TBC]",
+    answer: "You do. The site lives in your own Webflow account.",
   },
   {
     id: "hosting",
     question: "What does Webflow hosting cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "Webflow charges a monthly site plan, billed straight to you. Plans with a CMS cost a little more. We tell you which plan you need before work starts.",
   },
   {
     id: "timeline",
     question: "How long does a Webflow site take?",
-    answer: "[Answer TBC]",
+    answer:
+      "Starter sites usually take 3 to 6 weeks, and larger business sites 6 to 8 weeks.",
   },
   {
     id: "team",
     question: "Can my team add pages without breaking the design?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We build with reusable components and CMS collections, so new pages and posts follow the design automatically.",
   },
   {
     id: "seo",
     question: "Is Webflow good for SEO?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. It produces clean code and gives full control over titles, meta, redirects and structured data. We set it all up properly.",
   },
   {
     id: "crm",
     question: "Can Webflow connect to my CRM and email?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Forms can send leads to HubSpot, Mailchimp and most CRMs, directly or through Zapier or Make.",
   },
   {
     id: "support",
     question: "Do you offer support after launch?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Every site has a 3-month guarantee, and Growth & Support plans start from £300 a month.",
   },
 ];
 
@@ -5815,37 +5965,43 @@ export const paidMediaFaqs = [
   {
     id: "channel",
     question: "Should we start with Google or Meta?",
-    answer: "[Answer TBC]",
+    answer:
+      "Google if people already search for what you do. Meta if they don’t know they need you yet, or your product sells on looks. Not sure? We’ll recommend one.",
   },
   {
     id: "budget",
     question: "What budget do we need?",
-    answer: "[Answer TBC]",
+    answer:
+      "At least £500 a month in ad spend per channel, paid straight to Google or Meta, plus our fee from £500 a month per channel, or £900 for both.",
   },
   {
     id: "landing-pages",
     question: "Do you build the landing pages?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Landing pages start from £1,000 and are built by the same team that runs the ads.",
   },
   {
     id: "lead-quality",
     question: "How do you measure lead quality?",
-    answer: "[Answer TBC]",
+    answer:
+      "We track each lead from the ad through to the outcome, using your CRM or call tracking where possible, so we optimise for good leads, not just more of them.",
   },
   {
     id: "creative",
     question: "Do you handle the creative?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. Ad copy for Google, and images, video and copy for Meta, are all included.",
   },
   {
     id: "ownership",
     question: "Do I own the ad accounts?",
-    answer: "[Answer TBC]",
+    answer: "Yes. The accounts, the data and the creative are yours.",
   },
   {
     id: "linkedin",
     question: "Do you run LinkedIn ads?",
-    answer: "[Answer TBC]",
+    answer:
+      "Not at the moment. We focus on Google and Meta, where most of our clients get their enquiries.",
   },
 ];
 
@@ -5853,37 +6009,44 @@ export const brandingFaqs = [
   {
     id: "cost",
     question: "How much does branding cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "A brand refresh starts from £1,000, a full identity from £2,500, and identity plus rollout from £3,500. You get a fixed price before we start.",
   },
   {
     id: "files",
     question: "Do we own the files?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. You get every file, including the logo in all formats, the guidelines and templates, and full ownership.",
   },
   {
     id: "website",
     question: "Can you roll the brand onto our website?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We design and build websites too, so the brand goes onto your site, socials and print without a handover to another agency.",
   },
   {
     id: "existing-logo",
     question: "What if we already have a logo we like?",
-    answer: "[Answer TBC]",
+    answer:
+      "Then we keep it and build around it. A refresh tidies the logo, colours and type so everything works together.",
   },
   {
     id: "timeline",
     question: "How long does a rebrand take?",
-    answer: "[Answer TBC]",
+    answer:
+      "Most refreshes take 2 to 3 weeks and full identities 4 to 6 weeks. Rollout adds 2 to 4 weeks, depending on how many places the brand needs to go.",
   },
   {
     id: "directions",
     question: "How many directions do we see?",
-    answer: "[Answer TBC]",
+    answer:
+      "One or two clear directions, based on the positioning work. You approve one before we build the full system.",
   },
   {
     id: "after",
     question: "What happens after the brand is done?",
-    answer: "[Answer TBC]",
+    answer:
+      "You get the guidelines and all the files. Many clients keep us on a monthly design plan (from £300 a month) so everything new stays on brand.",
   },
 ];
 
@@ -5891,42 +6054,50 @@ export const customAppFaqs = [
   {
     id: "cost",
     question: "How much does a custom web app cost?",
-    answer: "[Answer TBC]",
+    answer:
+      "First releases start from £5,000, and most fall between £5,000 and £15,000 depending on screens and integrations. We usually start with a £750 discovery sprint, which is credited against the build.",
   },
   {
     id: "existing",
     question: "Can you improve an existing application?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We review the code and hosting first, then tell you honestly whether to improve it, rebuild parts of it or start again.",
   },
   {
     id: "mobile",
     question: "Do you build mobile apps?",
-    answer: "[Answer TBC]",
+    answer:
+      "We build web apps that work properly on phones and can be added to the home screen like an app. If you truly need an app in the App Store or Google Play, we’ll tell you, and scope it separately.",
   },
   {
     id: "code-ownership",
     question: "Who owns the code?",
-    answer: "[Answer TBC]",
+    answer:
+      "You do. Once the final payment is made, the code, database and accounts are yours, with no lock-in.",
   },
   {
     id: "ai-automation",
     question: "Can you integrate AI or automation?",
-    answer: "[Answer TBC]",
+    answer:
+      "Yes. We can add AI features such as document reading, summaries and smart search, or automate the manual steps around the app. See AI & Automation.",
   },
   {
     id: "first-release",
     question: "How long does a first release take?",
-    answer: "[Answer TBC]",
+    answer:
+      "Most first releases take 4 to 10 weeks, depending on how many screens and integrations it needs.",
   },
   {
     id: "data-security",
     question: "Is my data safe?",
-    answer: "[Answer TBC]",
+    answer:
+      "We sign an NDA as standard, follow UK GDPR, and agree where your data is hosted before we build. Access is limited to the people working on your project.",
   },
   {
     id: "after-launch",
     question: "What happens after launch?",
-    answer: "[Answer TBC]",
+    answer:
+      "Every build has a 3-month guarantee for bugs. After that you can choose a monthly plan (Growing platform from £750 a month), or take the code in-house.",
   },
 ];
 
@@ -6063,19 +6234,18 @@ export const teamProfiles = [
     id: "member-01",
     image: "/images/home/team-one.jpg",
     name: "Ahsan Hussain",
-    role: "Head of development",
+    role: "Head of Development",
     years: "12+",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+      "Ahsan leads development at CreativePixels. He builds WordPress, Laravel and custom platforms, and takes every build from scope to launch. If it needs a login, an integration or a database, it goes through Ahsan.",
   },
   {
     id: "member-02",
     image: "/images/home/team-one.jpg",
     name: "Taha Baig",
-    role: "Project lead",
+    role: "Front-end Developer",
     years: "9+",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus nibh, hendrerit a turpis eu, aliquet vehicula ipsum. Donec augue orci, condimentum et maximus a, lacinia semper eros. Nam porttitor mi et pharetra mattis. Cras leo dolor, ultricies vel rhoncus vel, euismod a sem.",
+    description: "Turns the designs into fast, accessible pages.",
   },
   {
     id: "member-03",
@@ -6246,19 +6416,19 @@ export const teamHandoffs = [
     id: "scope",
     image: "/images/home/hassan-avatar-img.png",
     name: "Hassan",
-    text: "Scopes it with you",
+    text: "Scopes every project with you and stays involved on the big decisions.",
   },
   {
     id: "design",
     image: "/images/home/team-one.jpg",
     name: "Maryam",
-    text: "Maps the journey and designs it",
+    text: "Maps the journey, then designs every screen and state.",
   },
   {
     id: "build",
     image: "/images/home/team-six.jpg",
     name: "Taha",
-    text: "Builds the front end alongside",
+    text: "Turns the designs into fast, accessible pages.",
   },
   {
     id: "launch",
@@ -6270,7 +6440,7 @@ export const teamHandoffs = [
     id: "grow",
     image: "/images/home/team-four.jpg",
     name: "Afzal",
-    text: "Protects search through launch",
+    text: "Protects search through every launch and migration.",
   },
 ];
 

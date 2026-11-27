@@ -66,14 +66,15 @@ const Footer = ({ cta = <HomeFooterCta /> }) => {
                   rel="noopener noreferrer"
                   className={`group flex h-[95px] items-center justify-center rounded-full bg-white/10 text-[35px] tracking-[-0.05em] text-white transition-colors duration-300 max-sm:h-[60px] max-sm:text-[20px] ${hoverClassName}`}
                 >
-                  {/* The icon takes no space until hover, so the label stays centred. */}
-                  <span className="flex w-0 overflow-hidden opacity-0 transition-[width,opacity] duration-300 ease-out group-hover:w-[43px] group-hover:opacity-100 group-focus-visible:w-[43px] group-focus-visible:opacity-100">
+                  {/* The icon takes no space until hover (or a tap on touch screens),
+                      so the label stays centred. */}
+                  <span className="flex w-0 overflow-hidden opacity-0 transition-[width,opacity] duration-300 ease-out group-hover:w-[43px] group-hover:opacity-100 group-focus-visible:w-[43px] group-focus-visible:opacity-100 group-active:w-[43px] group-active:opacity-100 max-sm:group-hover:w-[30px] max-sm:group-focus-visible:w-[30px] max-sm:group-active:w-[30px]">
                     <Image
                       src={icon}
                       alt=""
                       width={28}
                       height={28}
-                      className="size-[28px] shrink-0"
+                      className="size-[28px] shrink-0 max-sm:size-[20px]"
                     />
                   </span>
 

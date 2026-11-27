@@ -5931,28 +5931,28 @@ export const socialLinks = [
     label: "Facebook",
     href: "https://facebook.com",
     icon: "/icons/fb-icon.svg",
-    hoverClassName: "hover:bg-[#1877F2]",
+    hoverClassName: "hover:bg-[#1877F2] active:bg-[#1877F2]",
   },
   {
     id: "instagram",
     label: "Instagram",
     href: "https://instagram.com",
     icon: "/icons/ig-icon.svg",
-    hoverClassName: "hover:bg-[#E1306C]",
+    hoverClassName: "hover:bg-[#E1306C] active:bg-[#E1306C]",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
     href: "https://linkedin.com",
     icon: "/icons/linkedin-icon.svg",
-    hoverClassName: "hover:bg-[#0A66C2]",
+    hoverClassName: "hover:bg-[#0A66C2] active:bg-[#0A66C2]",
   },
   {
     id: "x",
     label: "Twitter",
     href: "https://x.com",
     icon: "/icons/x-icon.svg",
-    hoverClassName: "hover:bg-[#1DA1F2]",
+    hoverClassName: "hover:bg-[#1DA1F2] active:bg-[#1DA1F2]",
   },
 ];
 

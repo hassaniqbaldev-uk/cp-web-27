@@ -1538,7 +1538,7 @@ export const seoHeroPopovers = [
     title: "AEO",
     href: "/contact",
     image: "/images/services/aeo-popover-seo-hero.png",
-    className: "top-[55px] left-[28px]",
+    className: "top-[55px] left-[28px] max-sm:top-[11.3%] max-sm:left-[4.4%]",
     orientation: "bottom",
   },
   {
@@ -1546,7 +1546,8 @@ export const seoHeroPopovers = [
     title: "GEO",
     href: "/contact",
     image: "/images/services/geo-popover-seo-hero.png",
-    className: "top-[198px] left-[559px]",
+    className:
+      "top-[198px] left-[559px] max-sm:top-[40.7%] max-sm:left-[87.9%]",
     orientation: "bottom",
   },
   {
@@ -1554,7 +1555,7 @@ export const seoHeroPopovers = [
     title: "SEO",
     href: "/contact",
     image: "/images/services/seo-popover-seo-hero.png",
-    className: "top-[458px] left-[552px]",
+    className: "top-[458px] left-[552px] max-sm:top-[94%] max-sm:left-[86.8%]",
     orientation: "top",
   },
 ];
@@ -1565,14 +1566,15 @@ export const seoHeroCards = [
     title: "Monthly SEO from",
     price: "£300.",
     description: "Measured against a baseline we agree at the start",
-    className: "top-[-28px] left-[455px]",
+    className:
+      "top-[-28px] left-[455px] max-sm:top-[-20%] max-sm:right-[-8px] max-sm:left-auto",
   },
   {
     id: "audit",
     title: "SEO audit from",
     price: "£500.",
     description: "Measured against a baseline we agree at the start",
-    className: "top-[356px] left-0",
+    className: "top-[356px] left-0 max-sm:top-[70%] max-sm:left-[-8px]",
   },
 ];
 

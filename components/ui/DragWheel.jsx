@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Children, useRef } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 
 const PIXELS_PER_SECOND = 40;
 
@@ -12,16 +12,23 @@ const THROW_REACH = 0.3;
 
 const THROW_DURATION = 0.9;
 
+const PHONE_QUERY = "(max-width: 479.98px)";
+
 // Circular version of DragMarquee: slides sit on a wheel that turns slowly and
 // can be dragged or thrown. `step` is the angle between slides and should
 // divide 360 so the repeated slides fill the wheel without a seam. Only the
 // slides take the pointer, so the empty space around them isn't draggable.
 export default function DragWheel({
   children,
-  radius,
-  step = 30,
+  radius: desktopRadius,
+  step: desktopStep = 30,
   startIndex = 0,
-  centerY,
+  centerY: desktopCenterY,
+  // Optional wheel for phones: a smaller step tilts the neighbouring
+  // slides less, and the radius sets how far apart they sit.
+  phoneRadius,
+  phoneCenterY,
+  phoneStep,
   speed = PIXELS_PER_SECOND,
   pauseOnHover = false,
   className = "",
@@ -29,6 +36,23 @@ export default function DragWheel({
 }) {
   const viewportRef = useRef(null);
   const wheelRef = useRef(null);
+  const [isPhone, setIsPhone] = useState(false);
+
+  useEffect(() => {
+    if (!phoneRadius) return;
+
+    const query = window.matchMedia(PHONE_QUERY);
+    const update = () => setIsPhone(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+
+    return () => query.removeEventListener("change", update);
+  }, [phoneRadius]);
+
+  const radius = isPhone ? phoneRadius : desktopRadius;
+  const step = isPhone ? (phoneStep ?? desktopStep) : desktopStep;
+  const centerY = isPhone ? (phoneCenterY ?? desktopCenterY) : desktopCenterY;
 
   const items = Children.toArray(children);
   const total = Math.round(360 / step);
@@ -187,7 +211,7 @@ export default function DragWheel({
       };
     },
     {
-      dependencies: [radius, speed, pauseOnHover],
+      dependencies: [radius, step, speed, pauseOnHover],
       scope: viewportRef,
       revertOnUpdate: true,
     },

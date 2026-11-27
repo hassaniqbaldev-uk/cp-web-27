@@ -18,6 +18,8 @@ const ServiceFooterCta = ({
   quote = "We manage bookings in a spreadsheet and copy them into Xero by hand",
   submitLabel,
   services,
+  // Long headings can step down a size on phones to save a line.
+  phoneTitleClassName = "max-sm:text-[36px] max-sm:leading-[38px]",
 }) => {
   return (
     <Section
@@ -31,7 +33,7 @@ const ServiceFooterCta = ({
               className="max-sm:text-center"
               title={title}
               subtitle={subtitle}
-              titleClassName="text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white max-sm:text-[36px] max-sm:leading-[38px]"
+              titleClassName={`text-[65px] leading-[65px] font-extrabold tracking-[-0.06em] text-white ${phoneTitleClassName}`}
               subtitleClassName="text-[18px] text-grey mt-[20px] leading-[28px] tracking-[-0.02em] max-sm:mt-[16px] max-sm:text-[16px] max-sm:leading-[24px]"
             />
 

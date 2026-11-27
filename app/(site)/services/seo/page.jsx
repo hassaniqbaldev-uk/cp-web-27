@@ -28,7 +28,7 @@ const Seo = () => {
         id="seo-case-studies"
         title={
           <>
-            Results, including rebuilds <br />
+            Results, including rebuilds <br className="max-sm:hidden" />
             <span className="text-black/50">where rankings were kept</span>
           </>
         }
@@ -55,7 +55,7 @@ const Seo = () => {
         note={
           <>
             Small SEO agencies typically charge £1,000 to £2,500 a month. Ours
-            start from £500, <br />
+            start from £500, <br className="max-sm:hidden" />
             on a rolling monthly contract.
           </>
         }
@@ -78,8 +78,8 @@ const Seo = () => {
               <>
                 Not being <br />
                 found for the{" "}
-                <span className="block w-fit bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent">
-                  searches <br />
+                <span className="block w-fit bg-[linear-gradient(90deg,var(--color-dark-pink)_0%,var(--color-orange)_100%)] bg-clip-text pr-[0.07em] text-transparent max-sm:mx-auto">
+                  searches <br className="max-sm:hidden" />
                   that matter?
                 </span>
               </>
@@ -88,6 +88,7 @@ const Seo = () => {
             quote="We used to rank for our main service and now we don’t"
             submitLabel="Send my SEO details"
             services={seoFormServices}
+            phoneTitleClassName="max-sm:text-[32px] max-sm:leading-[34px]"
           />
         }
       />
